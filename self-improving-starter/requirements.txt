@@ -1,0 +1,7 @@
+anthropic>=0.69
+# RL half (install on the GPU host that runs training):
+# verl>=0.4
+# vllm>=0.6
+# torch>=2.4
+# datasets>=2.20
+# pandas>=2.0

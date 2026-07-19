@@ -1,0 +1,57 @@
+# verl GRPO config skeleton for RLVR fine-tuning.
+#
+# This is a historical, deliberately disabled design skeleton, not a runnable
+# recipe. Before use it needs disjoint task-level datasets, an isolated reward
+# service, a verified trajectory schema, a pinned model, and a GPU cluster.
+# rl/reward.py refuses execution outside an explicitly isolated reward worker.
+#
+# Run (on the GPU host, after `pip install verl vllm torch datasets`):
+#   python -m verl.trainer.main_ppo --config-path rl --config-name grpo_config
+#
+# Docs: https://github.com/volcengine/verl
+
+algorithm:
+  adv_estimator: grpo          # Group Relative Policy Optimization (no value net)
+  kl_ctrl:
+    kl_coef: 0.001             # light KL to the reference policy; raise if it drifts
+
+data:
+  train_files: data/train.parquet     # built by rl/dataset.py
+  val_files: data/val.parquet         # must contain disjoint HELD-OUT TASKS
+  prompt_key: prompt
+  max_prompt_length: 2048
+  max_response_length: 2048
+  train_batch_size: 64
+
+actor_rollout_ref:
+  model:
+    # Pick an open-weight model strong at code + reasoning. You cannot fine-tune
+    # closed frontier models (Claude/GPT) this way — use an open checkpoint:
+    #   Qwen/Qwen3-Coder-*        DeepSeek distills        meta-llama/Llama-*
+    path: Qwen/Qwen3-Coder-7B    # <-- set to your chosen base checkpoint
+  actor:
+    optim:
+      lr: 1.0e-6
+    ppo_mini_batch_size: 16
+    use_kl_loss: true
+  rollout:
+    name: vllm                  # vLLM backend for fast rollout generation
+    n: 8                        # samples per prompt (the "group" in GRPO)
+    temperature: 1.0
+    gpu_memory_utilization: 0.6
+
+reward_model:
+  enable: false                 # RLVR: no learned reward model
+  # verl loads the custom reward function below instead:
+custom_reward_function:
+  path: rl/reward.py
+  name: compute_score
+
+trainer:
+  total_epochs: 3
+  n_gpus_per_node: 8            # <-- set to your hardware
+  nnodes: 1
+  save_freq: 50
+  test_freq: 10                 # evaluate on the HELD-OUT set regularly; watch for reward-hacking
+  project_name: self-improving-starter
+  experiment_name: grpo-rlvr
