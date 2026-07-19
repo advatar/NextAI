@@ -23,11 +23,11 @@ class TaskResult:
 class ExecutableTaskSuite:
     """Runs operator-selected environments; tasks cannot be edited by a candidate."""
 
-    def __init__(self, task_ids: tuple[str, ...] = ("optimize_function",)) -> None:
+    def __init__(self, task_ids: tuple[str, ...] = ("optimize_function",), *, correctness_only: bool = True) -> None:
         if not task_ids or any(task_id not in REGISTRY for task_id in task_ids):
             raise ValueError("task_ids must name registered environments")
         self.task_ids = tuple(task_ids)
-        self._envs = {task_id: REGISTRY[task_id]() for task_id in self.task_ids}
+        self._envs = {task_id: REGISTRY[task_id](correctness_only=correctness_only) if task_id == "optimize_function" else REGISTRY[task_id]() for task_id in self.task_ids}
         manifests = []
         for task_id in self.task_ids:
             env = self._envs[task_id]
@@ -41,14 +41,14 @@ class ExecutableTaskSuite:
         return tuple(
             TaskResult(task_id, result.reward, result.correct, result.detail)
             for task_id in self.task_ids
-            for result in (self._envs[task_id].score(solution_source),)
+            for result in (self._envs[task_id].score_correctness(solution_source) if hasattr(self._envs[task_id], "score_correctness") else self._envs[task_id].score(solution_source),)
         )
 
     def baseline(self) -> tuple[TaskResult, ...]:
         return tuple(
             TaskResult(task_id, result.reward, result.correct, result.detail)
             for task_id in self.task_ids
-            for result in (self._envs[task_id].score(self._envs[task_id].starting_solution),)
+            for result in (self._envs[task_id].score_correctness(self._envs[task_id].starting_solution) if hasattr(self._envs[task_id], "score_correctness") else self._envs[task_id].score(self._envs[task_id].starting_solution),)
         )
 
 

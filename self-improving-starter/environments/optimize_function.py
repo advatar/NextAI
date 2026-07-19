@@ -280,7 +280,7 @@ class OptimizeFunctionEnv(Environment):
         "    return (n - 1) * n * (2 * n - 1) // 6 if n > 0 else 0\n"
     )
 
-    def __init__(self, *, trusted_local_fixture: bool = False) -> None:
+    def __init__(self, *, trusted_local_fixture: bool = False, correctness_only: bool = False) -> None:
         """Construct the smoke environment.
 
         The default path requires the untrusted-code container adapter. Tests may
@@ -289,13 +289,16 @@ class OptimizeFunctionEnv(Environment):
         """
 
         self._trusted_local_fixture = trusted_local_fixture
+        self._correctness_only = correctness_only
         if not trusted_local_fixture and not container_runtime_available():
             raise RuntimeError(
                 "The reviewed local candidate container image is unavailable. "
                 "Refusing to execute generated code in the host fixture runner."
             )
-        self._starting_time = self._time_of(self.starting_solution)
-        self._reference_time = self._time_of(self._REFERENCE_SOLUTION)
+        self._starting_time = None if correctness_only else self._time_of(self.starting_solution)
+        self._reference_time = None if correctness_only else self._time_of(self._REFERENCE_SOLUTION)
+        if correctness_only:
+            return
         if self._starting_time is None or self._reference_time is None:
             raise RuntimeError("Failed to calibrate starting/reference timings")
         if not self._reference_time < self._starting_time:
@@ -362,6 +365,13 @@ class OptimizeFunctionEnv(Environment):
             raw=round(timing, 9),
             detail=f"correct; {timing * 1e3:.3f} ms (norm {normalized:.3f})",
         )
+
+    def score_correctness(self, solution_source: str) -> ScoreResult:
+        """Stable hidden-case result without timing calibration or promotion."""
+        _, failure = self._evaluate(solution_source)
+        if failure is not None:
+            return ScoreResult(-1.0, False, None, failure)
+        return ScoreResult(1.0, True, None, "correctness cases passed")
 
     @staticmethod
     def _same_program(left: str, right: str) -> bool:
