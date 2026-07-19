@@ -29,6 +29,7 @@ from recursive_lab.metaproductivity import (
     ExperimentBudget,
     run_tournament,
 )
+from recursive_lab.meta_archive import ImproverArchive
 
 
 class _DeterministicClock:
@@ -117,7 +118,19 @@ def _metaproductivity_fixture() -> dict[str, Any]:
         bootstrap_samples=2000,
         bootstrap_seed=7,
     )
-    return report.to_dict()
+    archive = ImproverArchive()
+    parent = archive.seed(ancestor)
+    candidate = archive.consider(
+        descendant, report, parent_digest=parent.digest, allow_fixture=True
+    )
+    payload = report.to_dict()
+    payload["outer_loop"] = {
+        "parent": parent.digest,
+        "candidate": candidate.digest,
+        "promotion": candidate.verdict,
+        "claim_boundary": "fixture archive plumbing; not empirical RSI evidence",
+    }
+    return payload
 
 
 def _run_demo(args: argparse.Namespace) -> int:
