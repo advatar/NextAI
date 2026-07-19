@@ -134,7 +134,7 @@ class CorpusStrategyEvaluator:
         utility = sum(results) / len(results)
         return ArtifactEvaluation(
             evaluator_id=self.evaluator_id, split=split, utility=utility,
-            correct=GateResult.success("corpus checks passed" if all(results) else "corpus checks failed"),
+            correct=(GateResult.success("corpus checks passed") if all(results) else GateResult.failure("one or more corpus tasks failed")),
             safety_preserved=GateResult.success("typed artifact safety passed"),
             evaluator_integrity=GateResult.success("immutable corpus digest matched"),
             artifact_valid=GateResult.success("typed strategy schema matched"),
