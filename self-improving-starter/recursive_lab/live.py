@@ -143,7 +143,11 @@ class CorpusStrategyEvaluator:
             resource_compliance=GateResult.success("corpus resource envelope matched"),
             task_count=len(results), per_task_results=(True,) * len(results),
             task_manifest_digest=self.task_manifest_digests[split],
-            public_feedback=f"Corpus utility {utility:.2f}" if split == DEVELOPMENT_SPLIT else "",
+            public_feedback=(
+                f"Corpus utility {utility:.2f}. Missing public task IDs: "
+                + ", ".join(task.task_id for task, passed in zip(self.tasks, results) if not passed)
+                if split == DEVELOPMENT_SPLIT else ""
+            ),
         )
 
 
