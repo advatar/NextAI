@@ -14,7 +14,7 @@ from typing import Any, Mapping
 
 from .artifacts import ArtifactRecord, StrategyArtifact, sha256_digest, strict_json_loads
 from .governance import GateResult
-from .lab import DEVELOPMENT_SPLIT, PRIVATE_SPLIT, SEALED_SPLIT, ArtifactEvaluation, ProposalResult
+from .lab import DEVELOPMENT_SPLIT, PRIVATE_SPLIT, SEALED_SPLIT, ArtifactEvaluation, MeteredOperationError, ProposalResult
 
 
 class AnthropicStrategyProposer:
@@ -79,12 +79,30 @@ class OpenAIStrategyProposer:
             instructions="Propose a bounded typed strategy improvement. Return JSON only as a JSON object; never discuss or modify evaluators, tests, permissions, networking, or code execution.",
             input=json.dumps({"format": "json", "parent": parent.artifact.to_payload(), "public_feedback": public_feedback, "seed": seed}, sort_keys=True),
             max_output_tokens=self.max_output_tokens,
-            text={"format": {"type": "json_object"}},
+            text={"format": {"type": "json_schema", "name": "strategy_artifact", "strict": True, "schema": {
+                "type": "object", "additionalProperties": False,
+                "required": ["kind", "max_attempts", "planning_steps", "reflection", "schema_version", "system_instruction"],
+                "properties": {
+                    "kind": {"type": "string", "enum": ["strategy"]},
+                    "max_attempts": {"type": "integer", "minimum": 1, "maximum": 16},
+                    "planning_steps": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 24},
+                    "reflection": {"type": ["string", "null"]},
+                    "schema_version": {"type": "integer", "const": 1},
+                    "system_instruction": {"type": "string"}
+                }
+            }}},
         )
         text = str(getattr(response, "output_text", ""))
-        candidate = StrategyArtifact.from_payload(strict_json_loads(text))
         usage = getattr(response, "usage", None)
         tokens = int(getattr(usage, "total_tokens", 0) or 0)
+        try:
+            candidate = StrategyArtifact.from_payload(strict_json_loads(text))
+        except Exception as error:
+            raise MeteredOperationError(
+                f"model response failed typed strategy validation: {type(error).__name__}",
+                model_calls=1,
+                tokens=tokens,
+            ) from error
         return ProposalResult(candidate.to_canonical_json(), model_calls=1, tokens=tokens, request_id=getattr(response, "id", None), model_version=self.model, raw_response_digest=hashlib.sha256(text.encode()).hexdigest())
 
 
