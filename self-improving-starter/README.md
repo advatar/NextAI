@@ -41,6 +41,9 @@ The full design and go/no-go criteria are in
   with at least five distinct seed artifacts and random seeds, externally
   evaluated gates, complete per-arm cost vectors, a bootstrap interval, and
   explicit pass/fail/inconclusive/invalid output.
+- `recursive_lab/live.py` — opt-in pinned Anthropic proposer and immutable JSON
+  task-corpus evaluator. The proposer is metered and digest-bound; the evaluator
+  never receives private promotion evidence or model credentials.
 
 ### Candidate execution boundaries
 
@@ -161,11 +164,20 @@ queries, and closes further search once consumed. A failed sealed call still
 consumes its query, records its seed and failure digest, and closes search. Its
 evaluation cost is also logged.
 
+## Live adapter status
+
+The live adapter is now protocol-complete but deliberately not run by the test
+suite. Select it only with a pinned model, an operator-owned task corpus, and a
+separate evaluator process or service in production. A real run must preserve
+the raw response digest, provider request ID, model version, token receipt, and
+the corpus manifest digest before any promotion decision is considered empirical.
+
 ## What is intentionally not ready
 
-- There is no live strategy-editing model adapter, strategy-conditioned coding
-  agent, or 20–30 task coding corpus yet. The deterministic proposer/evaluator
-  score known strategy features and are test fixtures.
+- There is no strategy-conditioned coding agent or 20–30 task coding corpus
+  yet. The new live adapter proposes typed strategies and scores an immutable
+  phrase corpus, but that corpus is an integration harness, not evidence of
+  general coding improvement.
 - The Docker adapter hardens the legacy toy candidate boundary and is tested in
   isolation; it is not yet wired to a live recursive-lab coding-task harness.
 - The deterministic proposer is trusted Python in the governor process. Private
