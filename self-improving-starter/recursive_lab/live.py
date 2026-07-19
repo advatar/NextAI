@@ -56,6 +56,38 @@ class AnthropicStrategyProposer:
         return ProposalResult(candidate.to_canonical_json(), model_calls=1, tokens=tokens, request_id=request_id, model_version=self.model, raw_response_digest=hashlib.sha256(text.encode()).hexdigest())
 
 
+class OpenAIStrategyProposer:
+    """Pinned OpenAI Responses API proposer with the same trust boundary."""
+
+    name = "openai-typed-strategy-proposer-v1"
+
+    def __init__(self, *, model: str, max_output_tokens: int = 1200, client: Any = None) -> None:
+        if not model.strip() or max_output_tokens < 128:
+            raise ValueError("a pinned model and useful max_output_tokens are required")
+        if client is None:
+            try:
+                from openai import OpenAI
+                client = OpenAI()
+            except ImportError as error:
+                raise RuntimeError("install openai to use the live proposer") from error
+        self.client, self.model, self.max_output_tokens = client, model, max_output_tokens
+        self.proposer_digest = sha256_digest(f"{self.name}:{model}:{max_output_tokens}")
+
+    def propose(self, parent: ArtifactRecord, *, public_feedback: str, seed: int) -> ProposalResult:
+        response = self.client.responses.create(
+            model=self.model,
+            instructions="Propose a bounded typed strategy improvement. Return JSON only; never discuss or modify evaluators, tests, permissions, networking, or code execution.",
+            input=json.dumps({"parent": parent.artifact.to_payload(), "public_feedback": public_feedback, "seed": seed}, sort_keys=True),
+            max_output_tokens=self.max_output_tokens,
+            text={"format": {"type": "json_object"}},
+        )
+        text = str(getattr(response, "output_text", ""))
+        candidate = StrategyArtifact.from_payload(strict_json_loads(text))
+        usage = getattr(response, "usage", None)
+        tokens = int(getattr(usage, "total_tokens", 0) or 0)
+        return ProposalResult(candidate.to_canonical_json(), model_calls=1, tokens=tokens, request_id=getattr(response, "id", None), model_version=self.model, raw_response_digest=hashlib.sha256(text.encode()).hexdigest())
+
+
 @dataclass(frozen=True, slots=True)
 class CorpusTask:
     task_id: str
@@ -95,4 +127,4 @@ class CorpusStrategyEvaluator:
         )
 
 
-__all__ = ["AnthropicStrategyProposer", "CorpusStrategyEvaluator", "CorpusTask"]
+__all__ = ["AnthropicStrategyProposer", "OpenAIStrategyProposer", "CorpusStrategyEvaluator", "CorpusTask"]

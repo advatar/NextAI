@@ -1,4 +1,5 @@
 anthropic>=0.69
+openai>=1.0
 # RL half (install on the GPU host that runs training):
 # verl>=0.4
 # vllm>=0.6

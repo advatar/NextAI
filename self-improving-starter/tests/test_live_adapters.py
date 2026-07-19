@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from recursive_lab.fixtures import baseline_strategy  # noqa: E402
 from recursive_lab.lab import DEVELOPMENT_SPLIT  # noqa: E402
-from recursive_lab.live import AnthropicStrategyProposer, CorpusStrategyEvaluator  # noqa: E402
+from recursive_lab.live import AnthropicStrategyProposer, CorpusStrategyEvaluator, OpenAIStrategyProposer  # noqa: E402
 from recursive_lab.artifacts import ArtifactRecord  # noqa: E402
 
 
@@ -24,6 +24,17 @@ class FakeMessages:
 
 class FakeClient:
     def __init__(self): self.messages = FakeMessages()
+
+
+class FakeResponses:
+    def create(self, **kwargs):
+        self.kwargs = kwargs
+        text = json.dumps(baseline_strategy("openai").to_payload())
+        return SimpleNamespace(id="resp_test", output_text=text, usage=SimpleNamespace(total_tokens=31))
+
+
+class FakeOpenAIClient:
+    def __init__(self): self.responses = FakeResponses()
 
 
 class LiveAdapterTests(unittest.TestCase):
@@ -44,6 +55,14 @@ class LiveAdapterTests(unittest.TestCase):
             result = evaluator.evaluate(baseline_strategy(), split=DEVELOPMENT_SPLIT, seed=0)
             self.assertEqual(result.task_count, 1)
             self.assertTrue(result.public_feedback)
+
+    def test_openai_responses_proposer_records_receipt(self):
+        proposer = OpenAIStrategyProposer(model="pinned-openai-model", client=FakeOpenAIClient())
+        artifact = baseline_strategy()
+        record = ArtifactRecord(artifact, None, 0, proposer.proposer_digest, 0)
+        result = proposer.propose(record, public_feedback="public only", seed=4)
+        self.assertEqual(result.tokens, 31)
+        self.assertEqual(result.request_id, "resp_test")
 
 
 if __name__ == "__main__": unittest.main()

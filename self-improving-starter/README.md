@@ -172,6 +172,16 @@ separate evaluator process or service in production. A real run must preserve
 the raw response digest, provider request ID, model version, token receipt, and
 the corpus manifest digest before any promotion decision is considered empirical.
 
+### Local credentials and corpus
+
+Put local credentials in `self-improving-starter/.env` (copied from
+`.env.example`). This file is intentionally ignored and must never be committed.
+Run commands from `self-improving-starter` after exporting the variables, or
+load the file with your shell's dotenv tool. The reviewed starter corpus is at
+`self-improving-starter/corpus/strategy_tasks.json`; it is immutable evaluator
+input and currently validates strategy-planning behavior, not general coding
+ability.
+
 ## What is intentionally not ready
 
 - There is no strategy-conditioned coding agent or 20–30 task coding corpus
