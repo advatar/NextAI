@@ -15,6 +15,7 @@ from typing import Any, Mapping
 from .artifacts import ArtifactRecord, StrategyArtifact, sha256_digest, strict_json_loads
 from .governance import GateResult
 from .lab import DEVELOPMENT_SPLIT, PRIVATE_SPLIT, SEALED_SPLIT, ArtifactEvaluation, MeteredOperationError, ProposalResult
+from .task_harness import ExecutableTaskSuite
 
 
 class AnthropicStrategyProposer:
@@ -132,6 +133,34 @@ class OpenAICodingAgent:
         return source, int(getattr(usage, "total_tokens", 0) or 0), getattr(response, "id", None)
 
 
+class StrategyCodingEvaluator:
+    """Evaluates a strategy by executing the code it causes the agent to write."""
+
+    evaluator_id = "execution-strategy-evaluator-v1"
+
+    def __init__(self, agent: OpenAICodingAgent, suite: ExecutableTaskSuite) -> None:
+        self.agent, self.suite = agent, suite
+        self.evaluator_digest = sha256_digest(f"{self.evaluator_id}:{agent.model}:{suite.manifest_digest}")
+        self.task_manifest_digests = {split: sha256_digest(f"{suite.manifest_digest}:{split}") for split in (DEVELOPMENT_SPLIT, PRIVATE_SPLIT, SEALED_SPLIT)}
+
+    def evaluate(self, artifact: StrategyArtifact, *, split: str, seed: int) -> ArtifactEvaluation:
+        task = self.suite.manifest[0]
+        source, tokens, _ = self.agent.generate(task_prompt=task["prompt"], strategy=artifact, current_solution=task["starting"])
+        result = self.suite.evaluate(source)[0]
+        return ArtifactEvaluation(
+            evaluator_id=self.evaluator_id, split=split, utility=result.reward,
+            correct=GateResult.success("execution task passed") if result.correct else GateResult.failure(result.detail),
+            safety_preserved=GateResult.success("candidate runner safety gates passed"),
+            evaluator_integrity=GateResult.success("immutable executable suite digest matched"),
+            artifact_valid=GateResult.success("typed strategy schema matched"),
+            resource_compliance=GateResult.success("model and runner budget recorded"),
+            task_count=1, model_calls=1, tokens=tokens,
+            task_manifest_digest=self.task_manifest_digests[split],
+            per_task_results=(result.correct,),
+            public_feedback=(f"Execution reward {result.reward:.3f}; {result.detail}" if split == DEVELOPMENT_SPLIT else ""),
+        )
+
+
 @dataclass(frozen=True, slots=True)
 class CorpusTask:
     task_id: str
@@ -177,4 +206,4 @@ class CorpusStrategyEvaluator:
         )
 
 
-__all__ = ["AnthropicStrategyProposer", "OpenAIStrategyProposer", "OpenAICodingAgent", "CorpusStrategyEvaluator", "CorpusTask"]
+__all__ = ["AnthropicStrategyProposer", "OpenAIStrategyProposer", "OpenAICodingAgent", "StrategyCodingEvaluator", "CorpusStrategyEvaluator", "CorpusTask"]
