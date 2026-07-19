@@ -106,6 +106,32 @@ class OpenAIStrategyProposer:
         return ProposalResult(candidate.to_canonical_json(), model_calls=1, tokens=tokens, request_id=getattr(response, "id", None), model_version=self.model, raw_response_digest=hashlib.sha256(text.encode()).hexdigest())
 
 
+class OpenAICodingAgent:
+    """Uses a strategy artifact to produce executable task code."""
+
+    def __init__(self, *, model: str, max_output_tokens: int = 3000, client: Any = None) -> None:
+        if not model.strip() or max_output_tokens < 256:
+            raise ValueError("a pinned model and useful max_output_tokens are required")
+        if client is None:
+            try:
+                from openai import OpenAI
+                client = OpenAI()
+            except ImportError as error:
+                raise RuntimeError("install openai to use the live coding agent") from error
+        self.client, self.model, self.max_output_tokens = client, model, max_output_tokens
+
+    def generate(self, *, task_prompt: str, strategy: StrategyArtifact, current_solution: str) -> tuple[str, int, str | None]:
+        response = self.client.responses.create(
+            model=self.model,
+            instructions="Write only the complete Python solution source. Preserve the requested function contract. Do not use imports, file/network access, subprocesses, or hidden-test references.",
+            input=json.dumps({"task_prompt": task_prompt, "strategy": strategy.to_payload(), "current_solution": current_solution}, sort_keys=True),
+            max_output_tokens=self.max_output_tokens,
+        )
+        source = str(getattr(response, "output_text", "")).strip() + "\n"
+        usage = getattr(response, "usage", None)
+        return source, int(getattr(usage, "total_tokens", 0) or 0), getattr(response, "id", None)
+
+
 @dataclass(frozen=True, slots=True)
 class CorpusTask:
     task_id: str
@@ -151,4 +177,4 @@ class CorpusStrategyEvaluator:
         )
 
 
-__all__ = ["AnthropicStrategyProposer", "OpenAIStrategyProposer", "CorpusStrategyEvaluator", "CorpusTask"]
+__all__ = ["AnthropicStrategyProposer", "OpenAIStrategyProposer", "OpenAICodingAgent", "CorpusStrategyEvaluator", "CorpusTask"]

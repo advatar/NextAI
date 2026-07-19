@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from recursive_lab.fixtures import baseline_strategy  # noqa: E402
 from recursive_lab.lab import DEVELOPMENT_SPLIT  # noqa: E402
-from recursive_lab.live import AnthropicStrategyProposer, CorpusStrategyEvaluator, OpenAIStrategyProposer  # noqa: E402
+from recursive_lab.live import AnthropicStrategyProposer, CorpusStrategyEvaluator, OpenAIStrategyProposer, OpenAICodingAgent  # noqa: E402
 from recursive_lab.artifacts import ArtifactRecord  # noqa: E402
 
 
@@ -35,6 +35,15 @@ class FakeResponses:
 
 class FakeOpenAIClient:
     def __init__(self): self.responses = FakeResponses()
+
+
+class FakeCodeResponses:
+    def create(self, **kwargs):
+        return SimpleNamespace(id="code_test", output_text="def solve(n):\n    return 0\n", usage=SimpleNamespace(total_tokens=12))
+
+
+class FakeCodeClient:
+    def __init__(self): self.responses = FakeCodeResponses()
 
 
 class LiveAdapterTests(unittest.TestCase):
@@ -63,6 +72,15 @@ class LiveAdapterTests(unittest.TestCase):
         result = proposer.propose(record, public_feedback="public only", seed=4)
         self.assertEqual(result.tokens, 31)
         self.assertEqual(result.request_id, "resp_test")
+
+    def test_strategy_conditioned_coding_agent_returns_source_and_usage(self):
+        agent = OpenAICodingAgent(model="pinned-openai-model", client=FakeCodeClient())
+        source, tokens, request_id = agent.generate(
+            task_prompt="Implement solve(n).", strategy=baseline_strategy(), current_solution="def solve(n):\n    return 0\n"
+        )
+        self.assertIn("def solve", source)
+        self.assertEqual(tokens, 12)
+        self.assertEqual(request_id, "code_test")
 
 
 if __name__ == "__main__": unittest.main()
