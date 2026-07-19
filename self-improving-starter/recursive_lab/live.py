@@ -76,8 +76,8 @@ class OpenAIStrategyProposer:
     def propose(self, parent: ArtifactRecord, *, public_feedback: str, seed: int) -> ProposalResult:
         response = self.client.responses.create(
             model=self.model,
-            instructions="Propose a bounded typed strategy improvement. Return JSON only; never discuss or modify evaluators, tests, permissions, networking, or code execution.",
-            input=json.dumps({"parent": parent.artifact.to_payload(), "public_feedback": public_feedback, "seed": seed}, sort_keys=True),
+            instructions="Propose a bounded typed strategy improvement. Return JSON only as a JSON object; never discuss or modify evaluators, tests, permissions, networking, or code execution.",
+            input=json.dumps({"format": "json", "parent": parent.artifact.to_payload(), "public_feedback": public_feedback, "seed": seed}, sort_keys=True),
             max_output_tokens=self.max_output_tokens,
             text={"format": {"type": "json_object"}},
         )
