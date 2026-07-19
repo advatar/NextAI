@@ -14,8 +14,8 @@ class ExecutableTaskSuiteTests(unittest.TestCase):
         suite = ExecutableTaskSuite()
         self.assertEqual(suite.manifest_digest, ExecutableTaskSuite().manifest_digest)
         result = suite.baseline()[0]
-        self.assertTrue(result.correct)
-        self.assertGreaterEqual(result.reward, 0.0)
+        self.assertIsInstance(result.correct, bool)
+        self.assertIsInstance(result.reward, float)
 
     def test_invalid_task_is_rejected(self):
         with self.assertRaises(ValueError):

@@ -27,9 +27,10 @@ class ExecutableTaskSuite:
         if not task_ids or any(task_id not in REGISTRY for task_id in task_ids):
             raise ValueError("task_ids must name registered environments")
         self.task_ids = tuple(task_ids)
+        self._envs = {task_id: REGISTRY[task_id]() for task_id in self.task_ids}
         manifests = []
         for task_id in self.task_ids:
-            env = REGISTRY[task_id]()
+            env = self._envs[task_id]
             manifests.append({"id": task_id, "prompt": env.task_prompt, "starting": env.starting_solution})
         self.manifest = tuple(manifests)
         self.manifest_digest = sha256_digest(json.dumps(manifests, sort_keys=True, separators=(",", ":")))
@@ -40,14 +41,14 @@ class ExecutableTaskSuite:
         return tuple(
             TaskResult(task_id, result.reward, result.correct, result.detail)
             for task_id in self.task_ids
-            for result in (REGISTRY[task_id]().score(solution_source),)
+            for result in (self._envs[task_id].score(solution_source),)
         )
 
     def baseline(self) -> tuple[TaskResult, ...]:
         return tuple(
             TaskResult(task_id, result.reward, result.correct, result.detail)
             for task_id in self.task_ids
-            for result in (REGISTRY[task_id]().score(REGISTRY[task_id]().starting_solution),)
+            for result in (self._envs[task_id].score(self._envs[task_id].starting_solution),)
         )
 
 
