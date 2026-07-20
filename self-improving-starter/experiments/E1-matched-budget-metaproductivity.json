@@ -1,0 +1,819 @@
+{
+  "bootstrap": {
+    "method": "paired_percentile",
+    "samples": 2000,
+    "seed": 7
+  },
+  "budget": {
+    "max_evaluations": 2,
+    "max_model_calls": 1,
+    "max_proposals": 1,
+    "max_tokens": 32,
+    "max_wall_seconds": 1.0
+  },
+  "claim_boundary": "fixture-only plumbing validation; not empirical RSI evidence",
+  "cost_weights": {
+    "evaluation": 1.0,
+    "model_call": 1.0,
+    "proposal": 1.0,
+    "token": 0.0,
+    "wall_second": 0.0
+  },
+  "evaluator_id": "fixture.strategy-evaluator.v1:sealed-external",
+  "evidence_class": "fixture",
+  "experiment_id": "E1-matched-budget-metaproductivity",
+  "recorded_utc": "2026-07-20",
+  "schema": "recursive-lab.metaproductivity-report.v2",
+  "split": "sealed_final",
+  "summary": {
+    "effect_threshold": 0.1,
+    "evidence_class": "fixture",
+    "fixture_only": true,
+    "mean_productivity_delta": 0.5,
+    "median_productivity_delta": 0.5,
+    "minimum_evidence_pairs": 5,
+    "paired_95pct_bootstrap_ci": [
+      0.5,
+      0.5
+    ],
+    "valid_pairs": 5,
+    "verdict": "passes_threshold"
+  },
+  "trials": [
+    {
+      "ancestor": {
+        "cost_units": 4.0,
+        "improver": "fixture-ancestor",
+        "productivity": 0.12499999999999999,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.7
+        },
+        "successor_utility": 0.7,
+        "trial_seed": 100,
+        "uplift": 0.49999999999999994,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "descendant": {
+        "cost_units": 4.0,
+        "improver": "fixture-descendant",
+        "productivity": 0.625,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 2.7
+        },
+        "successor_utility": 2.7,
+        "trial_seed": 100,
+        "uplift": 2.5,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "evaluation_order": [
+        "ancestor",
+        "descendant"
+      ],
+      "productivity_delta": 0.5,
+      "seed_artifact_id": "bab15fd27511373f234ca021d3f441749eb2e370a09f7eff3c751e19752e2695",
+      "trial_seed": 100
+    },
+    {
+      "ancestor": {
+        "cost_units": 4.0,
+        "improver": "fixture-ancestor",
+        "productivity": 0.12499999999999999,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.7
+        },
+        "successor_utility": 0.7,
+        "trial_seed": 101,
+        "uplift": 0.49999999999999994,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "descendant": {
+        "cost_units": 4.0,
+        "improver": "fixture-descendant",
+        "productivity": 0.625,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 2.7
+        },
+        "successor_utility": 2.7,
+        "trial_seed": 101,
+        "uplift": 2.5,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "evaluation_order": [
+        "descendant",
+        "ancestor"
+      ],
+      "productivity_delta": 0.5,
+      "seed_artifact_id": "b9674b665a3c2739c730ab543116cbf93036224a5ed6814d1c6e2edae417edcc",
+      "trial_seed": 101
+    },
+    {
+      "ancestor": {
+        "cost_units": 4.0,
+        "improver": "fixture-ancestor",
+        "productivity": 0.12499999999999999,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.7
+        },
+        "successor_utility": 0.7,
+        "trial_seed": 102,
+        "uplift": 0.49999999999999994,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "descendant": {
+        "cost_units": 4.0,
+        "improver": "fixture-descendant",
+        "productivity": 0.625,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 2.7
+        },
+        "successor_utility": 2.7,
+        "trial_seed": 102,
+        "uplift": 2.5,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "evaluation_order": [
+        "ancestor",
+        "descendant"
+      ],
+      "productivity_delta": 0.5,
+      "seed_artifact_id": "b20641936b4e18432f128a7f113572d2a555a2de637a44fcd875be874db98dbe",
+      "trial_seed": 102
+    },
+    {
+      "ancestor": {
+        "cost_units": 4.0,
+        "improver": "fixture-ancestor",
+        "productivity": 0.12499999999999999,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.7
+        },
+        "successor_utility": 0.7,
+        "trial_seed": 103,
+        "uplift": 0.49999999999999994,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "descendant": {
+        "cost_units": 4.0,
+        "improver": "fixture-descendant",
+        "productivity": 0.625,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 2.7
+        },
+        "successor_utility": 2.7,
+        "trial_seed": 103,
+        "uplift": 2.5,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "evaluation_order": [
+        "descendant",
+        "ancestor"
+      ],
+      "productivity_delta": 0.5,
+      "seed_artifact_id": "f0496cff4290ed97189fbd5245516ab3e710cd8f2717c3836e1b352b546ebbd6",
+      "trial_seed": 103
+    },
+    {
+      "ancestor": {
+        "cost_units": 4.0,
+        "improver": "fixture-ancestor",
+        "productivity": 0.12499999999999999,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.7
+        },
+        "successor_utility": 0.7,
+        "trial_seed": 104,
+        "uplift": 0.49999999999999994,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "descendant": {
+        "cost_units": 4.0,
+        "improver": "fixture-descendant",
+        "productivity": 0.625,
+        "reasons": [],
+        "seed_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 0.2
+        },
+        "seed_utility": 0.2,
+        "successor_evaluation": {
+          "artifact_valid": true,
+          "correct": true,
+          "detail": "external deterministic fixture measurement",
+          "evaluator_integrity": true,
+          "resource_compliance": true,
+          "safety_preserved": true,
+          "usage": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "utility": 2.7
+        },
+        "successor_utility": 2.7,
+        "trial_seed": 104,
+        "uplift": 2.5,
+        "usage": {
+          "improver": {
+            "evaluations": 0,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          },
+          "seed_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "successor_evaluation": {
+            "evaluations": 1,
+            "model_calls": 0,
+            "proposals": 0,
+            "tokens": 0,
+            "wall_seconds": 0.0
+          },
+          "total": {
+            "evaluations": 2,
+            "model_calls": 1,
+            "proposals": 1,
+            "tokens": 32,
+            "wall_seconds": 0.0
+          }
+        },
+        "valid": true
+      },
+      "evaluation_order": [
+        "ancestor",
+        "descendant"
+      ],
+      "productivity_delta": 0.5,
+      "seed_artifact_id": "6a38b8ea74dd8cbd42420075949fadee3793090c3f9658abf78b170b76e35e1b",
+      "trial_seed": 104
+    }
+  ]
+}
