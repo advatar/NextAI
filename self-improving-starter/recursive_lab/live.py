@@ -149,7 +149,7 @@ class StrategyCodingEvaluator:
         for task in self.suite.manifest:
             source, used, _ = self.agent.generate(task_prompt=task["prompt"], strategy=artifact, current_solution=task["starting"])
             tokens += used
-            results.extend(self.suite.evaluate(source))
+            results.extend(self.suite.evaluate(source, task_id=task["id"]))
         result = results[0]
         all_correct = all(item.correct for item in results)
         utility = sum(item.reward for item in results) / len(results)

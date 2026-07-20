@@ -36,12 +36,15 @@ class ExecutableTaskSuite:
         self.manifest = tuple(manifests)
         self.manifest_digest = sha256_digest(json.dumps(manifests, sort_keys=True, separators=(",", ":")))
 
-    def evaluate(self, solution_source: str, *, split: str = "private_selection") -> tuple[TaskResult, ...]:
+    def evaluate(self, solution_source: str, *, split: str = "private_selection", task_id: str | None = None) -> tuple[TaskResult, ...]:
         if not isinstance(solution_source, str) or not solution_source.strip():
             raise ValueError("solution_source must be non-empty text")
+        selected = (task_id,) if task_id is not None else self.task_ids
+        if any(item not in self._envs for item in selected):
+            raise ValueError("unknown task_id")
         return tuple(
             TaskResult(task_id, result.reward, result.correct, result.detail)
-            for task_id in self.task_ids
+            for task_id in selected
             for result in ((self._envs[task_id].score_correctness(solution_source) if self.correctness_only and hasattr(self._envs[task_id], "score_correctness") else self._envs[task_id].score(solution_source)),)
         )
 

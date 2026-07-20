@@ -13,7 +13,7 @@ class CountPrimesEnv(Environment):
     name = "count_primes"
     @property
     def task_prompt(self) -> str:
-        return textwrap.dedent("""Count prime integers below n. Contract: solve(n) returns the exact count for every integer n. Return only a Python module defining solve(n), with no imports or I/O.""")
+        return textwrap.dedent("""Count prime integers below n. Contract: solve(n) returns the exact count for every integer n. Return only a Python module defining solve(n), with no imports or I/O. Use only integer arithmetic, range, loops, conditionals, and local variables; do not call max, int, sum, all, or sqrt.""")
     @property
     def starting_solution(self) -> str:
         return "def solve(n):\n    total = 0\n    for value in range(n):\n        if value > 1:\n            prime = 1\n            for divisor in range(2, value):\n                if value % divisor == 0:\n                    prime = 0\n                    break\n            total += prime\n    return total\n"
