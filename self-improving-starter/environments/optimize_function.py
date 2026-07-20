@@ -295,8 +295,13 @@ class OptimizeFunctionEnv(Environment):
                 "The reviewed local candidate container image is unavailable. "
                 "Refusing to execute generated code in the host fixture runner."
             )
-        self._starting_time = None if correctness_only else self._time_of(self.starting_solution)
-        self._reference_time = None if correctness_only else self._time_of(self._REFERENCE_SOLUTION)
+        self._starting_time = self._reference_time = None
+        if not correctness_only:
+            for _ in range(5):
+                self._starting_time = self._time_of(self.starting_solution)
+                self._reference_time = self._time_of(self._REFERENCE_SOLUTION)
+                if self._starting_time is not None and self._reference_time is not None and self._reference_time < self._starting_time:
+                    break
         if correctness_only:
             return
         if self._starting_time is None or self._reference_time is None:
