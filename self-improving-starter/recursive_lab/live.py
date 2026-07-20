@@ -144,20 +144,26 @@ class StrategyCodingEvaluator:
         self.task_manifest_digests = {split: sha256_digest(f"{suite.manifest_digest}:{split}") for split in (DEVELOPMENT_SPLIT, PRIVATE_SPLIT, SEALED_SPLIT)}
 
     def evaluate(self, artifact: StrategyArtifact, *, split: str, seed: int) -> ArtifactEvaluation:
-        task = self.suite.manifest[0]
-        source, tokens, _ = self.agent.generate(task_prompt=task["prompt"], strategy=artifact, current_solution=task["starting"])
-        result = self.suite.evaluate(source)[0]
+        results = []
+        tokens = 0
+        for task in self.suite.manifest:
+            source, used, _ = self.agent.generate(task_prompt=task["prompt"], strategy=artifact, current_solution=task["starting"])
+            tokens += used
+            results.extend(self.suite.evaluate(source))
+        result = results[0]
+        all_correct = all(item.correct for item in results)
+        utility = sum(item.reward for item in results) / len(results)
         return ArtifactEvaluation(
-            evaluator_id=self.evaluator_id, split=split, utility=result.reward,
-            correct=GateResult.success("execution task passed") if result.correct else GateResult.failure(result.detail),
+            evaluator_id=self.evaluator_id, split=split, utility=utility,
+            correct=GateResult.success("execution tasks passed") if all_correct else GateResult.failure("one or more execution tasks failed"),
             safety_preserved=GateResult.success("candidate runner safety gates passed"),
             evaluator_integrity=GateResult.success("immutable executable suite digest matched"),
             artifact_valid=GateResult.success("typed strategy schema matched"),
             resource_compliance=GateResult.success("model and runner budget recorded"),
-            task_count=1, model_calls=1, tokens=tokens,
+            task_count=len(results), model_calls=len(results), tokens=tokens,
             task_manifest_digest=self.task_manifest_digests[split],
-            per_task_results=(result.correct,),
-            public_feedback=(f"Execution reward {result.reward:.3f}; {result.detail}" if split == DEVELOPMENT_SPLIT else ""),
+            per_task_results=tuple(item.correct for item in results),
+            public_feedback=(f"Execution reward {utility:.3f}; {result.detail}" if split == DEVELOPMENT_SPLIT else ""),
         )
 
 
