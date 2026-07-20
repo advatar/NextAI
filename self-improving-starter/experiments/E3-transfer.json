@@ -1,0 +1,40 @@
+{
+  "claim_boundary": "single live transfer trial; not generalization evidence",
+  "evaluation_tasks": [
+    "optimize_function",
+    "count_primes"
+  ],
+  "experiment_id": "E3-transfer",
+  "recorded_utc": "2026-07-20",
+  "results": [
+    {
+      "correct": false,
+      "detail": "candidate timed out",
+      "reward": -1.0,
+      "task": "optimize_function",
+      "tokens": 608
+    },
+    {
+      "correct": true,
+      "detail": "correct; 0.554 ms",
+      "reward": 0.9926,
+      "task": "count_primes",
+      "tokens": 757
+    }
+  ],
+  "selection_task": "optimize_function",
+  "strategy_artifact": {
+    "kind": "strategy",
+    "max_attempts": 3,
+    "planning_steps": [
+      "Read the square-sum requirements and identify input constraints, output format, and edge cases.",
+      "Derive the simplest mathematically equivalent formulation, using a closed-form sum-of-squares identity when its numeric range is safe.",
+      "Implement the smallest change with explicit handling for boundary values and the required numeric type.",
+      "Check the result against small manually computed cases and at least one boundary case.",
+      "If any discrepancy appears, revisit the formula, type range, and formatting before finalizing."
+    ],
+    "reflection": "The original plan was correct but underspecified. This revision adds constraint-aware mathematical simplification, numeric-safety checks, and focused validation while remaining bounded.",
+    "schema_version": 1,
+    "system_instruction": "Solve the square-sum task carefully: preserve exact semantics, prefer a proven closed form when safe, use an adequate numeric type, and keep the change minimal."
+  }
+}
