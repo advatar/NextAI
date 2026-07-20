@@ -1,0 +1,42 @@
+{
+  "archive_stats": {
+    "best_objective": 0.9634499999999999,
+    "evaluations": 2,
+    "occupied_cells": 2
+  },
+  "claim_boundary": "two-candidate live correctness cohort; performance mode requires reviewed Docker image",
+  "experiment_id": "E4-quality-diversity-live",
+  "recorded_utc": "2026-07-20",
+  "results": [
+    {
+      "correct": true,
+      "features": [
+        0.9634499999999999,
+        0.9269,
+        1.0,
+        0.56375
+      ],
+      "seed": 0,
+      "tokens": 1745,
+      "utilities": [
+        1.0,
+        0.9269
+      ]
+    },
+    {
+      "correct": true,
+      "features": [
+        0.8488,
+        0.6976,
+        1.0,
+        0.5447500000000001
+      ],
+      "seed": 1,
+      "tokens": 1821,
+      "utilities": [
+        1.0,
+        0.6976
+      ]
+    }
+  ]
+}
