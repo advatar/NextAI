@@ -2,7 +2,7 @@ import sys
 import unittest
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from recursive_lab.quality_diversity import CandidateEvaluation, QualityDiversityArchive
+from recursive_lab.quality_diversity import CandidateEvaluation, QualityDiversityArchive, strategy_features
 
 class QualityDiversityTests(unittest.TestCase):
     def test_keeps_best_candidate_per_behavior_cell(self):
@@ -19,5 +19,9 @@ class QualityDiversityTests(unittest.TestCase):
         archive.add("a", CandidateEvaluation(1, (0.1,), {}), 0)
         archive.add("b", CandidateEvaluation(2, (0.9,), {}), 0)
         self.assertEqual(archive.select_parent(random.Random(5)), archive.select_parent(random.Random(5)))
+
+    def test_strategy_features_reward_transfer_and_cost(self):
+        features = strategy_features(task_utilities=(1.0, .8), correct=True, tokens=400)
+        self.assertEqual(features, (.9, .8, 1.0, .9))
 
 if __name__ == "__main__": unittest.main()

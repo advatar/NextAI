@@ -6,6 +6,14 @@ from typing import Any, Callable, Generic, Sequence, TypeVar
 
 C = TypeVar("C")
 
+def strategy_features(*, task_utilities: Sequence[float], correct: bool, tokens: int, token_cap: int = 4000) -> tuple[float, ...]:
+    """Map governed live results to bounded behavior descriptors."""
+    if not task_utilities or any(not 0 <= value <= 1 for value in task_utilities):
+        raise ValueError("task utilities must be in [0, 1]")
+    if tokens < 0 or token_cap < 1:
+        raise ValueError("token values must be non-negative")
+    return (sum(task_utilities) / len(task_utilities), min(task_utilities), 1.0 if correct else 0.0, max(0.0, 1.0 - tokens / token_cap))
+
 @dataclass(frozen=True, slots=True)
 class CandidateEvaluation:
     objective: float
@@ -56,4 +64,4 @@ class QualityDiversityArchive(Generic[C]):
         best = self.best
         return {"evaluations": self.evaluations, "occupied_cells": len(self._entries), "best_objective": None if best is None else best.evaluation.objective}
 
-__all__ = ["ArchiveEntry", "CandidateEvaluation", "QualityDiversityArchive"]
+__all__ = ["ArchiveEntry", "CandidateEvaluation", "QualityDiversityArchive", "strategy_features"]
