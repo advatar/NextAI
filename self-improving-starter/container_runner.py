@@ -201,7 +201,6 @@ def run_python_container(
     if docker_executable is None:  # resolve_image_id normally catches this first.
         raise ContainerUnavailable("Docker executable is unavailable")
     name = "recursive-lab-" + uuid.uuid4().hex
-    started = time.monotonic()
 
     with tempfile.TemporaryDirectory(prefix="recursive-lab-candidate-") as directory:
         root = Path(directory)
@@ -287,6 +286,9 @@ def run_python_container(
             raise ContainerUnavailable(f"could not start Docker: {error}") from error
 
         assert proc.stdout is not None and proc.stderr is not None
+        # Docker Desktop startup/creation is infrastructure overhead; the
+        # candidate wall-clock budget begins once the process is attached.
+        started = time.monotonic()
         exceeded = threading.Event()
         stdout_capture = _Capture(policy.max_output_bytes, bytearray())
         stderr_capture = _Capture(policy.max_output_bytes, bytearray())
