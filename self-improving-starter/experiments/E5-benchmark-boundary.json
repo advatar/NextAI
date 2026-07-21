@@ -1,0 +1,28 @@
+{
+  "claim_boundary": "benchmark boundary and container smoke validation; no capability claim",
+  "experiment_id": "E5-benchmark-boundary",
+  "manifest": [
+    {
+      "id": "optimize_function",
+      "prompt": "\n            Optimize the function `solve(n)` below so it runs as fast as possible.\n\n            Contract (must not change): solve(n) returns the sum of i*i for i in\n            range(n), i.e. 0 + 1 + 4 + 9 + ... + (n-1)^2. It must return exactly\n            the same integer for every integer n as the current implementation.\n\n            Return ONLY a complete Python module defining `solve(n)`. No prose,\n            no markdown fences, imports, I/O, or top-level effects. Faster is\n            better; correctness is mandatory.\n\n            Current (slow) solution:\n            ```\n            def solve(n):\n    total = 0\n    for i in range(n):\n        total += i * i\n    return total\n```\n",
+      "starting": "def solve(n):\n    total = 0\n    for i in range(n):\n        total += i * i\n    return total\n"
+    },
+    {
+      "id": "count_primes",
+      "prompt": "Count prime integers below n. Contract: solve(n) returns the exact count for every integer n. Return only a Python module defining solve(n), with no imports or I/O. Use only integer arithmetic, range, loops, conditionals, and local variables; do not call max, int, sum, all, or sqrt.",
+      "starting": "def solve(n):\n    total = 0\n    for value in range(n):\n        if value > 1:\n            prime = 1\n            for divisor in range(2, value):\n                if value % divisor == 0:\n                    prime = 0\n                    break\n            total += prime\n    return total\n"
+    },
+    {
+      "id": "sum_digits",
+      "prompt": "Return a Python module defining solve(n), which returns the sum of the decimal digits of abs(n) for every integer n. Use only integer arithmetic, range, loops, conditionals, and local variables; no imports or I/O.",
+      "starting": "def solve(n):\n    value = -n if n < 0 else n\n    total = 0\n    while value:\n        total += value % 10\n        value //= 10\n    return total\n"
+    }
+  ],
+  "manifest_digest": "aadf029d7a15d7f3fe707f8bb7a0e630158349f234ae55836821ad7f02f00f7f",
+  "recorded_utc": "2026-07-21",
+  "tasks": [
+    "optimize_function",
+    "count_primes",
+    "sum_digits"
+  ]
+}
