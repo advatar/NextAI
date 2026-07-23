@@ -1,5 +1,27 @@
 # Status
 
+## In progress — reconcile recursive research evidence on `main`
+
+Issue: [#2 — Reconcile recursive research evidence and clean main checkout](https://github.com/advatar/NextAI/issues/2)
+
+- [x] Audit the 69-entry checkout and separate intended research source, tests,
+  documentation, experiment evidence, and the landing-page pointer from local
+  archives and generated/runtime state.
+- [x] Verify that NExtAI has no divergent local/remote branch or open pull
+  request, and that the nested landing page is clean on its published `main`.
+- [ ] Review the E6–E29 implementation and immutable evidence chain for
+  coherence, reproducibility, and honest claim boundaries.
+- [ ] Add or refine unit coverage for new archive, deterministic-selection,
+  conformance, and Longemma-adapter behavior.
+- [ ] Exclude the downloaded Namecheap utility archive without deleting it or
+  staging any credential, cache, vendor, model, or runtime artifact.
+- [ ] Run the complete Python test suite plus relevant syntax and evidence
+  checks.
+- [ ] Advance the landing-page gitlink to its clean published `main`, stage
+  explicit paths only, commit, and push the verified work to canonical `main`.
+- [ ] Close issue #2 with exact commit, validation, exclusion, and claim-boundary
+  evidence.
+
 ## In progress — auditable recursive scaffold optimization POC
 
 - [x] Review `RECURSIVE.md` and audit the preliminary starter against its claims.
