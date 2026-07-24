@@ -34,3 +34,20 @@ The demo writes a frozen experiment manifest, hash-chained ledger, separate head
 anchor, fixture-only sealed comparison, summary, and metaproductivity report.
 See the starter README for the exact claim boundary, Docker requirements, and
 known limitations.
+
+## Real Gemma integration probe
+
+With Longemma's OptiQ MLX server running against a local Gemma 4 E2B model:
+
+```bash
+PYTHONPATH=/path/to/NExtAI/self-improving-starter \
+  uv run --no-dev python self-improving-starter/run_gemma_probe.py \
+  --unsafe-local-demo \
+  --out self-improving-starter/experiments/E14-gemma-probe.json
+```
+
+E14 produced and executed a correct `solve(n) = n + 1` proposal, with a
+verified hash-chained receipt. This is an integration probe for one proposal,
+not evidence of general self-improvement. The explicit flag acknowledges that
+this historical probe executes model-authored Python on the host; use the
+reviewed container runner or a VM for untrusted candidates.

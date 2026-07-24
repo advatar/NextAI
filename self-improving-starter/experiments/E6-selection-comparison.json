@@ -1,0 +1,1763 @@
+{
+  "benchmark_manifest_digest": "aadf029d7a15d7f3fe707f8bb7a0e630158349f234ae55836821ad7f02f00f7f",
+  "budget": {
+    "proposals": 12,
+    "tasks_per_evaluation": 3
+  },
+  "claim_boundary": "deterministic three-task search-policy comparison; no recursive-improvement claim",
+  "matched_budget": true,
+  "policies": [
+    "greedy",
+    "random_mutation",
+    "quality_diversity"
+  ],
+  "report_digest": "26eb18fae3f88e17f515def5b7f672796a181c78038a4002bd31ce1d8eb5ebe4",
+  "runs": [
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 0.5,
+        "sum_digits": 1.0
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "greedy",
+      "proposal_budget": 12,
+      "seed": 0,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": false,
+          "best_objective": 0.5,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.5,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 2
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.5,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 3
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.5,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 4
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.5,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 8
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 9
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 10
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 11
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 0.5,
+        "sum_digits": 1.0
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "random_mutation",
+      "proposal_budget": 12,
+      "seed": 0,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 6
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.16666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 10
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 11
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 0.5,
+        "sum_digits": 0.5
+      },
+      "best_objective": 0.6666666666666666,
+      "candidate_evaluations": 12,
+      "occupied_cells": 9,
+      "policy": "quality_diversity",
+      "proposal_budget": 12,
+      "seed": 0,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 2,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 3,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 4,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 3
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 4,
+          "parent_objective": 0.5,
+          "proposal": 4
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 4,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 5,
+          "parent_objective": 0.5,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 5,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 6,
+          "parent_objective": 0.5,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 7,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.16666666666666666,
+          "occupied_cells": 8,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 10
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 9,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 11
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 9,
+          "parent_objective": 0.5,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 1.0,
+        "sum_digits": 1.0
+      },
+      "best_objective": 1.0,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "greedy",
+      "proposal_budget": 12,
+      "seed": 1,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 3
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 4
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 5
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 1.0,
+          "candidate_objective": 1.0,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 8
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 9
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 10
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 11
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 0.5,
+        "optimize_function": 1.0,
+        "sum_digits": 1.0
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "random_mutation",
+      "proposal_budget": 12,
+      "seed": 1,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 6
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 10
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 11
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 0.5,
+        "optimize_function": 1.0,
+        "sum_digits": 1.0
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": 7,
+      "policy": "quality_diversity",
+      "proposal_budget": 12,
+      "seed": 1,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 1,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 2,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 3,
+          "parent_objective": 0.5,
+          "proposal": 3
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 3,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 4,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 5,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.16666666666666666,
+          "occupied_cells": 5,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.16666666666666666,
+          "occupied_cells": 6,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": 7,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 9
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 7,
+          "parent_objective": 0.16666666666666666,
+          "proposal": 10
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 7,
+          "parent_objective": 0.5,
+          "proposal": 11
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 7,
+          "parent_objective": 0.5,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 1.0,
+        "sum_digits": 1.0
+      },
+      "best_objective": 1.0,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "greedy",
+      "proposal_budget": 12,
+      "seed": 2,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 1.0,
+          "candidate_objective": 1.0,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 5
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 7
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 8
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 9
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 10
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 11
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 0.5,
+        "optimize_function": 1.0,
+        "sum_digits": 1.0
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "random_mutation",
+      "proposal_budget": 12,
+      "seed": 2,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 6
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 10
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 11
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 0.5,
+        "optimize_function": 1.0,
+        "sum_digits": 1.0
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": 10,
+      "policy": "quality_diversity",
+      "proposal_budget": 12,
+      "seed": 2,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 2,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 3,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": 3,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 3
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": 3,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": 4,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.16666666666666666,
+          "occupied_cells": 5,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 6
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 6,
+          "parent_objective": 0.16666666666666666,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 7,
+          "parent_objective": 0.5,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.16666666666666666,
+          "occupied_cells": 8,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": 8,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 10
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 9,
+          "parent_objective": 0.5,
+          "proposal": 11
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 10,
+          "parent_objective": 0.5,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 1.0,
+        "sum_digits": 1.0
+      },
+      "best_objective": 1.0,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "greedy",
+      "proposal_budget": 12,
+      "seed": 3,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 3
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 4
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 5
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 7
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 1.0,
+          "candidate_objective": 1.0,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 9
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 10
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 11
+        },
+        {
+          "accepted": false,
+          "best_objective": 1.0,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 1.0,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 1.0,
+        "sum_digits": 0.5
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "random_mutation",
+      "proposal_budget": 12,
+      "seed": 3,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 6
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 10
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.16666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 11
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 0.5,
+        "sum_digits": 1.0
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": 6,
+      "policy": "quality_diversity",
+      "proposal_budget": 12,
+      "seed": 3,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 1,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 2,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 2,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 3,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 4
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 3,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": 4,
+          "parent_objective": 0.5,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 4,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 7
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": 4,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 8
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 4,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": 5,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 10
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 6,
+          "parent_objective": 0.5,
+          "proposal": 11
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": 6,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 1.0,
+        "sum_digits": 0.5
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "greedy",
+      "proposal_budget": 12,
+      "seed": 4,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": false,
+          "best_objective": 0.5,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.5,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 4
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 5
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 7
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 8
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 9
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 10
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 11
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 1.0,
+        "sum_digits": 0.5
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": null,
+      "policy": "random_mutation",
+      "proposal_budget": 12,
+      "seed": 4,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 5
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 6
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": null,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 10
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": null,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 11
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": null,
+          "parent_objective": 0.5,
+          "proposal": 12
+        }
+      ]
+    },
+    {
+      "best_metrics": {
+        "correct_fraction": 1.0,
+        "count_primes": 1.0,
+        "optimize_function": 1.0,
+        "sum_digits": 0.5
+      },
+      "best_objective": 0.8333333333333334,
+      "candidate_evaluations": 12,
+      "occupied_cells": 8,
+      "policy": "quality_diversity",
+      "proposal_budget": 12,
+      "seed": 4,
+      "task_evaluations": 36,
+      "trajectory": [
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 2,
+          "parent_objective": 0.5,
+          "proposal": 1
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 2,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 2
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 3,
+          "parent_objective": 0.5,
+          "proposal": 3
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 4,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 4
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 5,
+          "parent_objective": 0.5,
+          "proposal": 5
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 5,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 6
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.6666666666666666,
+          "candidate_objective": 0.5,
+          "occupied_cells": 5,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 7
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.8333333333333334,
+          "occupied_cells": 6,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 8
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.3333333333333333,
+          "occupied_cells": 7,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 9
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.6666666666666666,
+          "occupied_cells": 8,
+          "parent_objective": 0.8333333333333334,
+          "proposal": 10
+        },
+        {
+          "accepted": false,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": 8,
+          "parent_objective": 0.6666666666666666,
+          "proposal": 11
+        },
+        {
+          "accepted": true,
+          "best_objective": 0.8333333333333334,
+          "candidate_objective": 0.5,
+          "occupied_cells": 8,
+          "parent_objective": 0.3333333333333333,
+          "proposal": 12
+        }
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "scoring": {
+    "correctness_gate": "executable task harness",
+    "identical_evaluation_cache_entries": 9,
+    "variant_quality_tiers": {
+      "baseline": 0.5,
+      "broken_control": 0.0,
+      "reviewed_improvement": 1.0
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "summaries": {
+    "greedy": {
+      "candidate_evaluations_per_run": 12,
+      "max_best_objective": 1.0,
+      "mean_best_objective": 0.9333333333333333,
+      "min_best_objective": 0.8333333333333334,
+      "proposal_budget_per_run": 12,
+      "runs": 5,
+      "task_evaluations_per_run": 36
+    },
+    "quality_diversity": {
+      "candidate_evaluations_per_run": 12,
+      "max_best_objective": 0.8333333333333334,
+      "mean_best_objective": 0.8,
+      "min_best_objective": 0.6666666666666666,
+      "proposal_budget_per_run": 12,
+      "runs": 5,
+      "task_evaluations_per_run": 36
+    },
+    "random_mutation": {
+      "candidate_evaluations_per_run": 12,
+      "max_best_objective": 0.8333333333333334,
+      "mean_best_objective": 0.8333333333333334,
+      "min_best_objective": 0.8333333333333334,
+      "proposal_budget_per_run": 12,
+      "runs": 5,
+      "task_evaluations_per_run": 36
+    }
+  },
+  "tasks": [
+    "optimize_function",
+    "count_primes",
+    "sum_digits"
+  ]
+}

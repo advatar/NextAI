@@ -1,0 +1,72 @@
+{
+  "adapter": "Longemma GenerationBackend-compatible",
+  "candidate_evaluations": 4,
+  "claim_boundary": "adapter and accounting smoke; no local-model capability claim",
+  "experiment_id": "E13-longemma-adapter-smoke",
+  "local_gemma_available": false,
+  "local_gemma_endpoint": "http://127.0.0.1:12345/v1/models",
+  "mock_backend_passed": true,
+  "model_calls": 4,
+  "receipt_count": 4,
+  "receipts": [
+    {
+      "backend": "deterministic-mock",
+      "completion_tokens": 8,
+      "error": null,
+      "latency_seconds": 3.700000524986535e-05,
+      "model": "gemma-adapter-mock",
+      "parse_ok": true,
+      "prompt_digest": "53d7eead938f06c160e9eae86b3c7b49114c054aacee3b5770cf95ed055538d5",
+      "prompt_tokens": 10,
+      "proposer": "deterministic-mock",
+      "response_digest": "11a9026233335b079572b00aafd2a0403a9d2343e2f519b4f9ad6a6dd472154e",
+      "seed": 3456443430747043981,
+      "total_tokens": 18
+    },
+    {
+      "backend": "deterministic-mock",
+      "completion_tokens": 8,
+      "error": null,
+      "latency_seconds": 2.4291002773679793e-05,
+      "model": "gemma-adapter-mock",
+      "parse_ok": true,
+      "prompt_digest": "b7fe6248f3c318d3f9e590c17563c9fd97fb11039ce1574d90e471aa662c439c",
+      "prompt_tokens": 10,
+      "proposer": "deterministic-mock",
+      "response_digest": "11a9026233335b079572b00aafd2a0403a9d2343e2f519b4f9ad6a6dd472154e",
+      "seed": 5435457794061116782,
+      "total_tokens": 18
+    },
+    {
+      "backend": "deterministic-mock",
+      "completion_tokens": 8,
+      "error": null,
+      "latency_seconds": 1.6249992768280208e-05,
+      "model": "gemma-adapter-mock",
+      "parse_ok": true,
+      "prompt_digest": "b7fe6248f3c318d3f9e590c17563c9fd97fb11039ce1574d90e471aa662c439c",
+      "prompt_tokens": 10,
+      "proposer": "deterministic-mock",
+      "response_digest": "11a9026233335b079572b00aafd2a0403a9d2343e2f519b4f9ad6a6dd472154e",
+      "seed": 1567064512732778187,
+      "total_tokens": 18
+    },
+    {
+      "backend": "deterministic-mock",
+      "completion_tokens": 8,
+      "error": null,
+      "latency_seconds": 1.3625001884065568e-05,
+      "model": "gemma-adapter-mock",
+      "parse_ok": true,
+      "prompt_digest": "b7fe6248f3c318d3f9e590c17563c9fd97fb11039ce1574d90e471aa662c439c",
+      "prompt_tokens": 10,
+      "proposer": "deterministic-mock",
+      "response_digest": "11a9026233335b079572b00aafd2a0403a9d2343e2f519b4f9ad6a6dd472154e",
+      "seed": 8056894918580761145,
+      "total_tokens": 18
+    }
+  ],
+  "report_digest": "3c4403456b4a82423efd89fcb07f80aec31e76536dac2de7f7cdc60e73d1affd",
+  "schema_version": 1,
+  "task_evaluations": 4
+}

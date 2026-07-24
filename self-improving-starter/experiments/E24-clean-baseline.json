@@ -1,0 +1,28 @@
+{
+  "claim_boundary": "post-audit baseline using corrected contracts; synthetic tasks only",
+  "experiment_id": "E24-clean-baseline",
+  "report_digest": "cd83956f2e752747bb8eb79d39518aafee041af0e9097cccf6a780736972d607",
+  "schema_version": 1,
+  "source_experiments": [
+    "E17-gemma-multitask",
+    "E18-hidden-holdout",
+    "E23-clamp-contract"
+  ],
+  "summaries": {
+    "clamp": {
+      "calls": 12,
+      "numeric_hidden_pass_rate": 1.0,
+      "visible_best": 1.0
+    },
+    "increment": {
+      "calls": 3,
+      "hidden_pass_rate": 1.0,
+      "visible_best": 1.0
+    },
+    "square": {
+      "calls": 3,
+      "hidden_pass_rate": 1.0,
+      "visible_best": 1.0
+    }
+  }
+}

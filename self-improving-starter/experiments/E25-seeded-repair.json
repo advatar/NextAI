@@ -1,0 +1,24 @@
+{
+  "all_repairs_pass": true,
+  "claim_boundary": "deterministic repair regression; not a model-generation result",
+  "experiment_id": "E25-seeded-repair",
+  "report_digest": "814a105cd899877777ad7df72fba7e378888b0cdd82da879f84eeadf3741bbf4",
+  "rows": [
+    {
+      "repair_passes": true,
+      "seeded_bug_passes": false,
+      "task": "increment"
+    },
+    {
+      "repair_passes": true,
+      "seeded_bug_passes": false,
+      "task": "square"
+    },
+    {
+      "repair_passes": true,
+      "seeded_bug_passes": false,
+      "task": "clamp"
+    }
+  ],
+  "schema_version": 1
+}

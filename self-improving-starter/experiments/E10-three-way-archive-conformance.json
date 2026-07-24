@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "accepted": true,
+    "cells": true,
+    "elites": true,
+    "invalid_codes": true,
+    "lineage": true,
+    "selection": true,
+    "statistics": true
+  },
+  "experiment_id": "E10-three-way-archive-conformance",
+  "fixture": "BetaEvolve@d8bb940:Packages/BetaEvolveMechanisms/Tests/Fixtures/e10_archive_conformance.json",
+  "fixture_digest": "313ab5fc4ef7b4db9ffe43afd315efffc36475601b08519b916dc89640a670ce",
+  "passed": true,
+  "report_digest": "1df08c248481063d0e87c65eabc0350e55b35ea85c9c71180bdb070d716846d9",
+  "schema_version": 1,
+  "selected_labels": [
+    "clamped",
+    "middle",
+    "replacement",
+    "upper-edge",
+    "clamped",
+    "middle",
+    "replacement",
+    "upper-edge"
+  ]
+}

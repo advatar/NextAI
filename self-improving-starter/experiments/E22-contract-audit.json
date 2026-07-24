@@ -1,0 +1,77 @@
+{
+  "claim_boundary": "oracle correction; no model-generation claim",
+  "correction": "increment(-1.5) = -0.5, not 0.5",
+  "experiment_id": "E22-contract-audit",
+  "report_digest": "c024f9770622d59249dfdf1a9703543b287920d462eeb692251ba3e8424278c2",
+  "rows": [
+    {
+      "corrected_passed": 3,
+      "old_expected": 0.5,
+      "task": "increment",
+      "total": 3
+    },
+    {
+      "corrected_passed": 3,
+      "old_expected": 2.25,
+      "task": "square",
+      "total": 3
+    },
+    {
+      "corrected_passed": 2,
+      "old_expected": 0,
+      "task": "clamp",
+      "total": 4
+    },
+    {
+      "corrected_passed": 3,
+      "old_expected": 0.5,
+      "task": "increment",
+      "total": 3
+    },
+    {
+      "corrected_passed": 3,
+      "old_expected": 2.25,
+      "task": "square",
+      "total": 3
+    },
+    {
+      "corrected_passed": 2,
+      "old_expected": 0,
+      "task": "clamp",
+      "total": 4
+    },
+    {
+      "corrected_passed": 3,
+      "old_expected": 0.5,
+      "task": "increment",
+      "total": 3
+    },
+    {
+      "corrected_passed": 3,
+      "old_expected": 2.25,
+      "task": "square",
+      "total": 3
+    },
+    {
+      "corrected_passed": 2,
+      "old_expected": 0,
+      "task": "clamp",
+      "total": 4
+    }
+  ],
+  "schema_version": 1,
+  "summaries": {
+    "clamp": {
+      "corrected_rate": 0.5,
+      "proposals": 3
+    },
+    "increment": {
+      "corrected_rate": 1.0,
+      "proposals": 3
+    },
+    "square": {
+      "corrected_rate": 1.0,
+      "proposals": 3
+    }
+  }
+}

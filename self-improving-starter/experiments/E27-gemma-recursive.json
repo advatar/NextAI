@@ -1,0 +1,321 @@
+{
+  "archive_size": 11,
+  "best_heldout_score": 1.0,
+  "claim_boundary": "five-generation local-Gemma program evolution on one synthetic contract; promotion requires held-out improvement",
+  "experiment_id": "E27-gemma-recursive",
+  "generations": 5,
+  "heldout_cases": [
+    -101,
+    -9,
+    1,
+    7,
+    23,
+    100
+  ],
+  "initial_heldout_score": 0.0,
+  "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+  "promotions": 1,
+  "proposals_per_generation": 2,
+  "public_cases": [
+    -4,
+    -1,
+    0,
+    2,
+    5
+  ],
+  "receipts": [
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 14.339474708016496,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "803662a7450c2328fc25eda3b5b7a243a7400e038cff665b685d363af8d51b4a",
+      "prompt_tokens": 143,
+      "proposer": "openai_compatible",
+      "response_digest": "7c575c10c005ddceec774821c7169f201ecac576451671f73d03db98bda3192f",
+      "seed": 8852258758999665121,
+      "total_tokens": 239
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 3.694902999995975,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "056e29422dc7eae10f614acb4de4394ff6c947cbf74070a4f3312b5934a57c6a",
+      "prompt_tokens": 286,
+      "proposer": "openai_compatible",
+      "response_digest": "7c575c10c005ddceec774821c7169f201ecac576451671f73d03db98bda3192f",
+      "seed": 5113777911774377050,
+      "total_tokens": 382
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 2.6118381660198793,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "70d5a792517304cb524edd82da2d87a5e236e13c9bdf9c5d821c9a4d0bc0f5e7",
+      "prompt_tokens": 349,
+      "proposer": "openai_compatible",
+      "response_digest": "b21a76252246b662aa4821fddcebe6bf0dc1d1a5e82c5129a184f86b6a1bafee",
+      "seed": 5275323156272318529,
+      "total_tokens": 445
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 2.79522754100617,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "e11d7316dc044ffda8705e24eaf8f429503c8352e6ba9c61f150f378ac229ed4",
+      "prompt_tokens": 349,
+      "proposer": "openai_compatible",
+      "response_digest": "b21a76252246b662aa4821fddcebe6bf0dc1d1a5e82c5129a184f86b6a1bafee",
+      "seed": 1364118799879993697,
+      "total_tokens": 445
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 3.231112875015242,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "a58a34b018a0ce44202f3eee2de159c998a084661f0ee9d6f6e00c354da58c13",
+      "prompt_tokens": 349,
+      "proposer": "openai_compatible",
+      "response_digest": "b21a76252246b662aa4821fddcebe6bf0dc1d1a5e82c5129a184f86b6a1bafee",
+      "seed": 4692940018195106245,
+      "total_tokens": 445
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 3.5904030419769697,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "a58a34b018a0ce44202f3eee2de159c998a084661f0ee9d6f6e00c354da58c13",
+      "prompt_tokens": 349,
+      "proposer": "openai_compatible",
+      "response_digest": "b21a76252246b662aa4821fddcebe6bf0dc1d1a5e82c5129a184f86b6a1bafee",
+      "seed": 4665416425803078443,
+      "total_tokens": 445
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 3.4219234170159325,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "a58a34b018a0ce44202f3eee2de159c998a084661f0ee9d6f6e00c354da58c13",
+      "prompt_tokens": 349,
+      "proposer": "openai_compatible",
+      "response_digest": "b21a76252246b662aa4821fddcebe6bf0dc1d1a5e82c5129a184f86b6a1bafee",
+      "seed": 7432224601789893617,
+      "total_tokens": 445
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 3.0035049580037594,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "a58a34b018a0ce44202f3eee2de159c998a084661f0ee9d6f6e00c354da58c13",
+      "prompt_tokens": 349,
+      "proposer": "openai_compatible",
+      "response_digest": "b21a76252246b662aa4821fddcebe6bf0dc1d1a5e82c5129a184f86b6a1bafee",
+      "seed": 4571819183585560334,
+      "total_tokens": 445
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 3.035424875008175,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "a58a34b018a0ce44202f3eee2de159c998a084661f0ee9d6f6e00c354da58c13",
+      "prompt_tokens": 349,
+      "proposer": "openai_compatible",
+      "response_digest": "b21a76252246b662aa4821fddcebe6bf0dc1d1a5e82c5129a184f86b6a1bafee",
+      "seed": 4424078075568906807,
+      "total_tokens": 445
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 96,
+      "error": null,
+      "latency_seconds": 3.200982667010976,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "a58a34b018a0ce44202f3eee2de159c998a084661f0ee9d6f6e00c354da58c13",
+      "prompt_tokens": 349,
+      "proposer": "openai_compatible",
+      "response_digest": "b21a76252246b662aa4821fddcebe6bf0dc1d1a5e82c5129a184f86b6a1bafee",
+      "seed": 7843796783698093159,
+      "total_tokens": 445
+    }
+  ],
+  "report_digest": "75d1c6c6351328ed25a26df4daece6c27416099dc46a933def67409a735ad1df",
+  "rows": [
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n * n + n + 1\n",
+      "generation": 1,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "seed"
+      ],
+      "latency_seconds": 14.339781042013783,
+      "parent_id": "seed",
+      "program_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "promoted": true,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n * n + n + 1\n",
+      "generation": 1,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "seed",
+        "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804"
+      ],
+      "latency_seconds": 3.695143749995623,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n**2 + n + 1\n",
+      "generation": 2,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+        "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804"
+      ],
+      "latency_seconds": 2.6121238749765325,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n**2 + n + 1\n",
+      "generation": 2,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17"
+      ],
+      "latency_seconds": 2.7963241249963176,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n**2 + n + 1\n",
+      "generation": 3,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17"
+      ],
+      "latency_seconds": 3.231336333992658,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n**2 + n + 1\n",
+      "generation": 3,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17"
+      ],
+      "latency_seconds": 3.5914080000075046,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n**2 + n + 1\n",
+      "generation": 4,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17"
+      ],
+      "latency_seconds": 3.422367082996061,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n**2 + n + 1\n",
+      "generation": 4,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17"
+      ],
+      "latency_seconds": 3.0036718330229633,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n**2 + n + 1\n",
+      "generation": 5,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17"
+      ],
+      "latency_seconds": 3.0355937920103315,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the value of n*n + n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: The result of n^2 + n + 1.\n    \"\"\"\n    return n**2 + n + 1\n",
+      "generation": 5,
+      "heldout_score": 1.0,
+      "inspiration_ids": [
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+        "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17"
+      ],
+      "latency_seconds": 3.201205374993151,
+      "parent_id": "54f6bbe5aec1fdaf7047363ec70352298e5ea71a0a36966fb6aec35dc253f804",
+      "program_id": "8800247b02c4ef85f6bf0d266ce2105627e924c434a38be2cb3a82480de83e17",
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    }
+  ],
+  "schema_version": 1
+}

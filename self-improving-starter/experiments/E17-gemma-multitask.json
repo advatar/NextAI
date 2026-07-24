@@ -1,0 +1,214 @@
+{
+  "calls": 9,
+  "claim_boundary": "three synthetic contracts under a shared local-model budget; no general learning claim",
+  "experiment_id": "E17-gemma-multitask",
+  "receipts": {
+    "clamp": [
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 35,
+        "error": null,
+        "latency_seconds": 10.540543459006585,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "55e955ed2b458b312e9a5a58269874e6819697a3b021b976991787093fb91625",
+        "prompt_tokens": 98,
+        "proposer": "openai_compatible",
+        "response_digest": "474bb7ce7162e994162b12f0efb6d0c9820d794045ca952a655f50d4fdce4c92",
+        "seed": 6744562757361925207,
+        "total_tokens": 133
+      },
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 35,
+        "error": null,
+        "latency_seconds": 18.39269000000786,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "65b930c92f63cb6c5a140473eccc1550025d776fb84ad6ea05bf7133d315c385",
+        "prompt_tokens": 138,
+        "proposer": "openai_compatible",
+        "response_digest": "474bb7ce7162e994162b12f0efb6d0c9820d794045ca952a655f50d4fdce4c92",
+        "seed": 4591451873560843302,
+        "total_tokens": 173
+      },
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 35,
+        "error": null,
+        "latency_seconds": 7.595034374986426,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "984203347e588e84825f8c36e1d87f139829a14959aea2fb9fecabe747da9764",
+        "prompt_tokens": 170,
+        "proposer": "openai_compatible",
+        "response_digest": "474bb7ce7162e994162b12f0efb6d0c9820d794045ca952a655f50d4fdce4c92",
+        "seed": 2580361646705466872,
+        "total_tokens": 205
+      }
+    ],
+    "increment": [
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 28,
+        "error": null,
+        "latency_seconds": 7.251125833005062,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "9c501e945f7a7bdd348fe2f7c5f67d526cd115d729ecda1693c1307bd9a13d1b",
+        "prompt_tokens": 92,
+        "proposer": "openai_compatible",
+        "response_digest": "7475b94d74afa33377c38850f448993dc2666021c0b8d8bb3f2ce5f1deba3d94",
+        "seed": 7640050740771208385,
+        "total_tokens": 120
+      },
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 78,
+        "error": null,
+        "latency_seconds": 13.402835957997013,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "dee3c4eb24b70090be98664d950554577020de71682573d5fbaaa2c368dbccf7",
+        "prompt_tokens": 118,
+        "proposer": "openai_compatible",
+        "response_digest": "98bfe4170a580466190a49850c99037eb6a77a2b8d0c4fd23b4b97eaabe7950f",
+        "seed": 3222430258815099802,
+        "total_tokens": 196
+      },
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 78,
+        "error": null,
+        "latency_seconds": 16.596975249995012,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "2088638f27a8260f222921203cc7d30a0a124650ceb0c459b8123c94423dd3a1",
+        "prompt_tokens": 227,
+        "proposer": "openai_compatible",
+        "response_digest": "98bfe4170a580466190a49850c99037eb6a77a2b8d0c4fd23b4b97eaabe7950f",
+        "seed": 7739634484820296049,
+        "total_tokens": 305
+      }
+    ],
+    "square": [
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 28,
+        "error": null,
+        "latency_seconds": 9.405549874994904,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "768029f36c24a7c141223f92fc3ae776045f1b9993a6dacbcc881f5423616c95",
+        "prompt_tokens": 90,
+        "proposer": "openai_compatible",
+        "response_digest": "6683431bfe922a96cdc68780e9099e6461704288915fcf2acbcd71fa2965db0b",
+        "seed": 5597175570858461536,
+        "total_tokens": 118
+      },
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 84,
+        "error": null,
+        "latency_seconds": 17.912988583004335,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "0ffd6fb58fc8a63cc661f81637f6489295b9f4ac8c6815af3bb6a4a7f0e152cb",
+        "prompt_tokens": 116,
+        "proposer": "openai_compatible",
+        "response_digest": "2c80f5b3fbfea3a17471a99f18ef587f12d723fb2d80e1b16c8d18f2e49fa5a0",
+        "seed": 5133295621680162413,
+        "total_tokens": 200
+      },
+      {
+        "backend": "openai_compatible",
+        "completion_tokens": 84,
+        "error": null,
+        "latency_seconds": 10.603040792004322,
+        "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+        "parse_ok": true,
+        "prompt_digest": "f4ef8f3a6665d15f778e80b6f1015c0d376aa59930266a202a6b6882ac29aed4",
+        "prompt_tokens": 237,
+        "proposer": "openai_compatible",
+        "response_digest": "2c80f5b3fbfea3a17471a99f18ef587f12d723fb2d80e1b16c8d18f2e49fa5a0",
+        "seed": 2537191123689843194,
+        "total_tokens": 321
+      }
+    ]
+  },
+  "report_digest": "ffbb435a1bd0c6ef5cf6adcb88c05bfb059a556cb14fe933286b5ff4834df0e1",
+  "rows": [
+    {
+      "candidate": "def solve(n):\n    return n + 1\n",
+      "index": 1,
+      "score": 1.0,
+      "task": "increment"
+    },
+    {
+      "candidate": "def solve(n):\n    return n ** 2\n",
+      "index": 2,
+      "score": 1.0,
+      "task": "square"
+    },
+    {
+      "candidate": "def solve(n):\n    return max(0, min(10, n))\n",
+      "index": 3,
+      "score": 1.0,
+      "task": "clamp"
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Computes n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1.\n    \"\"\"\n    return n + 1\n",
+      "index": 4,
+      "score": 1.0,
+      "task": "increment"
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the square of a number n.\n\n    Args:\n        n (int or float): The number to be squared.\n\n    Returns:\n        float or int: n squared.\n    \"\"\"\n    return n ** 2\n",
+      "index": 5,
+      "score": 1.0,
+      "task": "square"
+    },
+    {
+      "candidate": "def solve(n):\n    return max(0, min(10, n))\n",
+      "index": 6,
+      "score": 1.0,
+      "task": "clamp"
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Computes n + 1.\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1.\n    \"\"\"\n    return n + 1\n",
+      "index": 7,
+      "score": 1.0,
+      "task": "increment"
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Calculates the square of a number n.\n\n    Args:\n        n (int or float): The number to be squared.\n\n    Returns:\n        float or int: n squared.\n    \"\"\"\n    return n ** 2\n",
+      "index": 8,
+      "score": 1.0,
+      "task": "square"
+    },
+    {
+      "candidate": "def solve(n):\n    return max(0, min(10, n))\n",
+      "index": 9,
+      "score": 1.0,
+      "task": "clamp"
+    }
+  ],
+  "schema_version": 1,
+  "summaries": {
+    "clamp": {
+      "archive_size": 3,
+      "best_score": 1.0,
+      "calls": 3
+    },
+    "increment": {
+      "archive_size": 3,
+      "best_score": 1.0,
+      "calls": 3
+    },
+    "square": {
+      "archive_size": 3,
+      "best_score": 1.0,
+      "calls": 3
+    }
+  }
+}

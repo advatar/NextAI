@@ -1,0 +1,116 @@
+{
+  "best_heldout": 1.0,
+  "claim_boundary": "harness smoke test with deterministic proposer; replace proposer with Gemma for capability claims",
+  "experiment_id": "E27-recursive-generations",
+  "generations": 5,
+  "proposals_per_generation": 3,
+  "report_digest": "77079c169fb9d6de613aef34e3f3abee718215c5cc1a46cbe8914e3741c3f189",
+  "rows": [
+    {
+      "generation": 1,
+      "heldout_score": 1.0,
+      "promoted": true,
+      "proposal": 0,
+      "public_score": 1.0
+    },
+    {
+      "generation": 1,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "generation": 1,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    },
+    {
+      "generation": 2,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 0,
+      "public_score": 1.0
+    },
+    {
+      "generation": 2,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "generation": 2,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    },
+    {
+      "generation": 3,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 0,
+      "public_score": 1.0
+    },
+    {
+      "generation": 3,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "generation": 3,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    },
+    {
+      "generation": 4,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 0,
+      "public_score": 1.0
+    },
+    {
+      "generation": 4,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "generation": 4,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    },
+    {
+      "generation": 5,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 0,
+      "public_score": 1.0
+    },
+    {
+      "generation": 5,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 1,
+      "public_score": 1.0
+    },
+    {
+      "generation": 5,
+      "heldout_score": 1.0,
+      "promoted": false,
+      "proposal": 2,
+      "public_score": 1.0
+    }
+  ],
+  "schema_version": 1
+}

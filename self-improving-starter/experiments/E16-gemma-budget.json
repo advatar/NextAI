@@ -1,0 +1,253 @@
+{
+  "archive_size": 12,
+  "best_score": 1.0,
+  "calls": 12,
+  "claim_boundary": "local model budget probe; correctness on one synthetic contract, not general learning",
+  "experiment_id": "E16-gemma-budget",
+  "receipts": [
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 4.5905757089931285,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "9c501e945f7a7bdd348fe2f7c5f67d526cd115d729ecda1693c1307bd9a13d1b",
+      "prompt_tokens": 92,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 8655628691030458795,
+      "total_tokens": 169
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 3.5794123749947175,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "0308a7aa585f14a7fcbb82635781c110be3fbcc3f212f5e94368043e9d356618",
+      "prompt_tokens": 196,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 5256094207684167668,
+      "total_tokens": 273
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 6.762135833996581,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "8d44f9a33418983ecc1276b037d319c8c17d0558572ad9e919c3a8f81486ff83",
+      "prompt_tokens": 260,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 4180856497841727578,
+      "total_tokens": 337
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 4.574181249990943,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 107979628678664349,
+      "total_tokens": 342
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 4.860354541990091,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 4387717867488172214,
+      "total_tokens": 342
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 5.171486916005961,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 4103110843326994392,
+      "total_tokens": 342
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 5.594599250005558,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 5471255634648745445,
+      "total_tokens": 342
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 3.967593499997747,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 409181037405618471,
+      "total_tokens": 342
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 6.043330957996659,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 4064752486773932908,
+      "total_tokens": 342
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 7.0652389580063755,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 375820720504423710,
+      "total_tokens": 342
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 3.429262749996269,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 2840057397584532836,
+      "total_tokens": 342
+    },
+    {
+      "backend": "openai_compatible",
+      "completion_tokens": 77,
+      "error": null,
+      "latency_seconds": 4.531965208007023,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "4cedd982903bcfb2a4994fb510805eaad65c10b4a7a11b9cb47a3736d823b4e1",
+      "prompt_tokens": 265,
+      "proposer": "openai_compatible",
+      "response_digest": "f2fd77ebb1160c7b2fbc3c1fb9b00e9b9802037dc6eeddd7d20a1995db29c0a9",
+      "seed": 8572736460732607874,
+      "total_tokens": 342
+    }
+  ],
+  "report_digest": "25698714a9154ede1fc46fbda70831616d4dfa45d086fa852a18cf55f48e7cd6",
+  "rows": [
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 1,
+      "latency_seconds": 4.5909247398376465,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 2,
+      "latency_seconds": 3.579710006713867,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 3,
+      "latency_seconds": 6.762783050537109,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 4,
+      "latency_seconds": 4.574426889419556,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 5,
+      "latency_seconds": 4.860689878463745,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 6,
+      "latency_seconds": 5.171787977218628,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 7,
+      "latency_seconds": 5.594947099685669,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 8,
+      "latency_seconds": 3.967866897583008,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 9,
+      "latency_seconds": 6.043596029281616,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 10,
+      "latency_seconds": 7.065508127212524,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 11,
+      "latency_seconds": 3.4296367168426514,
+      "score": 1.0
+    },
+    {
+      "candidate": "def solve(n):\n    \"\"\"\n    Returns n + 1\n\n    Args:\n        n (int): The input integer.\n\n    Returns:\n        int: n + 1\n    \"\"\"\n    return n + 1\n",
+      "index": 12,
+      "latency_seconds": 4.532368898391724,
+      "score": 1.0
+    }
+  ],
+  "schema_version": 1
+}

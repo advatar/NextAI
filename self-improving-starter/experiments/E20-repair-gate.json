@@ -1,0 +1,88 @@
+{
+  "claim_boundary": "admission-gate analysis over existing proposals; no new model generations",
+  "experiment_id": "E20-repair-gate",
+  "report_digest": "ecbe8a5458ac777a8014c1e6c5dfae713fdaace9df6c002b28eabe9a8064caaa",
+  "rows": [
+    {
+      "admitted": false,
+      "adversarial_pass": false,
+      "index": 1,
+      "normal_pass": true,
+      "task": "increment"
+    },
+    {
+      "admitted": true,
+      "adversarial_pass": true,
+      "index": 2,
+      "normal_pass": true,
+      "task": "square"
+    },
+    {
+      "admitted": false,
+      "adversarial_pass": false,
+      "index": 3,
+      "normal_pass": true,
+      "task": "clamp"
+    },
+    {
+      "admitted": false,
+      "adversarial_pass": false,
+      "index": 4,
+      "normal_pass": true,
+      "task": "increment"
+    },
+    {
+      "admitted": true,
+      "adversarial_pass": true,
+      "index": 5,
+      "normal_pass": true,
+      "task": "square"
+    },
+    {
+      "admitted": false,
+      "adversarial_pass": false,
+      "index": 6,
+      "normal_pass": true,
+      "task": "clamp"
+    },
+    {
+      "admitted": false,
+      "adversarial_pass": false,
+      "index": 7,
+      "normal_pass": true,
+      "task": "increment"
+    },
+    {
+      "admitted": true,
+      "adversarial_pass": true,
+      "index": 8,
+      "normal_pass": true,
+      "task": "square"
+    },
+    {
+      "admitted": false,
+      "adversarial_pass": false,
+      "index": 9,
+      "normal_pass": true,
+      "task": "clamp"
+    }
+  ],
+  "schema_version": 1,
+  "summaries": {
+    "clamp": {
+      "admission_rate": 0.0,
+      "admitted": 0,
+      "candidates": 3
+    },
+    "increment": {
+      "admission_rate": 0.0,
+      "admitted": 0,
+      "candidates": 3
+    },
+    "square": {
+      "admission_rate": 1.0,
+      "admitted": 3,
+      "candidates": 3
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "claim_boundary": "hidden edge-case evaluation of E17 proposals; no generalization claim beyond these cases",
+  "experiment_id": "E18-hidden-holdout",
+  "report_digest": "e48e1d8a6c25ed86fd34be0ddfe55d5f28cd42ee8daee60f8e1b2d740328b086",
+  "rows": [
+    {
+      "hidden_pass": true,
+      "index": 1,
+      "task": "increment",
+      "visible_score": 1.0
+    },
+    {
+      "hidden_pass": true,
+      "index": 2,
+      "task": "square",
+      "visible_score": 1.0
+    },
+    {
+      "hidden_pass": true,
+      "index": 3,
+      "task": "clamp",
+      "visible_score": 1.0
+    },
+    {
+      "hidden_pass": true,
+      "index": 4,
+      "task": "increment",
+      "visible_score": 1.0
+    },
+    {
+      "hidden_pass": true,
+      "index": 5,
+      "task": "square",
+      "visible_score": 1.0
+    },
+    {
+      "hidden_pass": true,
+      "index": 6,
+      "task": "clamp",
+      "visible_score": 1.0
+    },
+    {
+      "hidden_pass": true,
+      "index": 7,
+      "task": "increment",
+      "visible_score": 1.0
+    },
+    {
+      "hidden_pass": true,
+      "index": 8,
+      "task": "square",
+      "visible_score": 1.0
+    },
+    {
+      "hidden_pass": true,
+      "index": 9,
+      "task": "clamp",
+      "visible_score": 1.0
+    }
+  ],
+  "schema_version": 1,
+  "source_experiment": "E17-gemma-multitask",
+  "summaries": {
+    "clamp": {
+      "hidden_pass_rate": 1.0,
+      "proposals": 3
+    },
+    "increment": {
+      "hidden_pass_rate": 1.0,
+      "proposals": 3
+    },
+    "square": {
+      "hidden_pass_rate": 1.0,
+      "proposals": 3
+    }
+  }
+}

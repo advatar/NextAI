@@ -1,0 +1,76 @@
+{
+  "claim_boundary": "adversarial robustness of E17 proposals; type/error policy is not part of the original contract",
+  "experiment_id": "E19-adversarial-holdout",
+  "report_digest": "58328ce518be5271f57d5482010ec3a2af3177f8556663ad6ef318c6b242daf8",
+  "rows": [
+    {
+      "index": 1,
+      "passed": 2,
+      "task": "increment",
+      "total": 3
+    },
+    {
+      "index": 2,
+      "passed": 3,
+      "task": "square",
+      "total": 3
+    },
+    {
+      "index": 3,
+      "passed": 2,
+      "task": "clamp",
+      "total": 4
+    },
+    {
+      "index": 4,
+      "passed": 2,
+      "task": "increment",
+      "total": 3
+    },
+    {
+      "index": 5,
+      "passed": 3,
+      "task": "square",
+      "total": 3
+    },
+    {
+      "index": 6,
+      "passed": 2,
+      "task": "clamp",
+      "total": 4
+    },
+    {
+      "index": 7,
+      "passed": 2,
+      "task": "increment",
+      "total": 3
+    },
+    {
+      "index": 8,
+      "passed": 3,
+      "task": "square",
+      "total": 3
+    },
+    {
+      "index": 9,
+      "passed": 2,
+      "task": "clamp",
+      "total": 4
+    }
+  ],
+  "schema_version": 1,
+  "summaries": {
+    "clamp": {
+      "adversarial_pass_rate": 0.5,
+      "proposals": 3
+    },
+    "increment": {
+      "adversarial_pass_rate": 0.6666666666666666,
+      "proposals": 3
+    },
+    "square": {
+      "adversarial_pass_rate": 1.0,
+      "proposals": 3
+    }
+  }
+}

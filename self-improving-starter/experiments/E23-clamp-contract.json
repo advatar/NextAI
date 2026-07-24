@@ -1,0 +1,29 @@
+{
+  "claim_boundary": "numeric-only clamp contract; nonnumeric inputs excluded by specification",
+  "contract": {
+    "input": "int or float",
+    "nonnumeric": "out of scope",
+    "output": "clamped numeric in [0,10]"
+  },
+  "experiment_id": "E23-clamp-contract",
+  "pass_rate": 1.0,
+  "proposals": [
+    {
+      "index": 3,
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "index": 6,
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "index": 9,
+      "passed": 4,
+      "total": 4
+    }
+  ],
+  "report_digest": "dd14622d8504f876a3822b6b528f2946117fe7a9bc523a38b24ab0fdea6db540",
+  "schema_version": 1
+}

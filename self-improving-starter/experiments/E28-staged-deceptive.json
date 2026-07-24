@@ -1,0 +1,126 @@
+{
+  "budget": {
+    "proposals": 100,
+    "tasks_per_evaluation": 1
+  },
+  "claim_boundary": "synthetic staged-search control used to select a real-model benchmark; no model-learning claim",
+  "experiment_id": "E28-staged-deceptive",
+  "generations": 5,
+  "matched_budget": true,
+  "proposals_per_generation": 20,
+  "report_digest": "80795486b84e6d0e6566fbd3f66d4654ebc5d8844a7cb1bc5d1aeecb39824900",
+  "schema_version": 1,
+  "seeds": 1000,
+  "trajectory": [
+    {
+      "cumulative_proposals": 20,
+      "generation": 1,
+      "policies": {
+        "archive_recombination": {
+          "global_optimum_hit_rate": 0.0,
+          "mean_best_objective": 0.8
+        },
+        "greedy": {
+          "global_optimum_hit_rate": 0.0,
+          "mean_best_objective": 0.8
+        },
+        "quality_diversity": {
+          "global_optimum_hit_rate": 0.001,
+          "mean_best_objective": 0.8002
+        },
+        "random_mutation": {
+          "global_optimum_hit_rate": 0.0,
+          "mean_best_objective": 0.8
+        }
+      }
+    },
+    {
+      "cumulative_proposals": 40,
+      "generation": 2,
+      "policies": {
+        "archive_recombination": {
+          "global_optimum_hit_rate": 0.011,
+          "mean_best_objective": 0.8022
+        },
+        "greedy": {
+          "global_optimum_hit_rate": 0.0,
+          "mean_best_objective": 0.8
+        },
+        "quality_diversity": {
+          "global_optimum_hit_rate": 0.012,
+          "mean_best_objective": 0.8024000000000001
+        },
+        "random_mutation": {
+          "global_optimum_hit_rate": 0.0,
+          "mean_best_objective": 0.8
+        }
+      }
+    },
+    {
+      "cumulative_proposals": 60,
+      "generation": 3,
+      "policies": {
+        "archive_recombination": {
+          "global_optimum_hit_rate": 0.083,
+          "mean_best_objective": 0.8166
+        },
+        "greedy": {
+          "global_optimum_hit_rate": 0.0,
+          "mean_best_objective": 0.8
+        },
+        "quality_diversity": {
+          "global_optimum_hit_rate": 0.046,
+          "mean_best_objective": 0.8092
+        },
+        "random_mutation": {
+          "global_optimum_hit_rate": 0.001,
+          "mean_best_objective": 0.8002
+        }
+      }
+    },
+    {
+      "cumulative_proposals": 80,
+      "generation": 4,
+      "policies": {
+        "archive_recombination": {
+          "global_optimum_hit_rate": 0.232,
+          "mean_best_objective": 0.8464
+        },
+        "greedy": {
+          "global_optimum_hit_rate": 0.0,
+          "mean_best_objective": 0.8
+        },
+        "quality_diversity": {
+          "global_optimum_hit_rate": 0.117,
+          "mean_best_objective": 0.8234000000000001
+        },
+        "random_mutation": {
+          "global_optimum_hit_rate": 0.003,
+          "mean_best_objective": 0.8006
+        }
+      }
+    },
+    {
+      "cumulative_proposals": 100,
+      "generation": 5,
+      "policies": {
+        "archive_recombination": {
+          "global_optimum_hit_rate": 0.393,
+          "mean_best_objective": 0.8786
+        },
+        "greedy": {
+          "global_optimum_hit_rate": 0.0,
+          "mean_best_objective": 0.8
+        },
+        "quality_diversity": {
+          "global_optimum_hit_rate": 0.249,
+          "mean_best_objective": 0.8498000000000001
+        },
+        "random_mutation": {
+          "global_optimum_hit_rate": 0.008,
+          "mean_best_objective": 0.8016
+        }
+      }
+    }
+  ]
+}

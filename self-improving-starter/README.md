@@ -91,6 +91,88 @@ python3 poc.py verify-ledger \
   --anchor runs/poc-demo/ledger.head
 ```
 
+Run the deterministic three-task search-policy comparison with identical
+proposal and task-evaluation budgets for greedy, uniform random-mutation, and
+quality-diversity archive selection:
+
+```bash
+python3 compare_selection.py --proposals 12 --seeds 5 \
+  --out runs/selection-comparison.json
+```
+
+The JSON report includes every trajectory, per-policy aggregates, the benchmark
+manifest digest, explicit budget counts, and a report digest. Correctness is
+execution-verified; fixed baseline/improved/broken quality tiers avoid using
+local timing noise as policy evidence, and identical task variants are cached
+across arms. It compares object-level search policies on three small fixtures;
+it is not evidence of recursive self-improvement.
+
+The follow-up budget-scaling ablation reuses exact prefixes from one maximum-
+budget trajectory per policy and seed:
+
+```bash
+python3 compare_budget_scaling.py --budgets 3,6,12,24 --seeds 20 \
+  --out experiments/E7-budget-scaling.json
+```
+
+Diagnose whether QD results depend on the archive discretization:
+
+```bash
+python3 compare_qd_resolution.py --proposals 24 --seeds 50 \
+  --out experiments/E8-qd-resolution-ablation.json
+```
+
+Test a full local AlphaEvolve-style architecture without depending on the older
+BetaEvolve codebase: program database, parent/inspiration sampling, explorer and
+exploiter proposer roles, whole-program candidates, external multi-metric
+evaluation, and evolutionary readmission under matched budgets:
+
+```bash
+python3 compare_recombination.py --proposals 24 --seeds 50 \
+  --out experiments/E9-alphaevolve-local.json
+```
+
+Verify NExtAI against BetaEvolve's exact shared Swift/Python archive contract,
+then test search policies on a deliberately deceptive landscape:
+
+```bash
+python3 verify_e10_conformance.py \
+  --out experiments/E10-three-way-archive-conformance.json
+python3 compare_deceptive_search.py --proposals 100 --seeds 100 \
+  --out experiments/E11-deceptive-search.json
+```
+
+Reproduce the effect with a 1,000-seed cohort and paired bootstrap intervals:
+
+```bash
+python3 compare_deceptive_search.py --proposals 100 --seeds 1000 \
+  --out experiments/E12-deceptive-cohort.json
+python3 analyze_deceptive_evidence.py experiments/E12-deceptive-cohort.json \
+  --bootstrap 20000 --out experiments/E12-deceptive-evidence.json
+```
+
+Run the Longemma-compatible proposer smoke and record local Gemma availability:
+
+```bash
+python3 run_longemma_smoke.py
+```
+
+With Longemma's OptiQ MLX server running, run one real Gemma proposal:
+
+```bash
+PYTHONPATH=/path/to/NExtAI/self-improving-starter \
+  uv run --no-dev python run_gemma_probe.py \
+  --unsafe-local-demo \
+  --out /path/to/NExtAI/self-improving-starter/experiments/E14-gemma-probe.json
+```
+
+The real-model E12 and E14–E29 scripts that evaluate generated Python refuse
+host execution unless `--unsafe-local-demo` is supplied. That flag records an
+operator decision; it does not create a sandbox. Prefer the reviewed container
+runner or a VM for untrusted candidates. The committed JSON reports are
+historical evidence with valid content digests, not proof that host execution
+is safe.
+
 Expected demo shape:
 
 ```text

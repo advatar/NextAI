@@ -1,0 +1,33 @@
+{
+  "backend": "openai_compatible",
+  "base_url": "http://127.0.0.1:12345/v1",
+  "candidate": "def solve(n):\n    return n + 1\n",
+  "cases": [
+    -10,
+    -1,
+    0,
+    1,
+    7,
+    100
+  ],
+  "claim_boundary": "one real local Gemma generation and external correctness probe; no capability or recursive-improvement claim",
+  "correct": true,
+  "experiment_id": "E14-gemma-probe",
+  "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+  "receipt": {
+    "backend": "openai_compatible",
+    "completion_tokens": 28,
+    "error": null,
+    "latency_seconds": 1.115724749994115,
+    "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+    "parse_ok": true,
+    "prompt_digest": "e6de586ef4463dfd549503bb9c7512ea86fe52d83bc59e4f3f3ffb2e1df52eb9",
+    "prompt_tokens": 86,
+    "proposer": "openai_compatible",
+    "response_digest": "7475b94d74afa33377c38850f448993dc2666021c0b8d8bb3f2ce5f1deba3d94",
+    "seed": 5363532663318536571,
+    "total_tokens": 114
+  },
+  "report_digest": "2ce8ef2856920263f1cb50866385dd40e43775066023b4bfcffb6933ab853281",
+  "schema_version": 1
+}

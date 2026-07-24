@@ -1,0 +1,28 @@
+{
+  "all_adversarial": false,
+  "all_normal": true,
+  "claim_boundary": "explicit repair control; not a model-generated repair",
+  "experiment_id": "E21-repair-baseline",
+  "report_digest": "61325b4e3e5e1374bb3ee75ed5777eb9873414d46c88f0e86cda1960ca302851",
+  "rows": [
+    {
+      "adversarial_pass": false,
+      "candidate": "def solve(n):\n    return n + 1\n",
+      "normal_pass": true,
+      "task": "increment"
+    },
+    {
+      "adversarial_pass": true,
+      "candidate": "def solve(n):\n    return n ** 2\n",
+      "normal_pass": true,
+      "task": "square"
+    },
+    {
+      "adversarial_pass": true,
+      "candidate": "def solve(n):\n    if n is None: return None\n    if isinstance(n, str): n = float(n)\n    return max(0, min(10, n))\n",
+      "normal_pass": true,
+      "task": "clamp"
+    }
+  ],
+  "schema_version": 1
+}

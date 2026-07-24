@@ -5,3 +5,10 @@ __pycache__/
 .ruff_cache/
 self-improving-starter/runs/
 self-improving-starter/data/
+
+# Preserved local research/source drops that are not project artifacts.
+/GEM1.md
+/GEM2.md
+/GEM3.md
+/GEM4.md
+/namecheap-dnsctl-v0.1.0.zip
