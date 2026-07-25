@@ -1,0 +1,23 @@
+{
+  "machine": "RecursivePromotion",
+  "context": {
+    "benchmark_admitted": false,
+    "gain_bps": 0,
+    "external_regret_bps": 0,
+    "parity_checked": false
+  },
+  "events": [
+    {"event": "Propose", "payload": {}},
+    {
+      "event": "Evidence",
+      "payload": {
+        "benchmark_admitted": false,
+        "gain_bps": 0,
+        "external_regret_bps": 0,
+        "parity_checked": true
+      }
+    },
+    {"event": "Reject", "payload": {}}
+  ],
+  "expect_state": "quarantined"
+}

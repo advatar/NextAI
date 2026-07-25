@@ -1,0 +1,49 @@
+{
+  "adoption_gate": {
+    "passed": true,
+    "requires_checked_capsule": true,
+    "requires_complete_governance_surface": true,
+    "requires_explicit_host_boundary": true,
+    "requires_scenario_parity": true
+  },
+  "budget": {
+    "live_deployment_denied": true,
+    "max_ci_runs": 200,
+    "max_cost_usd": 1,
+    "max_iterations": 100,
+    "max_llm_calls": 1000,
+    "max_wall_clock_ms": 86400000
+  },
+  "capsule": "capsulang/e53_recursive_governor.caps",
+  "checked": true,
+  "claim_boundary": "local Capsulang feasibility test for a checked outer governance state machine; Python remains the evidence and effect-execution host",
+  "experiment_id": "E53-capsulang-governor",
+  "gate_complete": true,
+  "governance_complete": true,
+  "governance_status": "improvement-governed",
+  "host_boundary_explicit": true,
+  "invalid_promotion_blocked": true,
+  "machine": {
+    "audit_complexity": "low",
+    "effect_intents": 8,
+    "name": "RecursivePromotion",
+    "states": 6,
+    "transitions": 5
+  },
+  "report_digest": "be087a86a797263409e133577c040c59062bec86ced8f4443185225062078624",
+  "scenario_parity": true,
+  "scenarios": {
+    "e45_supported_gain": {
+      "expected_state": "promoted",
+      "final_state": "promoted",
+      "status": "passed"
+    },
+    "e51_uninformative_benchmark": {
+      "expected_state": "quarantined",
+      "final_state": "quarantined",
+      "status": "passed"
+    }
+  },
+  "schema_version": 1,
+  "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3"
+}

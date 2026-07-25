@@ -1,0 +1,105 @@
+{
+  "best_objective": 1.0,
+  "claim_boundary": "deterministic replay analysis using E35's first ten real-model evaluations plus five surrogate-selected evaluations; synthetic objective only",
+  "experiment_id": "E36-surrogate-hybrid",
+  "first_target_evaluation": 15,
+  "gemma_exploration_calls": 10,
+  "report_digest": "089ebef7e78e70001ddc2ab9d5feac9528afd75624a3e841120d8fcc7618b464",
+  "rows": [
+    {
+      "actual_score": 0.4,
+      "assigned_x": 0,
+      "chosen_y": 4,
+      "estimated_slope": 0.07499999999999998,
+      "observations": [
+        {
+          "score": 0.32499999999999996,
+          "y": 3
+        },
+        {
+          "score": 0.175,
+          "y": 1
+        }
+      ],
+      "predicted_score": 0.3999999999999999,
+      "target": false
+    },
+    {
+      "actual_score": 0.475,
+      "assigned_x": 1,
+      "chosen_y": 4,
+      "estimated_slope": 0.07500000000000001,
+      "observations": [
+        {
+          "score": 0.4,
+          "y": 3
+        },
+        {
+          "score": 0.175,
+          "y": 0
+        }
+      ],
+      "predicted_score": 0.47500000000000003,
+      "target": false
+    },
+    {
+      "actual_score": 0.5499999999999999,
+      "assigned_x": 2,
+      "chosen_y": 4,
+      "estimated_slope": 0.075,
+      "observations": [
+        {
+          "score": 0.475,
+          "y": 3
+        },
+        {
+          "score": 0.25,
+          "y": 0
+        }
+      ],
+      "predicted_score": 0.55,
+      "target": false
+    },
+    {
+      "actual_score": 0.625,
+      "assigned_x": 3,
+      "chosen_y": 4,
+      "estimated_slope": 0.07500000000000007,
+      "observations": [
+        {
+          "score": 0.4,
+          "y": 1
+        },
+        {
+          "score": 0.32499999999999996,
+          "y": 0
+        }
+      ],
+      "predicted_score": 0.6250000000000002,
+      "target": false
+    },
+    {
+      "actual_score": 1.0,
+      "assigned_x": 4,
+      "chosen_y": 4,
+      "estimated_slope": 0.075,
+      "observations": [
+        {
+          "score": 0.625,
+          "y": 3
+        },
+        {
+          "score": 0.4,
+          "y": 0
+        }
+      ],
+      "predicted_score": 0.7,
+      "target": true
+    }
+  ],
+  "schema_version": 1,
+  "source_experiment": "E35-coarse-niches",
+  "surrogate_evaluations": 5,
+  "target_hit": true,
+  "total_candidate_evaluations": 15
+}

@@ -1,0 +1,439 @@
+{
+  "best_objective": 0.8,
+  "claim_boundary": "single seeded coarse-niche optimization run on one synthetic opaque objective; scheduler assigns x while Gemma chooses y",
+  "covered_cells": 20,
+  "experiment_id": "E35-coarse-niches",
+  "first_target_call": null,
+  "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+  "model_calls": 20,
+  "novel_within_niche": 20,
+  "receipts": [
+    {
+      "call": 1,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 16.68394137499854,
+      "parse_ok": true,
+      "prompt_digest": "01c8676d86a7081a579cd696f647ac24b425011aae620c2e83e66e77015ecb11",
+      "prompt_tokens": 66,
+      "response_digest": "4e54b58e52f9bd33a2a2d09ee885d96b7f6f7bd05cf90ca4636fc3161ad390aa",
+      "seed": 2841697164436150513,
+      "total_tokens": 73
+    },
+    {
+      "call": 2,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 1.2488105829979759,
+      "parse_ok": true,
+      "prompt_digest": "7fbe722a7c3eac83cdcd9f44e30283adbacf0d8fa99442d3319f7e7dff121fd9",
+      "prompt_tokens": 66,
+      "response_digest": "c861d4698f68a22e328436cf5cebe8e4bd8e5558921934a52dfbdbe14e5d104f",
+      "seed": 7963928983688523790,
+      "total_tokens": 73
+    },
+    {
+      "call": 3,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 1.2902244170254562,
+      "parse_ok": true,
+      "prompt_digest": "5daf89df69d729ead120af6a61f44c7360bb8abf368fb1cc630fc5d94695e9f6",
+      "prompt_tokens": 66,
+      "response_digest": "c861d4698f68a22e328436cf5cebe8e4bd8e5558921934a52dfbdbe14e5d104f",
+      "seed": 4651319864817861085,
+      "total_tokens": 73
+    },
+    {
+      "call": 4,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.6422979999915697,
+      "parse_ok": true,
+      "prompt_digest": "2bf3f95446699659dbc0414333bd2129baf8911965be56eb9e83796dc6ecdf08",
+      "prompt_tokens": 66,
+      "response_digest": "c861d4698f68a22e328436cf5cebe8e4bd8e5558921934a52dfbdbe14e5d104f",
+      "seed": 1140216564282679268,
+      "total_tokens": 73
+    },
+    {
+      "call": 5,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.8845648329879623,
+      "parse_ok": true,
+      "prompt_digest": "d7a14d7d72e71876e952ee505f95a066e10019b4dea8be485532b8f7f410c66d",
+      "prompt_tokens": 66,
+      "response_digest": "c861d4698f68a22e328436cf5cebe8e4bd8e5558921934a52dfbdbe14e5d104f",
+      "seed": 1784037866458323960,
+      "total_tokens": 73
+    },
+    {
+      "call": 6,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.7803352499904577,
+      "parse_ok": true,
+      "prompt_digest": "6622af43ae6f119d394cad884ae76559fd1f15871ca5bc4f12012c51c81e0f4b",
+      "prompt_tokens": 76,
+      "response_digest": "629c9609d2a7a5dbf9e41a28150599bacf313bca68dd2193af39511f40b6177a",
+      "seed": 6909177371371929138,
+      "total_tokens": 83
+    },
+    {
+      "call": 7,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 1.0315820839896332,
+      "parse_ok": true,
+      "prompt_digest": "f53ab96c59be2370f756d8b3c725d71d87d595d7505870bf97f11b6434edc09c",
+      "prompt_tokens": 76,
+      "response_digest": "629c9609d2a7a5dbf9e41a28150599bacf313bca68dd2193af39511f40b6177a",
+      "seed": 465215647868331930,
+      "total_tokens": 83
+    },
+    {
+      "call": 8,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.7029851249826606,
+      "parse_ok": true,
+      "prompt_digest": "d32f7a7f3bac6f64725dbeb2df245bb091a0172c4134991722f7cb5ca7febb18",
+      "prompt_tokens": 76,
+      "response_digest": "629c9609d2a7a5dbf9e41a28150599bacf313bca68dd2193af39511f40b6177a",
+      "seed": 951439784814129899,
+      "total_tokens": 83
+    },
+    {
+      "call": 9,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.8550544169847853,
+      "parse_ok": true,
+      "prompt_digest": "c973935716d5a868192fbc4bcae10237c805fa13f3a58130cc0361bbfd690450",
+      "prompt_tokens": 76,
+      "response_digest": "4e54b58e52f9bd33a2a2d09ee885d96b7f6f7bd05cf90ca4636fc3161ad390aa",
+      "seed": 4328557715631347765,
+      "total_tokens": 83
+    },
+    {
+      "call": 10,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.8399297500145622,
+      "parse_ok": true,
+      "prompt_digest": "d1f6b193ee0597422ec50d8c568554039e65f2c32455e9be82e7730e1194818a",
+      "prompt_tokens": 76,
+      "response_digest": "629c9609d2a7a5dbf9e41a28150599bacf313bca68dd2193af39511f40b6177a",
+      "seed": 5994933072705035466,
+      "total_tokens": 83
+    },
+    {
+      "call": 11,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 1.1228637500025798,
+      "parse_ok": true,
+      "prompt_digest": "3f8faf4bb0b5f6cffed31619e4303cac902a8aacaec9aecb8eda825abe3e805b",
+      "prompt_tokens": 88,
+      "response_digest": "4e54b58e52f9bd33a2a2d09ee885d96b7f6f7bd05cf90ca4636fc3161ad390aa",
+      "seed": 1357955184091616776,
+      "total_tokens": 95
+    },
+    {
+      "call": 12,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 1.2751834169903304,
+      "parse_ok": true,
+      "prompt_digest": "ff794bab867c85cabd12e30be02a1592d5753cc531c6b6d39f23054f431e0e44",
+      "prompt_tokens": 88,
+      "response_digest": "4e54b58e52f9bd33a2a2d09ee885d96b7f6f7bd05cf90ca4636fc3161ad390aa",
+      "seed": 1532171709715151218,
+      "total_tokens": 95
+    },
+    {
+      "call": 13,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.5387207499879878,
+      "parse_ok": true,
+      "prompt_digest": "4bf6fd1f40c8132f804f4d0e20cfc5be1aa8e583bc30fb49aa2a864cd0493786",
+      "prompt_tokens": 88,
+      "response_digest": "71bb65f507635269a4a5c3af91ed7d7a15fd8982370fb10d02fd63af53199222",
+      "seed": 2966417613485308971,
+      "total_tokens": 95
+    },
+    {
+      "call": 14,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.5934452919755131,
+      "parse_ok": true,
+      "prompt_digest": "a071000dc896c633053afee172aafde23f44b24b49c708454276b6c45007fd03",
+      "prompt_tokens": 88,
+      "response_digest": "71bb65f507635269a4a5c3af91ed7d7a15fd8982370fb10d02fd63af53199222",
+      "seed": 1420365349623731609,
+      "total_tokens": 95
+    },
+    {
+      "call": 15,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 1.0374129999836441,
+      "parse_ok": true,
+      "prompt_digest": "1881539b566d4a3f808634e9cef5777516bdd81f4e0272a1d7cffd45b4c87eba",
+      "prompt_tokens": 88,
+      "response_digest": "629c9609d2a7a5dbf9e41a28150599bacf313bca68dd2193af39511f40b6177a",
+      "seed": 9135810396063607723,
+      "total_tokens": 95
+    },
+    {
+      "call": 16,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.817204999999376,
+      "parse_ok": true,
+      "prompt_digest": "9cc738469cd61135ce4ba478fd3e7290fb1ce56b82f7b425a8fa9b220b9db09e",
+      "prompt_tokens": 100,
+      "response_digest": "71bb65f507635269a4a5c3af91ed7d7a15fd8982370fb10d02fd63af53199222",
+      "seed": 4881834810049271739,
+      "total_tokens": 107
+    },
+    {
+      "call": 17,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.756682458013529,
+      "parse_ok": true,
+      "prompt_digest": "a5ccc1f27b7a88fa3ec3eadfa7a9937bef3d780aa266af5a3251ef42e039e570",
+      "prompt_tokens": 100,
+      "response_digest": "9da99faadb5892bb75c6179881382889a07e8185fef431a30289e625f185506e",
+      "seed": 1805218359053791954,
+      "total_tokens": 107
+    },
+    {
+      "call": 18,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.5789557920070365,
+      "parse_ok": true,
+      "prompt_digest": "1b73da81549b965045e6d4f6d9bc5f5c05175404e2e09fe6212d07706e44b735",
+      "prompt_tokens": 100,
+      "response_digest": "71bb65f507635269a4a5c3af91ed7d7a15fd8982370fb10d02fd63af53199222",
+      "seed": 6961209390817542662,
+      "total_tokens": 107
+    },
+    {
+      "call": 19,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.7180607079935726,
+      "parse_ok": true,
+      "prompt_digest": "537b24fe87b040a810c1685c8c9e637b97fc3f871ff6258be27c025389da2a1d",
+      "prompt_tokens": 100,
+      "response_digest": "c861d4698f68a22e328436cf5cebe8e4bd8e5558921934a52dfbdbe14e5d104f",
+      "seed": 8156786741616339034,
+      "total_tokens": 107
+    },
+    {
+      "call": 20,
+      "completion_tokens": 7,
+      "error": null,
+      "latency_seconds": 0.7329169590084348,
+      "parse_ok": true,
+      "prompt_digest": "c0740f265946f67e644e1cdd214b70258d4ac63c498793fa151f7b1aec2e376e",
+      "prompt_tokens": 100,
+      "response_digest": "71bb65f507635269a4a5c3af91ed7d7a15fd8982370fb10d02fd63af53199222",
+      "seed": 4791319894583984572,
+      "total_tokens": 107
+    }
+  ],
+  "report_digest": "ee586422a6b73e757deb48b00265654d2c9945de5cba3e70e2dac32ff8750928",
+  "rounds": 4,
+  "rows": [
+    {
+      "assigned_x": 3,
+      "best_objective": 0.8,
+      "call": 1,
+      "novel_within_niche": true,
+      "objective": 0.4,
+      "returned_y": 1,
+      "round": 1
+    },
+    {
+      "assigned_x": 1,
+      "best_objective": 0.8,
+      "call": 2,
+      "novel_within_niche": true,
+      "objective": 0.4,
+      "returned_y": 3,
+      "round": 1
+    },
+    {
+      "assigned_x": 0,
+      "best_objective": 0.8,
+      "call": 3,
+      "novel_within_niche": true,
+      "objective": 0.32499999999999996,
+      "returned_y": 3,
+      "round": 1
+    },
+    {
+      "assigned_x": 2,
+      "best_objective": 0.8,
+      "call": 4,
+      "novel_within_niche": true,
+      "objective": 0.475,
+      "returned_y": 3,
+      "round": 1
+    },
+    {
+      "assigned_x": 4,
+      "best_objective": 0.8,
+      "call": 5,
+      "novel_within_niche": true,
+      "objective": 0.625,
+      "returned_y": 3,
+      "round": 1
+    },
+    {
+      "assigned_x": 1,
+      "best_objective": 0.8,
+      "call": 6,
+      "novel_within_niche": true,
+      "objective": 0.175,
+      "returned_y": 0,
+      "round": 2
+    },
+    {
+      "assigned_x": 3,
+      "best_objective": 0.8,
+      "call": 7,
+      "novel_within_niche": true,
+      "objective": 0.32499999999999996,
+      "returned_y": 0,
+      "round": 2
+    },
+    {
+      "assigned_x": 4,
+      "best_objective": 0.8,
+      "call": 8,
+      "novel_within_niche": true,
+      "objective": 0.4,
+      "returned_y": 0,
+      "round": 2
+    },
+    {
+      "assigned_x": 0,
+      "best_objective": 0.8,
+      "call": 9,
+      "novel_within_niche": true,
+      "objective": 0.175,
+      "returned_y": 1,
+      "round": 2
+    },
+    {
+      "assigned_x": 2,
+      "best_objective": 0.8,
+      "call": 10,
+      "novel_within_niche": true,
+      "objective": 0.25,
+      "returned_y": 0,
+      "round": 2
+    },
+    {
+      "assigned_x": 2,
+      "best_objective": 0.8,
+      "call": 11,
+      "novel_within_niche": true,
+      "objective": 0.32499999999999996,
+      "returned_y": 1,
+      "round": 3
+    },
+    {
+      "assigned_x": 4,
+      "best_objective": 0.8,
+      "call": 12,
+      "novel_within_niche": true,
+      "objective": 0.475,
+      "returned_y": 1,
+      "round": 3
+    },
+    {
+      "assigned_x": 3,
+      "best_objective": 0.8,
+      "call": 13,
+      "novel_within_niche": true,
+      "objective": 0.475,
+      "returned_y": 2,
+      "round": 3
+    },
+    {
+      "assigned_x": 1,
+      "best_objective": 0.8,
+      "call": 14,
+      "novel_within_niche": true,
+      "objective": 0.32499999999999996,
+      "returned_y": 2,
+      "round": 3
+    },
+    {
+      "assigned_x": 0,
+      "best_objective": 0.8,
+      "call": 15,
+      "novel_within_niche": true,
+      "objective": 0.8,
+      "returned_y": 0,
+      "round": 3
+    },
+    {
+      "assigned_x": 0,
+      "best_objective": 0.8,
+      "call": 16,
+      "novel_within_niche": true,
+      "objective": 0.25,
+      "returned_y": 2,
+      "round": 4
+    },
+    {
+      "assigned_x": 1,
+      "best_objective": 0.8,
+      "call": 17,
+      "novel_within_niche": true,
+      "objective": 0.475,
+      "returned_y": 4,
+      "round": 4
+    },
+    {
+      "assigned_x": 4,
+      "best_objective": 0.8,
+      "call": 18,
+      "novel_within_niche": true,
+      "objective": 0.5499999999999999,
+      "returned_y": 2,
+      "round": 4
+    },
+    {
+      "assigned_x": 3,
+      "best_objective": 0.8,
+      "call": 19,
+      "novel_within_niche": true,
+      "objective": 0.5499999999999999,
+      "returned_y": 3,
+      "round": 4
+    },
+    {
+      "assigned_x": 2,
+      "best_objective": 0.8,
+      "call": 20,
+      "novel_within_niche": true,
+      "objective": 0.4,
+      "returned_y": 2,
+      "round": 4
+    }
+  ],
+  "schema_version": 1,
+  "target_hit": false,
+  "valid_responses": 20
+}

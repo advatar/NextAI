@@ -1,0 +1,65 @@
+{
+  "accepted": {
+    "champion_generation": 1,
+    "ledger_verified": true,
+    "reason_codes": [
+      "promoted",
+      "governor_corroborated"
+    ],
+    "receipt": {
+      "decision": "promote",
+      "effect_intents": [
+        "repo.propose_patch",
+        "ci.run",
+        "eval.run:RecursiveImprovementRegression",
+        "proof.verify:GovernorParity",
+        "deploy.shadow:RecursiveCandidatePolicy",
+        "deploy.promote:RecursiveCandidatePolicy"
+      ],
+      "evidence": {
+        "benchmark_admitted": true,
+        "external_regret_bps": 0,
+        "gain_bps": 15000,
+        "parity_checked": true
+      },
+      "final_state": "promoted",
+      "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3",
+      "transitions": [
+        {
+          "event": "Propose",
+          "from": "idle",
+          "to": "evaluating"
+        },
+        {
+          "event": "Evidence",
+          "from": "evaluating",
+          "to": "decision"
+        },
+        {
+          "event": "Promote",
+          "from": "decision",
+          "to": "promoted"
+        }
+      ]
+    }
+  },
+  "accepted_with_receipt": true,
+  "adoption_gate": {
+    "passed": true
+  },
+  "blocked": {
+    "champion_generation": 0,
+    "error_digest_recorded": true,
+    "ledger_verified": true,
+    "reason_codes": [
+      "promotion_governor_failed"
+    ]
+  },
+  "claim_boundary": "deterministic StrategyLab fixture proving that a descendant cannot advance the champion without a pinned Capsulang receipt",
+  "experiment_id": "E55-governed-lineage",
+  "report_digest": "c99ab67530b63e4f100c12c8663d6a982e3cea2e84d9218480170313a6d16524",
+  "resume_verified_receipt": true,
+  "schema_version": 1,
+  "semantic_drift_failed_closed": true,
+  "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3"
+}

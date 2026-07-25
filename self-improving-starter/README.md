@@ -306,3 +306,102 @@ ability.
 Only a repeatable improvement in descendant gain-per-cost supports a bounded
 recursive-effect claim. Better direct task performance alone supports a bounded
 scaffold-improvement claim.
+
+## Optional MeTTa parity probe
+
+E52 mirrors recent lineage facts and the frozen support-aware promotion rule in
+Hyperon/MeTTa. It runs in an isolated environment and does not add Hyperon to
+the project dependencies:
+
+```bash
+uv run --python 3.12 --with hyperon python run_e52_metta_parity.py
+```
+
+The adoption gate requires exact Python/MeTTa decision and query parity, and
+requires weakened symbolic rule mutations to fail at least one fixture.
+
+## Optional Capsulang outer governor
+
+E53 wraps the recursive candidate lifecycle in a checked Capsulang state
+machine. Capsulang owns the declared lineage, budget, promotion gate,
+quarantine/rollback path, and typed effect intents; Python remains the evidence
+host and the only component that executes those intents:
+
+```bash
+python3 run_e53_capsulang_governor.py
+```
+
+The adoption gate checks the governance surface, runs promotion and quarantine
+scenarios, verifies that inadmissible promotion is guard-rejected, and confirms
+that generated XState/SCXML artifacts explicitly require a host runtime. The
+capsule denies live deployment and frontier-model training.
+
+E54 turns that declaration into a reusable, pinned host bridge:
+
+```bash
+python3 run_e54_capsulang_bridge.py
+```
+
+`recursive_lab/capsulang_governor.py` advances the checked machine, verifies its
+semantic hash, compares its terminal state with the immutable Python policy,
+and returns an auditable receipt. It fails closed on runtime failure, invalid
+JSON, semantic drift, altered evidence, rejected transitions, or policy
+disagreement. Returned effect intents are data only and are never executed by
+the bridge.
+
+E55 integrates the bridge into `StrategyLab` itself:
+
+```bash
+python3 run_e55_governed_lineage.py
+```
+
+When `promotion_governor` is configured, a Python-approved descendant cannot
+become champion until the independent governor corroborates it. The
+corroborator identity is frozen into the experiment manifest; strict,
+size-bounded receipts are stored in the hash-chained attempt event and required
+again during resume. Governor errors replace the provisional promotion with a
+fail-closed rejection without advancing the champion.
+
+E56 extends the same integration across a complete six-round fixture:
+
+```bash
+python3 run_e56_governed_recursive_cycle.py
+```
+
+The unchanged and receipt-gated arms use identical proposal, evaluation,
+model-call, and token budgets and both reach generation three. A third arm loses
+the governor after its first receipt; it completes accounting and ledger writes
+but remains at generation one. The experiment also measures the current cost:
+three scenario-backed receipts add about 5.9 seconds locally.
+
+E57 validates that optimized transport against the original transition-by-
+transition bridge:
+
+```bash
+python3 run_e57_batched_governor.py
+```
+
+Four decisions produce byte-for-byte equivalent receipt payloads while checked
+scenario batching reduces local latency from 19.16 to 6.21 seconds (3.08×).
+The semantic graph is cached, but the capsule source hash is checked before
+every decision; post-construction source drift still fails closed.
+
+E58 returns to real local-model evidence:
+
+```bash
+# Start the documented Longemma local server first.
+../../Longemma/.venv/bin/python run_e58_gemma_governed_program.py
+```
+
+Gemma 4 E2B produces six model-receipted numeric programs (2,067 total tokens).
+All six pass a non-executing restricted-AST evaluator on five visible and seven
+held-out inputs. The shared direct/governed candidate stream has exact promotion
+parity: one candidate moves held-out correctness from 0% to 100%, and only the
+governed arm requires the three-transition Capsulang receipt.
+
+The first evaluator version rejected all six correct programs because Gemma used
+one explicit `if/else` rather than a conditional expression. E58 records that
+failed pass and the bounded revision: one `if/else` containing only two return
+expressions is now accepted, without enabling calls, assignments, imports,
+attributes, or generated-code execution. This is evidence for one local program
+task, not a general recursive-self-improvement claim.

@@ -39,6 +39,11 @@ class FailingBackend:
         raise RuntimeError("fixture failure")
 
 
+class CallableVersionBackend(Backend):
+    def version(self):
+        return "callable-1"
+
+
 class AdapterTests(unittest.TestCase):
     def test_parser_and_receipt(self):
         parent = ProgramRecord(
@@ -60,6 +65,20 @@ class AdapterTests(unittest.TestCase):
             proposer.receipts[0].candidate_digest,
             hashlib.sha256(candidate.encode()).hexdigest(),
         )
+
+    def test_callable_backend_version_is_resolved_not_stringified(self):
+        parent = ProgramRecord(
+            "p",
+            "def solve(): return 0",
+            CandidateEvaluation(0, (0,), {}),
+            0,
+            None,
+            (),
+            "seed",
+        )
+        proposer = LongemmaProposer(CallableVersionBackend(), "write solve")
+        proposer.propose(PromptSample(parent, (), {}), random.Random(1))
+        self.assertEqual(proposer.receipts[0].backend_version, "callable-1")
 
     def test_parser_rejects_empty(self):
         with self.assertRaises(ValueError):

@@ -1,0 +1,157 @@
+{
+  "adoption_gate": {
+    "passed": true
+  },
+  "claim_boundary": "local host-bridge integration test; Capsulang validates transitions and returns effect intents, while Python retains execution authority",
+  "decision_parity": true,
+  "effect_intents_executed": false,
+  "experiment_id": "E54-capsulang-host-bridge",
+  "missing_runtime_blocked": true,
+  "receipts": {
+    "e45_supported_gain": {
+      "decision": "promote",
+      "effect_intents": [
+        "repo.propose_patch",
+        "ci.run",
+        "eval.run:RecursiveImprovementRegression",
+        "proof.verify:GovernorParity",
+        "deploy.shadow:RecursiveCandidatePolicy",
+        "deploy.promote:RecursiveCandidatePolicy"
+      ],
+      "evidence": {
+        "benchmark_admitted": true,
+        "external_regret_bps": 0,
+        "gain_bps": 302,
+        "parity_checked": true
+      },
+      "final_state": "promoted",
+      "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3",
+      "transitions": [
+        {
+          "event": "Propose",
+          "from": "idle",
+          "to": "evaluating"
+        },
+        {
+          "event": "Evidence",
+          "from": "evaluating",
+          "to": "decision"
+        },
+        {
+          "event": "Promote",
+          "from": "decision",
+          "to": "promoted"
+        }
+      ]
+    },
+    "e51_uninformative_benchmark": {
+      "decision": "reject",
+      "effect_intents": [
+        "repo.propose_patch",
+        "ci.run",
+        "eval.run:RecursiveImprovementRegression",
+        "proof.verify:GovernorParity",
+        "deploy.rollback:RecursiveCandidatePolicy"
+      ],
+      "evidence": {
+        "benchmark_admitted": false,
+        "external_regret_bps": 0,
+        "gain_bps": 0,
+        "parity_checked": true
+      },
+      "final_state": "quarantined",
+      "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3",
+      "transitions": [
+        {
+          "event": "Propose",
+          "from": "idle",
+          "to": "evaluating"
+        },
+        {
+          "event": "Evidence",
+          "from": "evaluating",
+          "to": "decision"
+        },
+        {
+          "event": "Reject",
+          "from": "decision",
+          "to": "quarantined"
+        }
+      ]
+    },
+    "external_regret": {
+      "decision": "reject",
+      "effect_intents": [
+        "repo.propose_patch",
+        "ci.run",
+        "eval.run:RecursiveImprovementRegression",
+        "proof.verify:GovernorParity",
+        "deploy.rollback:RecursiveCandidatePolicy"
+      ],
+      "evidence": {
+        "benchmark_admitted": true,
+        "external_regret_bps": -100,
+        "gain_bps": 500,
+        "parity_checked": true
+      },
+      "final_state": "quarantined",
+      "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3",
+      "transitions": [
+        {
+          "event": "Propose",
+          "from": "idle",
+          "to": "evaluating"
+        },
+        {
+          "event": "Evidence",
+          "from": "evaluating",
+          "to": "decision"
+        },
+        {
+          "event": "Reject",
+          "from": "decision",
+          "to": "quarantined"
+        }
+      ]
+    },
+    "unchecked_parity": {
+      "decision": "reject",
+      "effect_intents": [
+        "repo.propose_patch",
+        "ci.run",
+        "eval.run:RecursiveImprovementRegression",
+        "proof.verify:GovernorParity",
+        "deploy.rollback:RecursiveCandidatePolicy"
+      ],
+      "evidence": {
+        "benchmark_admitted": true,
+        "external_regret_bps": 0,
+        "gain_bps": 302,
+        "parity_checked": false
+      },
+      "final_state": "quarantined",
+      "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3",
+      "transitions": [
+        {
+          "event": "Propose",
+          "from": "idle",
+          "to": "evaluating"
+        },
+        {
+          "event": "Evidence",
+          "from": "evaluating",
+          "to": "decision"
+        },
+        {
+          "event": "Reject",
+          "from": "decision",
+          "to": "quarantined"
+        }
+      ]
+    }
+  },
+  "report_digest": "0b79b725a7d2c7f4fac7351372c40a6e76885e74de71d47b327c21f6b9803be8",
+  "schema_version": 1,
+  "semantic_drift_blocked": true,
+  "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3"
+}

@@ -1,0 +1,19 @@
+{
+  "admitted": false,
+  "claim_boundary": "informativeness audit only; no capability claim",
+  "criteria": {
+    "maximum_exploration_target_rate": 0.2,
+    "minimum_shape_vs_linear_disagreements": 3,
+    "minimum_tasks": 5
+  },
+  "decision": "reject and redesign cohort",
+  "experiment_id": "E51-benchmark-admission",
+  "observed": {
+    "exploration_target_rate": 0.8,
+    "shape_vs_linear_disagreements": 0,
+    "tasks": 5
+  },
+  "report_digest": "ff4228bb6a49c61a758357acce46b27586d3bec4d2f127a9cf3c77b684a65790",
+  "schema_version": 1,
+  "source_experiment": "E50-real-curved"
+}

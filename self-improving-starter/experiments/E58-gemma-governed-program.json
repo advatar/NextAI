@@ -1,0 +1,241 @@
+{
+  "adoption_gate": {
+    "passed": true
+  },
+  "baseline_heldout_score": 0.0,
+  "claim_boundary": "one local Gemma 4 E2B program task with shared candidate stream, restricted-AST interpretation, held-out selection, and Capsulang promotion corroboration; not evidence of general self-improvement",
+  "direct_best_heldout_score": 1.0,
+  "direct_promotions": 1,
+  "evaluator_revision": {
+    "change": "accept one top-level if/else whose two branches contain only return expressions; calls and arbitrary statements remain forbidden",
+    "initial_expression_only_accepts": 0,
+    "new_authority_granted": false,
+    "revised_safe_piecewise_accepts": 6
+  },
+  "experiment_id": "E58-gemma-governed-program",
+  "governed_best_heldout_score": 1.0,
+  "governed_promotions": 1,
+  "heldout_cases": 7,
+  "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+  "model_calls": 6,
+  "model_receipts": [
+    {
+      "backend": "openai_compatible",
+      "backend_version": "httpx-0.28.1",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "completion_tokens": 58,
+      "error": null,
+      "latency_seconds": 4.771451125037856,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "b0257647393319fb7cf3a3bce37f7d04a76f0e9aa5e3f3295edb37402c5d20fb",
+      "prompt_tokens": 186,
+      "proposer": "local-gemma-4-e2b",
+      "response_digest": "eb8233c40e3525763747c536de5dd93c3a87ff67e20c2c630fa2cdea8c515c20",
+      "seed": 3636903700870234234,
+      "total_tokens": 244
+    },
+    {
+      "backend": "openai_compatible",
+      "backend_version": "httpx-0.28.1",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "completion_tokens": 58,
+      "error": null,
+      "latency_seconds": 1.0625937500153668,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "1c0f82e1178ed87c7c47af1a34d4667247c16462514e0394ddca3a7830d303de",
+      "prompt_tokens": 277,
+      "proposer": "local-gemma-4-e2b",
+      "response_digest": "eb8233c40e3525763747c536de5dd93c3a87ff67e20c2c630fa2cdea8c515c20",
+      "seed": 3710929980638420647,
+      "total_tokens": 335
+    },
+    {
+      "backend": "openai_compatible",
+      "backend_version": "httpx-0.28.1",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "completion_tokens": 58,
+      "error": null,
+      "latency_seconds": 1.0087929160217755,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "e0a795a12329a015878e7ec4fc8568f8cbd5e5ffc68771225354e5657e659b25",
+      "prompt_tokens": 314,
+      "proposer": "local-gemma-4-e2b",
+      "response_digest": "eb8233c40e3525763747c536de5dd93c3a87ff67e20c2c630fa2cdea8c515c20",
+      "seed": 3549342049965474267,
+      "total_tokens": 372
+    },
+    {
+      "backend": "openai_compatible",
+      "backend_version": "httpx-0.28.1",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "completion_tokens": 58,
+      "error": null,
+      "latency_seconds": 0.9774091250146739,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "e0a795a12329a015878e7ec4fc8568f8cbd5e5ffc68771225354e5657e659b25",
+      "prompt_tokens": 314,
+      "proposer": "local-gemma-4-e2b",
+      "response_digest": "eb8233c40e3525763747c536de5dd93c3a87ff67e20c2c630fa2cdea8c515c20",
+      "seed": 7478303427438303860,
+      "total_tokens": 372
+    },
+    {
+      "backend": "openai_compatible",
+      "backend_version": "httpx-0.28.1",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "completion_tokens": 58,
+      "error": null,
+      "latency_seconds": 1.0410612919949926,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "e0a795a12329a015878e7ec4fc8568f8cbd5e5ffc68771225354e5657e659b25",
+      "prompt_tokens": 314,
+      "proposer": "local-gemma-4-e2b",
+      "response_digest": "eb8233c40e3525763747c536de5dd93c3a87ff67e20c2c630fa2cdea8c515c20",
+      "seed": 4801586304674307831,
+      "total_tokens": 372
+    },
+    {
+      "backend": "openai_compatible",
+      "backend_version": "httpx-0.28.1",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "completion_tokens": 58,
+      "error": null,
+      "latency_seconds": 1.2359302500262856,
+      "model": "/Users/johansellstrom/dev/advatar/Broom/diskspace-gemma/models/gemma-4-e2b-it-4bit-mlx",
+      "parse_ok": true,
+      "prompt_digest": "e0a795a12329a015878e7ec4fc8568f8cbd5e5ffc68771225354e5657e659b25",
+      "prompt_tokens": 314,
+      "proposer": "local-gemma-4-e2b",
+      "response_digest": "eb8233c40e3525763747c536de5dd93c3a87ff67e20c2c630fa2cdea8c515c20",
+      "seed": 8302366808900087295,
+      "total_tokens": 372
+    }
+  ],
+  "promotion_parity": true,
+  "proposals": 6,
+  "public_cases": 5,
+  "report_digest": "8270c19eb7c9b3b85c50426fc6df17c2e2ad57e11d5c7116b39bf7157d5b6376",
+  "rows": [
+    {
+      "candidate": "def solve(n):\n    if n >= 0:\n        return n**3 + 2*n + 5\n    else:\n        return n*n - 3*n + 11\n",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "direct_promoted": true,
+      "error": null,
+      "generation": 1,
+      "governed_promoted": true,
+      "governor_receipt": {
+        "decision": "promote",
+        "effect_intents": [
+          "repo.propose_patch",
+          "ci.run",
+          "eval.run:RecursiveImprovementRegression",
+          "proof.verify:GovernorParity",
+          "deploy.shadow:RecursiveCandidatePolicy",
+          "deploy.promote:RecursiveCandidatePolicy"
+        ],
+        "evidence": {
+          "benchmark_admitted": true,
+          "external_regret_bps": 0,
+          "gain_bps": 10000,
+          "parity_checked": true
+        },
+        "final_state": "promoted",
+        "semantic_hash": "4438a99af2d0539be06a5128d214741a36d1dd8920205b4787062bfaba65cab3",
+        "transitions": [
+          {
+            "event": "Propose",
+            "from": "idle",
+            "to": "evaluating"
+          },
+          {
+            "event": "Evidence",
+            "from": "evaluating",
+            "to": "decision"
+          },
+          {
+            "event": "Promote",
+            "from": "decision",
+            "to": "promoted"
+          }
+        ]
+      },
+      "heldout_score": 1.0,
+      "parse_ok": true,
+      "public_score": 1.0,
+      "safe_ast_valid": true
+    },
+    {
+      "candidate": "def solve(n):\n    if n >= 0:\n        return n**3 + 2*n + 5\n    else:\n        return n*n - 3*n + 11\n",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "direct_promoted": false,
+      "error": null,
+      "generation": 2,
+      "governed_promoted": false,
+      "governor_receipt": null,
+      "heldout_score": 1.0,
+      "parse_ok": true,
+      "public_score": 1.0,
+      "safe_ast_valid": true
+    },
+    {
+      "candidate": "def solve(n):\n    if n >= 0:\n        return n**3 + 2*n + 5\n    else:\n        return n*n - 3*n + 11\n",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "direct_promoted": false,
+      "error": null,
+      "generation": 3,
+      "governed_promoted": false,
+      "governor_receipt": null,
+      "heldout_score": 1.0,
+      "parse_ok": true,
+      "public_score": 1.0,
+      "safe_ast_valid": true
+    },
+    {
+      "candidate": "def solve(n):\n    if n >= 0:\n        return n**3 + 2*n + 5\n    else:\n        return n*n - 3*n + 11\n",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "direct_promoted": false,
+      "error": null,
+      "generation": 4,
+      "governed_promoted": false,
+      "governor_receipt": null,
+      "heldout_score": 1.0,
+      "parse_ok": true,
+      "public_score": 1.0,
+      "safe_ast_valid": true
+    },
+    {
+      "candidate": "def solve(n):\n    if n >= 0:\n        return n**3 + 2*n + 5\n    else:\n        return n*n - 3*n + 11\n",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "direct_promoted": false,
+      "error": null,
+      "generation": 5,
+      "governed_promoted": false,
+      "governor_receipt": null,
+      "heldout_score": 1.0,
+      "parse_ok": true,
+      "public_score": 1.0,
+      "safe_ast_valid": true
+    },
+    {
+      "candidate": "def solve(n):\n    if n >= 0:\n        return n**3 + 2*n + 5\n    else:\n        return n*n - 3*n + 11\n",
+      "candidate_digest": "2f5a0b295354a47f27a3b102807010dc5d52168820489e379613130ea46ad8db",
+      "direct_promoted": false,
+      "error": null,
+      "generation": 6,
+      "governed_promoted": false,
+      "governor_receipt": null,
+      "heldout_score": 1.0,
+      "parse_ok": true,
+      "public_score": 1.0,
+      "safe_ast_valid": true
+    }
+  ],
+  "schema_version": 1,
+  "total_tokens": 2067,
+  "valid_candidates": 6
+}

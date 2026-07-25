@@ -8,6 +8,7 @@ never passed back into the proposer; only development feedback is.
 
 from __future__ import annotations
 
+import json
 import math
 import time
 from dataclasses import asdict, dataclass
@@ -247,6 +248,18 @@ class StrategyEvaluator(Protocol):
     ) -> ArtifactEvaluation: ...
 
 
+class PromotionGovernor(Protocol):
+    """Optional independent corroborator for otherwise accepted descendants."""
+
+    governor_digest: str
+
+    def corroborate(
+        self,
+        decision: PromotionDecision,
+        evidence: EvaluationEvidence,
+    ) -> Mapping[str, Any]: ...
+
+
 @dataclass(frozen=True, slots=True)
 class LabSnapshot:
     champion: ArtifactRecord
@@ -325,6 +338,7 @@ class StrategyLab:
         clock: Callable[[], float] = time.monotonic,
         head_observer: Callable[[str], None] | None = None,
         max_sealed_audits: int = 2,
+        promotion_governor: PromotionGovernor | None = None,
     ) -> None:
         self.proposer = proposer
         self.evaluator = evaluator
@@ -339,6 +353,19 @@ class StrategyLab:
         if type(max_sealed_audits) is not int or max_sealed_audits < 0:
             raise ValueError("max_sealed_audits must be a non-negative integer")
         self._max_sealed_audits = max_sealed_audits
+        self._promotion_governor = promotion_governor
+        governor_digest = (
+            None
+            if promotion_governor is None
+            else getattr(promotion_governor, "governor_digest", None)
+        )
+        if promotion_governor is not None and (
+            not isinstance(governor_digest, str)
+            or len(governor_digest) != 64
+            or any(character not in "0123456789abcdef" for character in governor_digest)
+        ):
+            raise ValueError("promotion governor must expose a SHA-256 digest")
+        self._promotion_governor_digest = governor_digest
         self.ledger = LineageLedger(ledger_path)
         self._run_seed = run_seed
         self._validate_component_identity()
@@ -780,8 +807,34 @@ class StrategyLab:
                 ),
             )
             decision = self._policy.decide(evidence)
+            governor_receipt: Mapping[str, Any] | None = None
+            governor_error_digest: str | None = None
+            if decision.promoted and self._promotion_governor is not None:
+                try:
+                    candidate_receipt = self._corroborate_promotion(
+                        decision, evidence
+                    )
+                    governor_receipt = candidate_receipt
+                except Exception as error:
+                    governor_error_digest = sha256_digest(
+                        f"{type(error).__name__}:{error}"
+                    )
+                    decision = PromotionDecision(
+                        promoted=False,
+                        utility_gain=evidence.utility_gain,
+                        min_gain=self._policy.min_gain,
+                        reasons=("promotion governor failed closed",),
+                    )
             outcome = "accepted" if decision.promoted else "rejected"
-            reason_codes = ("promoted",) if decision.promoted else ("policy_rejected",)
+            reason_codes = (
+                ("promoted", "governor_corroborated")
+                if decision.promoted and governor_receipt is not None
+                else ("promoted",)
+                if decision.promoted
+                else ("promotion_governor_failed",)
+                if governor_error_digest is not None
+                else ("policy_rejected",)
+            )
             self._append_event(
                 attempt_index=attempt_index,
                 outcome=outcome,
@@ -795,6 +848,8 @@ class StrategyLab:
                 usage_before=usage_before,
                 proposal_detail_digest=proposal_detail_digest,
                 proposal=proposal,
+                governor_receipt=governor_receipt,
+                governor_error_digest=governor_error_digest,
             )
             if decision.promoted:
                 self._champion = record
@@ -803,6 +858,43 @@ class StrategyLab:
                 self._accepted_generations += 1
 
         return self.snapshot(stopped_reason=stopped_reason)
+
+    def _corroborate_promotion(
+        self,
+        decision: PromotionDecision,
+        evidence: EvaluationEvidence,
+    ) -> dict[str, Any]:
+        assert self._promotion_governor is not None
+        started = self._clock()
+        candidate_receipt: Mapping[str, Any] | None = None
+        failure: Exception | None = None
+        try:
+            candidate_receipt = self._promotion_governor.corroborate(
+                decision, evidence
+            )
+            if not isinstance(candidate_receipt, Mapping):
+                raise TypeError("promotion governor receipt must be a mapping")
+        except Exception as error:
+            failure = error
+        elapsed = self._clock() - started
+        overrun = self._charge_or_note(wall_seconds=elapsed)
+        if failure is not None:
+            raise failure
+        if overrun:
+            raise RuntimeError("promotion governor exceeded the frozen wall budget")
+        assert candidate_receipt is not None
+        encoded_receipt = json.dumps(
+            dict(candidate_receipt),
+            allow_nan=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+        if len(encoded_receipt.encode("utf-8")) > 64 * 1024:
+            raise ValueError("promotion governor receipt exceeds 64 KiB")
+        decoded_receipt = json.loads(encoded_receipt)
+        if not isinstance(decoded_receipt, dict):
+            raise TypeError("promotion governor receipt must be an object")
+        return decoded_receipt
 
     def evaluate_sealed(
         self,
@@ -948,17 +1040,18 @@ class StrategyLab:
             or self._policy.to_dict() != self._manifest.acceptance_policy
             or self._limits != self._manifest.budget_limits
             or self._run_seed != self._manifest.run_seed
-            or sha256_digest(
-                f"{_RUNTIME_POLICY_ID}:max-sealed-audits={self._max_sealed_audits}"
+            or (
+                self._promotion_governor is not None
+                and getattr(self._promotion_governor, "governor_digest", None)
+                != self._promotion_governor_digest
             )
+            or sha256_digest(self._runtime_policy_identity())
             != self._manifest.candidate_runtime_policy_digest
         ):
             raise RuntimeError("a frozen experiment component or policy drifted")
 
     def _make_manifest(self, run_seed: int) -> ExperimentManifest:
-        runtime_digest = sha256_digest(
-            f"{_RUNTIME_POLICY_ID}:max-sealed-audits={self._max_sealed_audits}"
-        )
+        runtime_digest = sha256_digest(self._runtime_policy_identity())
         task_manifests = self._task_manifest_digests
         return ExperimentManifest(
             run_seed=run_seed,
@@ -974,6 +1067,12 @@ class StrategyLab:
             mutable_artifact_schema_id=MUTABLE_ARTIFACT_SCHEMA_ID,
             candidate_runtime_policy_digest=runtime_digest,
         )
+
+    def _runtime_policy_identity(self) -> str:
+        identity = f"{_RUNTIME_POLICY_ID}:max-sealed-audits={self._max_sealed_audits}"
+        if self._promotion_governor_digest is not None:
+            identity += f":promotion-governor={self._promotion_governor_digest}"
+        return identity
 
     def _evaluate(
         self,
@@ -1055,6 +1154,8 @@ class StrategyLab:
         usage_before: BudgetUsage,
         proposal_detail_digest: str | None,
         proposal: ProposalResult | None = None,
+        governor_receipt: Mapping[str, Any] | None = None,
+        governor_error_digest: str | None = None,
     ) -> None:
         payload = {
             "artifact_record": None if record is None else record.to_payload(),
@@ -1067,6 +1168,13 @@ class StrategyLab:
             ),
             "kind": "recursive_lab_attempt",
             "manifest_hash": self._manifest.manifest_hash,
+            "promotion_governor": {
+                "digest": self._promotion_governor_digest,
+                "error_digest": governor_error_digest,
+                "receipt": (
+                    None if governor_receipt is None else dict(governor_receipt)
+                ),
+            },
             "outcome": outcome,
             "private_evaluation": None if private is None else private.to_payload(),
             "parent_private_evaluation": (
@@ -1200,6 +1308,17 @@ class StrategyLab:
                 development = ArtifactEvaluation.from_payload(development_payload)
                 self._public_feedback = development.public_feedback
                 if payload["outcome"] == "accepted":
+                    governor_payload = payload.get("promotion_governor")
+                    if self._promotion_governor is not None and (
+                        not isinstance(governor_payload, Mapping)
+                        or governor_payload.get("digest")
+                        != self._promotion_governor_digest
+                        or not isinstance(governor_payload.get("receipt"), Mapping)
+                        or governor_payload.get("error_digest") is not None
+                    ):
+                        raise RuntimeError(
+                            "accepted ledger event lacks a matching promotion governor receipt"
+                        )
                     self._accepted_generations += 1
         if self._champion is None:
             raise RuntimeError("ledger has no accepted seed")
@@ -1216,6 +1335,7 @@ __all__ = [
     "MeteredOperationError",
     "PRIVATE_SPLIT",
     "ProposalResult",
+    "PromotionGovernor",
     "SEALED_SPLIT",
     "StrategyEvaluator",
     "StrategyLab",

@@ -119,7 +119,7 @@ class LongemmaProposer:
             if "response" in locals()
             else self.name
         )
-        backend_version = str(
+        backend_version_value = (
             getattr(
                 response,
                 "backend_version",
@@ -128,6 +128,9 @@ class LongemmaProposer:
             if "response" in locals()
             else getattr(self.backend, "version", "unreported")
         )
+        if callable(backend_version_value):
+            backend_version_value = backend_version_value()
+        backend_version = str(backend_version_value)
         self.receipts.append(
             GenerationReceipt(
                 proposer=self.name,

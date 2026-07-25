@@ -1,0 +1,144 @@
+{
+  "adoption_gate": {
+    "decision_parity_required": true,
+    "passed": true,
+    "query_parity_required": true,
+    "weakened_mutations_must_score_below_base": true
+  },
+  "claim_boundary": "isolated Hyperon/MeTTa feasibility test for symbolic lineage, promotion-rule parity, and auditable rule-mutation rejection",
+  "decision_fixtures": 6,
+  "decision_parity": true,
+  "decisions": [
+    {
+      "fixture": {
+        "gain": 0.0302,
+        "id": "supported_gain",
+        "regret": 0.0,
+        "supported": 1
+      },
+      "metta": {
+        "base": true,
+        "ignore-regret": true,
+        "ignore-support": true
+      },
+      "python": true
+    },
+    {
+      "fixture": {
+        "gain": 0.0302,
+        "id": "unsupported_gain",
+        "regret": 0.0,
+        "supported": 0
+      },
+      "metta": {
+        "base": false,
+        "ignore-regret": false,
+        "ignore-support": true
+      },
+      "python": false
+    },
+    {
+      "fixture": {
+        "gain": -0.01,
+        "id": "supported_loss",
+        "regret": 0.0,
+        "supported": 1
+      },
+      "metta": {
+        "base": false,
+        "ignore-regret": false,
+        "ignore-support": false
+      },
+      "python": false
+    },
+    {
+      "fixture": {
+        "gain": 0.05,
+        "id": "supported_regret",
+        "regret": -0.01,
+        "supported": 1
+      },
+      "metta": {
+        "base": false,
+        "ignore-regret": true,
+        "ignore-support": false
+      },
+      "python": false
+    },
+    {
+      "fixture": {
+        "gain": 0.0,
+        "id": "zero_gain",
+        "regret": 0.0,
+        "supported": 1
+      },
+      "metta": {
+        "base": false,
+        "ignore-regret": false,
+        "ignore-support": false
+      },
+      "python": false
+    },
+    {
+      "fixture": {
+        "gain": 0.05,
+        "id": "unsupported_regret",
+        "regret": -0.01,
+        "supported": 0
+      },
+      "metta": {
+        "base": false,
+        "ignore-regret": false,
+        "ignore-support": false
+      },
+      "python": false
+    }
+  ],
+  "expected_queries": {
+    "all_parents": [
+      "(E39 E38)",
+      "(E41 E39)",
+      "(E43 E41)",
+      "(E45 E41)",
+      "(E49 E41)"
+    ],
+    "e44_revision": [
+      "E45"
+    ],
+    "e45_parent": [
+      "E41"
+    ],
+    "e50_rejection": [
+      "E51"
+    ]
+  },
+  "experiment_id": "E52-metta-parity",
+  "hyperon_version": "0.2.10",
+  "lineage_queries": {
+    "all_parents": [
+      "(E39 E38)",
+      "(E41 E39)",
+      "(E43 E41)",
+      "(E45 E41)",
+      "(E49 E41)"
+    ],
+    "e44_revision": [
+      "E45"
+    ],
+    "e45_parent": [
+      "E41"
+    ],
+    "e50_rejection": [
+      "E51"
+    ]
+  },
+  "metta_source": "metta/e52_governor.metta",
+  "mutation_scores": {
+    "base": 6,
+    "ignore-regret": 5,
+    "ignore-support": 5
+  },
+  "query_parity": true,
+  "report_digest": "0b20a38aab047a787f0a8d1dce75fd6e0b27d41a071e25ecf633217fc9039af8",
+  "schema_version": 1
+}

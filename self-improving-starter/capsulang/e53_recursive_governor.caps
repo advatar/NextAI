@@ -1,0 +1,145 @@
+(module NExtAIRecursiveGovernor
+  (capsule "0.7")
+
+  (contract PreserveBenchmarkIntegrity
+    (summary "A successor must preserve matched budgets, held-out evaluation, and external-domain fallback behavior."))
+
+  (lineage SupportAwareGovernorLineage
+    (parent "sha256:b4aab76bcd0515cad7f6eccc00ad20827e2719af966cab9272dcfd8a19456f99")
+    (candidate "sha256:ff4228bb6a49c61a758357acce46b27586d3bec4d2f127a9cf3c77b684a65790")
+    (reason "Place a checked promotion and quarantine workflow around recursive search evidence.")
+    (proposed-by agent:NExtAIExperimentLoop)
+    (created-at "2026-07-24T00:00:00Z"))
+
+  (objective ReliableRecursiveImprovement
+    (summary "Promote only supported gains with no external-domain regret.")
+    (metric macro_target_hit_rate_delta "experiments/E45-support-guard.json")
+    (metric external_domain_regret "experiments/E45-support-guard.json")
+    (maximize macro_target_hit_rate_delta)
+    (constraint macro_target_hit_rate_delta > 0)
+    (constraint external_domain_regret >= 0)
+    (constraint benchmark_admitted == 1))
+
+  (eval-suite RecursiveImprovementRegression
+    (summary "Re-run deterministic tests and verify that benchmark evidence is informative.")
+    (dataset "experiments/E45-support-guard.json")
+    (metric decision_parity == 1)
+    (metric external_domain_regret >= 0)
+    (must-pass examples)
+    (must-pass replay "experiments/E*.json"))
+
+  (verification-hook GovernorParity
+    (summary "Check that Capsulang transitions agree with the Python evidence host.")
+    (target lean4)
+    (status checked)
+    (subject successor-contract:SafeRecursiveSuccessor)
+    (subject gate:PromoteSuccessor)
+    (obligation promotion_requires_admitted_benchmark)
+    (obligation promotion_requires_positive_gain)
+    (obligation promotion_requires_nonnegative_external_regret))
+
+  (successor-contract SafeRecursiveSuccessor
+    (summary "Keep benchmark integrity and require replayable evaluation evidence.")
+    (preserve contract:PreserveBenchmarkIntegrity)
+    (forbid effect-expansion unless approval:RepositoryOwner)
+    (require eval-suite:RecursiveImprovementRegression)
+    (require verification-status checked)
+    (require ledgered true))
+
+  (budget LocalExperimentBudget
+    (summary "A generous local-model budget with bounded iteration and no live deployment.")
+    (max-iterations 100)
+    (max-llm-calls 1000)
+    (max-ci-runs 200)
+    (max-wall-clock-ms 86400000)
+    (max-cost-usd 1)
+    (allow-effects repo.propose_patch repo.apply_patch.sandboxed ci.run eval.run proof.verify deploy.shadow deploy.promote deploy.rollback)
+    (deny-effects deploy.live secret.read model.train.frontier))
+
+  (gate PromoteSuccessor
+    (summary "Require an admitted benchmark, positive held-out gain, no external regret, checked parity, and a ledger record.")
+    (requires eval-suite RecursiveImprovementRegression passed)
+    (requires successor-contract SafeRecursiveSuccessor preserved)
+    (requires approval RepositoryOwner granted)
+    (requires verification-status checked)
+    (requires ledgered true)
+    (on-fail quarantine)
+    (on-pass canary))
+
+  (deployment-policy RecursiveCandidatePolicy
+    (summary "Shadow successful candidates and retain an immediate rollback pointer.")
+    (mode shadow-first)
+    (canary-percent 5)
+    (rollback-to parent)
+    (promote-gate PromoteSuccessor)
+    (quarantine-on eval-regression policy-violation unexpected-effect missing-ledger-record))
+
+  (improvement-record E45SupportedGain
+    (summary "E45 passed its support-aware held-out gate with zero external regret.")
+    (parent-hash "sha256:b4aab76bcd0515cad7f6eccc00ad20827e2719af966cab9272dcfd8a19456f99")
+    (candidate-hash "sha256:25caa19e6557155644ef59ffc1b51a9f68879f65d7afd728a73cac7664ed8ef1")
+    (diff-hash "sha256:5d7a8a67af7a748d8dbf43cb7e5bd16038a705ff8c8f34c8c293ac41ba15c113")
+    (objective ReliableRecursiveImprovement)
+    (eval-result RecursiveImprovementRegression passed)
+    (proof-result GovernorParity checked)
+    (policy-decision PromoteSuccessor passed)
+    (approval RepositoryOwner approved "local-owner")
+    (deployment-outcome shadow ok)
+    (rollback-pointer "sha256:b4aab76bcd0515cad7f6eccc00ad20827e2719af966cab9272dcfd8a19456f99"))
+
+  (machine RecursivePromotion
+    (version "0.1.0")
+    (context
+      (benchmark_admitted Bool)
+      (gain_bps I64)
+      (external_regret_bps I64)
+      (parity_checked Bool))
+    (event Propose)
+    (event Evidence
+      (benchmark_admitted Bool)
+      (gain_bps I64)
+      (external_regret_bps I64)
+      (parity_checked Bool))
+    (event Promote)
+    (event Reject)
+    (event Rollback)
+    (initial idle)
+
+    (state idle
+      (on Propose
+        (target evaluating)
+        (effects
+          (repo.propose_patch)
+          (ci.run))))
+
+    (state evaluating
+      (on Evidence
+        (target decision)
+        (assign
+          (benchmark_admitted event.benchmark_admitted)
+          (gain_bps event.gain_bps)
+          (external_regret_bps event.external_regret_bps)
+          (parity_checked event.parity_checked))
+        (effects
+          (eval.run RecursiveImprovementRegression)
+          (proof.verify GovernorParity))))
+
+    (state decision
+      (on Promote
+        (guard (and benchmark_admitted parity_checked (> gain_bps 0) (>= external_regret_bps 0)))
+        (target promoted)
+        (effects
+          (deploy.shadow RecursiveCandidatePolicy)
+          (deploy.promote RecursiveCandidatePolicy)))
+      (on Reject
+        (target quarantined)
+        (effects
+          (deploy.rollback RecursiveCandidatePolicy))))
+
+    (state promoted
+      (on Rollback
+        (target rolled_back)
+        (effects
+          (deploy.rollback RecursiveCandidatePolicy))))
+    (state quarantined (type final))
+    (state rolled_back (type final))))

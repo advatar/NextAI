@@ -1,0 +1,51 @@
+{
+  "adoption_gate": {
+    "passed": true
+  },
+  "arms": {
+    "control": {
+      "accepted_generations": 3,
+      "champion_generation": 3,
+      "core_budget": {
+        "evaluations": 11,
+        "model_calls": 6,
+        "proposals": 6,
+        "tokens": 160
+      },
+      "wall_seconds": 0.001791499787941575
+    },
+    "governed": {
+      "accepted_generations": 3,
+      "champion_generation": 3,
+      "core_budget": {
+        "evaluations": 11,
+        "model_calls": 6,
+        "proposals": 6,
+        "tokens": 160
+      },
+      "receipts": 3,
+      "wall_seconds": 5.9209247510298155
+    },
+    "outage_after_first": {
+      "accepted_generations": 1,
+      "champion_generation": 1,
+      "core_budget": {
+        "evaluations": 11,
+        "model_calls": 6,
+        "proposals": 6,
+        "tokens": 160
+      },
+      "governor_failures": 2,
+      "wall_seconds": 3.1667307891184464
+    }
+  },
+  "claim_boundary": "deterministic multi-generation fixture comparing an unchanged lineage, a receipt-gated lineage, and a simulated governor outage",
+  "experiment_id": "E56-governed-recursive-cycle",
+  "governed_behavior_parity": true,
+  "ledgers_verified": true,
+  "matched_core_budgets": true,
+  "outage_contained": true,
+  "report_digest": "d8decd6e7feb15274016d8f36533e0007633cf2a9025ef0057fe9a8d31761b07",
+  "rounds": 6,
+  "schema_version": 1
+}

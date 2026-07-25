@@ -36,6 +36,93 @@ def limits(*, proposals=10, evaluations=30):
 
 
 class RecursiveLabTests(unittest.TestCase):
+    def test_promotion_governor_receipt_is_required_persisted_and_resumable(self):
+        class RecordingGovernor:
+            governor_digest = sha256_digest("test:promotion-governor:v1")
+
+            def __init__(self):
+                self.calls = 0
+
+            def corroborate(self, decision, evidence):
+                self.calls += 1
+                return {
+                    "decision": "promote",
+                    "semantic_hash": "a" * 64,
+                    "transition_count": 3,
+                }
+
+        with tempfile.TemporaryDirectory() as directory:
+            ledger_path = Path(directory) / "lineage.jsonl"
+            governor = RecordingGovernor()
+            lab = StrategyLab(
+                proposer=FixtureSequenceProposer(),
+                evaluator=FixtureStrategyEvaluator(),
+                policy=AcceptancePolicy(min_gain=0.25),
+                limits=limits(),
+                ledger_path=ledger_path,
+                run_seed=7,
+                promotion_governor=governor,
+            )
+            lab.initialize(baseline_strategy(), seed=7)
+            result = lab.run(1)
+            self.assertEqual(result.accepted_generations, 1)
+            self.assertEqual(governor.calls, 1)
+            accepted = [
+                entry.payload
+                for entry in lab.ledger.load()
+                if entry.payload.get("outcome") == "accepted"
+            ][0]
+            self.assertEqual(
+                accepted["reason_codes"], ["promoted", "governor_corroborated"]
+            )
+            self.assertEqual(
+                accepted["promotion_governor"]["receipt"]["transition_count"], 3
+            )
+
+            resumed = StrategyLab(
+                proposer=FixtureSequenceProposer(),
+                evaluator=FixtureStrategyEvaluator(),
+                policy=AcceptancePolicy(min_gain=0.25),
+                limits=limits(),
+                ledger_path=ledger_path,
+                run_seed=7,
+                promotion_governor=RecordingGovernor(),
+            ).snapshot()
+            self.assertEqual(resumed.accepted_generations, 1)
+            self.assertEqual(resumed.champion.generation, 1)
+
+    def test_promotion_governor_failure_rejects_without_advancing_champion(self):
+        class FailingGovernor:
+            governor_digest = sha256_digest("test:promotion-governor:failure")
+
+            def corroborate(self, decision, evidence):
+                raise RuntimeError("deliberate unavailable governor")
+
+        with tempfile.TemporaryDirectory() as directory:
+            lab = StrategyLab(
+                proposer=FixtureSequenceProposer(),
+                evaluator=FixtureStrategyEvaluator(),
+                policy=AcceptancePolicy(min_gain=0.25),
+                limits=limits(),
+                ledger_path=Path(directory) / "lineage.jsonl",
+                run_seed=7,
+                promotion_governor=FailingGovernor(),
+            )
+            lab.initialize(baseline_strategy(), seed=7)
+            result = lab.run(1)
+            self.assertEqual(result.accepted_generations, 0)
+            self.assertEqual(result.champion.generation, 0)
+            attempt = [
+                entry.payload
+                for entry in lab.ledger.load()
+                if entry.payload.get("attempt_index") == 1
+                and entry.payload.get("kind") == "recursive_lab_attempt"
+            ][0]
+            self.assertEqual(attempt["reason_codes"], ["promotion_governor_failed"])
+            self.assertIsNone(attempt["promotion_governor"]["receipt"])
+            self.assertEqual(len(attempt["promotion_governor"]["error_digest"]), 64)
+            self.assertNotIn("unavailable", str(attempt))
+
     def test_fixture_run_persists_three_generations_and_all_attempts(self):
         with tempfile.TemporaryDirectory() as directory:
             ledger_path = Path(directory) / "lineage.jsonl"

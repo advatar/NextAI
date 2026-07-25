@@ -1,0 +1,1212 @@
+{
+  "candidate_count": 20,
+  "claim_boundary": "synthetic worst-family-first evolution and held-out validation of a scaffold router across nine known families",
+  "experiment_id": "E43-risk-router",
+  "families": [
+    "monotone",
+    "curved",
+    "spike",
+    "plateau",
+    "checkerboard",
+    "rugged",
+    "ridge",
+    "sinusoidal",
+    "decoy"
+  ],
+  "lineage": [
+    {
+      "candidate": "R2 >= 0.5, variance >= 0.01",
+      "generation": 2,
+      "source": "E41"
+    },
+    {
+      "candidate": "R2 >= 0.5, variance >= 0.03",
+      "generation": 3,
+      "source": "E43"
+    }
+  ],
+  "paired_promoted_minus_random": {
+    "target_hit_rate_delta": 0.003777777777777778,
+    "target_hit_rate_delta_95pct_bootstrap_ci": [
+      -0.0007777777777777777,
+      0.008333333333333333
+    ]
+  },
+  "promoted": {
+    "r_squared_threshold": 0.5,
+    "variance_threshold": 0.03
+  },
+  "promotion_objective": "worst-family hit rate, then macro hit rate",
+  "random_baseline_validation": {
+    "families": {
+      "checkerboard": {
+        "mean_best_score": 0.910899999999997,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.802
+      },
+      "curved": {
+        "mean_best_score": 0.99390625,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.805
+      },
+      "decoy": {
+        "mean_best_score": 0.9585999999999976,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.786
+      },
+      "monotone": {
+        "mean_best_score": 0.974375,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.795
+      },
+      "plateau": {
+        "mean_best_score": 0.8787999999999969,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.798
+      },
+      "ridge": {
+        "mean_best_score": 0.9587999999999971,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.803
+      },
+      "rugged": {
+        "mean_best_score": 0.9512458899824519,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.792
+      },
+      "sinusoidal": {
+        "mean_best_score": 0.9612100288673805,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.81
+      },
+      "spike": {
+        "mean_best_score": 0.8653599999999964,
+        "mean_surrogate_uses": 0.0,
+        "target_hit_rate": 0.813
+      }
+    },
+    "macro_target_hit_rate": 0.8004444444444445,
+    "r_squared_threshold": 1.01,
+    "variance_threshold": 0.0,
+    "worst_family_target_hit_rate": 0.786
+  },
+  "report_digest": "86cb478b17b5fe125b9b0fd61e08badc39693a8c7323c9cd5fa18b7ae93f3d85",
+  "schema_version": 1,
+  "train": {
+    "0.0:0.0": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9185499999999963,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.819
+        },
+        "curved": {
+          "mean_best_score": 0.99784375,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.931
+        },
+        "decoy": {
+          "mean_best_score": 0.9608999999999973,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.781
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8799999999999968,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.8
+        },
+        "ridge": {
+          "mean_best_score": 0.9831999999999984,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.916
+        },
+        "rugged": {
+          "mean_best_score": 0.9492853467612733,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.782
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9619769511738947,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.814
+        },
+        "spike": {
+          "mean_best_score": 0.8559999999999963,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.8
+        }
+      },
+      "macro_target_hit_rate": 0.8492222222222222,
+      "r_squared_threshold": 0.0,
+      "variance_threshold": 0.0,
+      "worst_family_target_hit_rate": 0.781
+    },
+    "0.0:0.001": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9185499999999965,
+          "mean_surrogate_uses": 4.54,
+          "target_hit_rate": 0.819
+        },
+        "curved": {
+          "mean_best_score": 0.99784375,
+          "mean_surrogate_uses": 4.686,
+          "target_hit_rate": 0.931
+        },
+        "decoy": {
+          "mean_best_score": 0.9608999999999973,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.781
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.625,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9831999999999984,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.916
+        },
+        "rugged": {
+          "mean_best_score": 0.9498221210040443,
+          "mean_surrogate_uses": 4.869,
+          "target_hit_rate": 0.784
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9619769511738947,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 0.814
+        },
+        "spike": {
+          "mean_best_score": 0.8567199999999963,
+          "mean_surrogate_uses": 1.923,
+          "target_hit_rate": 0.801
+        }
+      },
+      "macro_target_hit_rate": 0.8500000000000001,
+      "r_squared_threshold": 0.0,
+      "variance_threshold": 0.001,
+      "worst_family_target_hit_rate": 0.781
+    },
+    "0.0:0.01": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9185499999999965,
+          "mean_surrogate_uses": 4.54,
+          "target_hit_rate": 0.819
+        },
+        "curved": {
+          "mean_best_score": 0.99734375,
+          "mean_surrogate_uses": 3.122,
+          "target_hit_rate": 0.915
+        },
+        "decoy": {
+          "mean_best_score": 0.9614999999999974,
+          "mean_surrogate_uses": 3.831,
+          "target_hit_rate": 0.775
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.625,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9574749999999981,
+          "mean_surrogate_uses": 1.352,
+          "target_hit_rate": 0.796
+        },
+        "rugged": {
+          "mean_best_score": 0.9498000457770663,
+          "mean_surrogate_uses": 3.872,
+          "target_hit_rate": 0.785
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9607577960178167,
+          "mean_surrogate_uses": 4.575,
+          "target_hit_rate": 0.808
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.622,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.836,
+      "r_squared_threshold": 0.0,
+      "variance_threshold": 0.01,
+      "worst_family_target_hit_rate": 0.775
+    },
+    "0.0:0.03": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.625,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.9950625,
+          "mean_surrogate_uses": 1.098,
+          "target_hit_rate": 0.842
+        },
+        "decoy": {
+          "mean_best_score": 0.9615999999999975,
+          "mean_surrogate_uses": 1.111,
+          "target_hit_rate": 0.788
+        },
+        "monotone": {
+          "mean_best_score": 0.97725,
+          "mean_surrogate_uses": 1.561,
+          "target_hit_rate": 0.818
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.625,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9565749999999982,
+          "mean_surrogate_uses": 0.328,
+          "target_hit_rate": 0.793
+        },
+        "rugged": {
+          "mean_best_score": 0.9505123384451065,
+          "mean_surrogate_uses": 2.243,
+          "target_hit_rate": 0.788
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9611641810698426,
+          "mean_surrogate_uses": 3.49,
+          "target_hit_rate": 0.81
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.622,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8094444444444444,
+      "r_squared_threshold": 0.0,
+      "variance_threshold": 0.03,
+      "worst_family_target_hit_rate": 0.788
+    },
+    "0.5:0.0": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9225999999999969,
+          "mean_surrogate_uses": 2.547,
+          "target_hit_rate": 0.828
+        },
+        "curved": {
+          "mean_best_score": 0.99740625,
+          "mean_surrogate_uses": 4.441,
+          "target_hit_rate": 0.917
+        },
+        "decoy": {
+          "mean_best_score": 0.9620999999999974,
+          "mean_surrogate_uses": 1.921,
+          "target_hit_rate": 0.785
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.367,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.978199999999998,
+          "mean_surrogate_uses": 4.237,
+          "target_hit_rate": 0.891
+        },
+        "rugged": {
+          "mean_best_score": 0.9533351796749834,
+          "mean_surrogate_uses": 2.532,
+          "target_hit_rate": 0.8
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9615476422231,
+          "mean_surrogate_uses": 2.677,
+          "target_hit_rate": 0.812
+        },
+        "spike": {
+          "mean_best_score": 0.8610399999999965,
+          "mean_surrogate_uses": 3.887,
+          "target_hit_rate": 0.807
+        }
+      },
+      "macro_target_hit_rate": 0.8493333333333334,
+      "r_squared_threshold": 0.5,
+      "variance_threshold": 0.0,
+      "worst_family_target_hit_rate": 0.785
+    },
+    "0.5:0.001": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9212499999999968,
+          "mean_surrogate_uses": 2.087,
+          "target_hit_rate": 0.825
+        },
+        "curved": {
+          "mean_best_score": 0.99740625,
+          "mean_surrogate_uses": 4.441,
+          "target_hit_rate": 0.917
+        },
+        "decoy": {
+          "mean_best_score": 0.9620999999999974,
+          "mean_surrogate_uses": 1.921,
+          "target_hit_rate": 0.785
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.367,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.978199999999998,
+          "mean_surrogate_uses": 4.237,
+          "target_hit_rate": 0.891
+        },
+        "rugged": {
+          "mean_best_score": 0.9526471976806291,
+          "mean_surrogate_uses": 2.473,
+          "target_hit_rate": 0.797
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9615476422231,
+          "mean_surrogate_uses": 2.677,
+          "target_hit_rate": 0.812
+        },
+        "spike": {
+          "mean_best_score": 0.8675199999999963,
+          "mean_surrogate_uses": 1.174,
+          "target_hit_rate": 0.816
+        }
+      },
+      "macro_target_hit_rate": 0.8496666666666667,
+      "r_squared_threshold": 0.5,
+      "variance_threshold": 0.001,
+      "worst_family_target_hit_rate": 0.785
+    },
+    "0.5:0.01": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9212499999999968,
+          "mean_surrogate_uses": 2.087,
+          "target_hit_rate": 0.825
+        },
+        "curved": {
+          "mean_best_score": 0.99734375,
+          "mean_surrogate_uses": 3.122,
+          "target_hit_rate": 0.915
+        },
+        "decoy": {
+          "mean_best_score": 0.9618999999999973,
+          "mean_surrogate_uses": 1.69,
+          "target_hit_rate": 0.783
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.367,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9574749999999981,
+          "mean_surrogate_uses": 1.151,
+          "target_hit_rate": 0.796
+        },
+        "rugged": {
+          "mean_best_score": 0.9515401663233393,
+          "mean_surrogate_uses": 1.964,
+          "target_hit_rate": 0.794
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9605546034918039,
+          "mean_surrogate_uses": 2.417,
+          "target_hit_rate": 0.807
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.392,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8384444444444444,
+      "r_squared_threshold": 0.5,
+      "variance_threshold": 0.01,
+      "worst_family_target_hit_rate": 0.783
+    },
+    "0.5:0.03": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.343,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.9950625,
+          "mean_surrogate_uses": 1.098,
+          "target_hit_rate": 0.842
+        },
+        "decoy": {
+          "mean_best_score": 0.9619999999999974,
+          "mean_surrogate_uses": 0.523,
+          "target_hit_rate": 0.792
+        },
+        "monotone": {
+          "mean_best_score": 0.97725,
+          "mean_surrogate_uses": 1.561,
+          "target_hit_rate": 0.818
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.367,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9565749999999982,
+          "mean_surrogate_uses": 0.281,
+          "target_hit_rate": 0.793
+        },
+        "rugged": {
+          "mean_best_score": 0.9512388265812166,
+          "mean_surrogate_uses": 1.142,
+          "target_hit_rate": 0.791
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9603743348645595,
+          "mean_surrogate_uses": 1.869,
+          "target_hit_rate": 0.806
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.392,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8097777777777778,
+      "r_squared_threshold": 0.5,
+      "variance_threshold": 0.03,
+      "worst_family_target_hit_rate": 0.791
+    },
+    "0.8:0.0": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9167499999999968,
+          "mean_surrogate_uses": 0.606,
+          "target_hit_rate": 0.815
+        },
+        "curved": {
+          "mean_best_score": 0.9968125,
+          "mean_surrogate_uses": 3.521,
+          "target_hit_rate": 0.898
+        },
+        "decoy": {
+          "mean_best_score": 0.9592999999999976,
+          "mean_surrogate_uses": 0.706,
+          "target_hit_rate": 0.785
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.132,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9727999999999977,
+          "mean_surrogate_uses": 3.671,
+          "target_hit_rate": 0.864
+        },
+        "rugged": {
+          "mean_best_score": 0.9528128603036551,
+          "mean_surrogate_uses": 1.527,
+          "target_hit_rate": 0.799
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9617966825466504,
+          "mean_surrogate_uses": 2.065,
+          "target_hit_rate": 0.813
+        },
+        "spike": {
+          "mean_best_score": 0.8567199999999965,
+          "mean_surrogate_uses": 1.919,
+          "target_hit_rate": 0.801
+        }
+      },
+      "macro_target_hit_rate": 0.842111111111111,
+      "r_squared_threshold": 0.8,
+      "variance_threshold": 0.0,
+      "worst_family_target_hit_rate": 0.785
+    },
+    "0.8:0.001": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.146,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.9968125,
+          "mean_surrogate_uses": 3.521,
+          "target_hit_rate": 0.898
+        },
+        "decoy": {
+          "mean_best_score": 0.9592999999999976,
+          "mean_surrogate_uses": 0.706,
+          "target_hit_rate": 0.785
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.132,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9727999999999977,
+          "mean_surrogate_uses": 3.671,
+          "target_hit_rate": 0.864
+        },
+        "rugged": {
+          "mean_best_score": 0.9525840314335855,
+          "mean_surrogate_uses": 1.493,
+          "target_hit_rate": 0.798
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9617966825466504,
+          "mean_surrogate_uses": 2.065,
+          "target_hit_rate": 0.813
+        },
+        "spike": {
+          "mean_best_score": 0.8660799999999963,
+          "mean_surrogate_uses": 0.417,
+          "target_hit_rate": 0.814
+        }
+      },
+      "macro_target_hit_rate": 0.844,
+      "r_squared_threshold": 0.8,
+      "variance_threshold": 0.001,
+      "worst_family_target_hit_rate": 0.785
+    },
+    "0.8:0.01": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.146,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.99671875,
+          "mean_surrogate_uses": 2.939,
+          "target_hit_rate": 0.895
+        },
+        "decoy": {
+          "mean_best_score": 0.9581999999999974,
+          "mean_surrogate_uses": 0.475,
+          "target_hit_rate": 0.778
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.132,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9574749999999981,
+          "mean_surrogate_uses": 1.151,
+          "target_hit_rate": 0.796
+        },
+        "rugged": {
+          "mean_best_score": 0.9504809491111623,
+          "mean_surrogate_uses": 1.206,
+          "target_hit_rate": 0.789
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9606004512893414,
+          "mean_surrogate_uses": 1.805,
+          "target_hit_rate": 0.807
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.147,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8345555555555556,
+      "r_squared_threshold": 0.8,
+      "variance_threshold": 0.01,
+      "worst_family_target_hit_rate": 0.778
+    },
+    "0.8:0.03": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.146,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.9950625,
+          "mean_surrogate_uses": 1.098,
+          "target_hit_rate": 0.842
+        },
+        "decoy": {
+          "mean_best_score": 0.9618999999999973,
+          "mean_surrogate_uses": 0.237,
+          "target_hit_rate": 0.791
+        },
+        "monotone": {
+          "mean_best_score": 0.97725,
+          "mean_surrogate_uses": 1.561,
+          "target_hit_rate": 0.818
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.132,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9565749999999982,
+          "mean_surrogate_uses": 0.281,
+          "target_hit_rate": 0.793
+        },
+        "rugged": {
+          "mean_best_score": 0.9501130434119177,
+          "mean_surrogate_uses": 0.695,
+          "target_hit_rate": 0.786
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9608036438153542,
+          "mean_surrogate_uses": 1.623,
+          "target_hit_rate": 0.808
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.147,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8093333333333333,
+      "r_squared_threshold": 0.8,
+      "variance_threshold": 0.03,
+      "worst_family_target_hit_rate": 0.786
+    },
+    "0.95:0.0": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9167499999999968,
+          "mean_surrogate_uses": 0.592,
+          "target_hit_rate": 0.815
+        },
+        "curved": {
+          "mean_best_score": 0.9959375,
+          "mean_surrogate_uses": 1.519,
+          "target_hit_rate": 0.87
+        },
+        "decoy": {
+          "mean_best_score": 0.9592999999999976,
+          "mean_surrogate_uses": 0.621,
+          "target_hit_rate": 0.785
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9685999999999971,
+          "mean_surrogate_uses": 3.23,
+          "target_hit_rate": 0.843
+        },
+        "rugged": {
+          "mean_best_score": 0.950604019226368,
+          "mean_surrogate_uses": 0.694,
+          "target_hit_rate": 0.789
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9604431065608656,
+          "mean_surrogate_uses": 0.821,
+          "target_hit_rate": 0.806
+        },
+        "spike": {
+          "mean_best_score": 0.8567199999999965,
+          "mean_surrogate_uses": 1.797,
+          "target_hit_rate": 0.801
+        }
+      },
+      "macro_target_hit_rate": 0.8347777777777777,
+      "r_squared_threshold": 0.95,
+      "variance_threshold": 0.0,
+      "worst_family_target_hit_rate": 0.785
+    },
+    "0.95:0.001": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.132,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.9959375,
+          "mean_surrogate_uses": 1.519,
+          "target_hit_rate": 0.87
+        },
+        "decoy": {
+          "mean_best_score": 0.9592999999999976,
+          "mean_surrogate_uses": 0.621,
+          "target_hit_rate": 0.785
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9685999999999971,
+          "mean_surrogate_uses": 3.23,
+          "target_hit_rate": 0.843
+        },
+        "rugged": {
+          "mean_best_score": 0.9501479957274742,
+          "mean_surrogate_uses": 0.681,
+          "target_hit_rate": 0.787
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9604431065608656,
+          "mean_surrogate_uses": 0.821,
+          "target_hit_rate": 0.806
+        },
+        "spike": {
+          "mean_best_score": 0.8660799999999963,
+          "mean_surrogate_uses": 0.295,
+          "target_hit_rate": 0.814
+        }
+      },
+      "macro_target_hit_rate": 0.8365555555555555,
+      "r_squared_threshold": 0.95,
+      "variance_threshold": 0.001,
+      "worst_family_target_hit_rate": 0.785
+    },
+    "0.95:0.01": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.132,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.9959375,
+          "mean_surrogate_uses": 1.519,
+          "target_hit_rate": 0.87
+        },
+        "decoy": {
+          "mean_best_score": 0.9583999999999974,
+          "mean_surrogate_uses": 0.39,
+          "target_hit_rate": 0.78
+        },
+        "monotone": {
+          "mean_best_score": 1.0,
+          "mean_surrogate_uses": 5.0,
+          "target_hit_rate": 1.0
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9574749999999981,
+          "mean_surrogate_uses": 0.845,
+          "target_hit_rate": 0.796
+        },
+        "rugged": {
+          "mean_best_score": 0.9489369970244911,
+          "mean_surrogate_uses": 0.553,
+          "target_hit_rate": 0.782
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9599023006791327,
+          "mean_surrogate_uses": 0.646,
+          "target_hit_rate": 0.803
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.025,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8307777777777778,
+      "r_squared_threshold": 0.95,
+      "variance_threshold": 0.01,
+      "worst_family_target_hit_rate": 0.78
+    },
+    "0.95:0.03": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.132,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.99521875,
+          "mean_surrogate_uses": 0.899,
+          "target_hit_rate": 0.847
+        },
+        "decoy": {
+          "mean_best_score": 0.9618999999999973,
+          "mean_surrogate_uses": 0.152,
+          "target_hit_rate": 0.791
+        },
+        "monotone": {
+          "mean_best_score": 0.97725,
+          "mean_surrogate_uses": 1.561,
+          "target_hit_rate": 0.818
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9565749999999982,
+          "mean_surrogate_uses": 0.105,
+          "target_hit_rate": 0.793
+        },
+        "rugged": {
+          "mean_best_score": 0.9490597863736938,
+          "mean_surrogate_uses": 0.319,
+          "target_hit_rate": 0.781
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9599023006791327,
+          "mean_surrogate_uses": 0.639,
+          "target_hit_rate": 0.803
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.025,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8087777777777778,
+      "r_squared_threshold": 0.95,
+      "variance_threshold": 0.03,
+      "worst_family_target_hit_rate": 0.781
+    },
+    "1.01:0.0": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.99378125,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.801
+        },
+        "decoy": {
+          "mean_best_score": 0.9624999999999975,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.797
+        },
+        "monotone": {
+          "mean_best_score": 0.979,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.832
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9565749999999982,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.793
+        },
+        "rugged": {
+          "mean_best_score": 0.9492203189135577,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.782
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9590895305750805,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.799
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8055555555555556,
+      "r_squared_threshold": 1.01,
+      "variance_threshold": 0.0,
+      "worst_family_target_hit_rate": 0.782
+    },
+    "1.01:0.001": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.99378125,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.801
+        },
+        "decoy": {
+          "mean_best_score": 0.9624999999999975,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.797
+        },
+        "monotone": {
+          "mean_best_score": 0.979,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.832
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9565749999999982,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.793
+        },
+        "rugged": {
+          "mean_best_score": 0.9492203189135577,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.782
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9590895305750805,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.799
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8055555555555556,
+      "r_squared_threshold": 1.01,
+      "variance_threshold": 0.001,
+      "worst_family_target_hit_rate": 0.782
+    },
+    "1.01:0.01": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.99378125,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.801
+        },
+        "decoy": {
+          "mean_best_score": 0.9624999999999975,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.797
+        },
+        "monotone": {
+          "mean_best_score": 0.979,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.832
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9565749999999982,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.793
+        },
+        "rugged": {
+          "mean_best_score": 0.9492203189135577,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.782
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9590895305750805,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.799
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8055555555555556,
+      "r_squared_threshold": 1.01,
+      "variance_threshold": 0.01,
+      "worst_family_target_hit_rate": 0.782
+    },
+    "1.01:0.03": {
+      "families": {
+        "checkerboard": {
+          "mean_best_score": 0.9189999999999967,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.82
+        },
+        "curved": {
+          "mean_best_score": 0.99378125,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.801
+        },
+        "decoy": {
+          "mean_best_score": 0.9624999999999975,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.797
+        },
+        "monotone": {
+          "mean_best_score": 0.979,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.832
+        },
+        "plateau": {
+          "mean_best_score": 0.8823999999999973,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.804
+        },
+        "ridge": {
+          "mean_best_score": 0.9565749999999982,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.793
+        },
+        "rugged": {
+          "mean_best_score": 0.9492203189135577,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.782
+        },
+        "sinusoidal": {
+          "mean_best_score": 0.9590895305750805,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.799
+        },
+        "spike": {
+          "mean_best_score": 0.8718399999999966,
+          "mean_surrogate_uses": 0.0,
+          "target_hit_rate": 0.822
+        }
+      },
+      "macro_target_hit_rate": 0.8055555555555556,
+      "r_squared_threshold": 1.01,
+      "variance_threshold": 0.03,
+      "worst_family_target_hit_rate": 0.782
+    }
+  },
+  "train_seeds": 1000,
+  "validation": {
+    "families": {
+      "checkerboard": {
+        "mean_best_score": 0.910899999999997,
+        "mean_surrogate_uses": 0.306,
+        "target_hit_rate": 0.802
+      },
+      "curved": {
+        "mean_best_score": 0.995125,
+        "mean_surrogate_uses": 0.979,
+        "target_hit_rate": 0.844
+      },
+      "decoy": {
+        "mean_best_score": 0.9573999999999974,
+        "mean_surrogate_uses": 0.481,
+        "target_hit_rate": 0.774
+      },
+      "monotone": {
+        "mean_best_score": 0.97275,
+        "mean_surrogate_uses": 1.526,
+        "target_hit_rate": 0.782
+      },
+      "plateau": {
+        "mean_best_score": 0.8787999999999969,
+        "mean_surrogate_uses": 0.344,
+        "target_hit_rate": 0.798
+      },
+      "ridge": {
+        "mean_best_score": 0.9587999999999971,
+        "mean_surrogate_uses": 0.302,
+        "target_hit_rate": 0.803
+      },
+      "rugged": {
+        "mean_best_score": 0.9563077439536124,
+        "mean_surrogate_uses": 1.146,
+        "target_hit_rate": 0.813
+      },
+      "sinusoidal": {
+        "mean_best_score": 0.9608692929487548,
+        "mean_surrogate_uses": 1.827,
+        "target_hit_rate": 0.809
+      },
+      "spike": {
+        "mean_best_score": 0.8653599999999964,
+        "mean_surrogate_uses": 0.364,
+        "target_hit_rate": 0.813
+      }
+    },
+    "macro_target_hit_rate": 0.8042222222222223,
+    "r_squared_threshold": 0.5,
+    "variance_threshold": 0.03,
+    "worst_family_target_hit_rate": 0.774
+  },
+  "validation_seeds": 1000
+}

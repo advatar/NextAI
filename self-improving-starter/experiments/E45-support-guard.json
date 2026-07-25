@@ -1,0 +1,105 @@
+{
+  "claim_boundary": "held-out validation of a scaffold domain-support guard; external domains use an identical random/QD fallback by construction",
+  "domain_results": [
+    {
+      "domain": "monotone",
+      "mean_best_score_delta": 0.02425,
+      "routing": "e41_gate",
+      "target_hit_rate_delta": 0.194
+    },
+    {
+      "domain": "curved",
+      "mean_best_score_delta": 0.003125,
+      "routing": "e41_gate",
+      "target_hit_rate_delta": 0.1
+    },
+    {
+      "domain": "spike",
+      "mean_best_score_delta": 0.0,
+      "routing": "e41_gate",
+      "target_hit_rate_delta": 0.0
+    },
+    {
+      "domain": "plateau",
+      "mean_best_score_delta": 0.0,
+      "routing": "e41_gate",
+      "target_hit_rate_delta": 0.0
+    },
+    {
+      "domain": "checkerboard",
+      "mean_best_score_delta": 0.0031499999999999996,
+      "routing": "e41_gate",
+      "target_hit_rate_delta": 0.007
+    },
+    {
+      "domain": "rugged",
+      "mean_best_score_delta": 0.0006291218432898447,
+      "routing": "e41_gate",
+      "target_hit_rate_delta": 0.001
+    },
+    {
+      "domain": "ridge",
+      "mean_best_score_delta": 0.0,
+      "routing": "random_qd_fallback",
+      "target_hit_rate_delta": 0.0
+    },
+    {
+      "domain": "sinusoidal",
+      "mean_best_score_delta": 0.0,
+      "routing": "random_qd_fallback",
+      "target_hit_rate_delta": 0.0
+    },
+    {
+      "domain": "decoy",
+      "mean_best_score_delta": 0.0,
+      "routing": "random_qd_fallback",
+      "target_hit_rate_delta": 0.0
+    },
+    {
+      "domain": "unknown_or_random",
+      "mean_best_score_delta": 0.0,
+      "routing": "random_qd_fallback",
+      "target_hit_rate_delta": 0.0
+    }
+  ],
+  "experiment_id": "E45-support-guard",
+  "external_domain_regret": 0.0,
+  "fallback_domains": [
+    "ridge",
+    "sinusoidal",
+    "decoy",
+    "unknown_or_random"
+  ],
+  "heldout_seed_start": 2000,
+  "lineage": [
+    {
+      "candidate": "E41 learned gate",
+      "generation": 2
+    },
+    {
+      "candidate": "E43 universal risk gate",
+      "generation": 3
+    },
+    {
+      "candidate": "E41 gate inside support; random/QD outside support",
+      "generation": 4
+    }
+  ],
+  "macro_target_hit_rate_delta": 0.0302,
+  "macro_target_hit_rate_delta_95pct_bootstrap_ci": [
+    0.0252,
+    0.0353
+  ],
+  "report_digest": "b4aab76bcd0515cad7f6eccc00ad20827e2719af966cab9272dcfd8a19456f99",
+  "schema_version": 1,
+  "seeds_per_domain": 1000,
+  "source_gate": "E41 R2 >= 0.5 and variance >= 0.01",
+  "validated_domains": [
+    "monotone",
+    "curved",
+    "spike",
+    "plateau",
+    "checkerboard",
+    "rugged"
+  ]
+}
