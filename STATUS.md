@@ -1,5 +1,56 @@
 # Status
 
+## Completed — fix the benchmark instrument and land E59
+
+Full review in [`REVIEW.md`](REVIEW.md).
+
+- [x] Review the E30–E58 series and locate the stall: E51 returned
+  `admitted: false` / "reject and redesign cohort", and the redesign never
+  happened. E52–E58 pivoted to governance parity instead of capability.
+- [x] Diagnose the root cause quantitatively: the 5×5 grid with a 20-evaluation
+  budget meant every run enumerated 80% of the search space, so no policy could
+  beat random. Coverage is `(exploration_per_column + 1) / grid_size`.
+- [x] Add `recursive_lab/scaled_landscape.py`, generalizing all nine families to
+  arbitrary grid size, with cell-for-cell equality against the original E37/E40/E42
+  implementations asserted in tests.
+- [x] Replace the saturating binary `target_hit` with continuous `regret`.
+- [x] Add `recursive_lab/admission.py` — E51's audit as a pre-registration gate
+  that runs before a cohort may emit evidence, judged from the random baseline
+  only.
+- [x] Add `recursive_lab/candidate_diversity.py` — a degenerate proposer stream
+  now voids a run. Pins E58's 6-calls/1-unique-candidate collapse.
+- [x] Add `verify_capsulang_evidence.py` — governance scenarios cross-checked
+  against the experiment JSON they cite; the E51 contradiction now surfaces on
+  every run, and a new scenario shows the governor refusing promotion on real
+  evidence.
+- [x] Run E59 and record the result without tuning it.
+
+Implementation commit: see `E59-scaled-router.json`.
+
+Validation:
+
+- 314 Python tests pass (186 before this work).
+- All 56 committed experiment `report_digest` values reproduce exactly; zero
+  mismatches. No existing experiment JSON or runner was modified.
+- Ruff reports no errors across every new file.
+- `verify_capsulang_evidence.py` exits 0 with `contradictions=0 assumptions=1`.
+
+E59 result at grid size 128 (coverage 0.031 against the legacy 0.800): the
+pooled paired regret delta is `−0.00453`, CI `[−0.00916, +0.00028]` —
+**inconclusive, interval spans zero**. One family shows a clear real effect:
+`monotone` at `−0.02372`, CI `[−0.02635, −0.02116]`. The other eight are null.
+Per `POC_PLAN.md`, this null pooled result is retained as measured.
+
+Known defect, recorded rather than patched: `plateau` was admitted (8
+disagreements over 120 tasks) despite a measured effect of exactly zero.
+`minimum_policy_disagreements` is an absolute count and should be a rate.
+Changing it after seeing results would be the post-hoc adjustment this review
+criticizes, so it is pre-registered for the next run instead.
+
+Claim boundary: E59 is a synthetic landscape study of one exploitation rule. It
+is not evidence of scaffold self-improvement or of a recursive effect. Its value
+is establishing a benchmark on which such a claim could actually be tested.
+
 ## Completed — reconcile recursive research evidence on `main`
 
 Issue: [#2 — Reconcile recursive research evidence and clean main checkout](https://github.com/advatar/NextAI/issues/2)

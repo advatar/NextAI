@@ -1,0 +1,584 @@
+{
+  "admission": [
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "monotone",
+      "observed": {
+        "exploration_target_rate": 0.016666666666666666,
+        "policy_disagreements": 118,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "curved",
+      "observed": {
+        "exploration_target_rate": 0.041666666666666664,
+        "policy_disagreements": 105,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "spike",
+      "observed": {
+        "exploration_target_rate": 0.025,
+        "policy_disagreements": 4,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "plateau",
+      "observed": {
+        "exploration_target_rate": 0.041666666666666664,
+        "policy_disagreements": 8,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "checkerboard",
+      "observed": {
+        "exploration_target_rate": 0.03333333333333333,
+        "policy_disagreements": 7,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "rugged",
+      "observed": {
+        "exploration_target_rate": 0.025,
+        "policy_disagreements": 119,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "ridge",
+      "observed": {
+        "exploration_target_rate": 0.025,
+        "policy_disagreements": 17,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "sinusoidal",
+      "observed": {
+        "exploration_target_rate": 0.041666666666666664,
+        "policy_disagreements": 112,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "decoy",
+      "observed": {
+        "exploration_target_rate": 0.06666666666666667,
+        "policy_disagreements": 18,
+        "tasks": 120
+      }
+    }
+  ],
+  "admission_criteria": {
+    "maximum_exploration_target_rate": 0.2,
+    "minimum_policy_disagreements": 3,
+    "minimum_tasks": 5
+  },
+  "admitted_families": [
+    "monotone",
+    "curved",
+    "spike",
+    "plateau",
+    "checkerboard",
+    "rugged",
+    "ridge",
+    "sinusoidal",
+    "decoy"
+  ],
+  "budget": {
+    "coverage": 0.03125,
+    "evaluations_per_run": 512,
+    "legacy_coverage_at_grid_5": 0.8,
+    "search_space": 16384
+  },
+  "claim_boundary": "synthetic landscape study of one exploitation rule on a headroom-checked benchmark; families are admitted from random baseline behaviour only; no model self-improvement claim",
+  "experiment_id": "E59-scaled-router",
+  "exploration_per_column": 3,
+  "grid_size": 128,
+  "paired_promoted_minus_random": {
+    "per_family": {
+      "checkerboard": {
+        "regret_delta": -0.014999999999999998,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.033749999999999995,
+          0.0037499999999999994
+        ]
+      },
+      "curved": {
+        "regret_delta": 6.019178705024368e-05,
+        "regret_delta_95pct_bootstrap_ci": [
+          -2.428338190009205e-05,
+          0.00014518362370058064
+        ]
+      },
+      "decoy": {
+        "regret_delta": 0.001587926509186352,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.022552493438320213,
+          0.025780839895013126
+        ]
+      },
+      "monotone": {
+        "regret_delta": -0.02372047244094485,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.026345144356955348,
+          -0.021161417322834615
+        ]
+      },
+      "plateau": {
+        "regret_delta": 0.0,
+        "regret_delta_95pct_bootstrap_ci": [
+          0.0,
+          0.0
+        ]
+      },
+      "ridge": {
+        "regret_delta": 0.001410761154855646,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.006961942257217844,
+          0.009803149606299215
+        ]
+      },
+      "rugged": {
+        "regret_delta": -0.0017125963225757186,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.012043094021006586,
+          0.008593334350601466
+        ]
+      },
+      "sinusoidal": {
+        "regret_delta": -0.0033337887219163855,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.013331014287991105,
+          0.00666273969838843
+        ]
+      },
+      "spike": {
+        "regret_delta": -2.0997375328083804e-05,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.024020997375328083,
+          0.023979002624671914
+        ]
+      }
+    },
+    "pooled_regret_delta": -0.0045254417121858665,
+    "pooled_regret_delta_95pct_bootstrap_ci": [
+      -0.009164511069072337,
+      0.00027532866716746356
+    ]
+  },
+  "primary_metric": "regret (1.0 - best_score); lower is better",
+  "promoted": {
+    "r_squared_threshold": 0.5,
+    "variance_threshold": 0.0
+  },
+  "promotion_objective": "worst-family mean regret, then macro regret",
+  "random_baseline_validation": {
+    "families": {
+      "checkerboard": 0.44625,
+      "curved": 0.0003242089817512903,
+      "decoy": 0.47424540682414695,
+      "monotone": 0.02372047244094485,
+      "plateau": 0.57,
+      "ridge": 0.1935892388451443,
+      "rugged": 0.1929782431779457,
+      "sinusoidal": 0.19334691336667234,
+      "spike": 0.7080209973753281
+    },
+    "macro_mean_regret": 0.3113861645568815,
+    "r_squared_threshold": 1.01,
+    "variance_threshold": 0.0,
+    "worst_family_mean_regret": 0.7080209973753281
+  },
+  "rejected_families": [],
+  "report_digest": "90a15ea9e6f01c85a3fa9465ca91b1ac3290670d579f3c3802db50a355c779c8",
+  "schema_version": 1,
+  "supersedes_instrument_of": [
+    "E43-risk-router",
+    "E45-support-guard"
+  ],
+  "train": {
+    "0.0:0.0": {
+      "families": {
+        "checkerboard": 0.4387499999999999,
+        "curved": 0.00039550912435157753,
+        "decoy": 0.4783595800524934,
+        "monotone": 0.0,
+        "plateau": 0.5850000000000001,
+        "ridge": 0.19166666666666662,
+        "rugged": 0.1930849673202615,
+        "sinusoidal": 0.19167662446799535,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.3089925941813076,
+      "r_squared_threshold": 0.0,
+      "variance_threshold": 0.0,
+      "worst_family_mean_regret": 0.702
+    },
+    "0.0:0.001": {
+      "families": {
+        "checkerboard": 0.4387499999999999,
+        "curved": 0.00037380908095149823,
+        "decoy": 0.48341207349081367,
+        "monotone": 0.0001312335958005247,
+        "plateau": 0.575,
+        "ridge": 0.19503937007874012,
+        "rugged": 0.19631887541008627,
+        "sinusoidal": 0.1916762323604633,
+        "spike": 0.708005249343832
+      },
+      "macro_mean_regret": 0.3098563159289653,
+      "r_squared_threshold": 0.0,
+      "variance_threshold": 0.001,
+      "worst_family_mean_regret": 0.708005249343832
+    },
+    "0.0:0.01": {
+      "families": {
+        "checkerboard": 0.4387499999999999,
+        "curved": 0.0003038006076012132,
+        "decoy": 0.4775,
+        "monotone": 0.0032480314960629864,
+        "plateau": 0.575,
+        "ridge": 0.1919619422572178,
+        "rugged": 0.19966030874087645,
+        "sinusoidal": 0.19001302620279834,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30871523436717296,
+      "r_squared_threshold": 0.0,
+      "variance_threshold": 0.01,
+      "worst_family_mean_regret": 0.702
+    },
+    "0.0:0.03": {
+      "families": {
+        "checkerboard": 0.43499999999999994,
+        "curved": 0.00033790067580135214,
+        "decoy": 0.4600524934383202,
+        "monotone": 0.014862204724409423,
+        "plateau": 0.575,
+        "ridge": 0.19519685039370074,
+        "rugged": 0.18964419775692384,
+        "sinusoidal": 0.1850102434091564,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30634487671092353,
+      "r_squared_threshold": 0.0,
+      "variance_threshold": 0.03,
+      "worst_family_mean_regret": 0.702
+    },
+    "0.5:0.0": {
+      "families": {
+        "checkerboard": 0.4387499999999999,
+        "curved": 0.00038982577965155827,
+        "decoy": 0.4867191601049869,
+        "monotone": 0.0,
+        "plateau": 0.575,
+        "ridge": 0.19666666666666663,
+        "rugged": 0.19305799699905907,
+        "sinusoidal": 0.19667741016389298,
+        "spike": 0.678
+      },
+      "macro_mean_regret": 0.3072512288571396,
+      "r_squared_threshold": 0.5,
+      "variance_threshold": 0.0,
+      "worst_family_mean_regret": 0.678
+    },
+    "0.5:0.001": {
+      "families": {
+        "checkerboard": 0.44249999999999995,
+        "curved": 0.0003639923946514569,
+        "decoy": 0.46169291338582674,
+        "monotone": 0.0001312335958005247,
+        "plateau": 0.575,
+        "ridge": 0.19172572178477684,
+        "rugged": 0.1929974695455355,
+        "sinusoidal": 0.1900111166818583,
+        "spike": 0.696005249343832
+      },
+      "macro_mean_regret": 0.30560307741469794,
+      "r_squared_threshold": 0.5,
+      "variance_threshold": 0.001,
+      "worst_family_mean_regret": 0.696005249343832
+    },
+    "0.5:0.01": {
+      "families": {
+        "checkerboard": 0.44249999999999995,
+        "curved": 0.0003038006076012132,
+        "decoy": 0.47505249343832023,
+        "monotone": 0.0032480314960629864,
+        "plateau": 0.575,
+        "ridge": 0.1919619422572178,
+        "rugged": 0.19290276188296338,
+        "sinusoidal": 0.19001170517695573,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.3081089705399023,
+      "r_squared_threshold": 0.5,
+      "variance_threshold": 0.01,
+      "worst_family_mean_regret": 0.702
+    },
+    "0.5:0.03": {
+      "families": {
+        "checkerboard": 0.43499999999999994,
+        "curved": 0.00033790067580135214,
+        "decoy": 0.4600524934383202,
+        "monotone": 0.014862204724409423,
+        "plateau": 0.575,
+        "ridge": 0.19519685039370074,
+        "rugged": 0.19300236514839406,
+        "sinusoidal": 0.1950152404648126,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30782967276060424,
+      "r_squared_threshold": 0.5,
+      "variance_threshold": 0.03,
+      "worst_family_mean_regret": 0.702
+    },
+    "0.8:0.0": {
+      "families": {
+        "checkerboard": 0.44249999999999995,
+        "curved": 0.0004141091615516577,
+        "decoy": 0.48085958005249346,
+        "monotone": 0.0,
+        "plateau": 0.575,
+        "ridge": 0.19666666666666663,
+        "rugged": 0.18794726736349537,
+        "sinusoidal": 0.1900099141756327,
+        "spike": 0.69
+      },
+      "macro_mean_regret": 0.30704417082442664,
+      "r_squared_threshold": 0.8,
+      "variance_threshold": 0.0,
+      "worst_family_mean_regret": 0.69
+    },
+    "0.8:0.001": {
+      "families": {
+        "checkerboard": 0.43124999999999997,
+        "curved": 0.00036502573005146123,
+        "decoy": 0.47419291338582675,
+        "monotone": 0.0001312335958005247,
+        "plateau": 0.575,
+        "ridge": 0.1950590551181102,
+        "rugged": 0.18787053991505817,
+        "sinusoidal": 0.1900096145427596,
+        "spike": 0.696005249343832
+      },
+      "macro_mean_regret": 0.30554262573682656,
+      "r_squared_threshold": 0.8,
+      "variance_threshold": 0.001,
+      "worst_family_mean_regret": 0.696005249343832
+    },
+    "0.8:0.01": {
+      "families": {
+        "checkerboard": 0.43124999999999997,
+        "curved": 0.0003030256060512095,
+        "decoy": 0.4683333333333334,
+        "monotone": 0.0032480314960629864,
+        "plateau": 0.575,
+        "ridge": 0.1919619422572178,
+        "rugged": 0.19281846850283568,
+        "sinusoidal": 0.19167865955703925,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.3062881623058378,
+      "r_squared_threshold": 0.8,
+      "variance_threshold": 0.01,
+      "worst_family_mean_regret": 0.702
+    },
+    "0.8:0.03": {
+      "families": {
+        "checkerboard": 0.43499999999999994,
+        "curved": 0.00033790067580135214,
+        "decoy": 0.4600524934383202,
+        "monotone": 0.014862204724409423,
+        "plateau": 0.575,
+        "ridge": 0.19519685039370074,
+        "rugged": 0.19457031865924065,
+        "sinusoidal": 0.1916797920454974,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30763328443744103,
+      "r_squared_threshold": 0.8,
+      "variance_threshold": 0.03,
+      "worst_family_mean_regret": 0.702
+    },
+    "0.95:0.0": {
+      "families": {
+        "checkerboard": 0.4387499999999999,
+        "curved": 0.0003474590282513873,
+        "decoy": 0.4725787401574803,
+        "monotone": 0.0,
+        "plateau": 0.575,
+        "ridge": 0.19499999999999995,
+        "rugged": 0.19477575595737653,
+        "sinusoidal": 0.1916772535156489,
+        "spike": 0.69
+      },
+      "macro_mean_regret": 0.3064588009620841,
+      "r_squared_threshold": 0.95,
+      "variance_threshold": 0.0,
+      "worst_family_mean_regret": 0.69
+    },
+    "0.95:0.001": {
+      "families": {
+        "checkerboard": 0.4275,
+        "curved": 0.00032911732490131427,
+        "decoy": 0.47424540682414695,
+        "monotone": 0.0001312335958005247,
+        "plateau": 0.575,
+        "ridge": 0.18837270341207343,
+        "rugged": 0.1946955570814578,
+        "sinusoidal": 0.191676177166669,
+        "spike": 0.696005249343832
+      },
+      "macro_mean_regret": 0.30532838274987567,
+      "r_squared_threshold": 0.95,
+      "variance_threshold": 0.001,
+      "worst_family_mean_regret": 0.696005249343832
+    },
+    "0.95:0.01": {
+      "families": {
+        "checkerboard": 0.4275,
+        "curved": 0.0003185256370512692,
+        "decoy": 0.4641929133858268,
+        "monotone": 0.0032480314960629864,
+        "plateau": 0.575,
+        "ridge": 0.1919619422572178,
+        "rugged": 0.19307562116934976,
+        "sinusoidal": 0.19167838608630078,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.3054417133368677,
+      "r_squared_threshold": 0.95,
+      "variance_threshold": 0.01,
+      "worst_family_mean_regret": 0.702
+    },
+    "0.95:0.03": {
+      "families": {
+        "checkerboard": 0.43499999999999994,
+        "curved": 0.00034074234815136364,
+        "decoy": 0.4600524934383202,
+        "monotone": 0.014862204724409423,
+        "plateau": 0.575,
+        "ridge": 0.19519685039370074,
+        "rugged": 0.19474745047175815,
+        "sinusoidal": 0.19834391207856694,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30839373927276736,
+      "r_squared_threshold": 0.95,
+      "variance_threshold": 0.03,
+      "worst_family_mean_regret": 0.702
+    },
+    "1.01:0.0": {
+      "families": {
+        "checkerboard": 0.43499999999999994,
+        "curved": 0.0003399673466013599,
+        "decoy": 0.4600262467191601,
+        "monotone": 0.02309711286089235,
+        "plateau": 0.575,
+        "ridge": 0.19519685039370074,
+        "rugged": 0.19637406220594597,
+        "sinusoidal": 0.19167880488911415,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30874589382393497,
+      "r_squared_threshold": 1.01,
+      "variance_threshold": 0.0,
+      "worst_family_mean_regret": 0.702
+    },
+    "1.01:0.001": {
+      "families": {
+        "checkerboard": 0.43499999999999994,
+        "curved": 0.0003399673466013599,
+        "decoy": 0.4600262467191601,
+        "monotone": 0.02309711286089235,
+        "plateau": 0.575,
+        "ridge": 0.19519685039370074,
+        "rugged": 0.19637406220594597,
+        "sinusoidal": 0.19167880488911415,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30874589382393497,
+      "r_squared_threshold": 1.01,
+      "variance_threshold": 0.001,
+      "worst_family_mean_regret": 0.702
+    },
+    "1.01:0.01": {
+      "families": {
+        "checkerboard": 0.43499999999999994,
+        "curved": 0.0003399673466013599,
+        "decoy": 0.4600262467191601,
+        "monotone": 0.02309711286089235,
+        "plateau": 0.575,
+        "ridge": 0.19519685039370074,
+        "rugged": 0.19637406220594597,
+        "sinusoidal": 0.19167880488911415,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30874589382393497,
+      "r_squared_threshold": 1.01,
+      "variance_threshold": 0.01,
+      "worst_family_mean_regret": 0.702
+    },
+    "1.01:0.03": {
+      "families": {
+        "checkerboard": 0.43499999999999994,
+        "curved": 0.0003399673466013599,
+        "decoy": 0.4600262467191601,
+        "monotone": 0.02309711286089235,
+        "plateau": 0.575,
+        "ridge": 0.19519685039370074,
+        "rugged": 0.19637406220594597,
+        "sinusoidal": 0.19167880488911415,
+        "spike": 0.702
+      },
+      "macro_mean_regret": 0.30874589382393497,
+      "r_squared_threshold": 1.01,
+      "variance_threshold": 0.03,
+      "worst_family_mean_regret": 0.702
+    }
+  },
+  "train_seeds": 120,
+  "validation": {
+    "families": {
+      "checkerboard": 0.43124999999999997,
+      "curved": 0.000384400768801534,
+      "decoy": 0.47583333333333333,
+      "monotone": 0.0,
+      "plateau": 0.57,
+      "ridge": 0.19499999999999995,
+      "rugged": 0.19126564685536998,
+      "sinusoidal": 0.19001312464475595,
+      "spike": 0.708
+    },
+    "macro_mean_regret": 0.3068607228446956,
+    "r_squared_threshold": 0.5,
+    "variance_threshold": 0.0,
+    "worst_family_mean_regret": 0.708
+  },
+  "validation_seeds": 120,
+  "verdict": "inconclusive: interval spans zero"
+}

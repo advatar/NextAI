@@ -1,0 +1,25 @@
+{
+  "machine": "RecursivePromotion",
+  "evidence_status": "measured",
+  "claim_boundary": "every Evidence field is read from an immutable experiment report rather than assumed: benchmark_admitted from experiments/E51-benchmark-admission.json#admitted (false, 'reject and redesign cohort'), gain_bps and external_regret_bps from experiments/E45-support-guard.json#macro_target_hit_rate_delta and #external_domain_regret, parity_checked from experiments/E52-metta-parity.json#decision_parity. A real +302 bps held-out gain with checked parity is still quarantined because the benchmark cohort behind it was rejected.",
+  "context": {
+    "benchmark_admitted": false,
+    "gain_bps": 0,
+    "external_regret_bps": 0,
+    "parity_checked": false
+  },
+  "events": [
+    {"event": "Propose", "payload": {}},
+    {
+      "event": "Evidence",
+      "payload": {
+        "benchmark_admitted": false,
+        "gain_bps": 302,
+        "external_regret_bps": 0,
+        "parity_checked": true
+      }
+    },
+    {"event": "Reject", "payload": {}}
+  ],
+  "expect_state": "quarantined"
+}

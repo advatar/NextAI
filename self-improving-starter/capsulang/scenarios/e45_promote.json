@@ -1,5 +1,7 @@
 {
   "machine": "RecursivePromotion",
+  "evidence_status": "hypothetical",
+  "claim_boundary": "HYPOTHETICAL fixture: it demonstrates that the Promote transition fires under assumed admitted-benchmark evidence. It is not a record that the benchmark was admitted. experiments/E51-benchmark-admission.json records admitted=false with 'reject and redesign cohort', so benchmark_admitted=true below is an assumption, not a measurement; verify_capsulang_evidence.py reports it as such on every run. gain_bps=302 and external_regret_bps=0 are read from experiments/E45-support-guard.json, and parity_checked=true from experiments/E52-metta-parity.json. For the refusal path on real evidence see e51_real_evidence_quarantine.json.",
   "context": {
     "benchmark_admitted": false,
     "gain_bps": 0,
