@@ -1,0 +1,134 @@
+{
+  "admission_criteria": {
+    "maximum_absolute_rectification_bias": 0.05,
+    "maximum_null_best_of_5_reward": 0.05,
+    "maximum_null_variant_reward_sd": 0.05,
+    "maximum_starting_solution_reward": 0.5
+  },
+  "admitted_tasks": [
+    "optimize_function"
+  ],
+  "claim_boundary": "Instrument audit of the executable task substrate. Measures properties of the reward function only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect.",
+  "experiment_id": "E63-executable-substrate-audit",
+  "follows": "E62-promotion-objective",
+  "makes_capability_claim": false,
+  "null_variant_definition": "The environment's own starting_solution with a trailing comment appended. Semantically identical by construction, so any non-zero reward it earns is measurement artefact. The comment is required because count_primes special-cases an exact textual match against the starting solution and returns 0.0 for it.",
+  "null_variants_per_task": 40,
+  "predictions": [
+    {
+      "evidence": "sum_digits starting reward=1.0 failures=['starting_solution_reward 1.000 exceeds maximum 0.5 (ships already solved; no headroom)', 'best_of_5 null reward 1.000 exceeds maximum 0.05 (search can manufacture this much from no-op proposals)']",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "count_primes null_reward_sd=0.0760",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "count_primes best_of_5=0.25394885",
+      "id": "H3",
+      "supported": true
+    },
+    {
+      "evidence": "count_primes rectification_bias=0.00014947099717815826",
+      "id": "H4",
+      "supported": false
+    },
+    {
+      "evidence": "admitted tasks: ['optimize_function']",
+      "id": "H5",
+      "supported": false
+    }
+  ],
+  "preregistration_digest": "0ec039c776e916e9444d26a661b475896503eff50a9f433730968b75d60bdfc7",
+  "question": "Does the executable task substrate have measurement headroom, and is its reward trustworthy enough to support a search loop?",
+  "rejected_tasks": [
+    "count_primes",
+    "sum_digits"
+  ],
+  "report_digest": "9e6d01011e7ccd75bd4eeafa98756ec0ca76017e7eccdce1ac2aacec60b068fc",
+  "reproducibility_note": "This experiment measures wall-clock time, so its numbers are not bit-reproducible across machines or runs. The report digest attests to the recorded report, not to a deterministic computation.",
+  "schema_version": 1,
+  "tasks": [
+    {
+      "admitted": true,
+      "best_of_k": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "8": 0.0
+      },
+      "failures": [],
+      "null_reward_max": 0.0,
+      "null_reward_mean": 0.0,
+      "null_reward_min": 0.0,
+      "null_reward_sd": 0.0,
+      "null_reward_spread": 0.0,
+      "null_variants": 40,
+      "null_variants_correct": 40,
+      "rectification_bias": null,
+      "starting_solution_correct": true,
+      "starting_solution_reward": 0.0,
+      "task_id": "optimize_function"
+    },
+    {
+      "admitted": false,
+      "best_of_k": {
+        "1": 0.174273285,
+        "2": 0.217312455,
+        "3": 0.236327545,
+        "5": 0.25394885,
+        "8": 0.26461478499999996
+      },
+      "failures": [
+        "null_reward_sd 0.076 exceeds maximum 0.05",
+        "best_of_5 null reward 0.254 exceeds maximum 0.05 (search can manufacture this much from no-op proposals)"
+      ],
+      "null_raw_seconds_mean": 0.003241213396540843,
+      "null_raw_seconds_sd": 0.00029965593496109137,
+      "null_reward_max": 0.2763,
+      "null_reward_mean": 0.1740475,
+      "null_reward_min": 0.0,
+      "null_reward_sd": 0.07602709381365304,
+      "null_reward_spread": 0.2763,
+      "null_unclamped_reward_mean": 0.1738974425377193,
+      "null_unclamped_reward_sd": 0.07637464860977693,
+      "null_variants": 40,
+      "null_variants_correct": 40,
+      "rectification_bias": 0.00014947099717815826,
+      "reference_baseline_seconds": 0.003923500014934689,
+      "reference_baseline_source": "single measurement taken once at environment construction",
+      "reference_vs_null_median_ratio": 1.2182654572817555,
+      "starting_solution_correct": true,
+      "starting_solution_reward": 0.0,
+      "task_id": "count_primes"
+    },
+    {
+      "admitted": false,
+      "best_of_k": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "8": 1.0
+      },
+      "failures": [
+        "starting_solution_reward 1.000 exceeds maximum 0.5 (ships already solved; no headroom)",
+        "best_of_5 null reward 1.000 exceeds maximum 0.05 (search can manufacture this much from no-op proposals)"
+      ],
+      "null_reward_max": 1.0,
+      "null_reward_mean": 1.0,
+      "null_reward_min": 1.0,
+      "null_reward_sd": 0.0,
+      "null_reward_spread": 0.0,
+      "null_variants": 40,
+      "null_variants_correct": 40,
+      "rectification_bias": null,
+      "starting_solution_correct": true,
+      "starting_solution_reward": 1.0,
+      "task_id": "sum_digits"
+    }
+  ]
+}

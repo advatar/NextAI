@@ -1,5 +1,45 @@
 # Status
 
+## Completed — E63, executable substrate audit
+
+Instrument audit only. Makes **no capability claim** under any outcome.
+Pre-registered in `experiments/E63-preregistration.json` (`0ec039c7…`) with the
+disclosure that a scouting probe informed the thresholds. Probes use **null
+variants**: each environment's starting solution with a trailing comment
+appended, semantically identical, so any non-zero reward is artefact.
+
+| Task | Starting reward | Null sd | Best-of-5 null | Verdict |
+| --- | --- | --- | --- | --- |
+| optimize_function | 0.0000 | 0.0000 | 0.0000 | admitted |
+| count_primes | 0.0000 | 0.0760 | 0.2539 | rejected |
+| sum_digits | 1.0000 | 0.0000 | 1.0000 | rejected |
+
+- `sum_digits` ships already solved — its starting solution scores the maximum.
+- `count_primes` cannot distinguish work from noise. A search keeping the best of
+  five no-op proposals books **0.254 of reward for changing nothing**.
+- `count_primes.py:16` sets the whole reward scale from a **single** timing
+  measurement at construction. In this run it landed 21.8% slow, handing every
+  null variant a free +0.174. The scouting probe saw the same defect with the
+  opposite sign (−0.171 before clamping). The reference is unstable in magnitude
+  and direction between runs.
+
+H1–H3 supported. **H4 not supported**: the predicted clamp rectification bias was
++0.0001, because in this run the nulls landed positive and the clamp barely
+bound — the unstable single-measurement reference is the more fundamental
+problem. **H5 not supported**: `optimize_function` was admitted, and an unplanned
+follow-up (recorded as unplanned) confirmed it detects real signal — the closed
+form `(n−1)n(2n−1)/6` scores a stable 1.0, raw 2.1e-07 s against 8.6e-03 s.
+
+Hole found in the frozen criteria: they test for absence of noise but never for
+presence of signal, so a constant reward function would pass all four. A
+minimum-detectable-effect criterion is pre-registered for next time. This is the
+mirror of the E51 mistake.
+
+Validation: 358 tests pass; all 60 `report_digest` values reproduce; no existing
+experiment JSON, environment, or runner modified. Note this experiment measures
+wall-clock time, so its numbers are not bit-reproducible; the digest attests to
+the recorded report.
+
 ## Completed — E62, worst-family selection is dominated on its own yardstick
 
 - [x] Pre-register three selection objectives, two disjoint held-out blocks, a

@@ -424,6 +424,86 @@ required paired intervals on the objective-level contrast, and did not. The
 two-block agreement is real evidence, but it is weaker than an interval would
 be. Pre-registered for the next run rather than added post hoc.
 
+## E63 — auditing the executable substrate before building on it
+
+The recommended next move was the executable task substrate, which cannot
+saturate the way a 5×5 grid did. The lesson of E51 is to audit an instrument
+*before* building on it, so E63 makes **no capability claim under any outcome**.
+It asks only whether the suite can measure an improvement.
+
+The tool throughout is a **null variant**: each environment's own starting
+solution with a trailing comment appended. Semantically identical by
+construction, so every non-zero reward it earns is measurement artefact.
+
+Plan frozen first (`preregister_e63.py`, digest `0ec039c7…`), with the
+disclosure that a scouting probe informed the thresholds.
+
+### Results
+
+| Task | Starting reward | Null sd | Best-of-5 null | Verdict |
+| --- | --- | --- | --- | --- |
+| optimize_function | 0.0000 | 0.0000 | 0.0000 | **admitted** |
+| count_primes | 0.0000 | 0.0760 | **0.2539** | rejected |
+| sum_digits | **1.0000** | 0.0000 | 1.0000 | rejected |
+
+**`sum_digits` ships already solved.** Its `starting_solution` is a correct
+digit-sum implementation and its reward is binary, so it scores 1.0 before any
+work is done. Zero headroom — the same failure as the saturated grid, in a new
+substrate.
+
+**`count_primes` cannot distinguish work from noise.** Re-scoring semantically
+identical programs gives rewards from 0.000 to 0.276. The consequential number is
+the best-of-k curve:
+
+| k (no-op proposals) | 1 | 2 | 3 | 5 | 8 |
+| --- | --- | --- | --- | --- | --- |
+| phantom reward | 0.174 | 0.217 | 0.236 | **0.254** | 0.265 |
+
+A search loop that proposes five candidates and keeps the highest scorer books
+**0.254 of reward for changing nothing at all.** Any self-improvement result
+measured on this task would be substantially this artefact.
+
+### The deeper defect: a reward scale set by one noisy measurement
+
+`count_primes.py:16` captures `self._baseline_time` from a **single**
+measurement at construction, and every candidate is normalised against it. In
+this run that measurement came out at 3.92 ms against a null median of 3.22 ms —
+21.8% slow — so every no-op variant collected a free +0.174.
+
+The scouting probe showed the same defect with the opposite sign: there the
+captured baseline was *fast* (9.17 ms against a ~11 ms typical), so identical
+programs scored a mean of **−0.171** before clamping. The reference point is
+unstable in magnitude *and direction* between runs of the same code on the same
+machine.
+
+That instability is why **H4 was not supported**. The predicted rectification
+bias from `max(0.0, …)` was +0.0001, not ≥ 0.05, because in this particular run
+the clamp barely bound — the nulls landed positive, so there was almost nothing
+to censor. The clamping hazard is real but conditional on which side the noisy
+baseline falls; the single-measurement reference is the more fundamental problem
+and the one to fix.
+
+### H5 was wrong, and that is good news
+
+I predicted no task would be admitted. `optimize_function` was, and it holds up.
+An unplanned follow-up check (recorded here as unplanned, not as a frozen
+prediction) confirmed it detects real signal: replacing the O(n) loop with the
+closed form `(n−1)n(2n−1)/6` scores a stable **1.0** across five trials, raw
+timing 2.1e-07 s against the starting solution's 8.6e-03 s — roughly a 40,000×
+speedup, cleanly measured.
+
+So the substrate is not unusable. It contains one sound task, one saturated task,
+and one task whose reward is mostly noise.
+
+### A hole in my own admission criteria
+
+The four frozen criteria test for the **absence of noise** and never for the
+**presence of signal**. A task whose reward function returned a constant would
+pass all four trivially. `optimize_function` genuinely detects improvement, but
+E63's criteria are not what established that — a separate unplanned check was. A
+minimum-detectable-effect criterion belongs in the next pre-registration, and it
+is the exact mirror of the E51 mistake: I checked one direction only.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -443,16 +523,25 @@ be. Pre-registered for the next run rather than added post hoc.
 7. **Put bootstrap intervals on objective-level contrasts.** E62 compared
    objectives by point estimate only. Cheap to fix, and the current evidence for
    the headline is weaker than it should be.
-8. **Move to the executable substrate.** `task_harness.py` and
-   `container_runner.py` already exist and cannot saturate. The synthetic grids
-   were scaffolding for the plumbing, and the plumbing is finished and tested.
-   `GEM_ASSESSMENT.md` step 1 identified this and it remains the highest-value
-   move.
-9. **Restore real search in the live loop.** Wire
+8. ~~**Move to the executable substrate.**~~ Audited in E63. One task of three
+   is usable; see the fixes below before running any search on it.
+9. **Fix `count_primes` or drop it.** Replace the single-measurement
+   `_baseline_time` with a median over repeated runs, report the null-variant
+   noise floor alongside every result, and require an effect to clear it. Until
+   then the task cannot support a claim.
+10. **Fix or retire `sum_digits`.** It ships already solved. Either give it a
+   deliberately weak starting solution, or drop it from the suite.
+11. **Add a minimum-detectable-effect criterion to admission.** E63's criteria
+   check for absence of noise but not presence of signal; a constant reward
+   function would pass them. This is the mirror of the E51 mistake.
+12. **Add more admitted tasks before any search runs.** One sound task is not a
+   benchmark, and `optimize_function` has essentially one known optimum, so a
+   loop would be rediscovering a closed form rather than improving.
+13. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-10. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+14. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 
