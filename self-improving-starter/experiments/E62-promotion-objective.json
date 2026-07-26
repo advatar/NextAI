@@ -1,0 +1,512 @@
+{
+  "admission": [
+    {
+      "admitted": true,
+      "exploration_target_rate": 0.025,
+      "failures": [],
+      "family": "monotone",
+      "policy_disagreement_rate": 0.975
+    },
+    {
+      "admitted": true,
+      "exploration_target_rate": 0.016666666666666666,
+      "failures": [],
+      "family": "curved",
+      "policy_disagreement_rate": 0.8583333333333333
+    },
+    {
+      "admitted": false,
+      "exploration_target_rate": 0.041666666666666664,
+      "failures": [
+        "policy_disagreement_rate 0.067 is below minimum 0.200"
+      ],
+      "family": "spike",
+      "policy_disagreement_rate": 0.06666666666666667
+    },
+    {
+      "admitted": false,
+      "exploration_target_rate": 0.058333333333333334,
+      "failures": [
+        "policy_disagreement_rate 0.083 is below minimum 0.200"
+      ],
+      "family": "plateau",
+      "policy_disagreement_rate": 0.08333333333333333
+    },
+    {
+      "admitted": false,
+      "exploration_target_rate": 0.025,
+      "failures": [
+        "policy_disagreement_rate 0.042 is below minimum 0.200"
+      ],
+      "family": "checkerboard",
+      "policy_disagreement_rate": 0.041666666666666664
+    },
+    {
+      "admitted": true,
+      "exploration_target_rate": 0.025,
+      "failures": [],
+      "family": "rugged",
+      "policy_disagreement_rate": 0.975
+    },
+    {
+      "admitted": false,
+      "exploration_target_rate": 0.016666666666666666,
+      "failures": [
+        "policy_disagreement_rate 0.125 is below minimum 0.200"
+      ],
+      "family": "ridge",
+      "policy_disagreement_rate": 0.125
+    },
+    {
+      "admitted": true,
+      "exploration_target_rate": 0.016666666666666666,
+      "failures": [],
+      "family": "sinusoidal",
+      "policy_disagreement_rate": 0.925
+    },
+    {
+      "admitted": true,
+      "exploration_target_rate": 0.041666666666666664,
+      "failures": [],
+      "family": "decoy",
+      "policy_disagreement_rate": 0.20833333333333334
+    }
+  ],
+  "admitted_families": [
+    "monotone",
+    "curved",
+    "rugged",
+    "sinusoidal",
+    "decoy"
+  ],
+  "budget": {
+    "coverage": 0.03125,
+    "evaluations_per_run": 512,
+    "search_space": 16384
+  },
+  "claim_boundary": "Synthetic landscape comparison of three selection objectives for one exploitation rule. Not evidence about model self-improvement or a recursive effect.",
+  "evaluation": {
+    "macro_mean": {
+      "blocks": {
+        "block_a": {
+          "family_mean_regret": {
+            "curved": 0.0003944757889515778,
+            "decoy": 0.48252624671916006,
+            "monotone": 0.0,
+            "rugged": 0.19809262226291302,
+            "sinusoidal": 0.19334518603501008
+          },
+          "macro_mean_regret": 0.17487170616120695,
+          "per_family_delta": {
+            "curved": {
+              "regret_delta": 8.886684440035468e-05,
+              "regret_delta_95pct_bootstrap_ci": [
+                -3.875007750014925e-06,
+                0.00018703370740075312
+              ]
+            },
+            "decoy": {
+              "regret_delta": 0.014166666666666668,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.010000000000000002,
+                0.039114173228346455
+              ]
+            },
+            "monotone": {
+              "regret_delta": -0.022801837270341175,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.025328083989501274,
+                -0.020374015748031462
+              ]
+            },
+            "rugged": {
+              "regret_delta": 0.001857951221993337,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.005078596678619572,
+                0.010060082398718249
+              ]
+            },
+            "sinusoidal": {
+              "regret_delta": 0.0033254757103935145,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.006674835697968936,
+                0.0133284366851302
+              ]
+            }
+          },
+          "worst_family_regret": 0.48252624671916006
+        },
+        "block_b": {
+          "family_mean_regret": {
+            "curved": 0.00037303407940149174,
+            "decoy": 0.47419291338582675,
+            "monotone": 0.0,
+            "rugged": 0.19641598636860716,
+            "sinusoidal": 0.1900116182665759
+          },
+          "macro_mean_regret": 0.17219871042008225,
+          "per_family_delta": {
+            "curved": {
+              "regret_delta": 1.3691694050052549e-05,
+              "regret_delta_95pct_bootstrap_ci": [
+                -7.233347800029432e-05,
+                9.971686610039757e-05
+              ]
+            },
+            "decoy": {
+              "regret_delta": -0.010000000000000002,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.03333333333333333,
+                0.0125
+              ]
+            },
+            "monotone": {
+              "regret_delta": -0.022211286089238814,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.02463910761154852,
+                -0.019750656167978976
+              ]
+            },
+            "rugged": {
+              "regret_delta": 0.0034949772386256663,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.00635877775234608,
+                0.012205093970143176
+              ]
+            },
+            "sinusoidal": {
+              "regret_delta": -0.0016646771620905897,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.011665582728791228,
+                0.008335833429897584
+              ]
+            }
+          },
+          "worst_family_regret": 0.47419291338582675
+        }
+      },
+      "replication_verdicts": {
+        "curved": "inconclusive in both blocks",
+        "decoy": "inconclusive in both blocks",
+        "monotone": "replicated: reduces regret",
+        "rugged": "inconclusive in both blocks",
+        "sinusoidal": "inconclusive in both blocks"
+      },
+      "router": {
+        "r_squared_threshold": 0.0,
+        "train_objective_score": 0.16919292585544551,
+        "variance_threshold": 0.0
+      }
+    },
+    "signal_weighted": {
+      "blocks": {
+        "block_a": {
+          "family_mean_regret": {
+            "curved": 0.00037716742100150636,
+            "decoy": 0.4658333333333333,
+            "monotone": 0.0,
+            "rugged": 0.1960839754838382,
+            "sinusoidal": 0.19501435458176902
+          },
+          "macro_mean_regret": 0.1714617661639884,
+          "per_family_delta": {
+            "curved": {
+              "regret_delta": 7.15584764502832e-05,
+              "regret_delta_95pct_bootstrap_ci": [
+                -1.7050034100069e-05,
+                0.00016378366090065433
+              ]
+            },
+            "decoy": {
+              "regret_delta": -0.002526246719160104,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.03255249343832021,
+                0.027500000000000004
+              ]
+            },
+            "monotone": {
+              "regret_delta": -0.022801837270341175,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.025328083989501277,
+                -0.020439632545931726
+              ]
+            },
+            "rugged": {
+              "regret_delta": -0.0001506955570814585,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.008395373973194993,
+                0.008143828997227954
+              ]
+            },
+            "sinusoidal": {
+              "regret_delta": 0.004994644257152474,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.003340455065860153,
+                0.013334717335073031
+              ]
+            }
+          },
+          "worst_family_regret": 0.4658333333333333
+        },
+        "block_b": {
+          "family_mean_regret": {
+            "curved": 0.0003792340918015123,
+            "decoy": 0.45921916010498687,
+            "monotone": 0.0,
+            "rugged": 0.18979605045649914,
+            "sinusoidal": 0.19501382639692963
+          },
+          "macro_mean_regret": 0.16888165421004342,
+          "per_family_delta": {
+            "curved": {
+              "regret_delta": 1.98917064500731e-05,
+              "regret_delta_95pct_bootstrap_ci": [
+                -7.0008473350285e-05,
+                0.00010927521855043827
+              ]
+            },
+            "decoy": {
+              "regret_delta": -0.024973753280839898,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.05333333333333334,
+                0.00179790026246719
+              ]
+            },
+            "monotone": {
+              "regret_delta": -0.022211286089238814,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.024835958005249306,
+                -0.019783464566929105
+              ]
+            },
+            "rugged": {
+              "regret_delta": -0.0031249586734823716,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.013346684977492954,
+                0.007100506090892899
+              ]
+            },
+            "sinusoidal": {
+              "regret_delta": 0.0033375309682631376,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.004999826822600997,
+                0.013335216014345312
+              ]
+            }
+          },
+          "worst_family_regret": 0.45921916010498687
+        }
+      },
+      "replication_verdicts": {
+        "curved": "inconclusive in both blocks",
+        "decoy": "inconclusive in both blocks",
+        "monotone": "replicated: reduces regret",
+        "rugged": "inconclusive in both blocks",
+        "sinusoidal": "inconclusive in both blocks"
+      },
+      "router": {
+        "r_squared_threshold": 0.5,
+        "train_objective_score": 0.11738323680254614,
+        "variance_threshold": 0.0
+      }
+    },
+    "worst_family": {
+      "blocks": {
+        "block_a": {
+          "family_mean_regret": {
+            "curved": 0.0003944757889515778,
+            "decoy": 0.48252624671916006,
+            "monotone": 0.0,
+            "rugged": 0.19809262226291302,
+            "sinusoidal": 0.19334518603501008
+          },
+          "macro_mean_regret": 0.17487170616120695,
+          "per_family_delta": {
+            "curved": {
+              "regret_delta": 8.886684440035468e-05,
+              "regret_delta_95pct_bootstrap_ci": [
+                -3.6166739000152252e-06,
+                0.00018677537355075343
+              ]
+            },
+            "decoy": {
+              "regret_delta": 0.014166666666666668,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.009192913385826774,
+                0.038385826771653545
+              ]
+            },
+            "monotone": {
+              "regret_delta": -0.022801837270341175,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.025262467191601017,
+                -0.020406824146981594
+              ]
+            },
+            "rugged": {
+              "regret_delta": 0.001857951221993337,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.00496475165941863,
+                0.010063375804277611
+              ]
+            },
+            "sinusoidal": {
+              "regret_delta": 0.0033254757103935145,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.006676056999057776,
+                0.013326328547307142
+              ]
+            }
+          },
+          "worst_family_regret": 0.48252624671916006
+        },
+        "block_b": {
+          "family_mean_regret": {
+            "curved": 0.00037303407940149174,
+            "decoy": 0.47419291338582675,
+            "monotone": 0.0,
+            "rugged": 0.19641598636860716,
+            "sinusoidal": 0.1900116182665759
+          },
+          "macro_mean_regret": 0.17219871042008225,
+          "per_family_delta": {
+            "curved": {
+              "regret_delta": 1.3691694050052549e-05,
+              "regret_delta_95pct_bootstrap_ci": [
+                -7.155847645028783e-05,
+                0.00010204187075040598
+              ]
+            },
+            "decoy": {
+              "regret_delta": -0.010000000000000002,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.03330708661417323,
+                0.012395013123359581
+              ]
+            },
+            "monotone": {
+              "regret_delta": -0.022211286089238814,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.024704724409448785,
+                -0.01971784776902884
+              ]
+            },
+            "rugged": {
+              "regret_delta": 0.0034949772386256663,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.005225197731492089,
+                0.013418516823071632
+              ]
+            },
+            "sinusoidal": {
+              "regret_delta": -0.0016646771620905897,
+              "regret_delta_95pct_bootstrap_ci": [
+                -0.011665822540877033,
+                0.008335425911159903
+              ]
+            }
+          },
+          "worst_family_regret": 0.47419291338582675
+        }
+      },
+      "replication_verdicts": {
+        "curved": "inconclusive in both blocks",
+        "decoy": "inconclusive in both blocks",
+        "monotone": "replicated: reduces regret",
+        "rugged": "inconclusive in both blocks",
+        "sinusoidal": "inconclusive in both blocks"
+      },
+      "router": {
+        "r_squared_threshold": 0.0,
+        "train_objective_score": 0.4542191601049869,
+        "variance_threshold": 0.0
+      }
+    }
+  },
+  "experiment_id": "E62-promotion-objective",
+  "follows": "E61-rugged-ablation",
+  "grid_size": 128,
+  "macro_ranking": {
+    "block_a": [
+      "signal_weighted",
+      "macro_mean",
+      "worst_family"
+    ],
+    "block_b": [
+      "signal_weighted",
+      "macro_mean",
+      "worst_family"
+    ]
+  },
+  "minimum_effect_size": 0.005,
+  "predictions": [
+    {
+      "evidence": "selected routers: {'macro_mean': (0.0, 0.0), 'signal_weighted': (0.5, 0.0), 'worst_family': (0.0, 0.0)}",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "objectives beating worst_family on macro in both blocks: ['signal_weighted']",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "selected R^2 thresholds: [0.0, 0.5, 0.0]",
+      "id": "H3",
+      "supported": true
+    },
+    {
+      "evidence": "block_a=['signal_weighted', 'macro_mean', 'worst_family'] block_b=['signal_weighted', 'macro_mean', 'worst_family']",
+      "id": "H4",
+      "supported": true
+    },
+    {
+      "evidence": "unreplicated effects: none",
+      "id": "H5",
+      "supported": false
+    }
+  ],
+  "preregistration_digest": "a2484275000a92269fe6cf71b93989bc6d59f29101982246d260c3d6085936c9",
+  "question": "Does any promotion objective generalise beyond the yardstick it was selected for, and does worst-family selection give up a replicated advantage on the families that carry signal?",
+  "replication_rule": "An effect is a result only if block A and block B agree in sign, both 95% bootstrap intervals exclude zero, and both point estimates clear the minimum effect size. Agreement in one block only is reported as unreplicated and is not counted as a finding.",
+  "report_digest": "d96280b739e5642aa6f22546d8cb26a7f7edb75542cc166e99c3fbc1d45f62fe",
+  "schema_version": 1,
+  "seeds": {
+    "block_a": [
+      3000,
+      3119
+    ],
+    "block_b": [
+      4000,
+      4119
+    ],
+    "train": [
+      2000,
+      2119
+    ]
+  },
+  "selections": {
+    "macro_mean": {
+      "r_squared_threshold": 0.0,
+      "train_objective_score": 0.16919292585544551,
+      "variance_threshold": 0.0
+    },
+    "signal_weighted": {
+      "r_squared_threshold": 0.5,
+      "train_objective_score": 0.11738323680254614,
+      "variance_threshold": 0.0
+    },
+    "worst_family": {
+      "r_squared_threshold": 0.0,
+      "train_objective_score": 0.4542191601049869,
+      "variance_threshold": 0.0
+    }
+  },
+  "signal_weights": {
+    "curved": 0.8583333333333333,
+    "decoy": 0.20833333333333334,
+    "monotone": 0.975,
+    "rugged": 0.975,
+    "sinusoidal": 0.925
+  }
+}

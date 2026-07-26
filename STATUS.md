@@ -1,5 +1,47 @@
 # Status
 
+## Completed — E62, worst-family selection is dominated on its own yardstick
+
+- [x] Pre-register three selection objectives, two disjoint held-out blocks, a
+  replication rule, and five predictions in `experiments/E62-preregistration.json`
+  (`a2484275…`) before running. Seeds 2000–2119 / 3000–3119 / 4000–4119.
+- [x] Report **both** yardsticks for every selected router, so no objective is
+  scored only on the metric it optimises.
+- [x] Make replication structural: an effect counts only if both blocks agree in
+  sign, both intervals exclude zero, and both clear the 0.005 effect floor.
+- [x] Run and grade every prediction.
+
+Selection: `worst_family` and `macro_mean` both collapsed to unconditional
+exploitation (R² ≥ 0.0); `signal_weighted` — weighting families by their
+policy-disagreement rate — recovered a support-aware **R² ≥ 0.5** gate.
+
+**Worst-family selection loses on the worst-family yardstick.** It minimised
+worst-family regret on training data, yet on held-out seeds the
+signal-weighted router is better on that exact metric by 0.0167 (block A) and
+0.0150 (block B) — clearing the effect floor and agreeing across blocks. Maximin
+selection generalises worse than what it was chosen to beat. On macro-mean the
+same ordering holds but the gap (0.0034 / 0.0033) is below the floor and is
+reported as negligible.
+
+H1–H4 supported, including the stability check: both blocks rank the objectives
+identically. **H5 was not supported** — no effect cleared in one block and failed
+in the other, so the replication rule caught nothing this time. It is insurance
+that did not need to pay out, not machinery that proved itself.
+
+`monotone` is the one solidly replicated per-family effect (−0.0228 / −0.0222).
+Every other family is inconclusive in both blocks; `decoy` swung +0.01417 to
+−0.01000, a fair picture of the noise floor.
+
+Limitation carried forward: objective-level contrasts use point estimates only.
+The frozen plan should have required paired bootstrap intervals on them and did
+not, so the headline rests on two-block agreement rather than an interval.
+Pre-registered for the next run rather than added post hoc.
+
+Validation: 358 tests pass; all 59 `report_digest` values reproduce; no existing
+experiment JSON or runner modified.
+
+Recommendation: **stop using worst-family selection.**
+
 ## Completed — E61, the rugged regression does not replicate
 
 - [x] Add an `endpoint_coinflip` exploitation mode and endpoint-pick accounting

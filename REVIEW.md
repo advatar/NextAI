@@ -352,6 +352,78 @@ on the one family with a real effect.
 zero, and was correctly reported as **negligible** rather than as a result. Under
 E60's rules it would have been a fourth "reduces regret" finding.
 
+## E62 — worst-family selection is dominated on its own yardstick
+
+E61 suggested the promotion objective, not the router, was the real problem. E62
+tested that directly: three selection objectives, identical training data, and
+**two disjoint held-out blocks** so replication is structural rather than a
+follow-up experiment. Plan frozen first (`preregister_e62.py`, digest
+`a2484275…`); seeds 2000–2119 / 3000–3119 / 4000–4119, disjoint from everything
+prior.
+
+The comparison was designed to avoid rigging itself. Scoring three objectives on
+macro-mean regret would hand the win to the macro-mean objective by
+construction, so **both** yardsticks are reported for every selected router and
+the pre-registered question is whether any objective generalises beyond the one
+it optimises.
+
+### Selection
+
+| Objective | Selected router |
+| --- | --- |
+| worst_family | R² ≥ 0.0, var ≥ 0.0 (always exploit) |
+| macro_mean | R² ≥ 0.0, var ≥ 0.0 (always exploit) |
+| signal_weighted | **R² ≥ 0.5**, var ≥ 0.0 |
+
+Weighting families by their policy-disagreement rate recovered a genuinely
+support-aware gate; the other two objectives both collapsed to unconditional
+exploitation.
+
+### Held-out scores, both yardsticks, both blocks
+
+| Objective | Block | macro-mean regret | worst-family regret |
+| --- | --- | --- | --- |
+| signal_weighted | A | **0.17146** | **0.46583** |
+| signal_weighted | B | **0.16888** | **0.45922** |
+| worst_family | A | 0.17487 | 0.48253 |
+| worst_family | B | 0.17220 | 0.47419 |
+
+**The headline: `worst_family` selection loses on the worst-family yardstick.**
+It selected the router that minimised worst-family regret *on training data*, and
+on held-out seeds `signal_weighted`'s router is better on that exact metric — by
+0.0167 in block A and 0.0150 in block B, both comfortably clearing the 0.005
+effect floor and agreeing across blocks. That is overfitting, plainly: maximin
+selection on this benchmark generalises worse than the thing it was chosen to
+beat.
+
+On macro-mean the same ordering holds but the gap is 0.0034 and 0.0033 — *below*
+the effect floor, so that half is negligible.
+
+All four testable predictions were supported (H1–H4), including the stability
+check: both blocks rank the objectives identically.
+
+### What did not happen
+
+**H5 was not supported.** No effect cleared in one block and failed in the other.
+The replication rule caught nothing this time, because the weak per-family
+effects were already inconclusive *within* each block. The rule is insurance that
+did not need to pay out here — worth stating plainly rather than presenting the
+machinery as having proven itself.
+
+`monotone` is the one solidly replicated per-family effect, at −0.0228 (A) and
+−0.0222 (B) across all three objectives. Every other family is inconclusive in
+both blocks, including `decoy` swinging +0.01417 to −0.01000 — a good picture of
+what noise looks like here.
+
+### A limitation to carry forward
+
+The objective-level comparison uses point estimates only. Per-family deltas carry
+bootstrap intervals, but the macro and worst-family scores do not, so "0.0167
+better in both blocks" has no interval attached. The frozen plan should have
+required paired intervals on the objective-level contrast, and did not. The
+two-block agreement is real evidence, but it is weaker than an interval would
+be. Pre-registered for the next run rather than added post hoc.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -362,25 +434,25 @@ E60's rules it would have been a fourth "reduces regret" finding.
    it immediately demoted a significant-but-negligible result.
 4. ~~**Investigate the `rugged` regression.**~~ Done in E61: it did not
    replicate. No further work is warranted.
-5. **Replicate before reporting, as policy.** E60's rugged result and E59's
-   monotone magnitude both moved substantially on fresh seeds. Single-cohort
-   intervals in this benchmark are not trustworthy on their own. The cheapest
-   fix is to make every runner evaluate two disjoint seed blocks and report both,
-   so an unreplicated effect is visibly unreplicated.
-6. **Revisit the promotion objective.** Worst-family selection cost a factor of
-   three against E41's older gate on the one family with a real effect. Compare
-   worst-family, macro-mean, and signal-weighted objectives under matched
-   budgets — this is a cheap experiment with a clear decision attached.
-7. **Move to the executable substrate.** `task_harness.py` and
+5. ~~**Replicate before reporting, as policy.**~~ Done in E62: two disjoint
+   held-out blocks, with a replication rule that refuses single-block effects.
+6. ~~**Revisit the promotion objective.**~~ Done in E62: worst-family selection
+   is dominated on its own yardstick by signal-weighted selection, replicated
+   across both blocks. **Stop using worst-family selection.**
+
+7. **Put bootstrap intervals on objective-level contrasts.** E62 compared
+   objectives by point estimate only. Cheap to fix, and the current evidence for
+   the headline is weaker than it should be.
+8. **Move to the executable substrate.** `task_harness.py` and
    `container_runner.py` already exist and cannot saturate. The synthetic grids
    were scaffolding for the plumbing, and the plumbing is finished and tested.
    `GEM_ASSESSMENT.md` step 1 identified this and it remains the highest-value
    move.
-8. **Restore real search in the live loop.** Wire
+9. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-9. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+10. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

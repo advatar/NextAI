@@ -1,0 +1,70 @@
+{
+  "analysis_plan": {
+    "generalisation": "Each selected router is scored on BOTH yardsticks on both blocks. An objective is said to generalise only if it is competitive on the yardstick it was not selected for.",
+    "no_single_winner_claim": "No claim of the form 'objective X is best' will be made from a single yardstick, since each objective is advantaged on its own.",
+    "null_handling": "Null and inconclusive results are recorded as measured and are not re-run, re-seeded, or re-thresholded, per POC_PLAN.md.",
+    "primary": "For each selected router, the paired regret delta against the random baseline per family, computed independently on block A and block B, with 95% bootstrap intervals. The replication rule decides what counts as a result."
+  },
+  "claim_boundary": "Synthetic landscape comparison of three selection objectives for one exploitation rule. Not evidence about model self-improvement or a recursive effect.",
+  "criteria": {
+    "maximum_exploration_target_rate": 0.2,
+    "minimum_policy_disagreement_rate": 0.2,
+    "minimum_policy_disagreements": 3,
+    "minimum_tasks": 5
+  },
+  "experiment_id": "E62-promotion-objective",
+  "follows": "E61-rugged-ablation",
+  "instrument": {
+    "block_a_seed_start": 3000,
+    "block_b_seed_start": 4000,
+    "block_seeds": 120,
+    "exploration_per_column": 3,
+    "grid_size": 128,
+    "module": "recursive_lab.scaled_landscape",
+    "primary_metric": "regret (1.0 - best_score); lower is better",
+    "seed_disjointness": "E59/E60 used 0-239 and E61 used 1000-1239. E62 uses 2000-2119 for selection and 3000-3119 / 4000-4119 for the two held-out blocks, all mutually disjoint.",
+    "train_seed_start": 2000,
+    "train_seeds": 120
+  },
+  "minimum_effect_size": 0.005,
+  "objectives": {
+    "macro_mean": "minimise the unweighted mean regret across admitted families",
+    "signal_weighted": "minimise mean regret weighted by each family's policy-disagreement rate, so families where policies can barely differ contribute little. The weights come from the admission sweep and are a property of the cohort, never of the candidate under test.",
+    "worst_family": "minimise the worst admitted family's mean regret; the objective E59 and E60 used without comparison"
+  },
+  "predictions": [
+    {
+      "basis": "worst-family is maximin and macro-mean is an average; E61 showed they disagree sharply on monotone.",
+      "id": "H1",
+      "statement": "The three objectives do not all select the same router."
+    },
+    {
+      "basis": "E61 measured a threefold gap on monotone between E41's gate and E60's worst-family selection.",
+      "id": "H2",
+      "statement": "The worst-family-selected router is beaten on macro-mean regret by at least one other objective's router, on both blocks."
+    },
+    {
+      "basis": "E41's (0.5, 0.01) gate dominated on monotone in E61, so an objective that rewards signal should recover something like it.",
+      "id": "H3",
+      "statement": "At least one objective selects a router with an R^2 threshold of 0.5 or higher, i.e. a genuinely support-aware gate."
+    },
+    {
+      "basis": "A stability check on the methodology itself. If two disjoint blocks disagree on the ranking, single-block selection in this benchmark is unsound and the replication rule is load-bearing.",
+      "id": "H4",
+      "statement": "The ranking of the three selected routers by macro-mean regret is identical on block A and block B."
+    },
+    {
+      "basis": "Speculative, and a direct test of whether the replication rule earns its cost. E60's rugged result behaved exactly this way across E60 and E61.",
+      "id": "H5",
+      "statement": "At least one per-family effect clears in one block and fails to replicate in the other."
+    }
+  ],
+  "preregistration_digest": "a2484275000a92269fe6cf71b93989bc6d59f29101982246d260c3d6085936c9",
+  "question": "Does any promotion objective generalise beyond the yardstick it was selected for, and does worst-family selection give up a replicated advantage on the families that carry signal?",
+  "replication_rule": "An effect is a result only if block A and block B agree in sign, both 95% bootstrap intervals exclude zero, and both point estimates clear the minimum effect size. Agreement in one block only is reported as unreplicated and is not counted as a finding.",
+  "schema_version": 1,
+  "yardsticks": [
+    "macro_mean_regret",
+    "worst_family_regret"
+  ]
+}
