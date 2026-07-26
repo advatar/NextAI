@@ -1,5 +1,52 @@
 # Status
 
+## Completed — E69, a deterministic substrate: ready for a governed search run
+
+Readiness audit. **No capability claim.** Pre-registered in
+`experiments/E69-preregistration.json` (`f8a63a4d…`). **All five predictions
+supported.**
+
+E63–E68 spent ten experiments making a wall-clock signal trustworthy and every
+defect found was a timing defect. E69 drops timing.
+`GradedCorrectnessEnvironment` scores the share of hidden cases a candidate
+answers correctly, normalised so the starting solution is 0.0 and full
+correctness is 1.0, unclamped so regressions go negative. Four tasks ship a
+plausible but incomplete starting solution.
+
+| Task | Start | Headroom | Classification | Rounds |
+| --- | --- | --- | --- | --- |
+| digit_sum_graded | 9/16 | 7 cases | solid | 5/5 |
+| count_one_bits | 12/17 | 5 cases | solid | 5/5 |
+| collatz_steps | 12/16 | 4 cases | solid | 5/5 |
+| integer_sqrt | 7/18 | 11 cases | solid | 5/5 |
+
+Across all 20 rounds: anchor self-score exactly `+0.0000`, null sd exactly
+`0.000000`, **best-of-5 phantom gain exactly `0.000000`** against E68's timing
+range of +0.018 to +0.325, reference exactly `+1.0000`, determinism verified.
+
+Zero spread is admitted by evidence, not by default. E64/E65 established that an
+undefined signal-to-noise ratio must fail, because a censored reward produces
+exactly that — `count_primes` v1 was admitted in E64 on the artefact. The
+discriminator is the monotonicity probe, which already caught that case (v1
+scored `+0.0000` for a program doing twice the work). Here the regression probe
+scores **−0.5455 to −2.7500** and determinism is separately verified.
+
+**Four solid tasks against a bar of three: the substrate is ready.** This is the
+first admissible instrument this line of work has produced, and it came from
+abandoning the reward causing the trouble rather than fixing it again.
+
+Limits: this measures **correctness improvement**, not optimisation — narrower
+than the speedup framing. Readiness licenses a governed search run; it is not
+evidence about one.
+
+Next: run the governed search on these four tasks, wire in
+`recursive_lab.candidate_diversity` so a collapsed proposer stream voids the run
+(the E58 defect), pre-register the effect size and replication rule beforehand,
+and seal at least one task for a transfer check.
+
+Validation: 432 tests pass; all 66 `report_digest` values reproduce; no existing
+experiment JSON or v1 environment modified.
+
 ## Completed — E68, replicated admission: no task is solid
 
 Replicated readiness audit. **No capability claim.** Pre-registered in

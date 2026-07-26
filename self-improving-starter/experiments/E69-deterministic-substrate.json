@@ -1,0 +1,504 @@
+{
+  "admission_criteria": {
+    "determinism_required": true,
+    "maximum_absolute_anchor_self_score": 0.0,
+    "maximum_absolute_null_reward_mean": 0.0,
+    "maximum_null_best_of_5_reward": 0.0,
+    "maximum_null_variant_reward_sd": 0.0,
+    "minimum_headroom_cases": 4,
+    "minimum_reference_reward": 1.0,
+    "monotonicity_threshold": -0.05
+  },
+  "claim_boundary": "Readiness audit of a deterministic graded-correctness substrate. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect. Measures correctness improvement, which is narrower than optimisation.",
+  "e68_timing_best_of_5_range": [
+    0.018,
+    0.325
+  ],
+  "experiment_id": "E69-deterministic-substrate",
+  "follows": "E68-replicated-admission",
+  "makes_capability_claim": false,
+  "marginal_tasks": [],
+  "predictions": [
+    {
+      "evidence": "solid: ['digit_sum_graded', 'count_one_bits', 'collatz_steps', 'integer_sqrt']; marginal: []; rejected: []",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "null sd across all rounds: max=0.000000",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "best-of-5 across all rounds: max=0.000000 (E68 timing tasks: +0.018 to +0.325)",
+      "id": "H3",
+      "supported": true
+    },
+    {
+      "evidence": "regression probe range: -2.7500 to -0.5455",
+      "id": "H4",
+      "supported": true
+    },
+    {
+      "evidence": "4 solid tasks; ready=True",
+      "id": "H5",
+      "supported": true
+    }
+  ],
+  "preregistration_digest": "f8a63a4dc8cb3dfbde46e365d6c0b0cb834a6a270d0408cca7561d24457440a5",
+  "question": "Does a deterministic graded-correctness reward produce tasks that are admissible under replication, where ten experiments of timing work did not?",
+  "rejected_tasks": [],
+  "report_digest": "62814b5fb506381a5e70fc918ddb0fc83541971dba4d597a61a64317779f4939",
+  "reward_definition": "(passed - starting_passed) / (total - starting_passed), unclamped, so the starting solution scores 0.0, a fully correct solution 1.0, and a candidate that breaks previously-passing cases scores negative.",
+  "rounds_per_task": 5,
+  "schema_version": 1,
+  "solid_tasks": [
+    "digit_sum_graded",
+    "count_one_bits",
+    "collatz_steps",
+    "integer_sqrt"
+  ],
+  "substrate_ready_for_search": true,
+  "tasks": [
+    {
+      "admitted_rounds": 5,
+      "baseline": {
+        "deterministic": true,
+        "headroom_cases": 7,
+        "scoring": "graded_correctness",
+        "starting_passed": 9,
+        "total_cases": 16
+      },
+      "classification": "solid",
+      "rounds": [
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -1.1428571428571428,
+          "round": 0
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -1.1428571428571428,
+          "round": 1
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -1.1428571428571428,
+          "round": 2
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -1.1428571428571428,
+          "round": 3
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -1.1428571428571428,
+          "round": 4
+        }
+      ],
+      "task_id": "digit_sum_graded",
+      "total_rounds": 5
+    },
+    {
+      "admitted_rounds": 5,
+      "baseline": {
+        "deterministic": true,
+        "headroom_cases": 5,
+        "scoring": "graded_correctness",
+        "starting_passed": 12,
+        "total_cases": 17
+      },
+      "classification": "solid",
+      "rounds": [
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.2,
+          "round": 0
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.2,
+          "round": 1
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.2,
+          "round": 2
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.2,
+          "round": 3
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.2,
+          "round": 4
+        }
+      ],
+      "task_id": "count_one_bits",
+      "total_rounds": 5
+    },
+    {
+      "admitted_rounds": 5,
+      "baseline": {
+        "deterministic": true,
+        "headroom_cases": 4,
+        "scoring": "graded_correctness",
+        "starting_passed": 12,
+        "total_cases": 16
+      },
+      "classification": "solid",
+      "rounds": [
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.75,
+          "round": 0
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.75,
+          "round": 1
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.75,
+          "round": 2
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.75,
+          "round": 3
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -2.75,
+          "round": 4
+        }
+      ],
+      "task_id": "collatz_steps",
+      "total_rounds": 5
+    },
+    {
+      "admitted_rounds": 5,
+      "baseline": {
+        "deterministic": true,
+        "headroom_cases": 11,
+        "scoring": "graded_correctness",
+        "starting_passed": 7,
+        "total_cases": 18
+      },
+      "classification": "solid",
+      "rounds": [
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -0.5454545454545454,
+          "round": 0
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -0.5454545454545454,
+          "round": 1
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -0.5454545454545454,
+          "round": 2
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -0.5454545454545454,
+          "round": 3
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.0,
+          "best_of_5": 0.0,
+          "best_of_k": {
+            "1": 0.0,
+            "2": 0.0,
+            "3": 0.0,
+            "5": 0.0,
+            "8": 0.0
+          },
+          "deterministic": true,
+          "failures": [],
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0,
+          "reference_reward_mean": 1.0,
+          "regression_probe_reward": -0.5454545454545454,
+          "round": 4
+        }
+      ],
+      "task_id": "integer_sqrt",
+      "total_rounds": 5
+    }
+  ]
+}

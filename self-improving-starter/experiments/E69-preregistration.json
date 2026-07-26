@@ -1,0 +1,82 @@
+{
+  "admission_criteria": {
+    "determinism_required": true,
+    "maximum_absolute_anchor_self_score": 0.0,
+    "maximum_absolute_null_reward_mean": 0.0,
+    "maximum_null_best_of_5_reward": 0.0,
+    "maximum_null_variant_reward_sd": 0.0,
+    "minimum_headroom_cases": 4,
+    "minimum_reference_reward": 1.0,
+    "monotonicity_threshold": -0.05
+  },
+  "analysis_plan": {
+    "comparison": "Best-of-5 phantom gain is reported against E68's timing figures (+0.018 to +0.325) to quantify what dropping the timing signal buys.",
+    "no_capability_claim": "Readiness licenses a governed search run; it is not evidence about one.",
+    "null_handling": "Recorded as measured; no threshold relaxed after seeing results.",
+    "primary": "Per task per round: anchor self-score, null mean/sd, best-of-5, reference reward, monotonicity, determinism, and headroom. Classification by consistency across rounds, as in E68."
+  },
+  "claim_boundary": "Readiness audit of a deterministic graded-correctness substrate. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect. Measures correctness improvement, which is narrower than optimisation.",
+  "classification": {
+    "marginal": "admitted in some rounds but not all",
+    "rejected": "admitted in no round",
+    "solid": "admitted in every round"
+  },
+  "criteria_notes": "The noise thresholds are exactly zero rather than 0.05. A deterministic reward has no excuse for any spread at all, so anything above zero indicates a defect -- a nondeterministic environment, a timeout, or a leak -- rather than tolerable jitter. An undefined signal-to-noise ratio is accepted ONLY when the monotonicity probe scores below the threshold and determinism is verified; a censored reward fails monotonicity, which is how E65 caught count_primes v1.",
+  "experiment_id": "E69-deterministic-substrate",
+  "follows": "E68-replicated-admission",
+  "instrument": {
+    "anchor_self_probes_per_round": 2,
+    "best_of_k_values": [
+      1,
+      2,
+      3,
+      5,
+      8
+    ],
+    "bootstrap_samples": 20000,
+    "determinism_probes_per_round": 3,
+    "null_variants_per_round": 8,
+    "primary_metric": "share of hidden cases fixed, relative to the start",
+    "reference_probes_per_round": 2,
+    "rounds": 5
+  },
+  "makes_capability_claim": false,
+  "predictions": [
+    {
+      "basis": "The reward is a deterministic function of the candidate, so there is no mechanism for a verdict to change between rounds.",
+      "id": "H1",
+      "statement": "All four tasks are solid."
+    },
+    {
+      "basis": "Null variants are semantically identical and the reward is deterministic. Any non-zero value would indicate a nondeterministic environment or a timeout, not jitter.",
+      "id": "H2",
+      "statement": "Null standard deviation is exactly 0.0 in every round of every task."
+    },
+    {
+      "basis": "A maximum over identical values is that value, so a search proposing k no-op candidates gains nothing.",
+      "id": "H3",
+      "statement": "Best-of-5 phantom gain is exactly 0.0 for every task, against +0.018 to +0.325 for the timing tasks in E68."
+    },
+    {
+      "basis": "Scouting saw regressions between -0.55 and -2.75. This is the criterion that separates E69 from the E64 count_primes v1 artefact.",
+      "id": "H4",
+      "statement": "Every task's monotonicity probe scores below -0.05, establishing that the zero spread is determinism and not censoring."
+    },
+    {
+      "basis": "Follows from H1. Stated separately because readiness is the decision this whole line of work has been trying to reach.",
+      "id": "H5",
+      "statement": "At least three tasks are solid, so the substrate is ready for a governed search run."
+    }
+  ],
+  "preregistration_digest": "f8a63a4dc8cb3dfbde46e365d6c0b0cb834a6a270d0408cca7561d24457440a5",
+  "question": "Does a deterministic graded-correctness reward produce tasks that are admissible under replication, where ten experiments of timing work did not?",
+  "readiness_rule": "Ready for a governed search run only if at least three tasks are SOLID. Marginal does not count.",
+  "reward_definition": "(passed - starting_passed) / (total - starting_passed), unclamped, so the starting solution scores 0.0, a fully correct solution 1.0, and a candidate that breaks previously-passing cases scores negative.",
+  "schema_version": 1,
+  "tasks": [
+    "digit_sum_graded",
+    "count_one_bits",
+    "collatz_steps",
+    "integer_sqrt"
+  ]
+}

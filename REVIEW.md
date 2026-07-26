@@ -880,6 +880,71 @@ and each fix was validated. But the remaining obstacle is not a defect to fix in
 the harness: it is that a shared, loaded developer machine is not a stable enough
 platform for threshold-crossing decisions at these tolerances.
 
+## E69 — a deterministic substrate, and the first admissible one
+
+E63–E68 spent ten experiments making a wall-clock speedup signal trustworthy on
+a developer machine. Every defect found was a *timing* defect — saturation,
+censoring, probe evasion, drift, order bias, repeat-count floors — and each was
+found and fixed. E68's verdict was still: no task solid.
+
+E69 drops timing. `GradedCorrectnessEnvironment` scores the share of hidden
+cases a candidate answers correctly, normalised so the starting solution is 0.0
+and a fully correct solution is 1.0, unclamped so regressions go negative. Four
+tasks ship a plausible but incomplete starting solution failing a documented
+class of inputs — the shape of fix a coding agent is actually asked to make.
+
+### Every prediction supported
+
+| Task | Start | Headroom | Classification | Rounds |
+| --- | --- | --- | --- | --- |
+| digit_sum_graded | 9/16 | 7 cases | **solid** | 5/5 |
+| count_one_bits | 12/17 | 5 cases | **solid** | 5/5 |
+| collatz_steps | 12/16 | 4 cases | **solid** | 5/5 |
+| integer_sqrt | 7/18 | 11 cases | **solid** | 5/5 |
+
+Across all 20 rounds: anchor self-score exactly `+0.0000`, null sd exactly
+`0.000000`, best-of-5 phantom gain exactly `0.000000`, reference exactly
+`+1.0000`, determinism verified.
+
+**Best-of-5 phantom gain is the number to compare.** The timing tasks in E68
+handed a no-op search between **+0.018 and +0.325** for free. Here it is exactly
+zero, because a maximum over identical values is that value. That property
+cannot be engineered into a timing reward; it falls out of determinism.
+
+### Zero spread earns a pass by evidence, not by default
+
+E64 and E65 established that an undefined signal-to-noise ratio must **fail** —
+it is undefined exactly when null spread is zero, and a reward clamped to a
+constant produces that. `count_primes` v1 was admitted in E64 on the artefact.
+
+A deterministic reward has zero spread for the opposite reason, so the criterion
+needed care rather than a quiet exemption. The discriminator already existed:
+the **monotonicity probe**. A censored reward returns ~0.0 for a genuinely worse
+program — that is exactly how E65 caught `count_primes` v1, which scored
+`+0.0000` for a program doing twice the work. Here the regression probe scores
+**−0.5455 to −2.7500**, and determinism is separately verified by rescoring
+identical programs across rounds. Zero spread is admitted only with both.
+
+### The substrate is ready
+
+Four solid tasks against a bar of three. This is the first admissible instrument
+this line of work has produced, and it took abandoning the reward that was
+causing the trouble rather than fixing it again.
+
+Two honest limits. It measures **correctness improvement**, not optimisation —
+narrower than the speedup framing, though still a real question for coding
+agents. And readiness licenses a governed search run; it is not evidence about
+one. Nothing here says anything about a model improving anything.
+
+### What the timing work was worth
+
+Not nothing, but less than its cost. The probe machinery — null variants that
+cannot be evaded, the monotonicity probe, best-of-k phantom gain, replicated
+admission — all transferred directly and is what makes E69's result
+trustworthy rather than merely clean-looking. But ten experiments to conclude
+that a laptop cannot time reliably is a poor trade, and the signal was there
+early: E63 already showed `count_primes` handing out 0.254 for nothing.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -926,24 +991,24 @@ platform for threshold-crossing decisions at these tolerances.
    worst tasks in the suite.
 18. ~~**Add one or two more high-headroom tasks.**~~ `gcd_fixed` added in E68
    (2565x, Euclidean algorithm). Headroom is no longer the binding constraint.
-19. **Stop tuning tasks and stabilise the measurement platform.** This is now the
-   blocking item, and it is not a code fix. Per-round null sd spans 0.020-0.415
-   on the same task; the machine is not stationary between rounds. Options, in
-   rough order of cost: run audits on an otherwise-idle machine with a settling
-   period and pinned CPU frequency; raise nulls per round from 8 to 30+ so the sd
-   estimate carries +/-13% rather than +/-27%; or judge admission on an interval
-   for the sd rather than a point estimate.
-20. **Consider abandoning wall-clock reward for this substrate.** Ten experiments
-   have gone into making a timing signal trustworthy on a developer laptop and
-   none has produced a task admissible under replication. Correctness-only tasks
-   with a larger pool have no timing noise at all, cannot be gamed by best-of-k
-   phantom gain, and would let the governed-search work proceed. The speedup
-   framing is what has cost the time, not the substrate.
-21. **Restore real search in the live loop.** Wire
+19. ~~**Stabilise the measurement platform.**~~ Not pursued. E69 removed the
+   need by dropping the timing signal; the timing tasks remain unusable and are
+   left that way rather than tuned further.
+20. ~~**Abandon wall-clock reward for this substrate.**~~ Done in E69. Four
+   deterministic tasks, all solid across five rounds, zero phantom gain.
+21. **Run the governed search.** This is now unblocked and is the point of the
+   whole exercise. Use the four solid tasks, wire in
+   `recursive_lab.candidate_diversity` so a collapsed proposer stream voids the
+   run (the E58 defect), and pre-register the effect size and replication rule
+   before running rather than after.
+22. **Hold out a task.** All four current tasks are visible to any search. At
+   least one should be sealed for a final transfer check, per `POC_PLAN.md`'s
+   sealed-suite discipline, before any result is reported as generalising.
+23. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-22. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+24. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

@@ -6,6 +6,13 @@ from .count_primes_v2 import CountPrimesV2Env
 from .power_mod import PowerModEnv
 from .count_divisors import CountDivisorsEnv
 from .gcd_fixed import GcdFixedEnv
+from .graded_correctness import GradedCorrectnessEnvironment
+from .correctness_tasks import (
+    CollatzStepsEnv,
+    CountOneBitsEnv,
+    DigitSumGradedEnv,
+    IntegerSqrtEnv,
+)
 from .timed_task import TimedTaskEnvironment
 
 REGISTRY = {
@@ -16,7 +23,20 @@ REGISTRY = {
     PowerModEnv.name: PowerModEnv,
     CountDivisorsEnv.name: CountDivisorsEnv,
     GcdFixedEnv.name: GcdFixedEnv,
+    DigitSumGradedEnv.name: DigitSumGradedEnv,
+    CountOneBitsEnv.name: CountOneBitsEnv,
+    CollatzStepsEnv.name: CollatzStepsEnv,
+    IntegerSqrtEnv.name: IntegerSqrtEnv,
 }
+
+#: Deterministic graded-correctness tasks. E68 found no timing task admissible
+#: under replication; these carry no timing noise at all.
+CORRECTNESS_TASKS = (
+    DigitSumGradedEnv.name,
+    CountOneBitsEnv.name,
+    CollatzStepsEnv.name,
+    IntegerSqrtEnv.name,
+)
 
 #: Tasks E63 rejected as unable to measure an improvement, kept registered so
 #: the historical records that used them stay interpretable.  ``count_primes``
@@ -34,6 +54,12 @@ __all__ = [
     "PowerModEnv",
     "CountDivisorsEnv",
     "GcdFixedEnv",
+    "GradedCorrectnessEnvironment",
+    "DigitSumGradedEnv",
+    "CountOneBitsEnv",
+    "CollatzStepsEnv",
+    "IntegerSqrtEnv",
+    "CORRECTNESS_TASKS",
     "TimedTaskEnvironment",
     "REGISTRY",
     "E63_REJECTED",
