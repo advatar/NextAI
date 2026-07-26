@@ -1,5 +1,48 @@
 # Status
 
+## Completed — E61, the rugged regression does not replicate
+
+- [x] Add an `endpoint_coinflip` exploitation mode and endpoint-pick accounting
+  to `scaled_landscape`, so the surrogate's two effects — narrowing search to
+  column endpoints, and using the fit to choose between them — can be separated.
+- [x] Pre-register the ablation, a 0.005 minimum effect size, and five
+  predictions in `experiments/E61-preregistration.json` (`235d865d…`) before
+  running, on seeds 1000–1239 disjoint from E59/E60.
+- [x] Run the ablation and grade every prediction, including the three that
+  failed.
+
+**The E60 `rugged` regression was a false positive.** On fresh seeds it measured
+`−0.00165`, CI `[−0.00843, +0.00503]` — inconclusive, spanning zero, opposite
+sign — against E60's `+0.00836`, CI `[+0.00167, +0.01533]`. E60's interval barely
+excluded zero across nine families with no multiplicity correction, exactly as
+its own pre-registration disclosed. Replication caught it. The earlier
+description of it as the most actionable finding in the series was wrong and is
+corrected in `REVIEW.md`.
+
+Three of five predictions failed (H1, H2, H5), all because they presupposed a
+real effect on rugged.
+
+The two mechanistic predictions held. The fit-following component
+(`e60_promoted` minus `endpoint_control`, two arms differing only in whether the
+fit or a coin flip picks the endpoint) is `+0.00014`, CI `[−0.00581, +0.00611]`
+on rugged — no signal, as expected on a hash-derived surface — and `−0.00261`,
+CI `[−0.00445, −0.00074]` on monotone. The positive control passes, so the
+ablation measures what it claims to.
+
+Unplanned finding: on monotone, E41's older gate is three times better than
+E60's promoted router (`−0.01967` against `−0.00625`). E60's router demands
+`variance >= 0.03`, which monotone rarely produces, so it declines to exploit 88%
+of the time. Worst-family selection picked a router that is mediocre everywhere
+over one that is excellent where signal exists — the promotion objective is worth
+revisiting.
+
+The new minimum effect size earned its place immediately, demoting
+`endpoint_control` on monotone (`−0.00364`, interval excluding zero) to
+negligible rather than reporting a fourth result.
+
+Validation: 340 tests pass; all 58 `report_digest` values reproduce; no existing
+experiment JSON or runner modified.
+
 ## Completed — E60, the corrected admission gate under a frozen plan
 
 - [x] Add `minimum_policy_disagreement_rate` to `AdmissionCriteria`, checked

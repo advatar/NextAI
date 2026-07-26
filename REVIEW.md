@@ -251,12 +251,17 @@ All four predictions were supported (H1–H4).
 
 ### Two things worth reading carefully
 
-**The promoted router actively harms `rugged`.** Its interval excludes zero on
+**The promoted router appears to harm `rugged`.** Its interval excludes zero on
 the wrong side: the policy selected on training data makes held-out performance
 *worse* on a family it was trained across. The old instrument could not have
-shown this — at 80% coverage every policy tied at the ceiling. This is the first
-result in the series where a promoted policy is demonstrably harmful, and it is
-an argument for the support-guard idea E45 reached for.
+shown this — at 80% coverage every policy tied at the ceiling.
+
+> **Superseded by E61.** This did **not** replicate on fresh seeds. E61 measured
+> `−0.00165`, CI `[−0.00843, +0.00503]` — inconclusive, spanning zero, and the
+> opposite sign. The E60 result was a false positive, and calling it "the most
+> actionable finding in the series" was wrong. See
+> [E61](#e61--the-rugged-regression-does-not-replicate) for what actually
+> happened and why the pre-registration anticipated it.
 
 **`curved`'s result is statistically significant and practically meaningless.**
 The interval excludes zero, but the effect is −0.00003. With low variance and 120
@@ -271,29 +276,111 @@ admitted families only. The monotone effect is correspondingly smaller here
 (−0.0073 against E59's −0.0237). Same direction, same sign, different magnitude;
 these are different selections, not a replication failure.
 
+## E61 — the rugged regression does not replicate
+
+E61 was designed to explain E60's `rugged` regression with a causal ablation. It
+instead found there was nothing to explain.
+
+The plan was frozen first (`preregister_e61.py`, digest `235d865d…`) with five
+predictions and a new **minimum effect size** criterion of 0.005 regret units,
+closing the gap E60 left open. Seeds 1000–1239 are disjoint from E59 and E60's
+0–239.
+
+### The headline: a false positive, caught by replication
+
+| Experiment | Seeds | `rugged` delta | 95% CI |
+| --- | --- | --- | --- |
+| E60 | 120–239 | +0.00836 | [+0.00167, +0.01533] |
+| E61 | 1000–1239 | **−0.00165** | **[−0.00843, +0.00503]** |
+
+The effect vanished, changed sign, and its interval now spans zero. E60's
+interval only barely excluded zero, and nine families were examined without
+multiplicity correction — which E60's own pre-registration disclosed in advance:
+
+> "any family reaching an interval that excludes zero is reported as a
+> single-family result requiring replication, not as a confirmed effect."
+
+That caveat fired exactly as written. The process worked; my summary of it did
+not. I called this "the most actionable finding in the series" and it was noise.
+
+**Three of five predictions failed.** H1 (regression replicates), H2
+(endpoint_control also harms), and H5 (e41_gate harms less) are all NOT
+supported, because all three presupposed a real effect on rugged.
+
+### What the ablation did establish
+
+The two mechanistic predictions — the ones that did not depend on the regression
+being real — both held.
+
+| Family | Fit-following component | 95% CI | Reading |
+| --- | --- | --- | --- |
+| rugged | +0.00014 | [−0.00581, +0.00611] | fit carries no signal (H3 ✓) |
+| monotone | −0.00261 | [−0.00445, −0.00074] | fit carries real signal (H4 ✓) |
+
+The component is `e60_promoted` minus `endpoint_control`: two arms that fire on
+identical conditions and both always land on a column endpoint, differing only
+in whether the fitted line or a coin flip picks which end. On `rugged` a
+three-point linear fit is worth exactly nothing, as expected on a hash-derived
+surface. On `monotone` it is worth something real. The positive control passes,
+so the ablation measures what it claims to.
+
+### An unplanned finding worth acting on
+
+On `monotone`, E41's older gate is **three times better** than E60's promoted
+router:
+
+| Arm | monotone delta | 95% CI | Endpoint pick rate |
+| --- | --- | --- | --- |
+| e41_gate (0.5, 0.01) | **−0.01967** | [−0.02167, −0.01777] | 0.56 |
+| e60_promoted (0.0, 0.03) | −0.00625 | [−0.00835, −0.00425] | 0.12 |
+| endpoint_control | −0.00364 | [−0.00517, −0.00213] | 0.12 |
+
+The endpoint rates explain it: E60's router demands `variance >= 0.03`, which
+`monotone` columns rarely produce, so it declines to exploit 88% of the time.
+E41's gate keys on `R^2 >= 0.5`, which monotone satisfies constantly, so it
+exploits on 56% of columns and captures the available signal.
+
+**The promotion objective is the problem.** Selecting on *worst-family* regret
+across four admitted families picked a router that is mediocre everywhere over
+one that is excellent where signal exists. That is a defensible objective, but it
+was never compared against alternatives, and E61 shows it costs a factor of three
+on the one family with a real effect.
+
+### The effect-size floor earned its place immediately
+
+`endpoint_control` on monotone measured −0.00364 with an interval excluding
+zero, and was correctly reported as **negligible** rather than as a result. Under
+E60's rules it would have been a fourth "reduces regret" finding.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
    before the next cohort.~~ Done in E60; five of nine families were rejected.
 2. ~~**Report per-family, not pooled, as the primary claim.**~~ Done in E60,
    pre-registered as the primary analysis.
-3. **Pre-register a minimum effect size.** `curved` cleared significance with an
-   effect of −0.00003. A rate criterion fixed the admission side; the reporting
-   side still needs a floor below which an interval excluding zero is not called
-   a result.
-4. **Investigate the `rugged` regression.** A promoted policy that harms a
-   held-out family is the most actionable finding in the series and is exactly
-   what a support guard should catch.
-5. **Move to the executable substrate.** `task_harness.py` and
+3. ~~**Pre-register a minimum effect size.**~~ Done in E61 at 0.005 regret units;
+   it immediately demoted a significant-but-negligible result.
+4. ~~**Investigate the `rugged` regression.**~~ Done in E61: it did not
+   replicate. No further work is warranted.
+5. **Replicate before reporting, as policy.** E60's rugged result and E59's
+   monotone magnitude both moved substantially on fresh seeds. Single-cohort
+   intervals in this benchmark are not trustworthy on their own. The cheapest
+   fix is to make every runner evaluate two disjoint seed blocks and report both,
+   so an unreplicated effect is visibly unreplicated.
+6. **Revisit the promotion objective.** Worst-family selection cost a factor of
+   three against E41's older gate on the one family with a real effect. Compare
+   worst-family, macro-mean, and signal-weighted objectives under matched
+   budgets — this is a cheap experiment with a clear decision attached.
+7. **Move to the executable substrate.** `task_harness.py` and
    `container_runner.py` already exist and cannot saturate. The synthetic grids
    were scaffolding for the plumbing, and the plumbing is finished and tested.
    `GEM_ASSESSMENT.md` step 1 identified this and it remains the highest-value
    move.
-6. **Restore real search in the live loop.** Wire
+8. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-7. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+9. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

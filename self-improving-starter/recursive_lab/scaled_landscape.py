@@ -82,6 +82,22 @@ SMOOTH_FAMILIES: tuple[str, ...] = ("monotone", "curved", "ridge")
 #: reduction, not because it is a useful scale to experiment at.
 LEGACY_GRID_SIZE = 5
 
+#: Follow the fitted line: pick whichever end of the unseen range the surrogate
+#: predicts is higher.  This is what every historical router did.
+SURROGATE_MODE = "surrogate"
+
+#: Pick one of the two ends of the unseen range by coin flip, ignoring the fit
+#: entirely.  This exists purely as a causal ablation.  Because
+#: :func:`surrogate_choice` *always* returns an endpoint, a surrogate router
+#: does two separable things at once: it restricts exploitation to the two ends
+#: of each column, and it uses the fit to choose between them.  On a landscape
+#: where the fit carries no signal the second part is worthless, but the first
+#: part still narrows the search.  Comparing against this mode separates
+#: "endpoint restriction hurt" from "following a meaningless fit hurt".
+ENDPOINT_COINFLIP_MODE = "endpoint_coinflip"
+
+EXPLOIT_MODES = (SURROGATE_MODE, ENDPOINT_COINFLIP_MODE)
+
 
 class LandscapeError(ValueError):
     """Raised when a landscape or budget is not well formed."""
@@ -250,6 +266,14 @@ class RouterPolicy:
     name: str
     r_squared_threshold: float
     variance_threshold: float
+    exploit_mode: str = SURROGATE_MODE
+
+    def __post_init__(self) -> None:
+        if self.exploit_mode not in EXPLOIT_MODES:
+            raise LandscapeError(
+                f"unknown exploit_mode {self.exploit_mode!r}; "
+                f"expected one of {EXPLOIT_MODES}"
+            )
 
     def fires(self, r_squared: float, variance: float) -> bool:
         return (
@@ -315,6 +339,11 @@ class PolicyRun:
     regret: float
     target_hit: bool
     surrogate_uses: int
+    #: Exploitation picks that landed on either end of the column's unseen
+    #: range.  A surrogate router scores ``grid_size`` here by construction; a
+    #: uniform random policy scores about ``2 / (grid_size - explored)`` of
+    #: them.  Recorded so the narrowing effect is visible rather than inferred.
+    endpoint_picks: int = 0
 
 
 def run_policy(
@@ -332,6 +361,7 @@ def run_policy(
     best = -math.inf
     target_hit = False
     surrogate_uses = 0
+    endpoint_picks = 0
     evaluations = 0
 
     for x in range(grid_size):
@@ -359,12 +389,18 @@ def run_policy(
         ) / len(observations)
 
         if policy.fires(r_squared, variance):
-            chosen = surrogate_choice(slope, unseen_low, unseen_high)
+            if policy.exploit_mode == SURROGATE_MODE:
+                chosen = surrogate_choice(slope, unseen_low, unseen_high)
+            else:
+                chosen = unseen_low if rng.random() < 0.5 else unseen_high
             surrogate_uses += 1
         else:
             chosen = rng.randrange(grid_size)
             while chosen in explored_set:
                 chosen = rng.randrange(grid_size)
+
+        if chosen in (unseen_low, unseen_high):
+            endpoint_picks += 1
 
         value = score(spec, (x, chosen))
         evaluations += 1
@@ -382,6 +418,7 @@ def run_policy(
         regret=optimum(spec) - best,
         target_hit=target_hit,
         surrogate_uses=surrogate_uses,
+        endpoint_picks=endpoint_picks,
     )
 
 

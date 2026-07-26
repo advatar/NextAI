@@ -1,0 +1,71 @@
+{
+  "analysis_plan": {
+    "decomposition": "The paired difference (e60_promoted - endpoint_control), with its own bootstrap interval, isolates the fit-following component. If it spans zero on rugged, the harm is attributable to endpoint narrowing rather than to following a meaningless fit.",
+    "null_handling": "Null and inconclusive results are recorded as measured and are not re-run, re-seeded, or re-thresholded, per POC_PLAN.md.",
+    "primary": "Per-family paired regret delta of each arm against the random baseline, on shared seeds, with 95% bootstrap intervals. An arm is called a result only if its interval excludes zero AND its point estimate clears the minimum effect size."
+  },
+  "arms": {
+    "e41_gate": "(0.5, 0.01) surrogate mode; the support-aware gate",
+    "e60_promoted": "(0.0, 0.03) surrogate mode; the harmful router from E60",
+    "endpoint_control": "(0.0, 0.03) endpoint_coinflip mode; identical firing rule, lands on an endpoint, but ignores the fit",
+    "random": "(1.01, 0.0) surrogate mode; never fires, uniform over unseen"
+  },
+  "claim_boundary": "Synthetic landscape ablation of one exploitation rule. Explains a measured regression in this benchmark; not evidence about model self-improvement or a recursive effect.",
+  "criteria": {
+    "maximum_exploration_target_rate": 0.2,
+    "minimum_policy_disagreement_rate": 0.2,
+    "minimum_policy_disagreements": 3,
+    "minimum_tasks": 5
+  },
+  "experiment_id": "E61-rugged-ablation",
+  "families": [
+    "rugged",
+    "monotone"
+  ],
+  "family_roles": {
+    "monotone": "positive control; fit carries real signal, so fit-following should help here if the ablation is measuring what it claims to",
+    "rugged": "the regression under investigation; fit carries no signal"
+  },
+  "follows": "E60-corrected-admission",
+  "instrument": {
+    "exploration_per_column": 3,
+    "grid_size": 128,
+    "module": "recursive_lab.scaled_landscape",
+    "primary_metric": "regret (1.0 - best_score); lower is better",
+    "seed_disjointness": "E59 and E60 used seeds 0-239. E61 uses 1000-1239, so the rugged replication is on genuinely fresh landscapes.",
+    "seed_start": 1000,
+    "seeds": 240
+  },
+  "minimum_effect_size": 0.005,
+  "minimum_effect_size_justification": "An interval excluding zero is reported as a result only if the point estimate also clears 0.005 in regret units, i.e. 0.5% of the metric's [0, 1] range. E60's curved family cleared significance with an effect of -0.00003, three orders of magnitude below anything that changes a best-found score meaningfully. Chosen with E60's magnitudes visible and therefore not blind; applied prospectively here.",
+  "predictions": [
+    {
+      "basis": "E60 measured +0.00836, CI [+0.00167, +0.01533].",
+      "id": "H1",
+      "statement": "The rugged regression replicates on fresh seeds: e60_promoted has a positive delta whose interval excludes zero and whose magnitude clears the minimum effect size."
+    },
+    {
+      "basis": "If narrowing to two bands is the mechanism, discarding the fit entirely should not rescue it.",
+      "id": "H2",
+      "statement": "endpoint_control also harms rugged: positive delta, interval excluding zero."
+    },
+    {
+      "basis": "A three-point linear fit on a hash-derived surface should carry no usable signal, so following it should be no worse than a coin flip between the same two cells.",
+      "id": "H3",
+      "statement": "On rugged the difference (e60_promoted - endpoint_control) has an interval spanning zero, i.e. the harm is endpoint narrowing and not fit-following."
+    },
+    {
+      "basis": "Positive control. Where the fit carries signal, choosing the predicted-higher end must beat a coin flip, otherwise the ablation is not measuring fit-following at all.",
+      "id": "H4",
+      "statement": "On monotone, e60_promoted has a clearly lower regret than endpoint_control, with the difference interval excluding zero."
+    },
+    {
+      "basis": "e41_gate requires R^2 >= 0.5 before firing, so it should decline to exploit on a signal-free surface far more often. Speculative: a spurious fit on three points may clear 0.5 more easily than expected.",
+      "id": "H5",
+      "statement": "On rugged, e41_gate causes strictly less harm than e60_promoted (smaller positive delta)."
+    }
+  ],
+  "preregistration_digest": "235d865d223e64fd8574a3de691181e7953f62a71841416a6a620dd0e24d280b",
+  "question": "Why does the E60-promoted router increase regret on the rugged family, and is the cause endpoint narrowing or fit-following?",
+  "schema_version": 1
+}

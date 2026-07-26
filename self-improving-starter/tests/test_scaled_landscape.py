@@ -16,6 +16,7 @@ from compare_e42_second_audit import score as e42_score  # noqa: E402
 from recursive_lab.scaled_landscape import (  # noqa: E402
     ALWAYS_SURROGATE_POLICY,
     E41_GATE_POLICY,
+    ENDPOINT_COINFLIP_MODE,
     FAMILIES,
     LEGACY_GRID_SIZE,
     LandscapeError,
@@ -257,6 +258,72 @@ class PolicyBehaviour(unittest.TestCase):
             if run_policy(spec, budget, RANDOM_POLICY, seed=seed).target_hit:
                 hits += 1
         self.assertLessEqual(hits / 40, 0.2)
+
+
+class ExploitModeAblation(unittest.TestCase):
+    """The endpoint-coinflip control isolates narrowing from fit-following."""
+
+    def test_surrogate_always_lands_on_an_endpoint(self):
+        """The premise of the ablation: a surrogate router narrows search to
+        two bands per column whether or not the fit means anything."""
+        budget = SearchBudget(64, 3)
+        for seed in range(15):
+            spec = make_spec("rugged", 64, seed=seed)
+            run = run_policy(spec, budget, ALWAYS_SURROGATE_POLICY, seed=seed)
+            self.assertEqual(run.surrogate_uses, 64)
+            self.assertEqual(run.endpoint_picks, 64)
+
+    def test_random_rarely_lands_on_an_endpoint(self):
+        budget = SearchBudget(64, 3)
+        total = 0
+        for seed in range(15):
+            spec = make_spec("rugged", 64, seed=seed)
+            total += run_policy(spec, budget, RANDOM_POLICY, seed=seed).endpoint_picks
+        # Two endpoints among 61 unseen cells per column.
+        self.assertLess(total / (15 * 64), 0.15)
+
+    def test_endpoint_coinflip_also_always_lands_on_an_endpoint(self):
+        policy = RouterPolicy("endpoint", 0.0, 0.0, ENDPOINT_COINFLIP_MODE)
+        budget = SearchBudget(64, 3)
+        for seed in range(10):
+            spec = make_spec("rugged", 64, seed=seed)
+            run = run_policy(spec, budget, policy, seed=seed)
+            self.assertEqual(run.endpoint_picks, 64)
+
+    def test_endpoint_coinflip_ignores_the_fit(self):
+        """It must differ from the surrogate on a landscape with real signal;
+        otherwise it is not an ablation of anything."""
+        budget = SearchBudget(64, 3)
+        coinflip = RouterPolicy("endpoint", 0.0, 0.0, ENDPOINT_COINFLIP_MODE)
+        surrogate_regret = []
+        coinflip_regret = []
+        for seed in range(30):
+            spec = make_spec("monotone", 64, seed=seed)
+            surrogate_regret.append(
+                run_policy(spec, budget, ALWAYS_SURROGATE_POLICY, seed=seed).regret
+            )
+            coinflip_regret.append(run_policy(spec, budget, coinflip, seed=seed).regret)
+        self.assertLess(
+            sum(surrogate_regret) / len(surrogate_regret),
+            sum(coinflip_regret) / len(coinflip_regret),
+        )
+
+    def test_unknown_mode_is_rejected(self):
+        with self.assertRaises(LandscapeError):
+            RouterPolicy("bad", 0.0, 0.0, "guess")
+
+    def test_default_mode_is_the_historical_one(self):
+        self.assertEqual(RANDOM_POLICY.exploit_mode, "surrogate")
+        self.assertEqual(RouterPolicy("x", 0.0, 0.0).exploit_mode, "surrogate")
+
+    def test_coinflip_runs_are_deterministic(self):
+        policy = RouterPolicy("endpoint", 0.0, 0.0, ENDPOINT_COINFLIP_MODE)
+        spec = make_spec("rugged", 48, seed=4)
+        budget = SearchBudget(48, 3)
+        self.assertEqual(
+            run_policy(spec, budget, policy, seed=7),
+            run_policy(spec, budget, policy, seed=7),
+        )
 
 
 class PolicyConstruction(unittest.TestCase):

@@ -1,0 +1,173 @@
+{
+  "admission": [
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "rugged",
+      "observed": {
+        "exploration_target_rate": 0.029166666666666667,
+        "policy_disagreement_rate": 0.975,
+        "policy_disagreements": 234,
+        "tasks": 240
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "monotone",
+      "observed": {
+        "exploration_target_rate": 0.020833333333333332,
+        "policy_disagreement_rate": 0.9791666666666666,
+        "policy_disagreements": 235,
+        "tasks": 240
+      }
+    }
+  ],
+  "arms": {
+    "e41_gate": "(0.5, 0.01) surrogate mode; the support-aware gate",
+    "e60_promoted": "(0.0, 0.03) surrogate mode; the harmful router from E60",
+    "endpoint_control": "(0.0, 0.03) endpoint_coinflip mode; identical firing rule, lands on an endpoint, but ignores the fit",
+    "random": "(1.01, 0.0) surrogate mode; never fires, uniform over unseen"
+  },
+  "budget": {
+    "coverage": 0.03125,
+    "evaluations_per_run": 512,
+    "search_space": 16384
+  },
+  "claim_boundary": "Synthetic landscape ablation of one exploitation rule. Explains a measured regression in this benchmark; not evidence about model self-improvement or a recursive effect.",
+  "experiment_id": "E61-rugged-ablation",
+  "families": [
+    "rugged",
+    "monotone"
+  ],
+  "follows": "E60-corrected-admission",
+  "grid_size": 128,
+  "minimum_effect_size": 0.005,
+  "predictions": [
+    {
+      "evidence": "e60_promoted delta=-0.00165 ci=[-0.008430711324737416, 0.0050275043869687985]",
+      "id": "H1",
+      "supported": false
+    },
+    {
+      "evidence": "endpoint_control delta=-0.00180 ci=[-0.007648025228249538, 0.0034025838610411765]",
+      "id": "H2",
+      "supported": false
+    },
+    {
+      "evidence": "fit-following component=+0.00014 ci=[-0.005806585539533586, 0.006113940388087791]",
+      "id": "H3",
+      "supported": true
+    },
+    {
+      "evidence": "fit-following component=-0.00261 ci=[-0.004445538057742774, -0.00073818897637795]",
+      "id": "H4",
+      "supported": true
+    },
+    {
+      "evidence": "e41_gate delta=+0.00264 vs e60_promoted -0.00165",
+      "id": "H5",
+      "supported": false
+    }
+  ],
+  "preregistration_digest": "235d865d223e64fd8574a3de691181e7953f62a71841416a6a620dd0e24d280b",
+  "question": "Why does the E60-promoted router increase regret on the rugged family, and is the cause endpoint narrowing or fit-following?",
+  "report_digest": "851558c0431a7c23f4b9167b3d9ea67df845bcdd887aab61ea8691d6577fecb9",
+  "results": {
+    "monotone": {
+      "admitted": true,
+      "arms": {
+        "e41_gate": {
+          "mean_endpoint_pick_rate": 0.5647135416666667,
+          "mean_regret": 0.0033464566929133797,
+          "regret_delta_95pct_bootstrap_ci": [
+            -0.021669947506561656,
+            -0.017765748031496043
+          ],
+          "regret_delta_vs_random": -0.01966863517060365,
+          "verdict": "reduces regret"
+        },
+        "e60_promoted": {
+          "mean_endpoint_pick_rate": 0.12073567708333334,
+          "mean_regret": 0.01676509186351704,
+          "regret_delta_95pct_bootstrap_ci": [
+            -0.008349737532808394,
+            -0.004248687664041987
+          ],
+          "regret_delta_vs_random": -0.006249999999999993,
+          "verdict": "reduces regret"
+        },
+        "endpoint_control": {
+          "mean_endpoint_pick_rate": 0.11891276041666667,
+          "mean_regret": 0.019373359580052468,
+          "regret_delta_95pct_bootstrap_ci": [
+            -0.005167322834645665,
+            -0.002132545931758527
+          ],
+          "regret_delta_vs_random": -0.0036417322834645643,
+          "verdict": "negligible: |-0.00364| below minimum effect size 0.005"
+        }
+      },
+      "fit_following_component": {
+        "definition": "e60_promoted minus endpoint_control, paired",
+        "delta": -0.0026082677165354296,
+        "delta_95pct_bootstrap_ci": [
+          -0.004445538057742774,
+          -0.00073818897637795
+        ],
+        "interval_excludes_zero": true
+      },
+      "random_endpoint_pick_rate": 0.014225260416666666,
+      "random_mean_regret": 0.02301509186351703
+    },
+    "rugged": {
+      "admitted": true,
+      "arms": {
+        "e41_gate": {
+          "mean_endpoint_pick_rate": 0.37822265625,
+          "mean_regret": 0.19814616235599306,
+          "regret_delta_95pct_bootstrap_ci": [
+            -0.0022516149131507294,
+            0.007680514229037924
+          ],
+          "regret_delta_vs_random": 0.0026366763307138713,
+          "verdict": "inconclusive: interval spans zero"
+        },
+        "e60_promoted": {
+          "mean_endpoint_pick_rate": 0.3922200520833333,
+          "mean_regret": 0.19385510287123933,
+          "regret_delta_95pct_bootstrap_ci": [
+            -0.008430711324737416,
+            0.0050275043869687985
+          ],
+          "regret_delta_vs_random": -0.0016543831540398258,
+          "verdict": "inconclusive: interval spans zero"
+        },
+        "endpoint_control": {
+          "mean_endpoint_pick_rate": 0.39264322916666666,
+          "mean_regret": 0.1937135754431475,
+          "regret_delta_95pct_bootstrap_ci": [
+            -0.007648025228249538,
+            0.0034025838610411765
+          ],
+          "regret_delta_vs_random": -0.001795910582131685,
+          "verdict": "inconclusive: interval spans zero"
+        }
+      },
+      "fit_following_component": {
+        "definition": "e60_promoted minus endpoint_control, paired",
+        "delta": 0.00014152742809185926,
+        "delta_95pct_bootstrap_ci": [
+          -0.005806585539533586,
+          0.006113940388087791
+        ],
+        "interval_excludes_zero": false
+      },
+      "random_endpoint_pick_rate": 0.014225260416666666,
+      "random_mean_regret": 0.19550948602527918
+    }
+  },
+  "schema_version": 1,
+  "seed_start": 1000,
+  "seeds": 240
+}
