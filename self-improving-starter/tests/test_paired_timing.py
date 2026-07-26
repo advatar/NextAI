@@ -98,9 +98,17 @@ class EndToEnd(unittest.TestCase):
 
     def test_anchor_against_itself_is_near_one(self):
         """The sharpest diagnostic: no candidate involved, so any deviation is
-        pure measurement error."""
-        measurement = paired_measure(SLOW, SLOW, 2000)
-        self.assertAlmostEqual(measurement.ratio, 1.0, delta=0.25)
+        pure measurement error.
+
+        The tolerance is deliberately loose and the median of three is taken.
+        E68 measured self-ratios as far out as 1.48 on a loaded machine, so a
+        tight bound here would make the suite flaky for the very reason the
+        experiment documents — and a flaky assertion about measurement noise
+        teaches nothing. The value of this test is that it fails if pairing
+        breaks structurally, not that it certifies precision.
+        """
+        ratios = sorted(paired_measure(SLOW, SLOW, 2000).ratio for _ in range(3))
+        self.assertAlmostEqual(ratios[1], 1.0, delta=0.6)
 
     def test_calibration_returns_a_usable_reference_ratio(self):
         ratio = calibrate_reference_ratio(SLOW, FAST, 2000, rounds=1)

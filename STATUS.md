@@ -1,5 +1,56 @@
 # Status
 
+## Completed — E68, replicated admission: no task is solid
+
+Replicated readiness audit. **No capability claim.** Pre-registered in
+`experiments/E68-preregistration.json` (`96b784a9…`). Five rounds per task,
+classified **solid** (admitted every round) / **marginal** (some) / **rejected**
+(none). Marginal does not count toward readiness: a verdict that changes between
+rounds is not yet a measurement.
+
+Added `gcd_fixed` (Euclidean algorithm, 2565×, naive loop *replaced* rather than
+bounded) and a `MIN_TIMING_REPEATS` floor, after `gcd_fixed` exposed a second
+harness defect — at ~7 ms per call it calibrated to 2–3 repeats, so two identical
+programs measured ratios from 1.00 to 1.48 (anchor self-score **+0.5058**). Its
+timing argument dropped 120_000 → 20_000. Also gated correctness in the
+`optimize_function` paired scorer, which in E67 timed candidates without checking
+they were correct.
+
+| Task | Headroom | Classification | Rounds admitted |
+| --- | --- | --- | --- |
+| optimize_function | 8934× | **rejected** | 0/5 |
+| count_primes_v2 | 27× | marginal | 1/5 |
+| power_mod | 638× | marginal | 1/5 |
+| count_divisors | 367× | marginal | 1/5 |
+| gcd_fixed | 2565× | marginal | 1/5 |
+
+**No task is solid. The substrate is not ready.** The bar was not lowered.
+
+H1, H2, H5 supported. The two failures are the finding: **H3** — `count_primes_v2`
+(27×, rejected in E64–E67) was admitted in round 3; **H4** — `optimize_function`
+(8934×, widest margins in E67) was rejected in all five. A single round can
+**invert the ranking between the best and worst tasks in the suite**.
+
+Per-round null sd spans **0.020–0.415** on the same task. Sd estimated from 8
+nulls carries ±27% error and contributes, but a 20× spread is far beyond that:
+the measurement environment is non-stationary between rounds. Pairing removed
+drift *within* a measurement; it does not make the machine stationary *between*
+measurements.
+
+E66 and E67 are superseded on which tasks are admissible — both reported
+single-round verdicts. Their protocol findings (pairing beats anchoring) stand,
+being within-run comparisons.
+
+Next blocking item is not a code fix: stabilise the platform (idle machine,
+settling period, 30+ nulls per round), or drop wall-clock reward for this
+substrate in favour of correctness-only tasks, which carry no timing noise and
+cannot be gamed by best-of-k phantom gain.
+
+Validation: 415 tests pass; all 65 `report_digest` values reproduce; no existing
+experiment JSON or v1 environment modified. One flaky timing assertion in
+`tests/test_paired_timing.py` was loosened to a median-of-three with a wide bound
+— a tight tolerance there fails for exactly the reason E68 documents.
+
 ## Completed — E67, two solid tasks; admission verdicts need replication too
 
 Readiness audit. **No capability claim.** Pre-registered in

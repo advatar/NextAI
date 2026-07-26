@@ -1,0 +1,686 @@
+{
+  "admission_criteria": {
+    "maximum_absolute_anchor_self_score": 0.05,
+    "maximum_absolute_null_reward_mean": 0.05,
+    "maximum_null_best_of_5_reward": 0.05,
+    "maximum_null_variant_reward_sd": 0.05,
+    "minimum_reference_reward": 0.5,
+    "minimum_signal_to_noise": 5.0,
+    "monotonicity_threshold": -0.05
+  },
+  "claim_boundary": "Replicated readiness audit of the executable task substrate. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect.",
+  "experiment_id": "E68-replicated-admission",
+  "follows": "E67-substrate-readiness",
+  "makes_capability_claim": false,
+  "marginal_tasks": [
+    "count_primes_v2",
+    "power_mod",
+    "count_divisors",
+    "gcd_fixed"
+  ],
+  "predictions": [
+    {
+      "evidence": "marginal tasks: ['count_primes_v2', 'power_mod', 'count_divisors', 'gcd_fixed']",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "power_mod: marginal (1/5 rounds)",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "count_primes_v2: marginal (1/5)",
+      "id": "H3",
+      "supported": false
+    },
+    {
+      "evidence": "optimize_function: rejected (0/5)",
+      "id": "H4",
+      "supported": false
+    },
+    {
+      "evidence": "solid tasks: none",
+      "id": "H5",
+      "supported": true
+    }
+  ],
+  "preregistration_digest": "96b784a9fd7d779b1fd8d5b1f74b4a2cdfb3804065c5325bb8229a1f2b696a56",
+  "question": "When admission is replicated rather than taken from one run, which tasks hold up?",
+  "rejected_tasks": [
+    "optimize_function"
+  ],
+  "report_digest": "81af8a6c035454f006b293e04ca25b5bb946a256598c332366fc48aab59ae7ba",
+  "reproducibility_note": "Measures wall-clock time; not bit-reproducible. The digest attests to the recorded report.",
+  "rounds_per_task": 5,
+  "schema_version": 1,
+  "solid_tasks": [],
+  "substrate_ready_for_search": false,
+  "tasks": [
+    {
+      "admitted_rounds": 0,
+      "classification": "rejected",
+      "criteria_ever_failed": [
+        "anchor_self_score",
+        "best_of_5",
+        "null_reward_mean",
+        "null_reward_sd",
+        "signal_to_noise"
+      ],
+      "headroom_factor": 8933.830747260736,
+      "rounds": [
+        {
+          "admitted": false,
+          "anchor_self_score": 0.021633037913750333,
+          "best_of_5": 0.018005783098740756,
+          "best_of_k": {
+            "1": -0.22031316640584095,
+            "2": -0.07589331694158762,
+            "3": -0.021748240768406375,
+            "5": 0.018005783098740756,
+            "8": 0.03638676108695289
+          },
+          "failures": [
+            "null_reward_mean -0.2186 exceeds maximum magnitude 0.05",
+            "null_reward_sd 0.2660 exceeds maximum 0.05",
+            "signal_to_noise 4.58 is below minimum 5.0"
+          ],
+          "null_reward_mean": -0.21861993553238385,
+          "null_reward_sd": 0.26596516268537,
+          "reference_reward_mean": 1.0000177739008758,
+          "round": 0,
+          "signal_to_noise": 4.5819448574732204,
+          "slower_probe_reward": -0.9767007827406078
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.004205249512936128,
+          "best_of_5": 0.19781802311118266,
+          "best_of_k": {
+            "1": 0.012365681033603106,
+            "2": 0.09339878949663075,
+            "3": 0.13649556429258922,
+            "5": 0.19781802311118266,
+            "8": 0.25575915725975185
+          },
+          "failures": [
+            "null_reward_sd 0.1575 exceeds maximum 0.05",
+            "best_of_5 +0.1978 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.012748286010032507,
+          "null_reward_sd": 0.157530296089733,
+          "reference_reward_mean": 1.0000262301316585,
+          "round": 1,
+          "signal_to_noise": 6.267225851967224,
+          "slower_probe_reward": -1.261037762789187
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.1395053019930114,
+          "best_of_5": 0.07329757722645205,
+          "best_of_k": {
+            "1": -0.001939520543576901,
+            "2": 0.034993228279759314,
+            "3": 0.05454944972496447,
+            "5": 0.07329757722645205,
+            "8": 0.08537419183147495
+          },
+          "failures": [
+            "anchor_self_score +0.1395 exceeds maximum magnitude \u2014 the starting solution must score 0.0 against itself",
+            "null_reward_sd 0.0649 exceeds maximum 0.05",
+            "best_of_5 +0.0733 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": -0.001618121334363297,
+          "null_reward_sd": 0.06491233032269501,
+          "reference_reward_mean": 1.0000131202798939,
+          "round": 2,
+          "signal_to_noise": 15.430523548221181,
+          "slower_probe_reward": -1.1837530156994196
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.0034761752073322327,
+          "best_of_5": 0.05674565328776017,
+          "best_of_k": {
+            "1": -0.021592089402169324,
+            "2": 0.020572337002127787,
+            "3": 0.0388861775134183,
+            "5": 0.05674565328776017,
+            "8": 0.07039209714849086
+          },
+          "failures": [
+            "null_reward_sd 0.0786 exceeds maximum 0.05",
+            "best_of_5 +0.0567 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": -0.022219509689845488,
+          "null_reward_sd": 0.07858629549809033,
+          "reference_reward_mean": 0.9999885792385914,
+          "round": 3,
+          "signal_to_noise": 13.007459919691428,
+          "slower_probe_reward": -1.0177361155344418
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": -0.075422674195319,
+          "best_of_5": 0.034413376535185114,
+          "best_of_k": {
+            "1": 0.009427028461748276,
+            "2": 0.018913044441838944,
+            "3": 0.025048322970475073,
+            "5": 0.034413376535185114,
+            "8": 0.04391855287875831
+          },
+          "failures": [
+            "anchor_self_score -0.0754 exceeds maximum magnitude \u2014 the starting solution must score 0.0 against itself"
+          ],
+          "null_reward_mean": 0.009264510511589998,
+          "null_reward_sd": 0.020416990274175935,
+          "reference_reward_mean": 0.9999923388579455,
+          "round": 4,
+          "signal_to_noise": 48.524675529647475,
+          "slower_probe_reward": -0.9922191956877326
+        }
+      ],
+      "task_id": "optimize_function",
+      "total_rounds": 5
+    },
+    {
+      "admitted_rounds": 1,
+      "classification": "marginal",
+      "criteria_ever_failed": [
+        "anchor_self_score",
+        "best_of_5",
+        "null_reward_sd"
+      ],
+      "headroom_factor": 26.66100713371283,
+      "rounds": [
+        {
+          "admitted": false,
+          "anchor_self_score": 0.015752325141449097,
+          "best_of_5": 0.029203540847227066,
+          "best_of_k": {
+            "1": -0.02643234017341894,
+            "2": 0.006039289382488815,
+            "3": 0.017105398598528016,
+            "5": 0.029203540847227066,
+            "8": 0.03822227540902425
+          },
+          "failures": [
+            "null_reward_sd 0.0691 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": -0.026158770178053743,
+          "null_reward_sd": 0.0690639938111449,
+          "reference_reward_mean": 1.0011982662211645,
+          "round": 0,
+          "signal_to_noise": 14.875436239736151,
+          "slower_probe_reward": -1.155597181150263
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": -0.02958348542003975,
+          "best_of_5": 0.15726943476145255,
+          "best_of_k": {
+            "1": -0.03562576571437195,
+            "2": 0.06557098883125488,
+            "3": 0.10822015313954253,
+            "5": 0.15726943476145255,
+            "8": 0.19323599151741475
+          },
+          "failures": [
+            "null_reward_sd 0.1928 exceeds maximum 0.05",
+            "best_of_5 +0.1573 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": -0.035852311275011435,
+          "null_reward_sd": 0.19284867271238867,
+          "reference_reward_mean": 1.0254814361157603,
+          "round": 1,
+          "signal_to_noise": 5.503453731173081,
+          "slower_probe_reward": -1.3485808151263947
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": -0.1330867662224991,
+          "best_of_5": 0.1339711811764017,
+          "best_of_k": {
+            "1": 0.015884894071239625,
+            "2": 0.06663221735460827,
+            "3": 0.09671261090864149,
+            "5": 0.1339711811764017,
+            "8": 0.1647810810573072
+          },
+          "failures": [
+            "anchor_self_score -0.1331 exceeds maximum magnitude \u2014 the starting solution must score 0.0 against itself",
+            "null_reward_sd 0.0942 exceeds maximum 0.05",
+            "best_of_5 +0.1340 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.01618494871824643,
+          "null_reward_sd": 0.09420159894079169,
+          "reference_reward_mean": 1.0031570986400553,
+          "round": 2,
+          "signal_to_noise": 10.4772335185324,
+          "slower_probe_reward": -1.4606683268408365
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.04240083935626446,
+          "best_of_5": 0.04461174911369288,
+          "best_of_k": {
+            "1": 0.00865069821171378,
+            "2": 0.028072288269382347,
+            "3": 0.0367663138248397,
+            "5": 0.04461174911369288,
+            "8": 0.04908294626283778
+          },
+          "failures": [],
+          "null_reward_mean": 0.008470033184615528,
+          "null_reward_sd": 0.0345149643995953,
+          "reference_reward_mean": 1.0145247291299924,
+          "round": 3,
+          "signal_to_noise": 29.148362556537162,
+          "slower_probe_reward": -0.5366530422026572
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.2220263616151183,
+          "best_of_5": 0.2054697900320491,
+          "best_of_k": {
+            "1": 0.008116237182218253,
+            "2": 0.09081672444873358,
+            "3": 0.14327623766321332,
+            "5": 0.2054697900320491,
+            "8": 0.2577188818962095
+          },
+          "failures": [
+            "anchor_self_score +0.2220 exceeds maximum magnitude \u2014 the starting solution must score 0.0 against itself",
+            "null_reward_sd 0.1544 exceeds maximum 0.05",
+            "best_of_5 +0.2055 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.007535531532426626,
+          "null_reward_sd": 0.154375730877455,
+          "reference_reward_mean": 1.011859354273404,
+          "round": 4,
+          "signal_to_noise": 6.505710561061051,
+          "slower_probe_reward": -1.1262781959966148
+        }
+      ],
+      "task_id": "count_primes_v2",
+      "total_rounds": 5
+    },
+    {
+      "admitted_rounds": 1,
+      "classification": "marginal",
+      "criteria_ever_failed": [
+        "anchor_self_score",
+        "best_of_5",
+        "null_reward_mean",
+        "null_reward_sd",
+        "signal_to_noise"
+      ],
+      "headroom_factor": 637.6790190523861,
+      "rounds": [
+        {
+          "admitted": true,
+          "anchor_self_score": -0.0006451621810752558,
+          "best_of_5": 0.036633555815214956,
+          "best_of_k": {
+            "1": -0.007457462509606363,
+            "2": 0.013912267105024434,
+            "3": 0.02425940532630299,
+            "5": 0.036633555815214956,
+            "8": 0.04717098820515542
+          },
+          "failures": [],
+          "null_reward_mean": -0.007214147711662719,
+          "null_reward_sd": 0.04184321803668947,
+          "reference_reward_mean": 1.0001147274270765,
+          "round": 0,
+          "signal_to_noise": 24.07388634056494,
+          "slower_probe_reward": -2.056268817687638
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.24738386783610128,
+          "best_of_5": 0.3055377850628566,
+          "best_of_k": {
+            "1": -0.10116396970384231,
+            "2": 0.1211563453822734,
+            "3": 0.21640912070273097,
+            "5": 0.3055377850628566,
+            "8": 0.36479406485305094
+          },
+          "failures": [
+            "anchor_self_score +0.2474 exceeds maximum magnitude \u2014 the starting solution must score 0.0 against itself",
+            "null_reward_mean -0.1020 exceeds maximum magnitude 0.05",
+            "null_reward_sd 0.4146 exceeds maximum 0.05",
+            "best_of_5 +0.3055 exceeds maximum 0.05",
+            "signal_to_noise 2.66 is below minimum 5.0"
+          ],
+          "null_reward_mean": -0.10204781479046485,
+          "null_reward_sd": 0.41455901540428236,
+          "reference_reward_mean": 1.0002025143516622,
+          "round": 1,
+          "signal_to_noise": 2.658850219593466,
+          "slower_probe_reward": -1.2171303522253467
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.014539736870009014,
+          "best_of_5": 0.05710069119929527,
+          "best_of_k": {
+            "1": 0.018277984597897836,
+            "2": 0.035401293297867696,
+            "3": 0.04512263267032228,
+            "5": 0.05710069119929527,
+            "8": 0.06960711410176566
+          },
+          "failures": [
+            "best_of_5 +0.0571 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.018260206718229442,
+          "null_reward_sd": 0.03401448676717187,
+          "reference_reward_mean": 1.000078285996383,
+          "round": 2,
+          "signal_to_noise": 28.864703618745406,
+          "slower_probe_reward": -0.975449134622593
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.03437276320802304,
+          "best_of_5": 0.32493803647502034,
+          "best_of_k": {
+            "1": 0.06775537949820726,
+            "2": 0.15880664730267635,
+            "3": 0.22618221487471496,
+            "5": 0.32493803647502034,
+            "8": 0.4242319467737445
+          },
+          "failures": [
+            "null_reward_mean +0.0661 exceeds maximum magnitude 0.05",
+            "null_reward_sd 0.2101 exceeds maximum 0.05",
+            "best_of_5 +0.3249 exceeds maximum 0.05",
+            "signal_to_noise 4.45 is below minimum 5.0"
+          ],
+          "null_reward_mean": 0.06612582578343873,
+          "null_reward_sd": 0.21005911034512365,
+          "reference_reward_mean": 1.0003557822226905,
+          "round": 3,
+          "signal_to_noise": 4.44746221625107,
+          "slower_probe_reward": -1.0790243268568736
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": -0.022789464410323586,
+          "best_of_5": 0.057257401599783576,
+          "best_of_k": {
+            "1": 0.013333262322784492,
+            "2": 0.03840056009458137,
+            "3": 0.04855050603892865,
+            "5": 0.057257401599783576,
+            "8": 0.06156887123749227
+          },
+          "failures": [
+            "best_of_5 +0.0573 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.013518363880464236,
+          "null_reward_sd": 0.045496984779412886,
+          "reference_reward_mean": 1.000363320531693,
+          "round": 4,
+          "signal_to_noise": 21.69033753414293,
+          "slower_probe_reward": -1.5464395417144223
+        }
+      ],
+      "task_id": "power_mod",
+      "total_rounds": 5
+    },
+    {
+      "admitted_rounds": 1,
+      "classification": "marginal",
+      "criteria_ever_failed": [
+        "anchor_self_score",
+        "best_of_5",
+        "null_reward_mean",
+        "null_reward_sd",
+        "signal_to_noise"
+      ],
+      "headroom_factor": 366.7006294255904,
+      "rounds": [
+        {
+          "admitted": false,
+          "anchor_self_score": 0.021567583929089494,
+          "best_of_5": 0.07458036132372434,
+          "best_of_k": {
+            "1": -0.17174112752779513,
+            "2": -0.009577976839179474,
+            "3": 0.04269414344251694,
+            "5": 0.07458036132372434,
+            "8": 0.08204100319886003
+          },
+          "failures": [
+            "null_reward_mean -0.1706 exceeds maximum magnitude 0.05",
+            "null_reward_sd 0.3084 exceeds maximum 0.05",
+            "best_of_5 +0.0746 exceeds maximum 0.05",
+            "signal_to_noise 3.80 is below minimum 5.0"
+          ],
+          "null_reward_mean": -0.17059717440839248,
+          "null_reward_sd": 0.3084258709112896,
+          "reference_reward_mean": 1.0011264824264463,
+          "round": 0,
+          "signal_to_noise": 3.7990446565743947,
+          "slower_probe_reward": -0.670119772388743
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.2846429269324396,
+          "best_of_5": 0.10216521499640581,
+          "best_of_k": {
+            "1": -0.08194721500400874,
+            "2": 0.011154053154161635,
+            "3": 0.05527757912474938,
+            "5": 0.10216521499640581,
+            "8": 0.13485589147359928
+          },
+          "failures": [
+            "anchor_self_score +0.2846 exceeds maximum magnitude \u2014 the starting solution must score 0.0 against itself",
+            "null_reward_mean -0.0809 exceeds maximum magnitude 0.05",
+            "null_reward_sd 0.1705 exceeds maximum 0.05",
+            "best_of_5 +0.1022 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": -0.08089447514266161,
+          "null_reward_sd": 0.17053007025305525,
+          "reference_reward_mean": 1.0003020893617818,
+          "round": 1,
+          "signal_to_noise": 6.340210632060492,
+          "slower_probe_reward": -1.0672055167542884
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.03457740393979338,
+          "best_of_5": 0.035861398050689004,
+          "best_of_k": {
+            "1": -0.03889805473380385,
+            "2": -0.002561197273025666,
+            "3": 0.015532379452002107,
+            "5": 0.035861398050689004,
+            "8": 0.05412565983599659
+          },
+          "failures": [
+            "null_reward_sd 0.0655 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": -0.03894937659008618,
+          "null_reward_sd": 0.06554927980431008,
+          "reference_reward_mean": 0.9997269388293484,
+          "round": 2,
+          "signal_to_noise": 15.84573192139234,
+          "slower_probe_reward": -1.0251123433630023
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": 0.10308413821375442,
+          "best_of_5": 0.2534062949683215,
+          "best_of_k": {
+            "1": 0.07236501301512484,
+            "2": 0.1524220543711071,
+            "3": 0.19981056008716863,
+            "5": 0.2534062949683215,
+            "8": 0.2927174442673487
+          },
+          "failures": [
+            "anchor_self_score +0.1031 exceeds maximum magnitude \u2014 the starting solution must score 0.0 against itself",
+            "null_reward_mean +0.0702 exceeds maximum magnitude 0.05",
+            "null_reward_sd 0.1524 exceeds maximum 0.05",
+            "best_of_5 +0.2534 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.07021908789322685,
+          "null_reward_sd": 0.15238191414639612,
+          "reference_reward_mean": 1.0008352874086706,
+          "round": 3,
+          "signal_to_noise": 6.107130263643909,
+          "slower_probe_reward": -0.9031275309869417
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": -0.04090057575503452,
+          "best_of_5": 0.04081946388980398,
+          "best_of_k": {
+            "1": 0.014437612498589152,
+            "2": 0.027592801902021978,
+            "3": 0.03376332485472839,
+            "5": 0.04081946388980398,
+            "8": 0.046004277404285726
+          },
+          "failures": [],
+          "null_reward_mean": 0.014305933080201191,
+          "null_reward_sd": 0.023654550992198528,
+          "reference_reward_mean": 0.9996297597038049,
+          "round": 4,
+          "signal_to_noise": 41.6547254246581,
+          "slower_probe_reward": -0.8308911592722447
+        }
+      ],
+      "task_id": "count_divisors",
+      "total_rounds": 5
+    },
+    {
+      "admitted_rounds": 1,
+      "classification": "marginal",
+      "criteria_ever_failed": [
+        "best_of_5",
+        "null_reward_mean",
+        "null_reward_sd"
+      ],
+      "headroom_factor": 2565.237662317368,
+      "rounds": [
+        {
+          "admitted": false,
+          "anchor_self_score": -0.03840359730202446,
+          "best_of_5": 0.0667555058495618,
+          "best_of_k": {
+            "1": 0.002814225452118761,
+            "2": 0.039529938112739436,
+            "3": 0.054280112002796276,
+            "5": 0.0667555058495618,
+            "8": 0.07455720164798045
+          },
+          "failures": [
+            "null_reward_sd 0.0709 exceeds maximum 0.05",
+            "best_of_5 +0.0668 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.0018062044451521504,
+          "null_reward_sd": 0.07093081784361419,
+          "reference_reward_mean": 1.000016359832925,
+          "round": 0,
+          "signal_to_noise": 14.073010656504655,
+          "slower_probe_reward": -1.072289733279647
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": -0.028373433512385714,
+          "best_of_5": 0.16844974005634314,
+          "best_of_k": {
+            "1": 0.057300449620262,
+            "2": 0.10918693392928933,
+            "3": 0.1358800322863991,
+            "5": 0.16844974005634314,
+            "8": 0.19166742365956677
+          },
+          "failures": [
+            "null_reward_mean +0.0589 exceeds maximum magnitude 0.05",
+            "null_reward_sd 0.0881 exceeds maximum 0.05",
+            "best_of_5 +0.1684 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.05886673126157603,
+          "null_reward_sd": 0.08814433060237721,
+          "reference_reward_mean": 0.9999775659389334,
+          "round": 1,
+          "signal_to_noise": 10.676929851821644,
+          "slower_probe_reward": -0.9736071835829161
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": -0.029862348898665105,
+          "best_of_5": 0.13665095572601532,
+          "best_of_k": {
+            "1": -0.005925358586371647,
+            "2": 0.06969807276085616,
+            "3": 0.10289085597703312,
+            "5": 0.13665095572601532,
+            "8": 0.16053385987407784
+          },
+          "failures": [
+            "null_reward_sd 0.1373 exceeds maximum 0.05",
+            "best_of_5 +0.1367 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": -0.004333421316502115,
+          "null_reward_sd": 0.13733158987683047,
+          "reference_reward_mean": 1.0001005952283493,
+          "round": 2,
+          "signal_to_noise": 7.313932777197912,
+          "slower_probe_reward": -0.7808436748617001
+        },
+        {
+          "admitted": false,
+          "anchor_self_score": -0.026729178313923685,
+          "best_of_5": 0.06751486334722391,
+          "best_of_k": {
+            "1": 0.01034692324553839,
+            "2": 0.04183076813861016,
+            "3": 0.055519605139765976,
+            "5": 0.06751486334722391,
+            "8": 0.07466249918896535
+          },
+          "failures": [
+            "null_reward_sd 0.0558 exceeds maximum 0.05",
+            "best_of_5 +0.0675 exceeds maximum 0.05"
+          ],
+          "null_reward_mean": 0.010650569363004282,
+          "null_reward_sd": 0.05579490353044196,
+          "reference_reward_mean": 0.9999986854091762,
+          "round": 3,
+          "signal_to_noise": 17.731872508864168,
+          "slower_probe_reward": -0.7858385893234184
+        },
+        {
+          "admitted": true,
+          "anchor_self_score": 0.04342493811008612,
+          "best_of_5": 0.03947305510086295,
+          "best_of_k": {
+            "1": 0.0018984475358265146,
+            "2": 0.022746924090753778,
+            "3": 0.03145615559881227,
+            "5": 0.03947305510086295,
+            "8": 0.04526402978159206
+          },
+          "failures": [],
+          "null_reward_mean": 0.0022612561714722267,
+          "null_reward_sd": 0.037132290736902565,
+          "reference_reward_mean": 1.000062137108092,
+          "round": 4,
+          "signal_to_noise": 26.871514284061984,
+          "slower_probe_reward": -0.8960410717312193
+        }
+      ],
+      "task_id": "gcd_fixed",
+      "total_rounds": 5
+    }
+  ]
+}

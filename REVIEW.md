@@ -796,6 +796,90 @@ Two solid tasks, one marginal, one rejected. **Not ready for a governed search
 run** by the pre-registered bar, and the bar was not lowered after seeing the
 result.
 
+## E68 — replicated admission: nothing is solid
+
+E62 made replication structural for effects and never applied it to admission
+verdicts, which are equally threshold-crossing decisions taken from one noisy
+sample. E68 runs the whole audit five times per task and classifies by
+consistency: **solid** (admitted every round), **marginal** (some rounds),
+**rejected** (none). Marginal is not half-admitted — it is a verdict that is not
+yet a measurement — so it does not count toward readiness.
+
+`gcd_fixed` was added as a fifth task (Euclidean algorithm; the naive loop is
+*replaced* rather than bounded or recalled), along with a `MIN_TIMING_REPEATS`
+floor after `gcd_fixed` exposed a second harness defect: at ~7 ms per call it
+calibrated to 2–3 repeats, so each batch was effectively a single measurement and
+two *identical* programs measured ratios from 1.00 to 1.48 — an anchor self-score
+of **+0.5058**.
+
+### Result
+
+| Task | Headroom | Classification | Admitted rounds |
+| --- | --- | --- | --- |
+| optimize_function | 8934× | **rejected** | 0/5 |
+| count_primes_v2 | 27× | marginal | 1/5 |
+| power_mod | 638× | marginal | 1/5 |
+| count_divisors | 367× | marginal | 1/5 |
+| gcd_fixed | 2565× | marginal | 1/5 |
+
+**No task is solid. The substrate is not ready**, and the readiness bar was not
+lowered.
+
+### The two failed predictions are the finding
+
+**H3 failed:** `count_primes_v2` — 27× headroom, rejected in E64, E65, E66 *and*
+E67 — was **admitted in round 3**.
+
+**H4 failed:** `optimize_function` — 8934× headroom, the widest margin on every
+criterion in E67 — was **rejected in all five rounds**.
+
+Together these say something stronger than "borderline tasks flip". A single
+round can **invert the ranking between the best and worst tasks in the suite**.
+Every admission verdict this project has recorded on the executable substrate —
+E63's, E64's, E66's, E67's — was a single-round measurement of a quantity that
+moves this much.
+
+### What is actually moving
+
+Per-round null standard deviations span **0.020 to 0.415**, a 20× range within
+the same task and criteria.
+
+Two contributions, and it is worth separating them:
+
+- **Estimator noise.** A sample standard deviation from 8 nulls carries about
+  ±27% relative error (`1/sqrt(2(n-1))`). Simulated, a task whose true sd is
+  0.045 measures above the 0.05 bar in roughly 20% of rounds at n=8, against 15%
+  at n=30. Real, but modest.
+- **A non-stationary measurement environment.** The observed 20× spread is far
+  beyond what estimator error explains. The machine's timing behaviour genuinely
+  changes between rounds — and E68 ran immediately after a burst of scouting
+  probes, so it began under load and settled.
+
+The second dominates, and it is not a property of any task. Pairing removed
+drift *within* a measurement; it does not make the machine stationary *between*
+measurements.
+
+### Consequence for E66 and E67
+
+Both are superseded on the specific question of which tasks are admissible. E66's
+"two tasks admitted" and E67's "optimize_function and count_divisors admitted"
+were single-round claims, and E68 admits `optimize_function` in zero of five
+rounds. Their measurement-protocol findings stand — pairing beats anchoring, and
+the numbers behind that were within-run comparisons — but their admission
+verdicts do not.
+
+### Standing
+
+Ten experiments into the executable substrate, **no task is admissible under a
+replicated standard**. That is the most accurate statement available and it is
+worse than any single run suggested.
+
+The instrument work has been genuinely convergent — saturation, censoring, probe
+evasion, drift, order bias, repeat-count floors have all been found and fixed,
+and each fix was validated. But the remaining obstacle is not a defect to fix in
+the harness: it is that a shared, loaded developer machine is not a stable enough
+platform for threshold-crossing decisions at these tolerances.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -837,22 +921,29 @@ result.
    same k the search used.
 16. **Retire `sum_digits`.** It ships already solved and was not worth repairing;
    `power_mod` replaces it as a second task with real headroom.
-17. **Replicate admission verdicts, not just effects.** This is now the
-   blocking item. E62 made replication structural for effects and never applied
-   it to admission, which is an equally threshold-crossing decision from a single
-   noisy sample. `power_mod` was admitted in E66 and rejected in E67 on a
-   best-of-5 of 0.0261 versus 0.0533. Run the audit K times, require consistent
-   admission, and report anything that flips as **marginal**.
-18. **Add one or two more high-headroom tasks.** Two solid tasks is below the
-   readiness bar of three. `count_divisors` (279x) and `optimize_function`
-   (8740x) work; `count_primes_v2` (28x) does not. Headroom in the hundreds is
-   what distinguishes them, and each new task should reward a different insight
-   rather than another closed form.
-19. **Restore real search in the live loop.** Wire
+17. ~~**Replicate admission verdicts, not just effects.**~~ Done in E68. No
+   task is solid; a single round can invert the ranking between the best and
+   worst tasks in the suite.
+18. ~~**Add one or two more high-headroom tasks.**~~ `gcd_fixed` added in E68
+   (2565x, Euclidean algorithm). Headroom is no longer the binding constraint.
+19. **Stop tuning tasks and stabilise the measurement platform.** This is now the
+   blocking item, and it is not a code fix. Per-round null sd spans 0.020-0.415
+   on the same task; the machine is not stationary between rounds. Options, in
+   rough order of cost: run audits on an otherwise-idle machine with a settling
+   period and pinned CPU frequency; raise nulls per round from 8 to 30+ so the sd
+   estimate carries +/-13% rather than +/-27%; or judge admission on an interval
+   for the sd rather than a point estimate.
+20. **Consider abandoning wall-clock reward for this substrate.** Ten experiments
+   have gone into making a timing signal trustworthy on a developer laptop and
+   none has produced a task admissible under replication. Correctness-only tasks
+   with a larger pool have no timing noise at all, cannot be gamed by best-of-k
+   phantom gain, and would let the governed-search work proceed. The speedup
+   framing is what has cost the time, not the substrate.
+21. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-20. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+22. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

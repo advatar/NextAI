@@ -63,6 +63,17 @@ PAIRED_ROUNDS = 8
 #: Calibration target for one timed batch, well above clock granularity.
 TIMING_TARGET_SECONDS = 0.02
 
+#: Minimum calls averaged into one timed batch.
+#:
+#: The elapsed-time target alone is not enough.  A task whose single call already
+#: exceeds the target calibrates to one or two repeats, so each "batch" is
+#: effectively a single measurement and inherits its full variance.  ``gcd_fixed``
+#: hit this immediately: at roughly 7 ms per call it calibrated to 2-3 repeats and
+#: two *identical* programs measured ratios from 1.00 to 1.48, giving an anchor
+#: self-score of +0.5058 where 0.0 is the definition.  Requiring a floor on the
+#: repeat count restores averaging within each batch.
+MIN_TIMING_REPEATS = 8
+
 MAX_TIMING_REPEATS = 1 << 20
 RUN_TIMEOUT_SECONDS = 30.0
 
@@ -111,11 +122,18 @@ def _paired_script(anchor: str, candidate: str, timing_argument: int) -> str:
 
         # Calibrate on the anchor, then use the SAME repeat count for both, so
         # per-call overhead enters each side identically and cancels in the ratio.
+        _H_MIN_REPEATS = {MIN_TIMING_REPEATS}
+
         _h_repeats = 1
         while True:
             _h_elapsed = _h_measure(_h_anchor, _h_repeats)
-            if _h_elapsed >= _H_TARGET or _h_repeats >= _H_MAX:
+            _h_enough = _h_elapsed >= _H_TARGET and _h_repeats >= _H_MIN_REPEATS
+            if _h_enough or _h_repeats >= _H_MAX:
                 break
+            if _h_repeats < _H_MIN_REPEATS and _h_elapsed >= _H_TARGET:
+                # Long enough but too few calls to average: grow to the floor.
+                _h_repeats = min(_H_MAX, _H_MIN_REPEATS)
+                continue
             if _h_elapsed <= 0.0:
                 _h_multiplier = 64
             else:
