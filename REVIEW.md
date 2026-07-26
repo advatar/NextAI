@@ -504,6 +504,93 @@ E63's criteria are not what established that — a separate unplanned check was.
 minimum-detectable-effect criterion belongs in the next pre-registration, and it
 is the exact mirror of the E51 mistake: I checked one direction only.
 
+## E64 — the repairs worked; the audit criteria did not
+
+E63 left four repairs. They were built: `environments/timed_task.py` gives
+median-of-calibrated-batches anchors, an **unclamped** reward per `base.py`'s
+documented `[<0, ~1+]` contract, and a held-out reference defining the 1.0 point.
+`count_primes_v2` is that rebuild; `power_mod` is a new task whose optimum is an
+algorithm (binary exponentiation) rather than a closed form. The v1 environments
+were left untouched so prior records stay interpretable.
+
+Four of five predictions failed, and the reason is more interesting than the
+repairs.
+
+### `count_primes` v1 was admitted this run
+
+The task E63 rejected as the worst in the suite passed every noise criterion
+perfectly: null sd `0.0000`, best-of-5 `0.0000`, null mean `0.0000`.
+
+It is the same unrepaired code. In E63 the import-time baseline landed on the
+slow side, nulls scored positive, and the task produced a 0.254 phantom gain. In
+E64 the baseline landed at 6.178 ms while nulls ran 6.36–7.39 ms, so every
+unclamped reward was negative (−0.03 to −0.20) and `max(0.0, …)` floored **all of
+them to exactly zero**.
+
+**The clamp manufactured a perfect noise profile.** Zero variance from censoring
+is indistinguishable from zero variance from precision. Same code, opposite
+verdict across two experiments, decided entirely by which side one noisy
+measurement fell.
+
+`optimize_function` is not exempt: line 363 applies a 3% deadband, returning 0.0
+for any improvement below `starting_time * 0.03`. Its exact zeros are also
+censoring — a principled deadband rather than a bug, but still not evidence of
+precision.
+
+### My signal criterion was silently skipped, and my own check missed it
+
+E63's hole was criteria that tested for absence of noise but never presence of
+signal. E64 added signal-to-noise = (reference mean − null mean) / null sd, and
+H5 existed specifically *"as a check that the criterion is actually being applied
+rather than silently skipped."*
+
+Signal-to-noise is undefined exactly when the null sd is zero — which is
+precisely the censoring case. Both admitted tasks had undefined ratios, so the
+criterion was skipped for both. And the grader read:
+
+```python
+all(value is None or value >= threshold for value in ratios.values())
+```
+
+`None` counted as passing. **H5 was graded "supported" while performing the exact
+silent skip it was written to detect.** The recorded E64 report's
+`H5: supported` should be read as **NOT supported**; the rule is corrected in the
+runner with a regression test pinning both the buggy and corrected semantics.
+
+### `power_mod` is the best task in the suite and was rejected
+
+| Task | Headroom | Null mean | Null sd | Best-of-5 | Signal/noise | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| optimize_function | — | +0.0000 | 0.0000 | 0.0000 | undefined | admitted |
+| count_primes (v1) | — | +0.0000 | 0.0000 | 0.0000 | undefined | admitted |
+| count_primes_v2 | 22.2× | −0.2726 | 0.3684 | 0.0944 | 3.5 | rejected |
+| **power_mod** | **669×** | +0.0132 | 0.0495 | 0.0727 | **19.9** | rejected |
+
+`power_mod` has a null mean near zero, by far the best signal-to-noise in the
+suite, and 669× headroom. It was rejected on a single criterion: best-of-5 =
+0.073 against a 0.05 bar. Meanwhile two tasks whose rewards are censored to a
+constant were admitted.
+
+**The criteria are ranking censored rewards above honest ones.** That is a defect
+in the audit, not in `power_mod`.
+
+`count_primes_v2` genuinely failed (H4, the one supported prediction): 22×
+headroom is too small against host jitter, so the repair is necessary but not
+sufficient. Headroom magnitude decides usability. But note its null mean of
+−0.273 is *honest* — an unclamped reward reporting that these runs really were
+slower than the anchor — whereas v1's +0.0000 is a censored fiction.
+
+### The thing that cannot be engineered away
+
+Best-of-k phantom gain is intrinsic to taking a maximum over any noisy reward. No
+environment fix drives it to zero; only reducing the spread does. The right
+response is not a stricter environment but a **scoring protocol**: evaluate each
+candidate as a median of *m* repeated measurements, which shrinks the effective
+sd by roughly √m, and require a claimed improvement to exceed the measured
+best-of-k null baseline. That belongs in the next pre-registration, applied
+prospectively rather than by relaxing the 0.05 bar after seeing that `power_mod`
+missed it.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -525,23 +612,30 @@ is the exact mirror of the E51 mistake: I checked one direction only.
    the headline is weaker than it should be.
 8. ~~**Move to the executable substrate.**~~ Audited in E63. One task of three
    is usable; see the fixes below before running any search on it.
-9. **Fix `count_primes` or drop it.** Replace the single-measurement
-   `_baseline_time` with a median over repeated runs, report the null-variant
-   noise floor alongside every result, and require an effect to clear it. Until
-   then the task cannot support a claim.
-10. **Fix or retire `sum_digits`.** It ships already solved. Either give it a
-   deliberately weak starting solution, or drop it from the suite.
-11. **Add a minimum-detectable-effect criterion to admission.** E63's criteria
-   check for absence of noise but not presence of signal; a constant reward
-   function would pass them. This is the mirror of the E51 mistake.
-12. **Add more admitted tasks before any search runs.** One sound task is not a
-   benchmark, and `optimize_function` has essentially one known optimum, so a
-   loop would be rediscovering a closed form rather than improving.
-13. **Restore real search in the live loop.** Wire
+9. ~~**Fix `count_primes` or drop it.**~~ Rebuilt as `count_primes_v2` in E64.
+   Still not usable: 22x headroom is too small against host jitter.
+10. ~~**Add a minimum-detectable-effect criterion.**~~ Added in E64 as
+   signal-to-noise, and it exposed a deeper problem — see 11.
+11. **Make the audit criteria immune to censoring.** This is now the blocking
+   item. A reward clamped to a constant scores a perfect noise profile and an
+   undefined signal ratio, so E64 admitted two censored tasks and rejected
+   `power_mod`, the best-behaved one. Require a *defined* signal-to-noise ratio
+   (undefined must fail), and treat an exactly-zero null spread as evidence of
+   censoring rather than precision.
+12. **Score candidates as a median of m repeated evaluations.** Best-of-k
+   phantom gain is intrinsic to max-selection over a noisy reward and cannot be
+   engineered out of an environment. Median-of-m shrinks the spread by about
+   sqrt(m); pair it with requiring an improvement to exceed the measured
+   best-of-k null baseline.
+13. **Retire `sum_digits`.** It ships already solved and was not worth repairing;
+   `power_mod` replaces it as a second task with real headroom.
+14. **Then add two or three more tasks with large headroom.** `power_mod`'s 669x
+   is what made it well-behaved; `count_primes_v2`'s 22x is what sank it.
+15. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-14. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+16. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

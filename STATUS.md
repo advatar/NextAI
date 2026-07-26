@@ -1,5 +1,63 @@
 # Status
 
+## Completed — E64, the repairs worked and the audit criteria did not
+
+Instrument audit only. Makes **no capability claim**. Pre-registered in
+`experiments/E64-preregistration.json` (`744dc2be…`).
+
+Built the E63 repairs: `environments/timed_task.py` (median-of-calibrated-batch
+anchors, **unclamped** reward per `base.py`'s documented `[<0, ~1+]` contract, a
+held-out reference defining 1.0), `count_primes_v2`, and `power_mod` — a new task
+whose optimum is an algorithm rather than a closed form. The v1 environments are
+untouched so prior records stay interpretable.
+
+| Task | Headroom | Null mean | Null sd | Best-of-5 | Signal/noise | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| optimize_function | — | +0.0000 | 0.0000 | 0.0000 | undefined | admitted |
+| count_primes (v1) | — | +0.0000 | 0.0000 | 0.0000 | undefined | admitted |
+| count_primes_v2 | 22.2× | −0.2726 | 0.3684 | 0.0944 | 3.5 | rejected |
+| power_mod | 669× | +0.0132 | 0.0495 | 0.0727 | 19.9 | rejected |
+
+Four of five predictions failed, and the reason matters more than the repairs.
+
+**`count_primes` v1 — the task E63 rejected as worst — was admitted.** Same
+unrepaired code. This run's import-time baseline landed at 6.178 ms while nulls
+ran 6.36–7.39 ms, so every unclamped reward was negative and `max(0.0, …)`
+floored all of them to exactly zero. The clamp manufactured a perfect noise
+profile. Zero variance from censoring is indistinguishable from zero variance
+from precision. `optimize_function:363` likewise applies a 3% deadband, so its
+exact zeros are censoring too.
+
+**The signal criterion added to close E63's hole was silently skipped.**
+Signal-to-noise is undefined exactly when null sd is zero — the censoring case —
+so it was skipped for both admitted tasks. Worse, the H5 grader read
+`value is None or value >= threshold`, counting undefined as passing, so H5 was
+graded *supported* while performing the very silent skip it was written to
+detect. **The recorded report's `H5: supported` must be read as NOT supported.**
+The rule is corrected in the runner with regression tests pinning both the buggy
+and corrected semantics.
+
+**`power_mod` is the best-behaved task in the suite and was rejected** on
+best-of-5 = 0.073 against a 0.05 bar, despite a near-zero null mean, 19.9
+signal-to-noise and 669× headroom — while two censored tasks were admitted. The
+criteria are ranking censored rewards above honest ones; that is a defect in the
+audit, not in `power_mod`. The 0.05 bar is not being relaxed post hoc.
+
+H4 was the one supported prediction: `count_primes_v2` genuinely fails, because
+22× headroom is too small against host jitter. The repair is necessary but not
+sufficient — headroom magnitude decides usability. Its honest −0.273 null mean is
+preferable to v1's censored +0.0000.
+
+Blocking item for next time: best-of-k phantom gain is intrinsic to max-selection
+over any noisy reward and cannot be engineered out of an environment. The fix is
+a scoring protocol — median of *m* repeated evaluations, shrinking spread by
+about √m — plus requiring an improvement to exceed the measured best-of-k null
+baseline.
+
+Validation: 373 tests pass; all 61 `report_digest` values reproduce; no existing
+experiment JSON or v1 environment modified. Wall-clock measurements are not
+bit-reproducible; the digest attests to the recorded report.
+
 ## Completed — E63, executable substrate audit
 
 Instrument audit only. Makes **no capability claim** under any outcome.

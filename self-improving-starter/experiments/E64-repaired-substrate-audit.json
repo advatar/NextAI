@@ -1,0 +1,173 @@
+{
+  "admission_criteria": {
+    "maximum_absolute_null_reward_mean": 0.05,
+    "maximum_null_best_of_5_reward": 0.05,
+    "maximum_null_variant_reward_sd": 0.05,
+    "maximum_starting_solution_reward": 0.5,
+    "minimum_reference_reward": 0.5,
+    "minimum_signal_to_noise": 5.0
+  },
+  "admitted_tasks": [
+    "optimize_function",
+    "count_primes"
+  ],
+  "claim_boundary": "Instrument audit of the repaired executable task substrate. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect.",
+  "experiment_id": "E64-repaired-substrate-audit",
+  "follows": "E63-executable-substrate-audit",
+  "makes_capability_claim": false,
+  "predictions": [
+    {
+      "evidence": "count_primes best_of_5=0.0 vs v2 best_of_5=0.09442885200497358",
+      "id": "H1",
+      "supported": false
+    },
+    {
+      "evidence": "count_primes null mean=+0.0000 vs v2=-0.2726",
+      "id": "H2",
+      "supported": false
+    },
+    {
+      "evidence": "power_mod admitted=False failures=['best_of_5 null reward 0.073 exceeds maximum 0.05 (search can manufacture this from no-op proposals)']",
+      "id": "H3",
+      "supported": false
+    },
+    {
+      "evidence": "count_primes_v2 admitted=False failures=['null_reward_sd 0.368 exceeds maximum 0.05', 'best_of_5 null reward 0.094 exceeds maximum 0.05 (search can manufacture this from no-op proposals)', 'null_reward_mean -0.273 exceeds maximum magnitude 0.05 (a no-op change should score about zero)', 'signal_to_noise 3.47 is below minimum 5.0']",
+      "id": "H4",
+      "supported": true
+    },
+    {
+      "evidence": "admitted signal_to_noise: {'optimize_function': None, 'count_primes': None}",
+      "id": "H5",
+      "supported": true
+    }
+  ],
+  "preregistration_digest": "744dc2be1a60346405a01285fd2ab2adfb5459a9e4cc744f993c1f67c157ad5d",
+  "question": "Did the E63 repairs produce a reward that cannot be gamed by noise, and does the suite now contain more than one usable task?",
+  "rejected_tasks": [
+    "count_primes_v2",
+    "power_mod"
+  ],
+  "report_digest": "dcd24bd0e26fb4bcd49a8040b4791ee36d8cd2f12f58e152f9cad8c2037c2668",
+  "reproducibility_note": "Measures wall-clock time; numbers are not bit-reproducible across machines or runs. The digest attests to the recorded report.",
+  "schema_version": 1,
+  "tasks": [
+    {
+      "admitted": true,
+      "best_of_k": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "8": 0.0
+      },
+      "failures": [],
+      "null_reward_max": 0.0,
+      "null_reward_mean": 0.0,
+      "null_reward_min": 0.0,
+      "null_reward_sd": 0.0,
+      "null_variants": 30,
+      "reference_probes": 10,
+      "reference_probes_correct": 10,
+      "reference_reward_mean": 1.0,
+      "reference_reward_sd": 0.0,
+      "role": "incumbent; the only task E63 admitted",
+      "signal_to_noise": null,
+      "signal_to_noise_note": "null sd is zero; signal-to-noise is undefined and the reference-reward criterion decides",
+      "starting_solution_reward": 0.0,
+      "task_id": "optimize_function"
+    },
+    {
+      "admitted": true,
+      "best_of_k": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "8": 0.0
+      },
+      "failures": [],
+      "null_reward_max": 0.0,
+      "null_reward_mean": 0.0,
+      "null_reward_min": 0.0,
+      "null_reward_sd": 0.0,
+      "null_variants": 30,
+      "reference_probes": 10,
+      "reference_probes_correct": 10,
+      "reference_reward_mean": 0.89168,
+      "reference_reward_sd": 0.07360585302813899,
+      "role": "control; the unrepaired v1, included so the before/after of the same task is measured in one run rather than across experiments",
+      "signal_to_noise": null,
+      "signal_to_noise_note": "null sd is zero; signal-to-noise is undefined and the reference-reward criterion decides",
+      "starting_solution_reward": 0.0,
+      "task_id": "count_primes"
+    },
+    {
+      "admitted": false,
+      "anchors": {
+        "reference_seconds": 0.0005141237029420154,
+        "reward_span_seconds": 0.010883431961550135,
+        "speedup_factor": 22.16889748375909,
+        "starting_seconds": 0.01139755566449215
+      },
+      "best_of_k": {
+        "1": -0.27087173493798594,
+        "2": -0.08938573382383175,
+        "3": -0.0017118689508292078,
+        "5": 0.09442885200497358,
+        "8": 0.1657476594953545
+      },
+      "failures": [
+        "null_reward_sd 0.368 exceeds maximum 0.05",
+        "best_of_5 null reward 0.094 exceeds maximum 0.05 (search can manufacture this from no-op proposals)",
+        "null_reward_mean -0.273 exceeds maximum magnitude 0.05 (a no-op change should score about zero)",
+        "signal_to_noise 3.47 is below minimum 5.0"
+      ],
+      "null_reward_max": 0.280268272322992,
+      "null_reward_mean": -0.27264497069790994,
+      "null_reward_min": -1.7058159496290042,
+      "null_reward_sd": 0.36835997874539306,
+      "null_variants": 30,
+      "reference_probes": 10,
+      "reference_probes_correct": 10,
+      "reference_reward_mean": 1.0051917275737687,
+      "reference_reward_sd": 0.0027923027853703226,
+      "role": "repaired rebuild of the control",
+      "signal_to_noise": 3.468988956465619,
+      "starting_solution_reward": -0.24114030420324628,
+      "task_id": "count_primes_v2"
+    },
+    {
+      "admitted": false,
+      "anchors": {
+        "reference_seconds": 2.4680294193520544e-06,
+        "reward_span_seconds": 0.0016493680134804483,
+        "speedup_factor": 669.293497860113,
+        "starting_seconds": 0.0016518360428998003
+      },
+      "best_of_k": {
+        "1": 0.012772017750279191,
+        "2": 0.03624749375685815,
+        "3": 0.05172929134954509,
+        "5": 0.07270319997379722,
+        "8": 0.09434065895157565
+      },
+      "failures": [
+        "best_of_5 null reward 0.073 exceeds maximum 0.05 (search can manufacture this from no-op proposals)"
+      ],
+      "null_reward_max": 0.16636696282491467,
+      "null_reward_mean": 0.013173697040019392,
+      "null_reward_min": -0.094452387239329,
+      "null_reward_sd": 0.04947288152941148,
+      "null_variants": 30,
+      "reference_probes": 10,
+      "reference_probes_correct": 10,
+      "reference_reward_mean": 1.0000925743116917,
+      "reference_reward_sd": 0.00010043908146637223,
+      "role": "new task whose optimum is an algorithm, not a closed form",
+      "signal_to_noise": 19.94868394081618,
+      "starting_solution_reward": 0.0012746378070009985,
+      "task_id": "power_mod"
+    }
+  ]
+}
