@@ -90,7 +90,11 @@ def task_specification(task_id: str) -> dict:
             "slower": OPTIMIZE_SLOWER,
             "timing_argument": 100_000,
         }
-    env = REGISTRY[task_id]()
+    # Pinned explicitly. When this experiment ran, "anchored" was the only mode
+    # a TimedTaskEnvironment had; E66's own result made "paired" the default.
+    # Naming it here keeps the unpaired arm reproducible instead of silently
+    # becoming a paired-versus-paired comparison.
+    env = REGISTRY[task_id](scoring="anchored")
     slower = COUNT_PRIMES_SLOWER if task_id.startswith("count_primes") else POWER_MOD_SLOWER
     return {
         "env": env,

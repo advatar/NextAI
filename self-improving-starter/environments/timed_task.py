@@ -51,10 +51,28 @@ from __future__ import annotations
 import abc
 import textwrap
 
+from recursive_lab.paired_timing import (
+    calibrate_reference_ratio,
+    paired_measure,
+    paired_reward,
+)
 from sandbox import run_python
 
 from .base import Environment, ScoreResult
 from .optimize_function import _validate_candidate
+
+#: Score against anchors captured once at construction.  E63-E66 measured this
+#: mode and found it drift-dominated: a task's own starting solution scored
+#: +0.2339 and -0.1902 when it must score 0.0 by definition.  Retained only so
+#: ``compare_e66_paired_timing.py`` can still reproduce its unpaired arm.
+ANCHORED_SCORING = "anchored"
+
+#: Score from a ratio against an anchor measured adjacently, so drift cancels.
+#: E66 measured a 2.7-6.4x reduction in null spread against ``anchored`` and
+#: admitted two tasks that ``anchored`` rejected.  This is the default.
+PAIRED_SCORING = "paired"
+
+SCORING_MODES = (PAIRED_SCORING, ANCHORED_SCORING)
 
 #: Samples taken per measurement; the median of these is the reported timing.
 TIMING_SAMPLES = 5
@@ -128,10 +146,29 @@ class TimedTaskEnvironment(Environment):
     #: construct successfully and then hand out reward for nothing.
     minimum_speedup_factor: float = 2.0
 
-    def __init__(self) -> None:
-        self._starting_time = self._measure_or_raise(self.starting_solution)
-        self._reference_time = self._measure_or_raise(self.reference_solution)
-        speedup = self._starting_time / self._reference_time
+    def __init__(self, *, scoring: str = PAIRED_SCORING) -> None:
+        if scoring not in SCORING_MODES:
+            raise RuntimeError(
+                f"{self.name}: unknown scoring mode {scoring!r}; "
+                f"expected one of {SCORING_MODES}"
+            )
+        self.scoring = scoring
+        if scoring == PAIRED_SCORING:
+            # The reference is calibrated against the anchor by paired
+            # measurement, so the 1.0 point is itself drift-immune.  It is
+            # measured here, alone, and never shares a process with a candidate.
+            self._reference_ratio = calibrate_reference_ratio(
+                self.starting_solution, self.reference_solution, self.timing_argument
+            )
+            self._starting_time = None
+            self._reference_time = None
+            speedup = 1.0 / self._reference_ratio
+        else:
+            self._reference_ratio = None
+            self._starting_time = self._measure_or_raise(self.starting_solution)
+            self._reference_time = self._measure_or_raise(self.reference_solution)
+            speedup = self._starting_time / self._reference_time
+        self._speedup_factor = speedup
         if speedup < self.minimum_speedup_factor:
             raise RuntimeError(
                 f"{self.name}: the reference solution is only {speedup:.2f}x "
@@ -194,7 +231,16 @@ class TimedTaskEnvironment(Environment):
 
     @property
     def reward_span_seconds(self) -> float:
-        """Seconds between the two anchors; one reward unit."""
+        """Seconds between the two anchors; one reward unit.
+
+        Only meaningful in ``anchored`` mode: paired scoring never holds two
+        absolute timings at once, which is precisely why it is drift-immune.
+        """
+        if self.scoring != ANCHORED_SCORING:
+            raise RuntimeError(
+                f"{self.name}: reward_span_seconds is undefined under "
+                f"{self.scoring!r} scoring, which works in ratios"
+            )
         return self._starting_time - self._reference_time
 
     def score_correctness(self, solution_source: str) -> ScoreResult:
@@ -211,6 +257,20 @@ class TimedTaskEnvironment(Environment):
         correct, detail = self._check_correctness(solution_source)
         if not correct:
             return ScoreResult(-1.0, False, None, detail)
+
+        if self.scoring == PAIRED_SCORING:
+            measurement = paired_measure(
+                self.starting_solution, solution_source, self.timing_argument
+            )
+            reward = paired_reward(measurement.ratio, self._reference_ratio)
+            return ScoreResult(
+                reward,
+                True,
+                measurement.candidate_seconds,
+                f"correct; ratio {measurement.ratio:.4f} vs anchor "
+                f"(norm {reward:.3f})",
+            )
+
         timing = self._measure(solution_source)
         if timing is None:
             return ScoreResult(-1.0, False, None, "candidate timing failed")
@@ -227,13 +287,18 @@ class TimedTaskEnvironment(Environment):
         )
 
     def baseline_report(self) -> dict:
-        """Anchor timings, so a run can record the scale it was measured on."""
-        return {
-            "starting_seconds": self._starting_time,
-            "reference_seconds": self._reference_time,
-            "reward_span_seconds": self.reward_span_seconds,
-            "speedup_factor": self._starting_time / self._reference_time,
+        """The scale a run was measured on, so a report can record it."""
+        report = {
+            "scoring": self.scoring,
+            "speedup_factor": self._speedup_factor,
         }
+        if self.scoring == PAIRED_SCORING:
+            report["reference_ratio"] = self._reference_ratio
+        else:
+            report["starting_seconds"] = self._starting_time
+            report["reference_seconds"] = self._reference_time
+            report["reward_span_seconds"] = self.reward_span_seconds
+        return report
 
 
 __all__ = [

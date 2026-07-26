@@ -75,10 +75,33 @@ class RewardContract(unittest.TestCase):
     def setUpClass(cls):
         cls.env = PowerModEnv()
 
-    def test_reference_is_faster_than_starting(self):
+    def test_paired_is_the_default_scoring_mode(self):
+        """E63-E66 showed anchored scoring is drift-dominated; paired is default."""
+        self.assertEqual(self.env.scoring, "paired")
+
+    def test_paired_report_states_headroom_as_a_ratio(self):
         anchors = self.env.baseline_report()
-        self.assertLess(anchors["reference_seconds"], anchors["starting_seconds"])
+        self.assertEqual(anchors["scoring"], "paired")
         self.assertGreater(anchors["speedup_factor"], 1.0)
+        self.assertGreater(anchors["reference_ratio"], 0.0)
+        self.assertLess(anchors["reference_ratio"], 1.0)
+        # Paired scoring never holds two absolute timings at once — that is
+        # exactly why it is drift-immune — so the span is undefined.
+        self.assertNotIn("reference_seconds", anchors)
+        with self.assertRaises(RuntimeError):
+            self.env.reward_span_seconds
+
+    def test_anchored_mode_still_reports_absolute_timings(self):
+        """Retained so compare_e66_paired_timing.py stays reproducible."""
+        env = PowerModEnv(scoring="anchored")
+        anchors = env.baseline_report()
+        self.assertEqual(anchors["scoring"], "anchored")
+        self.assertLess(anchors["reference_seconds"], anchors["starting_seconds"])
+        self.assertGreater(env.reward_span_seconds, 0.0)
+
+    def test_unknown_scoring_mode_fails_closed(self):
+        with self.assertRaises(RuntimeError):
+            PowerModEnv(scoring="whatever")
 
     def test_reference_scores_near_one(self):
         result = self.env.score(self.env.reference_solution)

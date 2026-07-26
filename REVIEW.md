@@ -724,6 +724,78 @@ eliminated, because taking a maximum over any noisy reward is intrinsically
 biased upward. A search loop must still be scored against a measured null
 baseline rather than against zero.
 
+## E67 — two solid tasks, and admission verdicts turn out to need replication too
+
+Three things changed after E66 and E67 is the gate that checks them together:
+paired scoring became the default for `TimedTaskEnvironment`; `count_divisors`
+was added as a third task (~280× headroom, solved by *bounding* a loop at
+`sqrt(n)` rather than replacing it, so it rewards a different insight from the
+closed form and the binary exponentiation already in the suite); and an order
+bias in the paired harness was fixed.
+
+### A bug the anchor self-score caught immediately
+
+`PAIRED_ROUNDS` was **7**. The order within a round alternates, so an odd count
+ran anchor-first four times against candidate-first three, leaving a residual
+bias that warm-up amplifies. `count_divisors` exposed it on its first run:
+
+| Harness | `count_divisors` anchor self-score |
+| --- | --- |
+| 7 rounds, no warm-up | **+0.1059** |
+| 8 rounds + warm-up | −0.0081, −0.0016, −0.0179 |
+
+The anchor self-score has now caught three distinct defects (construction-time
+anchors in E65, this order bias, and drift generally). It is the most valuable
+measurement in the substrate precisely because it removes the candidate from the
+equation: any deviation from 0.0 is pure instrument error.
+
+**E66's figures were taken with the buggy harness**, so E67 re-measures every
+task rather than carrying them forward.
+
+### Results
+
+| Task | Headroom | Anchor self | Null mean | Null sd | Best-of-5 | S/N | Verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| optimize_function | 8740× | −0.0038 | +0.0035 | 0.0148 | +0.0198 | 67.2 | **admitted** |
+| count_divisors | 279× | +0.0044 | +0.0146 | 0.0141 | +0.0312 | 69.8 | **admitted** |
+| power_mod | 636× | −0.0053 | +0.0130 | 0.0337 | **+0.0533** | 29.3 | rejected |
+| count_primes_v2 | 28× | −0.0120 | +0.0329 | 0.0770 | +0.1288 | 12.6 | rejected |
+
+H1, H2, H3 and H5 supported. **H4 failed: only two tasks admitted, so the
+substrate is not ready** by the pre-registered bar of three.
+
+### `power_mod` flipped, and that is the real finding
+
+It was **admitted** in E66 at best-of-5 = +0.0261 and is **rejected** here at
++0.0533, against a 0.05 bar. Neither run is wrong. The task simply sits near the
+threshold, and a borderline quantity crosses it between runs.
+
+This is the E60/E61 lesson arriving in the substrate work. I made replication
+structural for *effects* in E62 — two disjoint blocks, agreement required — and
+never applied the same rule to *admission verdicts*, which are equally
+threshold-crossing decisions made from a single noisy sample. E66 reported
+"two tasks admitted" from one run, and one of those two does not hold up.
+
+The correct fix is the one already used elsewhere: run the admission audit K
+times and require consistent admission, reporting anything that flips as
+**marginal** rather than as admitted or rejected. Under that rule the honest
+current state is:
+
+- **Solid:** `optimize_function`, `count_divisors` — comfortably inside every
+  criterion on both the numbers here and E66's.
+- **Marginal:** `power_mod` — flips across the bar between runs.
+- **Rejected:** `count_primes_v2` — 28× headroom, consistently far outside.
+
+`optimize_function`'s headroom now reads 8740× because the paired protocol
+measures the closed form against the O(n) loop at n = 100 000, where the earlier
+anchored harness never expressed the full ratio.
+
+### Standing
+
+Two solid tasks, one marginal, one rejected. **Not ready for a governed search
+run** by the pre-registered bar, and the bar was not lowered after seeing the
+result.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -756,10 +828,8 @@ baseline rather than against zero.
    predicts 67%. The noise is drift, not independent jitter.
 13. ~~**Interleave anchor and candidate measurement.**~~ Done in E66. Null
    spread fell 2.7-6.4x and two tasks are now admissible.
-14. **Adopt paired scoring as the substrate's default.** `paired_timing` is
-   currently a separate protocol used by the audit. The environments still score
-   candidates against a construction-time anchor, so anything calling `env.score`
-   inherits the drift E65 measured. Wire it in before any search runs.
+14. ~~**Adopt paired scoring as the substrate's default.**~~ Done in E67.
+   `anchored` remains selectable only so E66's runner stays reproducible.
 15. **Score any search against a measured null baseline, not against zero.**
    Best-of-5 phantom gain is still +0.019 to +0.026 under pairing — below the
    bar, not eliminated, because a maximum over noisy rewards is intrinsically
@@ -767,13 +837,22 @@ baseline rather than against zero.
    same k the search used.
 16. **Retire `sum_digits`.** It ships already solved and was not worth repairing;
    `power_mod` replaces it as a second task with real headroom.
-17. **Then add two or three more tasks with large headroom.** `power_mod`'s 669x
-   is what made it well-behaved; `count_primes_v2`'s 22x is what sank it.
-18. **Restore real search in the live loop.** Wire
+17. **Replicate admission verdicts, not just effects.** This is now the
+   blocking item. E62 made replication structural for effects and never applied
+   it to admission, which is an equally threshold-crossing decision from a single
+   noisy sample. `power_mod` was admitted in E66 and rejected in E67 on a
+   best-of-5 of 0.0261 versus 0.0533. Run the audit K times, require consistent
+   admission, and report anything that flips as **marginal**.
+18. **Add one or two more high-headroom tasks.** Two solid tasks is below the
+   readiness bar of three. `count_divisors` (279x) and `optimize_function`
+   (8740x) work; `count_primes_v2` (28x) does not. Headroom in the hundreds is
+   what distinguishes them, and each new task should reward a different insight
+   rather than another closed form.
+19. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-19. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+20. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

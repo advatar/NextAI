@@ -1,5 +1,48 @@
 # Status
 
+## Completed — E67, two solid tasks; admission verdicts need replication too
+
+Readiness audit. **No capability claim.** Pre-registered in
+`experiments/E67-preregistration.json` (`1c3c3339…`).
+
+Three changes since E66, checked together: paired scoring is now the
+`TimedTaskEnvironment` default (`anchored` retained only so
+`compare_e66_paired_timing.py` stays reproducible); `count_divisors` added as a
+third task (~280× headroom, solved by bounding a loop at `sqrt(n)` rather than
+replacing it); and an order bias fixed in the paired harness.
+
+**The order bias.** `PAIRED_ROUNDS` was 7. Order alternates within a round, so an
+odd count ran anchor-first four times against candidate-first three.
+`count_divisors` exposed it at once — its anchor self-score, which must be 0.0
+because no candidate is involved, read **+0.1059**. With an even count and a
+warm-up it reads −0.0081/−0.0016/−0.0179. E66's figures were taken with the buggy
+harness, so every task was re-measured here rather than carried forward.
+
+| Task | Headroom | Anchor self | Null mean | Null sd | Best-of-5 | S/N | Verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| optimize_function | 8740× | −0.0038 | +0.0035 | 0.0148 | +0.0198 | 67.2 | admitted |
+| count_divisors | 279× | +0.0044 | +0.0146 | 0.0141 | +0.0312 | 69.8 | admitted |
+| power_mod | 636× | −0.0053 | +0.0130 | 0.0337 | +0.0533 | 29.3 | rejected |
+| count_primes_v2 | 28× | −0.0120 | +0.0329 | 0.0770 | +0.1288 | 12.6 | rejected |
+
+H1, H2, H3, H5 supported. **H4 failed** — only two tasks admitted against a
+pre-registered readiness bar of three, so the substrate is **not ready** for a
+governed search run. The bar was not lowered.
+
+**`power_mod` flipped.** Admitted in E66 at best-of-5 = +0.0261, rejected here at
++0.0533 against a 0.05 bar. Neither run is wrong; the task sits near the
+threshold. E62 made replication structural for *effects* and that rule was never
+applied to *admission verdicts*, which are equally threshold-crossing decisions
+taken from a single noisy sample. Honest current state: **solid** —
+`optimize_function`, `count_divisors`; **marginal** — `power_mod`; **rejected** —
+`count_primes_v2`.
+
+Next blocking item: run the admission audit K times, require consistent
+admission, and report anything that flips as marginal.
+
+Validation: 415 tests pass; all 64 `report_digest` values reproduce; no existing
+experiment JSON or v1 environment modified.
+
 ## Completed — E66, paired measurement works; two tasks are usable
 
 Measurement-protocol comparison. **No capability claim.** Pre-registered in

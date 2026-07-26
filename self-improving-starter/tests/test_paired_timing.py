@@ -129,5 +129,32 @@ class ReferenceIsNotCoLocated(unittest.TestCase):
         del secret
 
 
+class RoundsMustBeEven(unittest.TestCase):
+    """An odd round count leaves a residual order bias.
+
+    The order within a round alternates, so with 7 rounds the anchor took the
+    cold first slot four times against the candidate's three. count_divisors
+    exposed it immediately: its anchor self-score, which must be 0.0 by
+    definition because no candidate is involved, came out at +0.1059. With an
+    even count and a warm-up it is within a few thousandths of zero.
+    """
+
+    def test_paired_rounds_is_even(self):
+        from recursive_lab.paired_timing import PAIRED_ROUNDS
+
+        self.assertEqual(PAIRED_ROUNDS % 2, 0)
+        self.assertGreaterEqual(PAIRED_ROUNDS, 2)
+
+    def test_script_warms_both_programs_before_timing(self):
+        from recursive_lab.paired_timing import _paired_script
+
+        script = _paired_script(SLOW, FAST, 100)
+        first_round = script.index("_h_anchor_samples = []")
+        warm_up = script[:first_round]
+        # Both programs must be exercised before any timed round begins.
+        self.assertIn("_h_measure(_h_anchor, _h_repeats)", warm_up)
+        self.assertIn("_h_measure(_h_candidate, _h_repeats)", warm_up)
+
+
 if __name__ == "__main__":
     unittest.main()

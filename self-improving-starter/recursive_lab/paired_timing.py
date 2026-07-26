@@ -51,7 +51,14 @@ from sandbox import run_python
 
 #: Alternating measurement rounds.  Each round times the anchor once and the
 #: candidate once, so the two see the same machine state.
-PAIRED_ROUNDS = 7
+#:
+#: This MUST be even.  The order within a round alternates, so an odd count runs
+#: one ordering more often than the other and leaves a residual order bias that
+#: warm-up amplifies.  E66 ran with 7 rounds; adding ``count_divisors``
+#: afterwards exposed the flaw immediately -- its anchor self-score, which must
+#: be 0.0 by definition, came out at +0.1059 because the anchor took the cold
+#: first slot in four rounds against the candidate's three.
+PAIRED_ROUNDS = 8
 
 #: Calibration target for one timed batch, well above clock granularity.
 TIMING_TARGET_SECONDS = 0.02
@@ -114,6 +121,11 @@ def _paired_script(anchor: str, candidate: str, timing_argument: int) -> str:
             else:
                 _h_multiplier = max(2, min(64, int(_H_TARGET / _h_elapsed)))
             _h_repeats = min(_H_MAX, _h_repeats * _h_multiplier)
+
+        # Warm both programs before measuring, so neither pays the cold-cache
+        # and branch-predictor cost of its first execution inside a timed round.
+        _h_measure(_h_anchor, _h_repeats)
+        _h_measure(_h_candidate, _h_repeats)
 
         _h_anchor_samples = []
         _h_candidate_samples = []

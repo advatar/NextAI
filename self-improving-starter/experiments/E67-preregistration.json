@@ -1,0 +1,73 @@
+{
+  "admission_criteria": {
+    "maximum_absolute_anchor_self_score": 0.05,
+    "maximum_absolute_null_reward_mean": 0.05,
+    "maximum_null_best_of_5_reward": 0.05,
+    "maximum_null_variant_reward_sd": 0.05,
+    "minimum_reference_reward": 0.5,
+    "minimum_signal_to_noise": 5.0,
+    "monotonicity_threshold": -0.05
+  },
+  "analysis_plan": {
+    "no_capability_claim": "Readiness licenses a search run; it is not evidence about one. No statement about scaffold or model improvement is made here.",
+    "null_handling": "Findings are recorded as measured; no threshold is relaxed after seeing results.",
+    "primary": "Per task: anchor self-score, null mean/sd, best-of-5, reference reward, monotonicity and signal-to-noise, judged against the frozen criteria.",
+    "readiness": "The substrate is called ready for a governed search run only if at least three tasks are admitted. Fewer is reported as not ready."
+  },
+  "claim_boundary": "Readiness audit of the executable task substrate under paired scoring. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect.",
+  "experiment_id": "E67-substrate-readiness",
+  "follows": "E66-paired-timing",
+  "instrument": {
+    "anchor_self_probes_per_task": 3,
+    "best_of_k_values": [
+      1,
+      2,
+      3,
+      5,
+      8
+    ],
+    "bootstrap_samples": 20000,
+    "null_variants_per_task": 10,
+    "primary_metric": "reward; 0.0 is the starting solution, 1.0 the reference",
+    "reference_probes_per_task": 5
+  },
+  "makes_capability_claim": false,
+  "predictions": [
+    {
+      "basis": "About 280x of headroom, comparable to power_mod's 669x.",
+      "id": "H1",
+      "statement": "count_divisors is admitted."
+    },
+    {
+      "basis": "count_divisors scored +0.1059 with PAIRED_ROUNDS=7 and near zero after the fix.",
+      "id": "H2",
+      "statement": "Every task's anchor self-score is within 0.05 of zero, confirming the order-bias fix."
+    },
+    {
+      "basis": "Its headroom is 22-27x where the admitted tasks have hundreds. E64's H4 and E66 both found this, and pairing does not create headroom.",
+      "id": "H3",
+      "statement": "count_primes_v2 remains rejected."
+    },
+    {
+      "basis": "E66 admitted optimize_function and power_mod under pairing; count_divisors should join them.",
+      "id": "H4",
+      "statement": "At least three tasks are admitted."
+    },
+    {
+      "basis": "A maximum over noisy rewards is biased upward, so it cannot be zero; pairing should keep it small. If any admitted task shows a negative best-of-5 the null distribution is skewed and the phantom-gain baseline needs rethinking.",
+      "id": "H5",
+      "statement": "Every admitted task has a best-of-5 null reward that is positive but below 0.05."
+    }
+  ],
+  "preregistration_digest": "1c3c333945cacf62346725dbb887ed516032005dcb17e6eaa2b5eaee1aa8226d",
+  "protocol": "Paired measurement for every task. The three TimedTaskEnvironment tasks use it through their own score(), now the default; optimize_function is not a TimedTaskEnvironment and uses recursive_lab.paired_timing directly, as in E66.",
+  "question": "Under paired scoring as the default, with the order-bias fix and a third task, how many tasks can measure an improvement?",
+  "revalidation_note": "E66's numbers were measured with PAIRED_ROUNDS=7 and no warm-up. Every task is re-measured here under the corrected harness rather than carrying E66's figures forward.",
+  "schema_version": 1,
+  "tasks": [
+    "optimize_function",
+    "count_primes_v2",
+    "power_mod",
+    "count_divisors"
+  ]
+}

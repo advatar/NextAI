@@ -4,6 +4,7 @@ from .count_primes import CountPrimesEnv
 from .sum_digits import SumDigitsEnv
 from .count_primes_v2 import CountPrimesV2Env
 from .power_mod import PowerModEnv
+from .count_divisors import CountDivisorsEnv
 from .timed_task import TimedTaskEnvironment
 
 REGISTRY = {
@@ -12,6 +13,7 @@ REGISTRY = {
     SumDigitsEnv.name: SumDigitsEnv,
     CountPrimesV2Env.name: CountPrimesV2Env,
     PowerModEnv.name: PowerModEnv,
+    CountDivisorsEnv.name: CountDivisorsEnv,
 }
 
 #: Tasks E63 rejected as unable to measure an improvement, kept registered so
@@ -28,6 +30,7 @@ __all__ = [
     "SumDigitsEnv",
     "CountPrimesV2Env",
     "PowerModEnv",
+    "CountDivisorsEnv",
     "TimedTaskEnvironment",
     "REGISTRY",
     "E63_REJECTED",

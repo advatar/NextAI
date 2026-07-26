@@ -1,0 +1,171 @@
+{
+  "admission_criteria": {
+    "maximum_absolute_anchor_self_score": 0.05,
+    "maximum_absolute_null_reward_mean": 0.05,
+    "maximum_null_best_of_5_reward": 0.05,
+    "maximum_null_variant_reward_sd": 0.05,
+    "minimum_reference_reward": 0.5,
+    "minimum_signal_to_noise": 5.0,
+    "monotonicity_threshold": -0.05
+  },
+  "admitted_tasks": [
+    "optimize_function",
+    "count_divisors"
+  ],
+  "claim_boundary": "Readiness audit of the executable task substrate under paired scoring. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect.",
+  "experiment_id": "E67-substrate-readiness",
+  "follows": "E66-paired-timing",
+  "makes_capability_claim": false,
+  "predictions": [
+    {
+      "evidence": "count_divisors admitted=True failures=[]",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "anchor self-scores: optimize_function=-0.0038, count_primes_v2=-0.0120, power_mod=-0.0053, count_divisors=+0.0044",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "count_primes_v2 admitted=False (headroom 28x)",
+      "id": "H3",
+      "supported": true
+    },
+    {
+      "evidence": "admitted: ['optimize_function', 'count_divisors']",
+      "id": "H4",
+      "supported": false
+    },
+    {
+      "evidence": "admitted best-of-5: optimize_function=+0.0198, count_divisors=+0.0312",
+      "id": "H5",
+      "supported": true
+    }
+  ],
+  "preregistration_digest": "1c3c333945cacf62346725dbb887ed516032005dcb17e6eaa2b5eaee1aa8226d",
+  "question": "Under paired scoring as the default, with the order-bias fix and a third task, how many tasks can measure an improvement?",
+  "rejected_tasks": [
+    "count_primes_v2",
+    "power_mod"
+  ],
+  "report_digest": "d7569f59b6171565f1feae7a11fa0678f861806630e60d783b64bcca62eaba7b",
+  "reproducibility_note": "Measures wall-clock time; not bit-reproducible. The digest attests to the recorded report.",
+  "schema_version": 1,
+  "substrate_ready_for_search": false,
+  "tasks": [
+    {
+      "admitted": true,
+      "anchor_self_score": -0.0037875841420542612,
+      "anchor_self_scores": [
+        -0.004059123924092427,
+        0.014474184836293678,
+        -0.021777813338364035
+      ],
+      "best_of_5": 0.01980928916920125,
+      "best_of_k": {
+        "1": 0.003458041312338314,
+        "2": 0.011752168674591654,
+        "3": 0.016025119986689866,
+        "5": 0.01980928916920125,
+        "8": 0.021895170490678708
+      },
+      "failures": [],
+      "headroom_factor": 8740.160361574945,
+      "null_reward_max": 0.02329781658221269,
+      "null_reward_mean": 0.0034795455422041268,
+      "null_reward_min": -0.02008220422953754,
+      "null_reward_sd": 0.014834719116841444,
+      "reference_reward_mean": 0.999958914072072,
+      "signal_to_noise": 67.17210893454616,
+      "slower_probe_reward": -1.2735002968753062,
+      "task_id": "optimize_function"
+    },
+    {
+      "admitted": false,
+      "anchor_self_score": -0.012045283690789645,
+      "anchor_self_scores": [
+        0.03571909484339225,
+        -0.06380373913655561,
+        -0.008051206779205575
+      ],
+      "best_of_5": 0.12878211154488495,
+      "best_of_k": {
+        "1": 0.032878376562007074,
+        "2": 0.0733114484028263,
+        "3": 0.09833637291940901,
+        "5": 0.12878211154488495,
+        "8": 0.1545025078671587
+      },
+      "failures": [
+        "null_reward_sd 0.0770 exceeds maximum 0.05",
+        "best_of_5 +0.1288 exceeds maximum 0.05"
+      ],
+      "headroom_factor": 27.872754515850595,
+      "null_reward_max": 0.20359162183153245,
+      "null_reward_mean": 0.03287836245940551,
+      "null_reward_min": -0.08671722231651867,
+      "null_reward_sd": 0.0769806235495585,
+      "reference_reward_mean": 1.0034844633232929,
+      "signal_to_noise": 12.608446854668976,
+      "slower_probe_reward": -1.10711861279587,
+      "task_id": "count_primes_v2"
+    },
+    {
+      "admitted": false,
+      "anchor_self_score": -0.005282845837608625,
+      "anchor_self_scores": [
+        0.022813566343597224,
+        -0.037465390308935115,
+        -0.0011967135474879858
+      ],
+      "best_of_5": 0.05334171525425792,
+      "best_of_k": {
+        "1": 0.01284368020039997,
+        "2": 0.03065923590484468,
+        "3": 0.04039688022653466,
+        "5": 0.05334171525425792,
+        "8": 0.0642976205429647
+      },
+      "failures": [
+        "best_of_5 +0.0533 exceeds maximum 0.05"
+      ],
+      "headroom_factor": 636.3160588993218,
+      "null_reward_max": 0.07990679166389583,
+      "null_reward_mean": 0.012982734786949574,
+      "null_reward_min": -0.04701060503222527,
+      "null_reward_sd": 0.03370668309471495,
+      "reference_reward_mean": 0.9999895428278724,
+      "signal_to_noise": 29.282228846649133,
+      "slower_probe_reward": -1.0105501694111314,
+      "task_id": "power_mod"
+    },
+    {
+      "admitted": true,
+      "anchor_self_score": 0.004396887194889545,
+      "anchor_self_scores": [
+        0.01331964253641952,
+        0.0034577627204939484,
+        -0.0035867436722448317
+      ],
+      "best_of_5": 0.031234140890046894,
+      "best_of_k": {
+        "1": 0.014732853201734841,
+        "2": 0.022590784111592866,
+        "3": 0.02689010246450378,
+        "5": 0.031234140890046894,
+        "8": 0.034585773552088146
+      },
+      "failures": [],
+      "headroom_factor": 278.9921859986789,
+      "null_reward_max": 0.04161501016323112,
+      "null_reward_mean": 0.014617289423682917,
+      "null_reward_min": -0.007514139404283687,
+      "null_reward_sd": 0.014108316862006589,
+      "reference_reward_mean": 1.0000134805978007,
+      "signal_to_noise": 69.84505670040413,
+      "slower_probe_reward": -0.9532335054967026,
+      "task_id": "count_divisors"
+    }
+  ]
+}
