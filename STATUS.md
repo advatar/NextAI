@@ -1,5 +1,49 @@
 # Status
 
+## Completed — E70, the governed search: one real held-out improvement
+
+First capability measurement in the series. **Four attempts**; three failed on
+measurement. Pre-registered as E70 -> E70b -> E70c -> E70d, each amendment
+recording its reason and stating that no results were seen before re-planning.
+
+| Task | governed | null_only | random_walk |
+| --- | --- | --- | --- |
+| digit_sum_graded | +0.0000 | 0.0000 | -1.0000 |
+| **count_one_bits** | **+0.5000** | 0.0000 | -2.0000 |
+| collatz_steps | +0.0000 | 0.0000 | -1.6667 |
+| integer_sqrt | +0.0000 | 0.0000 | -0.5333 |
+| **pooled** | **+0.1250** | **0.0000** | **-1.3000** |
+
+A governed mutation search produced a genuine held-out improvement on one of
+four tasks: +0.3333 development, **+0.5000 held-out**. The search never saw the
+held-out cases and scored *higher* there, so this is not overfitting.
+
+H1, H2, H4, H5 supported. Both controls worked: `null_only` returned exactly 0.0
+everywhere, and `random_walk` -- identical operators and budget, selection
+removed -- destroyed the programs at -1.30. The +1.425 gap is selection alone.
+
+The three failed attempts share one error: using *time* to detect
+non-termination, when a proposer emits non-terminating programs 25-58% of the
+time. 15s made the run take 20h (39s CPU in 2h11m); 0.5s produced false timeouts
+on *correct* programs, which the null control caught at -0.4444. Fixed by
+`recursive_lab/loop_guard.py`: one bounded iteration counter per function, so a
+hanging program returns wrong answers in milliseconds. Validated on 240 mutants,
+all completing in 1.9-178.8ms, zero timeouts.
+
+Two corrections recorded rather than smoothed over. **H6's recorded verdict is
+wrong** -- the plan says "<5% on digit_sum_graded and count_one_bits", observed
+3.6% and 4.7%, but the runner still used E70b's superseded 0.20-0.70 band. A
+grader defect, same class as E64's H5; code fixed, record left as it ran.
+**H3's failure is under-powered**: P(right mutation) is 0.25% per candidate, so
+31.3% per seed and a 32.4% chance no seed finds it. 0/3 is unremarkable, and H3
+is not evidence that collatz_steps is unreachable.
+
+Claim boundary: a generic AST mutator on four small Python tasks, **no model in
+the loop**. Nothing here bears on model self-improvement or a recursive effect.
+
+Validation: 445 tests pass; E70d's `report_digest` reproduces; no existing
+experiment JSON or v1 environment modified.
+
 ## Completed — E69, a deterministic substrate: ready for a governed search run
 
 Readiness audit. **No capability claim.** Pre-registered in

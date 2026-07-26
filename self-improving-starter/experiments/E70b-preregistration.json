@@ -1,0 +1,76 @@
+{
+  "amendment_reason": "E70's plan was not executable: a 15s candidate timeout against a 25-58% non-termination rate made the run take >20h. Killed after 2h11m with zero output and no report file, so no result informed this amendment. Timeout 15s -> 0.5s, budget 200 -> 150, seeds 5 -> 3.",
+  "amends": "E70-governed-search",
+  "analysis_plan": {
+    "control_comparison": "governed versus random_walk on held-out delta, at identical budget and identical mutation operators. Only the selection differs.",
+    "null_handling": "Recorded as measured. A task the mutator cannot reach is reported as unreached, and no operator is added afterwards to reach it.",
+    "overfitting": "A development delta exceeding the held-out delta is reported as overfitting, not smoothed over.",
+    "primary": "Per task per arm: mean held-out delta across seeds, and the development delta alongside it so overfitting is visible."
+  },
+  "arms": {
+    "governed": "mutate from the incumbent; promote on development improvement",
+    "null_only": "propose semantic no-ops and keep the best by development score. End-to-end phantom-gain check; must be exactly zero.",
+    "random_walk": "mutate identically but never select; report the final candidate. Separates search from mutation."
+  },
+  "capability_claim_boundary": "Any positive result is a claim about a generic mutation search on four small Python tasks. It is NOT evidence of model self-improvement, of a recursive effect, or of anything about the scaffold improving itself. The proposer is an AST mutator with no model in the loop.",
+  "claim_boundary": "A governed generic-mutation search on four small deterministic Python tasks, scored on held-out cases. Not evidence of model self-improvement or of a recursive effect.",
+  "experiment_id": "E70b-governed-search",
+  "follows": "E69-deterministic-substrate",
+  "instrument": {
+    "candidate_evaluations_per_arm": 150,
+    "candidate_timeout_seconds": 0.5,
+    "mutation_edits_per_candidate": 1,
+    "primary_metric": "held-out normalised delta against the starting solution",
+    "seeds_per_arm": 3,
+    "timeout_justification": "The reference solutions run in milliseconds, so 0.5s is more than two orders of magnitude of headroom. A non-terminating mutant fails every case and is never promoted, so a short timeout costs no correct candidate anything."
+  },
+  "makes_capability_claim": true,
+  "predictions": [
+    {
+      "basis": "E69 measured best-of-k phantom gain at exactly zero. This checks the property end to end through the search loop rather than in isolation.",
+      "id": "H1",
+      "statement": "null_only yields exactly 0.0 held-out delta on every task and every seed."
+    },
+    {
+      "basis": "collatz_steps is reachable by a single constant mutation.",
+      "id": "H2",
+      "statement": "governed achieves a strictly positive mean held-out delta on at least one task."
+    },
+    {
+      "basis": "Its fix is returning -1 instead of 0 for non-positive n, which the constant operator produces directly.",
+      "id": "H3",
+      "statement": "collatz_steps is the task governed search improves most."
+    },
+    {
+      "basis": "digit_sum_graded and count_one_bits need a structural insertion the operators cannot generate. Recorded in advance so an unreached task is not later presented as a surprise.",
+      "id": "H4",
+      "statement": "At least one task shows a mean held-out delta of 0.0 under governed search."
+    },
+    {
+      "basis": "A scouting probe measured 10/40, 6/40, 23/40 and 20/40 across the four tasks. Recorded as a measurement because it is the cost that made E70 unrunnable, and because a proposer whose output mostly hangs is a fact about the proposer worth stating.",
+      "id": "H6",
+      "statement": "Between 20% and 70% of proposed candidates fail to terminate within the timeout, on every task."
+    },
+    {
+      "basis": "The two arms share operators, budget and seeds; only selection differs. If selection buys nothing, the governed loop is doing no work.",
+      "id": "H5",
+      "statement": "governed's mean held-out delta exceeds random_walk's, pooled across tasks."
+    }
+  ],
+  "preregistration_digest": "7ac1fc6ff1ecbe7f824440abfed3957fabcc07ac83fa6ed834d8975c806af239",
+  "promotion_rule": "A candidate is promoted only if it strictly improves the incumbent's development score. Ties are not promoted, so a no-op can never displace an incumbent.",
+  "proposer": "recursive_lab.program_mutation: generic AST edits to constants, comparisons, arithmetic operators, signs and branch order. No operator encodes a task fix.",
+  "question": "On an admissible deterministic substrate, does a governed mutation search produce held-out correctness improvements that a matched-budget unselected control does not?",
+  "schema_version": 1,
+  "split": {
+    "method": "Stratified alternation: cases the starting solution fails are dealt alternately to development and held-out, and likewise the cases it passes. Both halves are therefore guaranteed to contain fixable cases and regression-detecting cases.",
+    "reported_on": "held-out cases only",
+    "search_sees": "development cases only"
+  },
+  "tasks": [
+    "digit_sum_graded",
+    "count_one_bits",
+    "collatz_steps",
+    "integer_sqrt"
+  ]
+}

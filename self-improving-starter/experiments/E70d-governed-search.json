@@ -1,0 +1,671 @@
+{
+  "amendment_reason": "Non-termination is now bounded by iterations rather than detected by timeout, so the measurement no longer depends on machine load. Prior: E70b was contaminated by false timeouts, detected by the null_only control scoring -0.4444 where exactly 0.0 is required by construction. Timeout is now calibrated from measured runtime and the champion is measured best-of-three. Prior context: E70's plan was not executable: a 15s candidate timeout against a 25-58% non-termination rate made the run take >20h. Killed after 2h11m with zero output and no report file, so no result informed this amendment. Timeout 15s -> 0.5s, budget 200 -> 150, seeds 5 -> 3.",
+  "amends": "E70c-governed-search",
+  "budget_per_arm": 150,
+  "capability_claim_boundary": "Any positive result is a claim about a generic mutation search on four small Python tasks. It is NOT evidence of model self-improvement, of a recursive effect, or of anything about the scaffold improving itself. The proposer is an AST mutator with no model in the loop.",
+  "claim_boundary": "A governed generic-mutation search on four small deterministic Python tasks, scored on held-out cases. Not evidence of model self-improvement or of a recursive effect.",
+  "experiment_id": "E70d-governed-search",
+  "follows": "E69-deterministic-substrate",
+  "pooled_mean_heldout_delta": {
+    "governed": 0.125,
+    "null_only": 0.0,
+    "random_walk": -1.3
+  },
+  "predictions": [
+    {
+      "evidence": "null_only held-out deltas: max=+0.000000, min=+0.000000",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "governed mean held-out deltas: {'digit_sum_graded': 0.0, 'count_one_bits': 0.5, 'collatz_steps': 0.0, 'integer_sqrt': 0.0}",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "best governed task: count_one_bits (+0.5000)",
+      "id": "H3",
+      "supported": false
+    },
+    {
+      "evidence": "tasks with zero governed improvement: ['digit_sum_graded', 'collatz_steps', 'integer_sqrt']",
+      "id": "H4",
+      "supported": true
+    },
+    {
+      "evidence": "non-terminating rates (governed): {'digit_sum_graded': 0.036, 'count_one_bits': 0.047, 'collatz_steps': 0.14, 'integer_sqrt': 0.429}",
+      "id": "H6",
+      "supported": false
+    },
+    {
+      "evidence": "pooled governed=+0.1250 vs random_walk=-1.3000",
+      "id": "H5",
+      "supported": true
+    }
+  ],
+  "preregistration_digest": "c067dfbc91422cb52dda2e0644013e9cbb7cfac53e1c801a87d892b81089ee1e",
+  "promotion_rule": "A candidate is promoted only if it strictly improves the incumbent's development score. Ties are not promoted, so a no-op can never displace an incumbent.",
+  "proposer": "recursive_lab.program_mutation: generic AST edits to constants, comparisons, arithmetic operators, signs and branch order. No operator encodes a task fix.",
+  "question": "On an admissible deterministic substrate, does a governed mutation search produce held-out correctness improvements that a matched-budget unselected control does not?",
+  "report_digest": "a209a4de94db92f211439ba5cbe27af0c708d84263855175a236d82b32722596",
+  "schema_version": 1,
+  "seeds_per_arm": 3,
+  "tasks": [
+    {
+      "arms": {
+        "governed": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": 0.0,
+          "mean_heldout_delta": 0.0,
+          "mean_non_terminating_rate": 0.035555555555555556,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 4,
+              "non_terminating_rate": 0.02666666666666667,
+              "promotions": 0,
+              "seed": 70016,
+              "total_candidates": 150,
+              "unique_candidates": 26
+            },
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 8,
+              "non_terminating_rate": 0.05333333333333334,
+              "promotions": 0,
+              "seed": 70047,
+              "total_candidates": 150,
+              "unique_candidates": 27
+            },
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 4,
+              "non_terminating_rate": 0.02666666666666667,
+              "promotions": 0,
+              "seed": 70078,
+              "total_candidates": 150,
+              "unique_candidates": 21
+            }
+          ]
+        },
+        "null_only": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": 0.0,
+          "mean_heldout_delta": 0.0,
+          "mean_non_terminating_rate": 0.0,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70016,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            },
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70047,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            },
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70078,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            }
+          ]
+        },
+        "random_walk": {
+          "max_heldout_delta": -0.3333333333333333,
+          "mean_development_delta": -0.6666666666666666,
+          "mean_heldout_delta": -1.0,
+          "mean_non_terminating_rate": 0.035555555555555556,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": -1.0,
+              "evaluations": 150,
+              "heldout_delta": -1.3333333333333333,
+              "non_terminating": 4,
+              "non_terminating_rate": 0.02666666666666667,
+              "promotions": 0,
+              "seed": 70016,
+              "total_candidates": 150,
+              "unique_candidates": 26
+            },
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": -1.0,
+              "evaluations": 150,
+              "heldout_delta": -1.3333333333333333,
+              "non_terminating": 8,
+              "non_terminating_rate": 0.05333333333333334,
+              "promotions": 0,
+              "seed": 70047,
+              "total_candidates": 150,
+              "unique_candidates": 27
+            },
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": -0.3333333333333333,
+              "non_terminating": 4,
+              "non_terminating_rate": 0.02666666666666667,
+              "promotions": 0,
+              "seed": 70078,
+              "total_candidates": 150,
+              "unique_candidates": 21
+            }
+          ]
+        }
+      },
+      "calibrated_timeout_seconds": 10.0,
+      "development_cases": 9,
+      "development_headroom": 4,
+      "heldout_cases": 7,
+      "heldout_headroom": 3,
+      "task_id": "digit_sum_graded"
+    },
+    {
+      "arms": {
+        "governed": {
+          "max_heldout_delta": 0.5,
+          "mean_development_delta": 0.3333333333333333,
+          "mean_heldout_delta": 0.5,
+          "mean_non_terminating_rate": 0.04666666666666667,
+          "mean_promotions": 1.0,
+          "runs": [
+            {
+              "arm": "governed",
+              "champion_changed": true,
+              "development_delta": 0.3333333333333333,
+              "evaluations": 150,
+              "heldout_delta": 0.5,
+              "non_terminating": 6,
+              "non_terminating_rate": 0.04,
+              "promotions": 1,
+              "seed": 70014,
+              "total_candidates": 150,
+              "unique_candidates": 52
+            },
+            {
+              "arm": "governed",
+              "champion_changed": true,
+              "development_delta": 0.3333333333333333,
+              "evaluations": 150,
+              "heldout_delta": 0.5,
+              "non_terminating": 5,
+              "non_terminating_rate": 0.03333333333333333,
+              "promotions": 1,
+              "seed": 70045,
+              "total_candidates": 150,
+              "unique_candidates": 50
+            },
+            {
+              "arm": "governed",
+              "champion_changed": true,
+              "development_delta": 0.3333333333333333,
+              "evaluations": 150,
+              "heldout_delta": 0.5,
+              "non_terminating": 10,
+              "non_terminating_rate": 0.06666666666666667,
+              "promotions": 1,
+              "seed": 70076,
+              "total_candidates": 150,
+              "unique_candidates": 39
+            }
+          ]
+        },
+        "null_only": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": 0.0,
+          "mean_heldout_delta": 0.0,
+          "mean_non_terminating_rate": 0.0,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70014,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            },
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70045,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            },
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70076,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            }
+          ]
+        },
+        "random_walk": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": -1.1111111111111112,
+          "mean_heldout_delta": -2.0,
+          "mean_non_terminating_rate": 0.06888888888888889,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": -1.6666666666666667,
+              "evaluations": 150,
+              "heldout_delta": -3.0,
+              "non_terminating": 11,
+              "non_terminating_rate": 0.07333333333333333,
+              "promotions": 0,
+              "seed": 70014,
+              "total_candidates": 150,
+              "unique_candidates": 32
+            },
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 9,
+              "non_terminating_rate": 0.06,
+              "promotions": 0,
+              "seed": 70045,
+              "total_candidates": 150,
+              "unique_candidates": 33
+            },
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": -1.6666666666666667,
+              "evaluations": 150,
+              "heldout_delta": -3.0,
+              "non_terminating": 11,
+              "non_terminating_rate": 0.07333333333333333,
+              "promotions": 0,
+              "seed": 70076,
+              "total_candidates": 150,
+              "unique_candidates": 28
+            }
+          ]
+        }
+      },
+      "calibrated_timeout_seconds": 10.0,
+      "development_cases": 9,
+      "development_headroom": 3,
+      "heldout_cases": 8,
+      "heldout_headroom": 2,
+      "task_id": "count_one_bits"
+    },
+    {
+      "arms": {
+        "governed": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": 0.0,
+          "mean_heldout_delta": 0.0,
+          "mean_non_terminating_rate": 0.13999999999999999,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 21,
+              "non_terminating_rate": 0.14,
+              "promotions": 0,
+              "seed": 70013,
+              "total_candidates": 150,
+              "unique_candidates": 33
+            },
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 17,
+              "non_terminating_rate": 0.11333333333333333,
+              "promotions": 0,
+              "seed": 70044,
+              "total_candidates": 150,
+              "unique_candidates": 38
+            },
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 25,
+              "non_terminating_rate": 0.16666666666666666,
+              "promotions": 0,
+              "seed": 70075,
+              "total_candidates": 150,
+              "unique_candidates": 33
+            }
+          ]
+        },
+        "null_only": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": 0.0,
+          "mean_heldout_delta": 0.0,
+          "mean_non_terminating_rate": 0.0,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70013,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            },
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70044,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            },
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70075,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            }
+          ]
+        },
+        "random_walk": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": -1.6666666666666667,
+          "mean_heldout_delta": -1.6666666666666667,
+          "mean_non_terminating_rate": 0.13999999999999999,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 21,
+              "non_terminating_rate": 0.14,
+              "promotions": 0,
+              "seed": 70013,
+              "total_candidates": 150,
+              "unique_candidates": 33
+            },
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": -2.5,
+              "evaluations": 150,
+              "heldout_delta": -3.0,
+              "non_terminating": 17,
+              "non_terminating_rate": 0.11333333333333333,
+              "promotions": 0,
+              "seed": 70044,
+              "total_candidates": 150,
+              "unique_candidates": 38
+            },
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": -2.5,
+              "evaluations": 150,
+              "heldout_delta": -2.0,
+              "non_terminating": 25,
+              "non_terminating_rate": 0.16666666666666666,
+              "promotions": 0,
+              "seed": 70075,
+              "total_candidates": 150,
+              "unique_candidates": 33
+            }
+          ]
+        }
+      },
+      "calibrated_timeout_seconds": 10.0,
+      "development_cases": 8,
+      "development_headroom": 2,
+      "heldout_cases": 8,
+      "heldout_headroom": 2,
+      "task_id": "collatz_steps"
+    },
+    {
+      "arms": {
+        "governed": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": 0.0,
+          "mean_heldout_delta": 0.0,
+          "mean_non_terminating_rate": 0.4288888888888889,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 68,
+              "non_terminating_rate": 0.4533333333333333,
+              "promotions": 0,
+              "seed": 70012,
+              "total_candidates": 150,
+              "unique_candidates": 17
+            },
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 59,
+              "non_terminating_rate": 0.3933333333333333,
+              "promotions": 0,
+              "seed": 70043,
+              "total_candidates": 150,
+              "unique_candidates": 16
+            },
+            {
+              "arm": "governed",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 66,
+              "non_terminating_rate": 0.44,
+              "promotions": 0,
+              "seed": 70074,
+              "total_candidates": 150,
+              "unique_candidates": 16
+            }
+          ]
+        },
+        "null_only": {
+          "max_heldout_delta": 0.0,
+          "mean_development_delta": 0.0,
+          "mean_heldout_delta": 0.0,
+          "mean_non_terminating_rate": 0.0,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70012,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            },
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70043,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            },
+            {
+              "arm": "null_only",
+              "champion_changed": false,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": 0.0,
+              "non_terminating": 0,
+              "non_terminating_rate": 0.0,
+              "promotions": 0,
+              "seed": 70074,
+              "total_candidates": 150,
+              "unique_candidates": 150
+            }
+          ]
+        },
+        "random_walk": {
+          "max_heldout_delta": -0.4,
+          "mean_development_delta": -0.38888888888888884,
+          "mean_heldout_delta": -0.5333333333333333,
+          "mean_non_terminating_rate": 0.4288888888888889,
+          "mean_promotions": 0.0,
+          "runs": [
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": 0.0,
+              "evaluations": 150,
+              "heldout_delta": -0.4,
+              "non_terminating": 68,
+              "non_terminating_rate": 0.4533333333333333,
+              "promotions": 0,
+              "seed": 70012,
+              "total_candidates": 150,
+              "unique_candidates": 17
+            },
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": -0.6666666666666666,
+              "evaluations": 150,
+              "heldout_delta": -0.6,
+              "non_terminating": 59,
+              "non_terminating_rate": 0.3933333333333333,
+              "promotions": 0,
+              "seed": 70043,
+              "total_candidates": 150,
+              "unique_candidates": 16
+            },
+            {
+              "arm": "random_walk",
+              "champion_changed": true,
+              "development_delta": -0.5,
+              "evaluations": 150,
+              "heldout_delta": -0.6,
+              "non_terminating": 66,
+              "non_terminating_rate": 0.44,
+              "promotions": 0,
+              "seed": 70074,
+              "total_candidates": 150,
+              "unique_candidates": 16
+            }
+          ]
+        }
+      },
+      "calibrated_timeout_seconds": 13.377181248506531,
+      "development_cases": 10,
+      "development_headroom": 6,
+      "heldout_cases": 8,
+      "heldout_headroom": 5,
+      "task_id": "integer_sqrt"
+    }
+  ]
+}

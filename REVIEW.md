@@ -945,6 +945,79 @@ trustworthy rather than merely clean-looking. But ten experiments to conclude
 that a laptop cannot time reliably is a poor trade, and the signal was there
 early: E63 already showed `count_primes` handing out 0.254 for nothing.
 
+## E70 — the governed search runs, and produces one real improvement
+
+The first capability measurement in this series. It took **four attempts**, and
+three of them failed on measurement, not on the science.
+
+### The three failures, because they are the lesson
+
+| Attempt | Failure | How it was caught |
+| --- | --- | --- |
+| E70 | 15s timeout against a proposer emitting non-terminating programs 25–58% of the time | process state: 39s of CPU in 2h11m — blocked, not computing |
+| E70b | 0.5s timeout, below the noise floor for a *correct* program on a loaded machine | **the null control**: `null_only` scored −0.4444 where exactly 0.0 is required |
+| E70c | calibrated timeout; sound but still load-dependent, and opaque — no progress output | abandoned at 1h29m in favour of the guarded run |
+
+All three are the same error: **using time to detect non-termination**, when the
+two failure modes move in opposite directions with machine load. No timeout
+value resolves it.
+
+`recursive_lab/loop_guard.py` removes the dependence: every loop shares one
+bounded iteration counter, so a non-terminating program returns wrong answers in
+milliseconds, fails its cases and is never promoted. Validated on 240 real
+mutants — all ran to completion at 1.9–178.8 ms, zero timeouts. The limit comes
+from a cost model (largest legitimate workload ~350 iterations, so 20,000 is
+~57× headroom); an earlier draft used 1,000,000 and had to be killed after ten
+minutes, which is *the same failure in a different currency*.
+
+### Result
+
+| Task | governed | null_only | random_walk | hang rate |
+| --- | --- | --- | --- | --- |
+| digit_sum_graded | +0.0000 | 0.0000 | −1.0000 | 3.6% |
+| **count_one_bits** | **+0.5000** | 0.0000 | −2.0000 | 4.7% |
+| collatz_steps | +0.0000 | 0.0000 | −1.6667 | 14% |
+| integer_sqrt | +0.0000 | 0.0000 | −0.5333 | 42.9% |
+| **pooled** | **+0.1250** | **0.0000** | **−1.3000** | |
+
+**A governed mutation search produced a genuine held-out correctness improvement
+on one of four tasks.** On `count_one_bits` it scored +0.3333 on development and
+**+0.5000 on held-out** — the search never saw those cases, and the held-out
+figure is the *higher* of the two, so this is not overfitting.
+
+**H1, H2, H4, H5 supported.** The two controls behaved exactly as designed:
+`null_only` returned **exactly 0.0** on every task and seed, and `random_walk` —
+identical operators and budget, selection removed — **actively destroyed** the
+programs at −1.30 pooled. The +1.425 gap between them is attributable to
+selection alone.
+
+### Two corrections to the record
+
+**H6's recorded verdict is wrong.** The plan states "fewer than 5% of candidates
+fail every case on `digit_sum_graded` and `count_one_bits`"; observed 3.6% and
+4.7%, which satisfies it. The runner still graded it with E70b's superseded
+0.20–0.70 band because I updated the statement and not the check. That is a
+grader defect, not a finding — the same class of error as E64's H5. The code is
+corrected; the recorded report is left as it ran.
+
+**H3's failure is under-powered, not informative.** I predicted `collatz_steps`
+would improve most, since its fix is a single constant mutation (`return 0` →
+`return -1`). It scored 0.0. But the mutator picks uniformly among five
+operators, then among ~10 constants, then a branch and a delta:
+P ≈ 0.25% per candidate, giving **31.3% per seed over 150 evaluations and a
+32.4% chance that none of three seeds finds it**. So 0/3 is an unremarkable
+outcome of too small a budget. H3 should not be read as evidence that the fix is
+unreachable — the honest statement is that the experiment could not distinguish
+the two.
+
+### Claim boundary
+
+A generic AST mutator on four small Python tasks. **No model is in the loop.**
+This says nothing about model self-improvement and nothing about a recursive
+effect. What it does establish is that the instrument works end to end: a search
+ran, a control confirmed zero phantom gain, and a held-out improvement was
+measured rather than asserted.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -996,19 +1069,23 @@ early: E63 already showed `count_primes` handing out 0.254 for nothing.
    left that way rather than tuned further.
 20. ~~**Abandon wall-clock reward for this substrate.**~~ Done in E69. Four
    deterministic tasks, all solid across five rounds, zero phantom gain.
-21. **Run the governed search.** This is now unblocked and is the point of the
-   whole exercise. Use the four solid tasks, wire in
-   `recursive_lab.candidate_diversity` so a collapsed proposer stream voids the
-   run (the E58 defect), and pre-register the effect size and replication rule
-   before running rather than after.
-22. **Hold out a task.** All four current tasks are visible to any search. At
+21. ~~**Run the governed search.**~~ Done in E70d: +0.5000 held-out on
+   count_one_bits, null control at exactly 0.0, unselected control at -1.30.
+22. **Raise the budget before concluding a task is unreachable.** H3 failed at
+   31% power per seed. Three of four tasks scoring 0.0 is currently ambiguous
+   between "the mutator cannot reach it" and "150 evaluations was too few". A
+   power calculation belongs in the plan, not in the post-mortem.
+23. **Put a model in the loop.** The proposer is a generic mutator with no model
+   anywhere. Every claim in this project about self-improvement requires that to
+   change, and the instrument is now good enough to measure it honestly.
+24. **Hold out a task.** All four current tasks are visible to any search. At
    least one should be sealed for a final transfer check, per `POC_PLAN.md`'s
    sealed-suite discipline, before any result is reported as generalising.
-23. **Restore real search in the live loop.** Wire
+25. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-24. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+26. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

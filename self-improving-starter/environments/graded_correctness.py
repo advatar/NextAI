@@ -44,6 +44,7 @@ from __future__ import annotations
 
 import abc
 
+from recursive_lab.loop_guard import guard_loops
 from sandbox import run_python
 
 from .base import Environment, ScoreResult
@@ -99,6 +100,70 @@ class GradedCorrectnessEnvironment(Environment):
             )
 
     # -- evaluation ------------------------------------------------------
+
+    def case_results(
+        self,
+        solution_source: str,
+        *,
+        timeout_s: float = RUN_TIMEOUT_SECONDS,
+        iteration_limit: int | None = None,
+    ) -> tuple[bool, ...]:
+        """Per-case pass/fail, so a caller can split the cases.
+
+        A search must never be scored on the same cases it is finally judged
+        on, or an "improvement" is indistinguishable from fitting the graded
+        set.  Exposing per-case outcomes lets a runner hold cases back while
+        still paying for only one execution per candidate.  ``score`` is
+        unchanged and still uses every case.
+
+        ``timeout_s`` matters more than it looks.  A mutation search generates
+        non-terminating programs at a high rate -- measured at 25-58% for the
+        generic operators in ``recursive_lab.program_mutation``, because
+        perturbing a ``while`` condition or a loop counter easily removes the
+        exit.  Every one costs a full timeout.  E70's first attempt inherited
+        the 15-second default and spent over two hours accumulating 39 seconds
+        of CPU: it was blocked, not computing.  A search should pass a timeout
+        matched to the reference solution's runtime, which is milliseconds here.
+        A timed-out candidate fails every case and is simply never promoted.
+
+        ``iteration_limit`` is the better instrument, and makes ``timeout_s``
+        a backstop rather than the discriminator.  It rewrites the candidate so
+        every loop shares one bounded counter, turning non-termination into
+        bounded *work*: a hanging mutant returns wrong answers in microseconds
+        instead of costing a full timeout.  The result stops depending on how
+        busy the machine is, which no timeout value achieved -- too long and the
+        run never finishes, too short and correct programs fail spuriously.  The
+        guarded source is executed but never validated or shown to a proposer.
+        """
+        cases = self.hidden_cases
+        checks = "\n".join(
+            f"print('R', {index}, solve({value}))"
+            for index, value in enumerate(cases)
+        )
+        executed = (
+            solution_source
+            if iteration_limit is None
+            else guard_loops(solution_source, iteration_limit)
+        )
+        result = run_python(executed + "\n" + checks, timeout_s=timeout_s)
+        if not result.ok:
+            return tuple(False for _ in cases)
+        seen: dict[int, str] = {}
+        for line in result.stdout.splitlines():
+            parts = line.split()
+            if len(parts) == 3 and parts[0] == "R":
+                seen[int(parts[1])] = parts[2]
+        outcomes = []
+        for index, value in enumerate(cases):
+            answer = seen.get(index)
+            if answer is None:
+                outcomes.append(False)
+                continue
+            try:
+                outcomes.append(int(answer) == self.oracle(value))
+            except ValueError:
+                outcomes.append(False)
+        return tuple(outcomes)
 
     def _count_passed(self, solution_source: str) -> int:
         """How many hidden cases the candidate answers exactly."""
