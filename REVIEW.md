@@ -591,6 +591,80 @@ best-of-k null baseline. That belongs in the next pre-registration, applied
 prospectively rather than by relaxing the 0.05 bar after seeing that `power_mod`
 missed it.
 
+## E65 — with probes that cannot be evaded, nothing is admissible
+
+E63 and E64 both used "the starting solution with a comment appended" as the
+semantically-null probe. `optimize_function` compares candidates by `ast.dump`,
+so a comment is invisible to it: the variant was recognised as *the same program*
+and returned exactly `0.0` every time, by design and correctly. Both audits read
+that string of exact zeros as a perfect noise profile and admitted the task.
+
+It was neither precision nor censoring. **The probe was evaded.** The one task
+admitted by both prior audits is the one that defeated the instrument.
+
+E65 re-runs with AST-distinct null variants (renamed locals — free at runtime), a
+monotonicity probe, and a median-of-*m* protocol measured as a curve.
+
+### Every task fails
+
+| Task | Monotonicity | Null mean (m=9) | Null sd (m=9) | Best-of-5 | Signal/noise | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| optimize_function | responds (−1.17) | **+0.1493** | 0.1422 | **+0.2934** | 6.0 | rejected |
+| count_primes (v1) | **+0.0000 — no response** | +0.0000 | 0.0000 | +0.0000 | **undefined** | rejected |
+| count_primes_v2 | responds (−1.10) | +0.0035 | 0.1296 | +0.0920 | 7.5 | rejected |
+| power_mod | responds (−0.69) | −0.0911 | 0.0851 | −0.0257 | 12.8 | rejected |
+
+**`optimize_function` is the worst-behaved task in the suite**, not the best. Its
+null sd is 0.1097 at m=1 against the `0.0000` E64 recorded, a semantically null
+rename earns a mean of **+0.17**, and best-of-5 phantom gain is **+0.29** — higher
+than the 0.254 that got `count_primes` v1 rejected in E63. Its admission in two
+consecutive experiments was entirely a probe artefact.
+
+**`count_primes` v1 is now caught cleanly.** A program doing exactly twice the
+work scored `+0.0000`. A reward that cannot tell "twice as slow" from "identical"
+is censored, and its signal-to-noise is undefined — which now fails rather than
+being silently skipped as it was in E64.
+
+H1, H2 and H3 supported. The repaired base class does fix monotonicity: both
+`count_primes_v2` and `power_mod` respond sharply to a genuinely slower program.
+
+### The median-of-*m* protocol does not work, and that is the finding
+
+**H4 failed.** `power_mod`'s null sd went 0.1064 → 0.0851 from m=1 to m=9, a 20%
+reduction where √9 predicts about 67%. Averaging bought almost nothing.
+
+That rules out the fix I proposed at the end of E64. The noise is not independent
+per measurement — it is **drift**, and a median over m measurements taken close
+together cannot cancel a trend common to all of them.
+
+The direct evidence is the starting solutions' own scores. Each *should* score
+exactly 0.0 by definition, being the anchor:
+
+| Task | Starting solution reward |
+| --- | --- |
+| count_primes_v2 | **+0.2339** |
+| power_mod | **−0.1902** |
+
+Every environment in the suite, including the repaired ones, captures its anchor
+timing once at construction and scores candidates against it minutes later. The
+machine drifts — thermal state, cache, competing load — and the whole reward
+scale shifts with it. `optimize_function`'s +0.17 null mean and `power_mod`'s
+−0.09 are the same defect with opposite sign.
+
+**The fix is not averaging but pairing.** Re-measure the anchor immediately
+adjacent to each candidate measurement and compute the reward from the paired
+difference, so drift common to both cancels. That is the interleaved-measurement
+design used for exactly this reason in benchmarking, and it is the next thing to
+build. Note E59–E62 already used paired comparison on the synthetic side; the
+executable substrate never adopted it.
+
+### Standing
+
+Four experiments into the executable substrate, **no task can currently measure
+an improvement**, and two prior admissions were wrong. That is a worse position
+than E63 reported and a more accurate one. Nothing here licenses running a search
+loop.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -616,26 +690,27 @@ missed it.
    Still not usable: 22x headroom is too small against host jitter.
 10. ~~**Add a minimum-detectable-effect criterion.**~~ Added in E64 as
    signal-to-noise, and it exposed a deeper problem — see 11.
-11. **Make the audit criteria immune to censoring.** This is now the blocking
-   item. A reward clamped to a constant scores a perfect noise profile and an
-   undefined signal ratio, so E64 admitted two censored tasks and rejected
-   `power_mod`, the best-behaved one. Require a *defined* signal-to-noise ratio
-   (undefined must fail), and treat an exactly-zero null spread as evidence of
-   censoring rather than precision.
-12. **Score candidates as a median of m repeated evaluations.** Best-of-k
-   phantom gain is intrinsic to max-selection over a noisy reward and cannot be
-   engineered out of an environment. Median-of-m shrinks the spread by about
-   sqrt(m); pair it with requiring an improvement to exceed the measured
-   best-of-k null baseline.
-13. **Retire `sum_digits`.** It ships already solved and was not worth repairing;
+11. ~~**Make the audit criteria immune to censoring.**~~ Done in E65, which
+   also found the probe itself was evadable. Undefined signal-to-noise now fails.
+12. ~~**Score candidates as a median of m repeated evaluations.**~~ Tried in E65
+   and it **does not work**: sd fell only 20% from m=1 to m=9 where sqrt(m)
+   predicts 67%. The noise is drift, not independent jitter.
+13. **Interleave anchor and candidate measurement.** This is now the blocking
+   item. Every environment captures its anchor once at construction and scores
+   candidates against it minutes later, so the starting solution itself scores
+   +0.2339 (count_primes_v2) and -0.1902 (power_mod) instead of 0.0 by
+   definition. Re-measure the anchor adjacent to each candidate and compute the
+   reward from the paired difference so drift cancels. E59-E62 already pair on
+   the synthetic side; the executable substrate never adopted it.
+14. **Retire `sum_digits`.** It ships already solved and was not worth repairing;
    `power_mod` replaces it as a second task with real headroom.
-14. **Then add two or three more tasks with large headroom.** `power_mod`'s 669x
+15. **Then add two or three more tasks with large headroom.** `power_mod`'s 669x
    is what made it well-behaved; `count_primes_v2`'s 22x is what sank it.
-15. **Restore real search in the live loop.** Wire
+16. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-16. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+17. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

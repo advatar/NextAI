@@ -1,5 +1,56 @@
 # Status
 
+## Completed — E65, no task in the executable suite can measure an improvement
+
+Instrument audit only. **No capability claim.** Pre-registered in
+`experiments/E65-preregistration.json` (`bb18d1b9…`).
+
+E63 and E64 both used "starting solution + appended comment" as the null probe.
+`optimize_function` compares candidates by `ast.dump`, so the comment was
+invisible: it recognised the variant as the *same program* and returned exact
+zeros by design. Both audits read that as a perfect noise profile and admitted
+it. The probe was **evaded** — neither precision nor censoring. Those two
+admissions are superseded.
+
+E65 uses AST-distinct null variants (renamed locals, free at runtime), a
+monotonicity probe, and a median-of-*m* curve.
+
+| Task | Monotonicity | Null mean (m=9) | Null sd | Best-of-5 | Signal/noise | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| optimize_function | responds (−1.17) | +0.1493 | 0.1422 | +0.2934 | 6.0 | rejected |
+| count_primes (v1) | **+0.0000 — none** | +0.0000 | 0.0000 | +0.0000 | undefined | rejected |
+| count_primes_v2 | responds (−1.10) | +0.0035 | 0.1296 | +0.0920 | 7.5 | rejected |
+| power_mod | responds (−0.69) | −0.0911 | 0.0851 | −0.0257 | 12.8 | rejected |
+
+`optimize_function` is the **worst**-behaved task, not the best: null sd 0.1097 at
+m=1 against E64's recorded 0.0000, a null rename earning a mean of +0.17, and a
+best-of-5 phantom gain of +0.29 — higher than the 0.254 that got `count_primes`
+v1 rejected in E63.
+
+`count_primes` v1 is now caught cleanly: a program doing exactly twice the work
+scored `+0.0000`. Its signal-to-noise is undefined, which now fails rather than
+being silently skipped as in E64.
+
+H1–H3 supported; the repaired base class does fix monotonicity.
+
+**H4 failed, and it rules out the E64 recommendation.** `power_mod`'s null sd fell
+only 0.1064 → 0.0851 from m=1 to m=9, a 20% reduction where √m predicts 67%.
+Averaging buys almost nothing because the noise is **drift**, not independent
+jitter. The direct evidence: starting solutions score `+0.2339`
+(count_primes_v2) and `−0.1902` (power_mod) when they must score 0.0 by
+definition. Every environment captures its anchor once at construction and scores
+candidates against it minutes later.
+
+Next blocking item: **interleave anchor and candidate measurement** so drift
+cancels in a paired difference. E59–E62 already pair on the synthetic side; the
+executable substrate never adopted it.
+
+Standing: four experiments in, no task can measure an improvement and two prior
+admissions were wrong. Nothing licenses running a search loop.
+
+Validation: 394 tests pass; all 62 `report_digest` values reproduce; no existing
+experiment JSON or v1 environment modified.
+
 ## Completed — E64, the repairs worked and the audit criteria did not
 
 Instrument audit only. Makes **no capability claim**. Pre-registered in

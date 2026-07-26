@@ -1,0 +1,242 @@
+{
+  "admission_criteria": {
+    "maximum_absolute_null_reward_mean": 0.05,
+    "maximum_null_best_of_5_reward": 0.05,
+    "maximum_null_variant_reward_sd": 0.05,
+    "maximum_starting_solution_reward": 0.5,
+    "minimum_reference_reward": 0.5,
+    "minimum_signal_to_noise": 5.0,
+    "monotonicity_threshold": -0.05
+  },
+  "admitted_tasks": [],
+  "claim_boundary": "Instrument audit of the executable task substrate under corrected probes. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect.",
+  "corrects": "E63 and E64 admitted optimize_function on a comment-appended null variant that the environment recognised as the same program by AST identity, returning exact zeros by design. Those admissions rest on a probe artefact and are superseded here.",
+  "experiment_id": "E65-censoring-proof-audit",
+  "follows": "E64-repaired-substrate-audit",
+  "makes_capability_claim": false,
+  "predictions": [
+    {
+      "evidence": "optimize_function null sd at m=1 = 0.1097 (E64 recorded 0.0000)",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "count_primes v1 slower probe scored +0.0000, responds=False",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "count_primes_v2 responds=True (-1.1008); power_mod responds=True (-0.6851)",
+      "id": "H3",
+      "supported": true
+    },
+    {
+      "evidence": "power_mod null sd m=1 0.1064 -> m=9 0.0851",
+      "id": "H4",
+      "supported": false
+    },
+    {
+      "evidence": "power_mod admitted=False, count_primes v1 admitted=False",
+      "id": "H5",
+      "supported": false
+    }
+  ],
+  "preregistration_digest": "bb18d1b95585837ad2b9ee27287575223b5d1cd5f9b166dd95b105d6e70acc78",
+  "question": "With an undetectable null probe, a censoring check, and a median-of-m protocol, which tasks can actually measure an improvement?",
+  "rejected_tasks": [
+    "optimize_function",
+    "count_primes",
+    "count_primes_v2",
+    "power_mod"
+  ],
+  "report_digest": "b4095fe335bac2ac9e696d8bf76823b2eca9ee418d872bc79207061ea89d55e2",
+  "reproducibility_note": "Measures wall-clock time; not bit-reproducible. The digest attests to the recorded report.",
+  "schema_version": 1,
+  "tasks": [
+    {
+      "admitted": false,
+      "best_of_5": 0.29339023000000003,
+      "failures": [
+        "null_reward_mean +0.149 exceeds maximum magnitude 0.05",
+        "null_reward_sd 0.142 exceeds maximum 0.05",
+        "best_of_5 0.293 exceeds maximum 0.05"
+      ],
+      "measurements_per_variant": 9,
+      "median_of_m": {
+        "1": {
+          "best_of_5": 0.284088095,
+          "null_reward_mean": 0.16969,
+          "null_reward_sd": 0.10966627056666056
+        },
+        "3": {
+          "best_of_5": 0.31277151,
+          "null_reward_mean": 0.17062,
+          "null_reward_sd": 0.1333763157385898
+        },
+        "5": {
+          "best_of_5": 0.30358474500000004,
+          "null_reward_mean": 0.18873,
+          "null_reward_sd": 0.13168799527671457
+        },
+        "9": {
+          "best_of_5": 0.29339023000000003,
+          "null_reward_mean": 0.14926,
+          "null_reward_sd": 0.14224779927998887
+        }
+      },
+      "monotonicity": {
+        "correct": true,
+        "detail": "slower program scored -1.1685",
+        "responds": true,
+        "slower_reward": -1.1685
+      },
+      "null_reward_mean": 0.14926,
+      "null_reward_sd": 0.14224779927998887,
+      "null_variants": 10,
+      "probe_is_ast_distinct": true,
+      "protocol_repeats": 9,
+      "reference_reward_mean": 1.0,
+      "signal_to_noise": 5.980690065548735,
+      "starting_solution_reward": 0.0,
+      "task_id": "optimize_function"
+    },
+    {
+      "admitted": false,
+      "best_of_5": 0.0,
+      "failures": [
+        "monotonicity: slower program scored +0.0000; a reward that does not fall below -0.05 when the program is genuinely slower is censored or insensitive \u2014 the reward is censored or insensitive",
+        "signal_to_noise is undefined (null spread is zero); this is evidence of censoring, not precision, and cannot count as a pass"
+      ],
+      "measurements_per_variant": 9,
+      "median_of_m": {
+        "1": {
+          "best_of_5": 0.0,
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0
+        },
+        "3": {
+          "best_of_5": 0.00056784,
+          "null_reward_mean": 0.00014,
+          "null_reward_sd": 0.00042
+        },
+        "5": {
+          "best_of_5": 0.0,
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0
+        },
+        "9": {
+          "best_of_5": 0.0,
+          "null_reward_mean": 0.0,
+          "null_reward_sd": 0.0
+        }
+      },
+      "monotonicity": {
+        "correct": true,
+        "detail": "slower program scored +0.0000; a reward that does not fall below -0.05 when the program is genuinely slower is censored or insensitive",
+        "responds": false,
+        "slower_reward": 0.0
+      },
+      "null_reward_mean": 0.0,
+      "null_reward_sd": 0.0,
+      "null_variants": 10,
+      "probe_is_ast_distinct": true,
+      "protocol_repeats": 9,
+      "reference_reward_mean": 0.91516,
+      "signal_to_noise": null,
+      "starting_solution_reward": 0.0,
+      "task_id": "count_primes"
+    },
+    {
+      "admitted": false,
+      "best_of_5": 0.0920220865354548,
+      "failures": [
+        "null_reward_sd 0.130 exceeds maximum 0.05",
+        "best_of_5 0.092 exceeds maximum 0.05"
+      ],
+      "measurements_per_variant": 9,
+      "median_of_m": {
+        "1": {
+          "best_of_5": 0.12034949472855433,
+          "null_reward_mean": -0.052490799479707494,
+          "null_reward_sd": 0.16756978230769812
+        },
+        "3": {
+          "best_of_5": 0.10634799055767101,
+          "null_reward_mean": 0.017766455980014157,
+          "null_reward_sd": 0.07911575512887682
+        },
+        "5": {
+          "best_of_5": 0.06496541057632163,
+          "null_reward_mean": -0.036062447101477595,
+          "null_reward_sd": 0.1295555927766068
+        },
+        "9": {
+          "best_of_5": 0.0920220865354548,
+          "null_reward_mean": 0.0035216355301714323,
+          "null_reward_sd": 0.12964282476806824
+        }
+      },
+      "monotonicity": {
+        "correct": true,
+        "detail": "slower program scored -1.1008",
+        "responds": true,
+        "slower_reward": -1.1008320295743421
+      },
+      "null_reward_mean": 0.0035216355301714323,
+      "null_reward_sd": 0.12964282476806824,
+      "null_variants": 10,
+      "probe_is_ast_distinct": true,
+      "protocol_repeats": 9,
+      "reference_reward_mean": 0.9802128535377277,
+      "signal_to_noise": 7.533708246135969,
+      "starting_solution_reward": 0.2339270627286856,
+      "task_id": "count_primes_v2"
+    },
+    {
+      "admitted": false,
+      "best_of_5": -0.02571511362443094,
+      "failures": [
+        "null_reward_mean -0.091 exceeds maximum magnitude 0.05",
+        "null_reward_sd 0.085 exceeds maximum 0.05"
+      ],
+      "measurements_per_variant": 9,
+      "median_of_m": {
+        "1": {
+          "best_of_5": -0.03889286716395952,
+          "null_reward_mean": -0.14618386830579114,
+          "null_reward_sd": 0.10643703372241275
+        },
+        "3": {
+          "best_of_5": 0.03529748502525993,
+          "null_reward_mean": -0.06131706854781592,
+          "null_reward_sd": 0.09155569284321098
+        },
+        "5": {
+          "best_of_5": 0.033775614216031605,
+          "null_reward_mean": -0.07051943803255414,
+          "null_reward_sd": 0.09256879103234697
+        },
+        "9": {
+          "best_of_5": -0.02571511362443094,
+          "null_reward_mean": -0.09108124788214819,
+          "null_reward_sd": 0.08506419350220773
+        }
+      },
+      "monotonicity": {
+        "correct": true,
+        "detail": "slower program scored -0.6851",
+        "responds": true,
+        "slower_reward": -0.6851016286146775
+      },
+      "null_reward_mean": -0.09108124788214819,
+      "null_reward_sd": 0.08506419350220773,
+      "null_variants": 10,
+      "probe_is_ast_distinct": true,
+      "protocol_repeats": 9,
+      "reference_reward_mean": 0.9999665613015927,
+      "signal_to_noise": 12.82617002834952,
+      "starting_solution_reward": -0.19017316945923907,
+      "task_id": "power_mod"
+    }
+  ]
+}
