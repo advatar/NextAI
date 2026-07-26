@@ -1,0 +1,52 @@
+{
+  "analysis_plan": {
+    "multiplicity": "No multiplicity correction is applied and none is claimed. Per-family intervals are descriptive, and any family reaching an interval that excludes zero is reported as a single-family result requiring replication, not as a confirmed effect.",
+    "null_handling": "A null or inconclusive result is recorded as measured and is not re-run, re-seeded, or re-thresholded, per POC_PLAN.md.",
+    "primary": "Per-family paired promoted-minus-random regret delta with a 95% bootstrap interval, on admitted families only. Each family is its own claim.",
+    "secondary": "The pooled delta across admitted families, reported but explicitly not the headline: pooling across families with no possible effect dilutes any real one. This was E59's main reporting weakness."
+  },
+  "change_from_e59": "Adds minimum_policy_disagreement_rate = 0.2, checked conjunctively with the existing count. The instrument, seeds, budget, candidate grid and protocol are otherwise identical to E59, so the two runs differ only in the admission gate.",
+  "claim_boundary": "Synthetic landscape study of one exploitation rule under a corrected admission gate. Not evidence of scaffold self-improvement or of a recursive effect.",
+  "criteria": {
+    "maximum_exploration_target_rate": 0.2,
+    "minimum_policy_disagreement_rate": 0.2,
+    "minimum_policy_disagreements": 3,
+    "minimum_tasks": 5
+  },
+  "experiment_id": "E60-corrected-admission",
+  "instrument": {
+    "exploration_per_column": 3,
+    "grid_size": 128,
+    "module": "recursive_lab.scaled_landscape",
+    "primary_metric": "regret (1.0 - best_score); lower is better",
+    "train_seeds": 120,
+    "validation_seeds": 120
+  },
+  "predictions": [
+    {
+      "basis": "E59 measured a plateau disagreement rate of 8/120 = 0.067.",
+      "id": "H1",
+      "statement": "plateau is rejected by the corrected gate, on the disagreement rate criterion."
+    },
+    {
+      "basis": "E59 measured monotone at -0.02372, CI [-0.02635, -0.02116]; the instrument and seeds are unchanged, so this should replicate.",
+      "id": "H2",
+      "statement": "monotone is admitted and its paired regret delta is negative with a 95% interval excluding zero."
+    },
+    {
+      "basis": "E59 admitted all nine under the count-only gate, including families whose measured effect was indistinguishable from zero.",
+      "id": "H3",
+      "statement": "Fewer than nine families are admitted."
+    },
+    {
+      "basis": "Speculative. E59 reported near-zero deltas with intervals spanning zero for curved, spike, ridge and decoy, which is consistent with -- but does not establish -- low disagreement rates. Recorded so a wrong prediction is visible.",
+      "id": "H4",
+      "statement": "At least one family other than plateau is rejected by the rate criterion."
+    }
+  ],
+  "preregistration_digest": "6c7c9aa94641d64bd5506ea01f297094c87b54889f1ecf01cb8d06550dc707a3",
+  "rate_threshold_justification": "Chosen to mirror the existing maximum_exploration_target_rate of 0.2 rather than tuned against observed per-family rates: the reference policies must differ on at least as large a fraction of the cohort as the fraction random search is permitted to solve outright.",
+  "rationale": "E59 admitted the plateau family on an absolute disagreement count of 8 over 120 tasks (a rate of 6.7%) and then measured a paired regret delta of exactly 0.0 with a degenerate [0, 0] interval. An absolute count is a real bar at 5 tasks and no bar at all at 120, so admission now also requires a scale-free disagreement rate.",
+  "schema_version": 1,
+  "supersedes": "E59-scaled-router"
+}

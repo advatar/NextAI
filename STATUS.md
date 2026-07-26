@@ -1,5 +1,46 @@
 # Status
 
+## Completed — E60, the corrected admission gate under a frozen plan
+
+- [x] Add `minimum_policy_disagreement_rate` to `AdmissionCriteria`, checked
+  conjunctively with the existing count. Set to 0.2 to mirror the saturation
+  bound rather than tuned against observed rates.
+- [x] Freeze the criteria, instrument, analysis plan and four falsifiable
+  predictions in `experiments/E60-preregistration.json` **before** running,
+  content-hashed (`6c7c9aa9…`).
+- [x] Make the runner reload the frozen plan, recompute its digest, and fail
+  closed on drift, mirroring `recursive_lab/manifest.py`.
+- [x] Run E60 and grade every prediction, including any that failed.
+
+Validation: 333 tests pass; all 57 `report_digest` values reproduce; no existing
+experiment JSON or runner modified.
+
+The count-based gate was vacuous as suspected. Five of nine families were
+rejected, all on the rate criterion: spike 0.033, checkerboard 0.058, plateau
+0.067, ridge 0.142, decoy 0.150 — each clearing the old count of 3 while unable
+to express any effect.
+
+Primary result (per family, pre-registered as the headline):
+
+| Family | Regret delta | 95% CI | Verdict |
+| --- | --- | --- | --- |
+| monotone | −0.00732 | [−0.01001, −0.00456] | reduces regret |
+| curved | −0.00003 | [−0.00006, −0.00001] | reduces regret |
+| rugged | +0.00836 | [+0.00167, +0.01533] | increases regret |
+| sinusoidal | −0.00333 | [−0.01334, +0.00667] | inconclusive |
+
+Secondary pooled: −0.00058, CI [−0.00382, +0.00269] — inconclusive. All four
+predictions (H1–H4) were supported.
+
+Two caveats recorded rather than smoothed over: the promoted router **harms**
+`rugged` on held-out seeds, with an interval excluding zero on the wrong side;
+and `curved`'s significant interval covers an effect of −0.00003, which is
+statistically real and practically meaningless. A minimum effect size is
+pre-registered as the next criterion.
+
+Claim boundary: a synthetic landscape study of one exploitation rule. Not
+evidence of scaffold self-improvement or of a recursive effect.
+
 ## Completed — fix the benchmark instrument and land E59
 
 Full review in [`REVIEW.md`](REVIEW.md).

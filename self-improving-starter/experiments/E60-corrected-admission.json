@@ -1,0 +1,236 @@
+{
+  "admission": [
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "monotone",
+      "observed": {
+        "exploration_target_rate": 0.016666666666666666,
+        "policy_disagreements": 118,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "curved",
+      "observed": {
+        "exploration_target_rate": 0.041666666666666664,
+        "policy_disagreements": 105,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": false,
+      "failures": [
+        "policy_disagreement_rate 0.033 is below minimum 0.200"
+      ],
+      "family": "spike",
+      "observed": {
+        "exploration_target_rate": 0.025,
+        "policy_disagreements": 4,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": false,
+      "failures": [
+        "policy_disagreement_rate 0.067 is below minimum 0.200"
+      ],
+      "family": "plateau",
+      "observed": {
+        "exploration_target_rate": 0.041666666666666664,
+        "policy_disagreements": 8,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": false,
+      "failures": [
+        "policy_disagreement_rate 0.058 is below minimum 0.200"
+      ],
+      "family": "checkerboard",
+      "observed": {
+        "exploration_target_rate": 0.03333333333333333,
+        "policy_disagreements": 7,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "rugged",
+      "observed": {
+        "exploration_target_rate": 0.025,
+        "policy_disagreements": 119,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": false,
+      "failures": [
+        "policy_disagreement_rate 0.142 is below minimum 0.200"
+      ],
+      "family": "ridge",
+      "observed": {
+        "exploration_target_rate": 0.025,
+        "policy_disagreements": 17,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": true,
+      "failures": [],
+      "family": "sinusoidal",
+      "observed": {
+        "exploration_target_rate": 0.041666666666666664,
+        "policy_disagreements": 112,
+        "tasks": 120
+      }
+    },
+    {
+      "admitted": false,
+      "failures": [
+        "policy_disagreement_rate 0.150 is below minimum 0.200"
+      ],
+      "family": "decoy",
+      "observed": {
+        "exploration_target_rate": 0.06666666666666667,
+        "policy_disagreements": 18,
+        "tasks": 120
+      }
+    }
+  ],
+  "admission_criteria": {
+    "maximum_exploration_target_rate": 0.2,
+    "minimum_policy_disagreement_rate": 0.2,
+    "minimum_policy_disagreements": 3,
+    "minimum_tasks": 5
+  },
+  "admitted_families": [
+    "monotone",
+    "curved",
+    "rugged",
+    "sinusoidal"
+  ],
+  "budget": {
+    "coverage": 0.03125,
+    "evaluations_per_run": 512,
+    "search_space": 16384
+  },
+  "change_from_e59": "Adds minimum_policy_disagreement_rate = 0.2, checked conjunctively with the existing count. The instrument, seeds, budget, candidate grid and protocol are otherwise identical to E59, so the two runs differ only in the admission gate.",
+  "claim_boundary": "Synthetic landscape study of one exploitation rule under a corrected admission gate. Not evidence of scaffold self-improvement or of a recursive effect.",
+  "experiment_id": "E60-corrected-admission",
+  "exploration_per_column": 3,
+  "grid_size": 128,
+  "paired_promoted_minus_random": {
+    "per_family": {
+      "curved": {
+        "regret_delta": -3.10000620001231e-05,
+        "regret_delta_95pct_bootstrap_ci": [
+          -5.7091780850225075e-05,
+          -9.558352450036074e-06
+        ]
+      },
+      "monotone": {
+        "regret_delta": -0.007316272965879261,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.010006561679790017,
+          -0.0045603674540682405
+        ]
+      },
+      "rugged": {
+        "regret_delta": 0.008357722336664885,
+        "regret_delta_95pct_bootstrap_ci": [
+          0.0016671117214719857,
+          0.01533085374227513
+        ]
+      },
+      "sinusoidal": {
+        "regret_delta": -0.003334326725672271,
+        "regret_delta_95pct_bootstrap_ci": [
+          -0.013337532042747513,
+          0.006668299610511259
+        ]
+      }
+    },
+    "pooled_regret_delta": -0.000580969354221692,
+    "pooled_regret_delta_95pct_bootstrap_ci": [
+      -0.0038233251738539033,
+      0.002693556570601765
+    ]
+  },
+  "per_family_verdicts": {
+    "curved": "reduces regret",
+    "monotone": "reduces regret",
+    "rugged": "increases regret",
+    "sinusoidal": "inconclusive: interval spans zero"
+  },
+  "pooled_verdict_secondary": "inconclusive: interval spans zero",
+  "predictions": [
+    {
+      "evidence": "plateau admitted=False failures=['policy_disagreement_rate 0.067 is below minimum 0.200']",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "monotone delta=-0.00732 ci=[-0.010006561679790017, -0.0045603674540682405]",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "4 of 9 families admitted",
+      "id": "H3",
+      "supported": true
+    },
+    {
+      "evidence": "other families rejected on rate: ['spike', 'checkerboard', 'ridge', 'decoy']",
+      "id": "H4",
+      "supported": true
+    }
+  ],
+  "preregistration_digest": "6c7c9aa94641d64bd5506ea01f297094c87b54889f1ecf01cb8d06550dc707a3",
+  "primary_analysis": "Per-family paired promoted-minus-random regret delta with a 95% bootstrap interval, on admitted families only. Each family is its own claim.",
+  "primary_metric": "regret (1.0 - best_score); lower is better",
+  "promoted": {
+    "r_squared_threshold": 0.0,
+    "variance_threshold": 0.03
+  },
+  "promotion_objective": "worst-family mean regret, then macro regret",
+  "random_baseline_validation": {
+    "families": {
+      "curved": 0.0003242089817512903,
+      "monotone": 0.02372047244094485,
+      "rugged": 0.1929782431779457,
+      "sinusoidal": 0.19334691336667234
+    },
+    "macro_mean_regret": 0.10259245949182855,
+    "r_squared_threshold": 1.01,
+    "variance_threshold": 0.0,
+    "worst_family_mean_regret": 0.19334691336667234
+  },
+  "rejected_families": [
+    "spike",
+    "plateau",
+    "checkerboard",
+    "ridge",
+    "decoy"
+  ],
+  "report_digest": "ed44bbda42750e1c339c54f76fbe74fa15c324e5206d5a8d474bb93d520a3998",
+  "schema_version": 1,
+  "supersedes": "E59-scaled-router",
+  "train_seeds": 120,
+  "validation": {
+    "families": {
+      "curved": 0.00029320891975116725,
+      "monotone": 0.01640419947506559,
+      "rugged": 0.20133596551461058,
+      "sinusoidal": 0.19001258664100007
+    },
+    "macro_mean_regret": 0.10201149013760685,
+    "r_squared_threshold": 0.0,
+    "variance_threshold": 0.03,
+    "worst_family_mean_regret": 0.20133596551461058
+  },
+  "validation_seeds": 120
+}

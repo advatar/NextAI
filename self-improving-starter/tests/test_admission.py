@@ -197,6 +197,7 @@ class EvaluateAdmissionTests(unittest.TestCase):
             (
                 "exploration_target_rate 0.75 exceeds maximum 0.20",
                 "policy_disagreements 0 is below minimum 3",
+                "policy_disagreement_rate 0.000 is below minimum 0.200",
                 "tasks 4 is below minimum 5",
             ),
         )
@@ -362,6 +363,7 @@ class E51RegressionTests(unittest.TestCase):
             (
                 "exploration_target_rate 0.80 exceeds maximum 0.20",
                 "policy_disagreements 0 is below minimum 3",
+                "policy_disagreement_rate 0.000 is below minimum 0.200",
             ),
         )
         with self.assertRaises(BenchmarkNotAdmittedError):
@@ -371,6 +373,77 @@ class E51RegressionTests(unittest.TestCase):
         result = evaluate_admission(self.e51_observations())
 
         self.assertFalse(any("tasks 5" in failure for failure in result.failures))
+
+
+class E59PlateauRegressionTests(unittest.TestCase):
+    """The absolute count was vacuous at scale; the rate criterion fixes it.
+
+    In E59 the ``plateau`` family was admitted with 8 disagreements over 120
+    tasks -- clearing a minimum of 3 -- and then measured a paired regret delta
+    of exactly 0.0 with a degenerate [0, 0] interval.  A count that is a real
+    bar at 5 tasks is no bar at all at 120.
+    """
+
+    def plateau_observations(self) -> CohortObservations:
+        return CohortObservations(
+            exploration_target_rate=0.041666666666666664,
+            policy_disagreements=8,
+            tasks=120,
+        )
+
+    def test_plateau_rate_is_below_the_bar(self) -> None:
+        observed = self.plateau_observations()
+
+        self.assertAlmostEqual(observed.policy_disagreement_rate, 8 / 120)
+        self.assertLess(observed.policy_disagreement_rate, 0.2)
+
+    def test_plateau_was_admitted_under_the_count_only_criteria(self) -> None:
+        """Reproduces the E59 defect: every count-based criterion passed."""
+        observed = self.plateau_observations()
+
+        self.assertGreaterEqual(observed.policy_disagreements, 3)
+        self.assertGreaterEqual(observed.tasks, 5)
+        self.assertLessEqual(observed.exploration_target_rate, 0.2)
+
+    def test_plateau_is_now_rejected(self) -> None:
+        result = evaluate_admission(self.plateau_observations())
+
+        self.assertFalse(result.admitted)
+        self.assertEqual(
+            result.failures,
+            ("policy_disagreement_rate 0.067 is below minimum 0.200",),
+        )
+        with self.assertRaises(BenchmarkNotAdmittedError):
+            require_admitted(result)
+
+    def test_the_rate_is_checked_conjunctively_with_the_count(self) -> None:
+        """Clearing the rate must not excuse a cohort that fails the count."""
+        result = evaluate_admission(
+            CohortObservations(
+                exploration_target_rate=0.0, policy_disagreements=2, tasks=4
+            )
+        )
+
+        self.assertFalse(result.admitted)
+        self.assertTrue(
+            any("policy_disagreements 2" in failure for failure in result.failures)
+        )
+
+    def test_a_cohort_clearing_both_is_admitted(self) -> None:
+        result = evaluate_admission(
+            CohortObservations(
+                exploration_target_rate=0.05, policy_disagreements=40, tasks=120
+            )
+        )
+
+        self.assertTrue(result.admitted)
+        self.assertEqual(result.failures, ())
+
+    def test_rate_criterion_is_validated(self) -> None:
+        with self.assertRaises(ValueError):
+            AdmissionCriteria(minimum_policy_disagreement_rate=1.5)
+        with self.assertRaises(ValueError):
+            AdmissionCriteria(minimum_policy_disagreement_rate=-0.1)
 
 
 if __name__ == "__main__":

@@ -207,29 +207,101 @@ This is deliberately *not* patched here. Changing an admission criterion after
 seeing results and re-running is precisely the post-hoc adjustment this review
 criticizes. It is recorded as a pre-registered change for the next run.
 
+## E60 — the corrected gate, pre-registered
+
+The defect E59 recorded was fixed the honest way. `preregister_e60.py` froze the
+criteria, instrument, analysis plan and four falsifiable predictions **before**
+the run and content-hashed them.
+`compare_e60_corrected_admission.py` reloads that document, recomputes the
+digest, and refuses to run if anything drifted — the same fail-closed identity
+discipline as `recursive_lab/manifest.py`. Only the admission gate differs from
+E59; instrument, seeds, budget and candidate grid are identical, so the two runs
+are a controlled comparison of the gate itself.
+
+`minimum_policy_disagreement_rate = 0.2` was chosen to mirror the existing
+saturation bound, not tuned against observed rates.
+
+**The count-based gate was indeed vacuous.** Five of nine families were rejected,
+all on the rate criterion:
+
+| Rejected family | Disagreement rate |
+| --- | --- |
+| spike | 0.033 |
+| checkerboard | 0.058 |
+| plateau | 0.067 |
+| ridge | 0.142 |
+| decoy | 0.150 |
+
+Every one cleared the old absolute count of 3 while being unable to express an
+effect at all.
+
+**Primary result — per family, on the four admitted families:**
+
+| Family | Regret delta | 95% CI | Verdict |
+| --- | --- | --- | --- |
+| monotone | −0.00732 | [−0.01001, −0.00456] | reduces regret |
+| curved | −0.00003 | [−0.00006, −0.00001] | reduces regret |
+| rugged | **+0.00836** | **[+0.00167, +0.01533]** | **increases regret** |
+| sinusoidal | −0.00333 | [−0.01334, +0.00667] | inconclusive |
+
+Secondary pooled: `−0.00058`, CI `[−0.00382, +0.00269]` — inconclusive, as
+pre-registered and as expected when averaging across families.
+
+All four predictions were supported (H1–H4).
+
+### Two things worth reading carefully
+
+**The promoted router actively harms `rugged`.** Its interval excludes zero on
+the wrong side: the policy selected on training data makes held-out performance
+*worse* on a family it was trained across. The old instrument could not have
+shown this — at 80% coverage every policy tied at the ceiling. This is the first
+result in the series where a promoted policy is demonstrably harmful, and it is
+an argument for the support-guard idea E45 reached for.
+
+**`curved`'s result is statistically significant and practically meaningless.**
+The interval excludes zero, but the effect is −0.00003. With low variance and 120
+seeds a bootstrap interval can exclude zero for an effect three orders of
+magnitude below anything that matters. It is reported as measured, but it should
+not be read as the router "working" on curved. A minimum effect size belongs in
+the next pre-registration alongside the rate criterion.
+
+Note also that the promoted router changed between runs — E59 selected
+`(0.5, 0.0)` and E60 selected `(0.0, 0.03)` — because training now happens over
+admitted families only. The monotone effect is correspondingly smaller here
+(−0.0073 against E59's −0.0237). Same direction, same sign, different magnitude;
+these are different selections, not a replication failure.
+
 ## Recommended next steps
 
-1. **Change `minimum_policy_disagreements` to a rate** and pre-register it before
-   the next cohort. Re-run E59 under the corrected gate.
-2. **Report per-family, not pooled, as the primary claim.** Pooling across
-   families with no possible effect is a dilution artifact.
-3. **Move to the executable substrate.** `task_harness.py` and
+1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
+   before the next cohort.~~ Done in E60; five of nine families were rejected.
+2. ~~**Report per-family, not pooled, as the primary claim.**~~ Done in E60,
+   pre-registered as the primary analysis.
+3. **Pre-register a minimum effect size.** `curved` cleared significance with an
+   effect of −0.00003. A rate criterion fixed the admission side; the reporting
+   side still needs a floor below which an interval excluding zero is not called
+   a result.
+4. **Investigate the `rugged` regression.** A promoted policy that harms a
+   held-out family is the most actionable finding in the series and is exactly
+   what a support guard should catch.
+5. **Move to the executable substrate.** `task_harness.py` and
    `container_runner.py` already exist and cannot saturate. The synthetic grids
    were scaffolding for the plumbing, and the plumbing is finished and tested.
    `GEM_ASSESSMENT.md` step 1 identified this and it remains the highest-value
    move.
-4. **Restore real search in the live loop.** Wire
+6. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-5. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+7. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 
 ## Claim boundary
 
-E59 is a synthetic landscape study of one exploitation rule. It is not evidence
-of scaffold self-improvement, and certainly not of a recursive effect. Its value
+E59 and E60 are synthetic landscape studies of one exploitation rule. Neither is
+evidence of scaffold self-improvement, and certainly not of a recursive effect.
+Their value
 is that it establishes a benchmark on which such a claim could, for the first
 time in this series, actually be tested.
 

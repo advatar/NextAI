@@ -46,6 +46,7 @@ _CRITERIA_FIELDS = (
     "maximum_exploration_target_rate",
     "minimum_tasks",
     "minimum_policy_disagreements",
+    "minimum_policy_disagreement_rate",
 )
 _OBSERVATION_FIELDS = (
     "exploration_target_rate",
@@ -105,11 +106,21 @@ class AdmissionCriteria:
     behave differently somewhere in the cohort, otherwise every comparison is a
     tie by construction.  ``minimum_tasks`` keeps the other two statistics from
     being read off a cohort too small to mean anything.
+
+    ``minimum_policy_disagreement_rate`` exists because an absolute count is
+    scale-dependent and becomes vacuous as a cohort grows.  E59 exposed this:
+    the ``plateau`` family cleared a minimum of 3 with 8 disagreements over 120
+    tasks -- a rate of 6.7% -- and then measured a paired effect of *exactly*
+    zero with a degenerate ``[0, 0]`` interval.  A count of 3 is a meaningful
+    bar at 5 tasks and no bar at all at 120.  The rate is checked *in addition*
+    to the count, conjunctively, consistent with the rest of the governor: a
+    cohort must clear both.
     """
 
     maximum_exploration_target_rate: float = 0.2
     minimum_tasks: int = 5
     minimum_policy_disagreements: int = 3
+    minimum_policy_disagreement_rate: float = 0.2
 
     def __post_init__(self) -> None:
         object.__setattr__(
@@ -128,6 +139,14 @@ class AdmissionCriteria:
             "minimum_policy_disagreements",
             _require_positive_int(
                 self.minimum_policy_disagreements, "minimum_policy_disagreements"
+            ),
+        )
+        object.__setattr__(
+            self,
+            "minimum_policy_disagreement_rate",
+            _require_rate(
+                self.minimum_policy_disagreement_rate,
+                "minimum_policy_disagreement_rate",
             ),
         )
         if self.minimum_policy_disagreements > self.minimum_tasks:
@@ -176,6 +195,16 @@ class CohortObservations:
                 f"policy_disagreements {self.policy_disagreements!r} cannot exceed "
                 f"tasks {self.tasks!r}"
             )
+
+    @property
+    def policy_disagreement_rate(self) -> float:
+        """Fraction of cohort tasks on which the reference policies differ.
+
+        Scale-free companion to the raw count: a cohort where the policies can
+        barely ever behave differently cannot express an effect, however many
+        tasks it contains.
+        """
+        return self.policy_disagreements / self.tasks
 
     @classmethod
     def from_random_baseline(
@@ -359,6 +388,14 @@ def evaluate_admission(
         failures.append(
             f"policy_disagreements {observations.policy_disagreements} "
             f"is below minimum {criteria.minimum_policy_disagreements}"
+        )
+    if (
+        observations.policy_disagreement_rate
+        < criteria.minimum_policy_disagreement_rate
+    ):
+        failures.append(
+            f"policy_disagreement_rate {observations.policy_disagreement_rate:.3f} "
+            f"is below minimum {criteria.minimum_policy_disagreement_rate:.3f}"
         )
     if observations.tasks < criteria.minimum_tasks:
         failures.append(
