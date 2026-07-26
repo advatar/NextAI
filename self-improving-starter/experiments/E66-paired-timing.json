@@ -1,0 +1,201 @@
+{
+  "admission_criteria": {
+    "maximum_absolute_anchor_self_score": 0.05,
+    "maximum_absolute_null_reward_mean": 0.05,
+    "maximum_null_best_of_5_reward": 0.05,
+    "maximum_null_variant_reward_sd": 0.05,
+    "minimum_reference_reward": 0.5,
+    "minimum_signal_to_noise": 5.0,
+    "monotonicity_threshold": -0.05
+  },
+  "claim_boundary": "Measurement-protocol comparison on the executable task substrate. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect.",
+  "experiment_id": "E66-paired-timing",
+  "follows": "E65-censoring-proof-audit",
+  "makes_capability_claim": false,
+  "paired_admitted_tasks": [
+    "optimize_function",
+    "power_mod"
+  ],
+  "predictions": [
+    {
+      "evidence": "paired anchor self-scores: optimize_function=-0.0181, count_primes_v2=+0.0068, power_mod=+0.0033",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "optimize_function unpaired sd=0.1070 -> paired 0.0211; count_primes_v2 unpaired sd=0.0883 -> paired 0.0329; power_mod unpaired sd=0.0870 -> paired 0.0136",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "paired null means: optimize_function=-0.0018, count_primes_v2=+0.0230, power_mod=+0.0098",
+      "id": "H3",
+      "supported": true
+    },
+    {
+      "evidence": "paired admitted: ['optimize_function', 'power_mod']",
+      "id": "H4",
+      "supported": true
+    },
+    {
+      "evidence": "unpaired admitted: none",
+      "id": "H5",
+      "supported": true
+    }
+  ],
+  "preregistration_digest": "815e8e22944c133f4eae53f5de0f7ebc2e20a8c5e7401593d782cba4c55f759b",
+  "question": "Does interleaved paired measurement remove the drift that made every task in the executable suite unable to measure an improvement?",
+  "report_digest": "59398340ac000a995b0fd09a6114a579e2e4f375fe0677ac3bfefd0e9c27a113",
+  "reproducibility_note": "Measures wall-clock time; not bit-reproducible. The digest attests to the recorded report.",
+  "schema_version": 1,
+  "tasks": [
+    {
+      "paired": {
+        "admitted": true,
+        "anchor_self_score": -0.018143768448891786,
+        "best_of_5": 0.019054884130795497,
+        "best_of_k": {
+          "1": -0.0017000637672102044,
+          "2": 0.008981992631856221,
+          "3": 0.013931048068598625,
+          "5": 0.019054884130795497,
+          "8": 0.023881778032741694
+        },
+        "failures": [],
+        "null_reward_max": 0.034727863633597984,
+        "null_reward_mean": -0.001804225203023597,
+        "null_reward_min": -0.04871615977105732,
+        "null_reward_sd": 0.021082217681735568,
+        "reference_ratio": 0.0001817281153986466,
+        "reference_reward_mean": 1.0000060511943363,
+        "signal_to_noise": 47.51920749140501,
+        "slower_probe_reward": -1.0453532718409448
+      },
+      "task_id": "optimize_function",
+      "timing_argument": 100000,
+      "unpaired": {
+        "admitted": false,
+        "anchor_self_score": 0.0,
+        "best_of_5": -0.047310055,
+        "best_of_k": {
+          "1": -0.10860772999999999,
+          "2": -0.0648676,
+          "3": -0.05446831,
+          "5": -0.047310055,
+          "8": -0.043280059999999995
+        },
+        "failures": [
+          "null_reward_mean -0.1072 exceeds maximum magnitude 0.05",
+          "null_reward_sd 0.1070 exceeds maximum 0.05"
+        ],
+        "null_reward_max": -0.0384,
+        "null_reward_mean": -0.10721,
+        "null_reward_min": -0.4205,
+        "null_reward_sd": 0.10700056495177958,
+        "reference_reward_mean": 1.0,
+        "signal_to_noise": 10.347702374272234,
+        "slower_probe_reward": -0.9542
+      }
+    },
+    {
+      "paired": {
+        "admitted": false,
+        "anchor_self_score": 0.006787147789062599,
+        "best_of_5": 0.06569348032778241,
+        "best_of_k": {
+          "1": 0.023064825545814033,
+          "2": 0.04066963086251816,
+          "3": 0.051904242870197605,
+          "5": 0.06569348032778241,
+          "8": 0.0761159652976469
+        },
+        "failures": [
+          "best_of_5 +0.0657 exceeds maximum 0.05"
+        ],
+        "null_reward_max": 0.09307967006194504,
+        "null_reward_mean": 0.02304364860791879,
+        "null_reward_min": -0.01501425334663558,
+        "null_reward_sd": 0.03285089149609507,
+        "reference_ratio": 0.035905425260470455,
+        "reference_reward_mean": 0.9992822500194632,
+        "signal_to_noise": 29.717263579516203,
+        "slower_probe_reward": -1.0483379535838815
+      },
+      "task_id": "count_primes_v2",
+      "timing_argument": 2000,
+      "unpaired": {
+        "admitted": false,
+        "anchor_self_score": -0.040457234377935705,
+        "best_of_5": 0.16368297915141436,
+        "best_of_k": {
+          "1": 0.058979739970688755,
+          "2": 0.10640805938804704,
+          "3": 0.13363934070360642,
+          "5": 0.16368297915141436,
+          "8": 0.18389775703318487
+        },
+        "failures": [
+          "null_reward_mean +0.0588 exceeds maximum magnitude 0.05",
+          "null_reward_sd 0.0883 exceeds maximum 0.05",
+          "best_of_5 +0.1637 exceeds maximum 0.05"
+        ],
+        "null_reward_max": 0.20997973178264878,
+        "null_reward_mean": 0.05875292970501374,
+        "null_reward_min": -0.04227346828275457,
+        "null_reward_sd": 0.08826059210019184,
+        "reference_reward_mean": 0.9985360000649559,
+        "signal_to_noise": 10.647821955387714,
+        "slower_probe_reward": -0.6521237618182218
+      }
+    },
+    {
+      "paired": {
+        "admitted": true,
+        "anchor_self_score": 0.00330429480767651,
+        "best_of_5": 0.02611215794471184,
+        "best_of_k": {
+          "1": 0.009701457995073907,
+          "2": 0.016789477755063984,
+          "3": 0.020776349701410946,
+          "5": 0.02611215794471184,
+          "8": 0.03133107690470384
+        },
+        "failures": [],
+        "null_reward_max": 0.04329587332519208,
+        "null_reward_mean": 0.009820609903452958,
+        "null_reward_min": -0.010947813424980187,
+        "null_reward_sd": 0.01361339224219612,
+        "reference_ratio": 0.0015724533959038044,
+        "reference_reward_mean": 0.9999477055711734,
+        "signal_to_noise": 72.73184214869818,
+        "slower_probe_reward": -0.9379472300093654
+      },
+      "task_id": "power_mod",
+      "timing_argument": 20000,
+      "unpaired": {
+        "admitted": false,
+        "anchor_self_score": -0.01909628957803219,
+        "best_of_5": -0.009414060121104174,
+        "best_of_k": {
+          "1": -0.08576424688454158,
+          "2": -0.038410414584422105,
+          "3": -0.021716621827986875,
+          "5": -0.009414060121104174,
+          "8": -0.0034118604672625564
+        },
+        "failures": [
+          "null_reward_mean -0.0854 exceeds maximum magnitude 0.05",
+          "null_reward_sd 0.0870 exceeds maximum 0.05"
+        ],
+        "null_reward_max": 0.004964903371496184,
+        "null_reward_mean": -0.08542208876872211,
+        "null_reward_min": -0.2684022681124421,
+        "null_reward_sd": 0.08704675788729176,
+        "reference_reward_mean": 0.9999046637773807,
+        "signal_to_noise": 12.46831908376628,
+        "slower_probe_reward": -0.9962229701179889
+      }
+    }
+  ],
+  "unpaired_admitted_tasks": []
+}

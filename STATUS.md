@@ -1,5 +1,50 @@
 # Status
 
+## Completed — E66, paired measurement works; two tasks are usable
+
+Measurement-protocol comparison. **No capability claim.** Pre-registered in
+`experiments/E66-preregistration.json` (`815e8e22…`). **All five predictions
+supported.**
+
+`recursive_lab/paired_timing.py` measures anchor and candidate interleaved in one
+process, alternating order each round, and computes the reward from the ratio
+`t_candidate / t_anchor`, so multiplicative drift cancels. Only the anchor is
+co-located with candidate code — it is public, printed in the task prompt — and a
+test asserts the held-out reference never enters the candidate's process.
+
+Both protocols measured on the same tasks in the same run.
+
+| Task | Protocol | Anchor self | Null mean | Null sd | Best-of-5 | S/N | Verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| optimize_function | unpaired | +0.0000 | −0.1072 | 0.1070 | −0.0473 | 10.3 | rejected |
+| optimize_function | paired | −0.0181 | −0.0018 | 0.0211 | +0.0191 | 47.5 | **admitted** |
+| count_primes_v2 | unpaired | −0.0405 | +0.0588 | 0.0883 | +0.1637 | 10.6 | rejected |
+| count_primes_v2 | paired | +0.0068 | +0.0230 | 0.0329 | +0.0657 | 29.7 | rejected |
+| power_mod | unpaired | −0.0191 | −0.0854 | 0.0870 | −0.0094 | 12.5 | rejected |
+| power_mod | paired | +0.0033 | +0.0098 | 0.0136 | +0.0261 | 72.7 | **admitted** |
+
+Null spread falls 5.1×, 2.7× and 6.4×, against the 20% median-of-9 managed in
+E65 — the signature of drift rather than independent jitter. Signal-to-noise
+rises from ~10–12 to 30–73. The anchor self-score, which involves no candidate
+and must be 0.0 by definition, moves from +0.2339/−0.1902 (E65, unpaired) to
+−0.0181/+0.0068/+0.0033.
+
+H5 is the control: the unpaired arm admitted nothing, reproducing E65 within this
+run, so E65's rejections were stable and the comparison is sound.
+
+`count_primes_v2` still fails on best-of-5 = 0.0657 against the 0.05 bar,
+consistent with E64's H4 — its 22× headroom is too small where `power_mod` has
+669×. The bar was not relaxed.
+
+Standing: **two tasks can now measure an improvement**, the first admissible
+instrument after four experiments that produced none. This licenses future work;
+it is not a capability result. Best-of-5 phantom gain remains positive (+0.019,
++0.026) because a maximum over noisy rewards is intrinsically biased upward, so a
+search must be scored against a measured null baseline, not against zero.
+
+Validation: 410 tests pass; all 63 `report_digest` values reproduce; no existing
+experiment JSON or v1 environment modified.
+
 ## Completed — E65, no task in the executable suite can measure an improvement
 
 Instrument audit only. **No capability claim.** Pre-registered in

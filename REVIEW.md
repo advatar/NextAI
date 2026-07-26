@@ -665,6 +665,65 @@ an improvement**, and two prior admissions were wrong. That is a worse position
 than E63 reported and a more accurate one. Nothing here licenses running a search
 loop.
 
+## E66 — pairing fixes it; two tasks are now usable
+
+E65 diagnosed drift and ruled out averaging. E66 tested the alternative:
+`recursive_lab/paired_timing.py` measures the anchor and the candidate
+**interleaved in one process**, alternating which goes first each round, and
+computes the reward from the *ratio* `t_candidate / t_anchor`. Multiplicative
+drift scales both timings and cancels.
+
+Only the anchor is co-located with candidate code. The starting solution is
+public — it is printed in the task prompt — so nothing leaks. The held-out
+reference is calibrated separately against the same anchor, also by paired
+measurement, and a test asserts it never appears in the candidate's process.
+
+Both protocols were measured on the same tasks in the same run. Comparing across
+experiments would inherit exactly the drift under investigation.
+
+**All five predictions supported.**
+
+| Task | Protocol | Anchor self | Null mean | Null sd | Best-of-5 | Signal/noise | Verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| optimize_function | unpaired | +0.0000 | −0.1072 | 0.1070 | −0.0473 | 10.3 | rejected |
+| optimize_function | **paired** | −0.0181 | −0.0018 | **0.0211** | +0.0191 | **47.5** | **admitted** |
+| count_primes_v2 | unpaired | −0.0405 | +0.0588 | 0.0883 | +0.1637 | 10.6 | rejected |
+| count_primes_v2 | paired | +0.0068 | +0.0230 | 0.0329 | +0.0657 | 29.7 | rejected |
+| power_mod | unpaired | −0.0191 | −0.0854 | 0.0870 | −0.0094 | 12.5 | rejected |
+| power_mod | **paired** | +0.0033 | +0.0098 | **0.0136** | +0.0261 | **72.7** | **admitted** |
+
+Null spread falls by 5.1×, 2.7× and 6.4× — against the 20% that median-of-9
+managed in E65. That gap is the signature of drift versus independent jitter:
+averaging cannot touch a common-mode term, and a ratio removes it outright.
+
+Signal-to-noise rises from ~10–12 to 30–73.
+
+**The sharpest number is the anchor self-score.** Scoring the starting solution
+against itself involves no candidate at all, so any deviation is pure measurement
+error. Unpaired it reached +0.2339 and −0.1902 in E65; paired it is −0.0181,
++0.0068 and +0.0033.
+
+**H5 is the control that matters:** the unpaired arm admitted nothing, reproducing
+E65 within this run. E65's rejections were stable, so the comparison is sound.
+
+`count_primes_v2` still fails, on best-of-5 = 0.0657 against the 0.05 bar. That
+is consistent with E64's H4: its 22× headroom is simply too small for one reward
+unit to dominate residual jitter, where `power_mod` has 669×. Headroom magnitude
+remains the deciding property, and the bar was not relaxed.
+
+### Standing
+
+**Two tasks can now measure an improvement.** That is the first admissible
+instrument in this substrate after four experiments that produced none, and it is
+what E63 set out to establish.
+
+It licenses future work; it is not a capability result. Nothing here says
+anything about a model improving anything. Note also that best-of-5 phantom gain
+is still positive everywhere (+0.019, +0.026) — reduced below the bar, not
+eliminated, because taking a maximum over any noisy reward is intrinsically
+biased upward. A search loop must still be scored against a measured null
+baseline rather than against zero.
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -695,22 +754,26 @@ loop.
 12. ~~**Score candidates as a median of m repeated evaluations.**~~ Tried in E65
    and it **does not work**: sd fell only 20% from m=1 to m=9 where sqrt(m)
    predicts 67%. The noise is drift, not independent jitter.
-13. **Interleave anchor and candidate measurement.** This is now the blocking
-   item. Every environment captures its anchor once at construction and scores
-   candidates against it minutes later, so the starting solution itself scores
-   +0.2339 (count_primes_v2) and -0.1902 (power_mod) instead of 0.0 by
-   definition. Re-measure the anchor adjacent to each candidate and compute the
-   reward from the paired difference so drift cancels. E59-E62 already pair on
-   the synthetic side; the executable substrate never adopted it.
-14. **Retire `sum_digits`.** It ships already solved and was not worth repairing;
+13. ~~**Interleave anchor and candidate measurement.**~~ Done in E66. Null
+   spread fell 2.7-6.4x and two tasks are now admissible.
+14. **Adopt paired scoring as the substrate's default.** `paired_timing` is
+   currently a separate protocol used by the audit. The environments still score
+   candidates against a construction-time anchor, so anything calling `env.score`
+   inherits the drift E65 measured. Wire it in before any search runs.
+15. **Score any search against a measured null baseline, not against zero.**
+   Best-of-5 phantom gain is still +0.019 to +0.026 under pairing — below the
+   bar, not eliminated, because a maximum over noisy rewards is intrinsically
+   biased upward. A claimed improvement must clear the null best-of-k for the
+   same k the search used.
+16. **Retire `sum_digits`.** It ships already solved and was not worth repairing;
    `power_mod` replaces it as a second task with real headroom.
-15. **Then add two or three more tasks with large headroom.** `power_mod`'s 669x
+17. **Then add two or three more tasks with large headroom.** `power_mod`'s 669x
    is what made it well-behaved; `count_primes_v2`'s 22x is what sank it.
-16. **Restore real search in the live loop.** Wire
+18. **Restore real search in the live loop.** Wire
    `recursive_lab.candidate_diversity` into the live runners so E58's collapse
    cannot recur silently, and vary temperature and prompt across the candidate
    stream.
-17. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
+19. **Split the tracks.** Keep Capsulang/MeTTa governance work in its own
    numbering. It is decent engineering, but sharing the E-series makes parity of
    machinery read as capability evidence in the ledger.
 

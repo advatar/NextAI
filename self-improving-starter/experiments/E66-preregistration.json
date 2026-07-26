@@ -1,0 +1,77 @@
+{
+  "admission_criteria": {
+    "maximum_absolute_anchor_self_score": 0.05,
+    "maximum_absolute_null_reward_mean": 0.05,
+    "maximum_null_best_of_5_reward": 0.05,
+    "maximum_null_variant_reward_sd": 0.05,
+    "minimum_reference_reward": 0.5,
+    "minimum_signal_to_noise": 5.0,
+    "monotonicity_threshold": -0.05
+  },
+  "analysis_plan": {
+    "no_capability_claim": "No statement about scaffold or model improvement is made under any outcome. An admitted protocol licenses future work; it is not a result.",
+    "null_handling": "Findings are recorded as measured; no threshold is relaxed after seeing results.",
+    "primary": "For each task and each protocol: anchor self-score, null mean/sd, best-of-5, reference reward, signal-to-noise and monotonicity. Admission is judged per protocol against the frozen criteria.",
+    "within_run": "Both protocols are measured in the same run on the same machine state, so the comparison does not inherit drift between experiments \u2014 which would be self-defeating for an experiment about drift."
+  },
+  "anchor_self_score_note": "Scoring the starting solution against itself is the sharpest single diagnostic: it must be 0.0 by definition, so any deviation is pure measurement error with no candidate involved.",
+  "arms": {
+    "paired": "recursive_lab.paired_timing: anchor and candidate interleaved in one process, reward computed from the ratio",
+    "unpaired": "the environment's own score(), whose anchor was captured once at construction \u2014 the protocol E63 through E65 audited"
+  },
+  "claim_boundary": "Measurement-protocol comparison on the executable task substrate. Measures properties of reward functions only. Makes no claim about scaffold improvement, model self-improvement, or a recursive effect.",
+  "experiment_id": "E66-paired-timing",
+  "follows": "E65-censoring-proof-audit",
+  "instrument": {
+    "best_of_k_values": [
+      1,
+      2,
+      3,
+      5,
+      8
+    ],
+    "bootstrap_samples": 20000,
+    "null_variants_per_task": 10,
+    "paired_rounds": 7,
+    "primary_metric": "reward; 0.0 is the starting solution, 1.0 the reference",
+    "reference_probes_per_task": 5
+  },
+  "makes_capability_claim": false,
+  "null_variant_definition": "semantic_noop_variant: local bindings renamed with an index suffix. AST-distinct so identity checks cannot recognise it, semantically identical, and free at runtime.",
+  "predictions": [
+    {
+      "basis": "Unpaired it was +0.2339 and -0.1902. A ratio against an adjacently measured anchor should be 1.0 up to residual noise. Scouting saw +0.0004 on power_mod.",
+      "id": "H1",
+      "statement": "Under the paired protocol every task's anchor self-score is within 0.05 of zero."
+    },
+    {
+      "basis": "Removing a common-mode term cannot increase the spread.",
+      "id": "H2",
+      "statement": "For every task, paired null sd is lower than unpaired null sd."
+    },
+    {
+      "basis": "Drift is what pushed the unpaired null means to +0.1493 (optimize_function) and -0.0911 (power_mod).",
+      "id": "H3",
+      "statement": "Under the paired protocol every task's null reward mean is within 0.05 of zero."
+    },
+    {
+      "basis": "power_mod already had the best signal-to-noise in the suite and failed only on drift-driven criteria.",
+      "id": "H4",
+      "statement": "At least one task is admitted under the paired protocol."
+    },
+    {
+      "basis": "Same protocol, same machine. If this fails, E65's rejections were themselves unstable and the whole comparison is suspect.",
+      "id": "H5",
+      "statement": "No task is admitted under the unpaired protocol, reproducing E65 within this run."
+    }
+  ],
+  "preregistration_digest": "815e8e22944c133f4eae53f5de0f7ebc2e20a8c5e7401593d782cba4c55f759b",
+  "question": "Does interleaved paired measurement remove the drift that made every task in the executable suite unable to measure an improvement?",
+  "schema_version": 1,
+  "task_note": "count_primes v1 is excluded: the paired protocol replaces an environment's scoring entirely, so v1 and v2 would run identical programs. E65 already established v1's reward is censored.",
+  "tasks": [
+    "optimize_function",
+    "count_primes_v2",
+    "power_mod"
+  ]
+}
