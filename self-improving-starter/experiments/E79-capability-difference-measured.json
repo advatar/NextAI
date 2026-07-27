@@ -1,0 +1,42 @@
+{
+  "claim_boundary": "Measures a capability difference between three hand-written strategies on one task. It is NOT self-improvement: no strategy was produced or improved by the system, and nothing recursive is claimed.",
+  "experiment_id": "E79-capability-difference-measured",
+  "finding": "Capability differences between strategies are measurable on this substrate for the first time. Direction: MORE elaborate is monotonically WORSE. The planning steps were written for edge-case bugs, and on a task whose difficulty is an algorithmic insight (a bitset subset sum) instructing the model to enumerate input classes appears to distract from finding it. This matches E73, where the compliance-best strategy was capability-worst.",
+  "fisher_exact_two_sided": {
+    "edge_case_vs_verify": 0.7164,
+    "minimal_vs_edge_case": 0.111,
+    "minimal_vs_verify": 0.0225
+  },
+  "makes_capability_claim": true,
+  "question": "On a task with capability variance, do strategies differ in SOLVING rather than in formatting?",
+  "report_digest": "21714acae12d64b311109b71d281047cd299e2a8a351a3a9277182619653682c",
+  "results": {
+    "edge_case": {
+      "mean": 0.323,
+      "rate": 0.3,
+      "solved": 6,
+      "steps": 3,
+      "valid": 20
+    },
+    "minimal": {
+      "mean": 0.6,
+      "rate": 0.6,
+      "solved": 12,
+      "steps": 0,
+      "valid": 20
+    },
+    "verify": {
+      "mean": 0.2,
+      "rate": 0.2,
+      "solved": 4,
+      "steps": 4,
+      "valid": 20
+    }
+  },
+  "schema_version": 1,
+  "statistical_caution": "Three pairwise comparisons were made with no multiplicity correction. A Bonferroni threshold would be 0.0167, which p=0.0225 does NOT clear. The single test is therefore suggestive rather than conclusive. The monotone trend across the three strategies (60%, 30%, 20% as planning steps go 0, 3, 4) is the stronger signal, and a pre-registered trend test on fresh samples is what would settle it.",
+  "task": "partition_feasible at iteration_budget 20000",
+  "unblocks": "The apparatus needed for Phase 2 now exists: a task with capability variance, a measurable improver-quality signal, and a statistical test. Having the model propose strategies and selecting on measured capability is now a runnable experiment rather than a blocked one.",
+  "validity": "20/20 for every strategy, so the differences cannot be compliance",
+  "what_it_does_not_show": "No strategy was improved by anything. Three were hand-written and compared, and the best is the simplest, so no improvement has been demonstrated -- only discrimination. Phase 2 requires an improved artifact beating its ancestor on held-out tasks under matched budget; Phase 3 requires a descendant improver producing better further descendants. Neither is claimed."
+}
