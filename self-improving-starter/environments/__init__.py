@@ -7,6 +7,11 @@ from .power_mod import PowerModEnv
 from .count_divisors import CountDivisorsEnv
 from .gcd_fixed import GcdFixedEnv
 from .graded_correctness import GradedCorrectnessEnvironment
+from .multibug_tasks import (
+    BoundedCounterEnv,
+    DigitLadderEnv,
+    SignedTransformEnv,
+)
 from .correctness_tasks import (
     CollatzStepsEnv,
     CountOneBitsEnv,
@@ -27,10 +32,20 @@ REGISTRY = {
     CountOneBitsEnv.name: CountOneBitsEnv,
     CollatzStepsEnv.name: CollatzStepsEnv,
     IntegerSqrtEnv.name: IntegerSqrtEnv,
+    SignedTransformEnv.name: SignedTransformEnv,
+    BoundedCounterEnv.name: BoundedCounterEnv,
+    DigitLadderEnv.name: DigitLadderEnv,
 }
 
 #: Deterministic graded-correctness tasks. E68 found no timing task admissible
 #: under replication; these carry no timing noise at all.
+#: Multi-bug tasks built for E72, where one proposal should not suffice.
+MULTIBUG_TASKS = (
+    SignedTransformEnv.name,
+    BoundedCounterEnv.name,
+    DigitLadderEnv.name,
+)
+
 CORRECTNESS_TASKS = (
     DigitSumGradedEnv.name,
     CountOneBitsEnv.name,
@@ -59,6 +74,10 @@ __all__ = [
     "CountOneBitsEnv",
     "CollatzStepsEnv",
     "IntegerSqrtEnv",
+    "SignedTransformEnv",
+    "BoundedCounterEnv",
+    "DigitLadderEnv",
+    "MULTIBUG_TASKS",
     "CORRECTNESS_TASKS",
     "TimedTaskEnvironment",
     "REGISTRY",
