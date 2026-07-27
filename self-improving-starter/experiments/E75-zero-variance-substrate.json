@@ -1,0 +1,63 @@
+{
+  "claim_boundary": "Measures outcome variance of the task suite against two proposers. No capability or self-improvement claim.",
+  "experiment_id": "E75-zero-variance-substrate",
+  "finding": "Eight of nine tasks score exactly 1.0; digit_ladder produces no valid output. The outcome variable is CONSTANT across the entire suite, so no strategy comparison is possible: E73 was underpowered, but power is irrelevant when there is no variance to detect. Combined with the 2B, where tasks are either solved or yield nothing valid, neither available proposer exhibits a graded response to any task in this suite.",
+  "makes_capability_claim": false,
+  "proposer": {
+    "model": "mlx-community/gemma-4-12B-it-OptiQ-4bit",
+    "strategy": "edge_case",
+    "temperature": 1.0
+  },
+  "question": "Is there ANY task in the suite with capability variance against the available proposers?",
+  "report_digest": "ec55db2e10acae911c08b94c9044d9ced2def67799a1aa3e436c19b3b8b822e7",
+  "results": {
+    "bounded_counter": {
+      "mean_score": 1.0,
+      "state": "ceiling",
+      "valid": 4
+    },
+    "collatz_steps": {
+      "mean_score": 1.0,
+      "state": "ceiling",
+      "valid": 4
+    },
+    "count_one_bits": {
+      "mean_score": 1.0,
+      "state": "ceiling",
+      "valid": 4
+    },
+    "digit_sum_graded": {
+      "mean_score": 1.0,
+      "state": "ceiling",
+      "valid": 4
+    },
+    "integer_cube_root": {
+      "mean_score": 1.0,
+      "state": "ceiling",
+      "valid": 4
+    },
+    "integer_sqrt": {
+      "mean_score": 1.0,
+      "state": "ceiling",
+      "valid": 4
+    },
+    "round_half_to_even": {
+      "mean_score": 1.0,
+      "state": "ceiling",
+      "valid": 4
+    },
+    "signed_transform": {
+      "mean_score": 1.0,
+      "state": "ceiling",
+      "valid": 4
+    }
+  },
+  "samples_per_task": 4,
+  "schema_version": 1,
+  "structural_conclusion": "The restricted AST subset that makes the evaluator trustworthy -- no imports, no calls but range, no data structures -- also caps task difficulty far below a 12B model. Trustworthy evaluation and measurable difficulty are in direct tension on this substrate, and that tension, not any single task design, is what blocks measuring improver quality.",
+  "what_would_unblock": [
+    "tasks with graded partial credit that a 12B solves only sometimes",
+    "a task domain richer than single-function integer programs",
+    "an evaluator that stays trustworthy without the subset restriction"
+  ]
+}
