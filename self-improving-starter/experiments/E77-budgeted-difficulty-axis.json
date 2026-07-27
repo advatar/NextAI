@@ -1,0 +1,22 @@
+{
+  "caution": "An apparent too-hard result was a specification bug. Earlier zero-score results were each diagnosed by inspecting actual model output (enumeration and truncation for inference_tasks, a repetitive token loop for boundary_tasks), so those stand, but the episode shows how readily a harness defect impersonates task difficulty.",
+  "claim_boundary": "Introduces a difficulty mechanism and measures one task against one proposer. No capability or self-improvement claim.",
+  "experiment_id": "E77-budgeted-difficulty-axis",
+  "harness_bug_found": "The first measurement scored -0.111 on all eight attempts and looked like the task being far too hard. It was a prompt-drift bug of my own: _instance and the anchor solutions were changed to ((n*31 + i*7919) % 1000) while the prompt still hardcoded the first drafts ((n + i*7919) % 100). The model implemented the generator it was given -- correctly, with an efficient bitset DP -- and was graded against a different one. The prompt now renders GENERATOR_EXPR so the two cannot diverge.",
+  "makes_capability_claim": false,
+  "mechanism": "recursive_lab.loop_guard bounds total loop iterations per call, so an efficiency requirement is enforced exactly and reproducibly with no wall-clock timing. Verified on partition_feasible: a correct brute-force enumeration over 2**20 subsets scores 0.000 because the budget cuts it off, while an O(items * total/2) dynamic program scores 1.000. Both are correct programs; only one is efficient enough.",
+  "question": "Can a deterministic iteration budget create an algorithmic difficulty axis that a cheap oracle can still verify?",
+  "report_digest": "ee52ee5db6c8b1edf83f1ac9c2beda89191359f3575e2fceafb18160a099f1c5",
+  "result": {
+    "mean": 1.0,
+    "proposer": "gemma-4-12B-it-OptiQ-4bit",
+    "samples": 10,
+    "sd": 0.0,
+    "solved": 10,
+    "state": "ceiling",
+    "valid": 10
+  },
+  "schema_version": 1,
+  "standing": "The mechanism works and is tunable, but at its current setting the 12B is at ceiling. No capability variance yet, so improver quality still cannot be measured. Phase 2 and Phase 3 remain unmet.",
+  "why_this_matters": "It is the first TUNABLE, deterministic difficulty axis in this substrate. Every earlier design required inventing a new task and hoping; this one moves by changing a number. It also resolves E76 tension directly: verification stays a short exact oracle while difficulty comes from the algorithm required, so checkability and difficulty are no longer opposed."
+}
