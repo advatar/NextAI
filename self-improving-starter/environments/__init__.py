@@ -7,6 +7,7 @@ from .power_mod import PowerModEnv
 from .count_divisors import CountDivisorsEnv
 from .gcd_fixed import GcdFixedEnv
 from .graded_correctness import GradedCorrectnessEnvironment
+from .inference_tasks import PiecewiseSquareEnv, ThresholdParityEnv
 from .multibug_tasks import (
     BoundedCounterEnv,
     DigitLadderEnv,
@@ -35,6 +36,8 @@ REGISTRY = {
     SignedTransformEnv.name: SignedTransformEnv,
     BoundedCounterEnv.name: BoundedCounterEnv,
     DigitLadderEnv.name: DigitLadderEnv,
+    PiecewiseSquareEnv.name: PiecewiseSquareEnv,
+    ThresholdParityEnv.name: ThresholdParityEnv,
 }
 
 #: Deterministic graded-correctness tasks. E68 found no timing task admissible
@@ -44,6 +47,13 @@ MULTIBUG_TASKS = (
     SignedTransformEnv.name,
     BoundedCounterEnv.name,
     DigitLadderEnv.name,
+)
+
+#: Underdetermined-specification tasks: the answer is not in the prompt, so
+#: feedback across iterations is required by construction.
+INFERENCE_TASKS = (
+    PiecewiseSquareEnv.name,
+    ThresholdParityEnv.name,
 )
 
 CORRECTNESS_TASKS = (
@@ -78,6 +88,9 @@ __all__ = [
     "BoundedCounterEnv",
     "DigitLadderEnv",
     "MULTIBUG_TASKS",
+    "PiecewiseSquareEnv",
+    "ThresholdParityEnv",
+    "INFERENCE_TASKS",
     "CORRECTNESS_TASKS",
     "TimedTaskEnvironment",
     "REGISTRY",

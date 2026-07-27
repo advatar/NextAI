@@ -121,9 +121,25 @@ def build_prompt(task_prompt: str, current_program: str, public_feedback: str) -
 
 
 def extract_program(text: str) -> str | None:
-    """Pull a program out of a model response, or return None."""
+    """Pull a program out of a model response, or return None.
+
+    Handles an UNTERMINATED fence, which is the common case when a response is
+    cut off at ``max_tokens``.  The closed-fence regex cannot match then, and an
+    earlier version fell back to the raw text with the opening ```` ```python ````
+    still attached, so every truncated reply became a guaranteed SyntaxError and
+    looked like the model failing rather than the parser failing.  That silently
+    scored 0/0 valid candidates on a whole task.
+    """
     match = _FENCE.search(text)
-    body = match.group(1) if match else text
+    if match:
+        body = match.group(1)
+    else:
+        body = text
+        fence = body.find("```")
+        if fence != -1:
+            # Drop everything up to and including the opening fence line.
+            newline = body.find("\n", fence)
+            body = body[newline + 1 :] if newline != -1 else ""
     body = body.strip()
     if "def solve" not in body:
         return None
@@ -137,7 +153,7 @@ class ModelProgramProposer:
     client: ChatClient
     model: str
     temperature: float = 1.0
-    max_tokens: int = 800
+    max_tokens: int = 1400
     name: str = "model-program-proposer-v1"
     calls: int = field(default=0, init=False)
     total_tokens: int = field(default=0, init=False)

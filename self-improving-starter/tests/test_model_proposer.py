@@ -87,6 +87,22 @@ class ProgramExtraction(unittest.TestCase):
     def test_extracts_from_an_unfenced_reply(self):
         self.assertIsNotNone(extract_program("def solve(n):\n    return n\n"))
 
+    def test_extracts_from_a_truncated_fence(self):
+        """The bug that scored a whole task 0/0 valid.
+
+        A reply cut off at max_tokens has an opening fence and no closing one.
+        The closed-fence regex cannot match, and returning the raw text leaves
+        ```python attached, so every truncated reply became a SyntaxError and
+        looked like the model failing rather than the parser failing.
+        """
+        import ast
+
+        truncated = "```python\ndef solve(n):\n    if n == 1:\n        return 1\n"
+        program = extract_program(truncated)
+        self.assertIsNotNone(program)
+        self.assertFalse(program.lstrip().startswith("```"))
+        ast.parse(program)
+
     def test_returns_none_without_a_solve_definition(self):
         self.assertIsNone(extract_program("I cannot help with that."))
         self.assertIsNone(extract_program("```python\nx = 1\n```"))
