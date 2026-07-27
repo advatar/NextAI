@@ -1,0 +1,94 @@
+{
+  "arm_ancestor_as_improver": {
+    "best": "child_0",
+    "best_text": "Design your algorithm to minimize total loop iterations by prioritizing early exits, replacing nested loops with hash maps or sliding windows, and selecting linear or logarithmic time complexities. Before implementation, analyze the input size to determine the maximum allowable operations. Use built-in functions that leverage optimized C-level loops. Avoid redundant calculations by pre-calculating values outside of loops. If a problem requires quadratic behavior, ensure it is only triggered by necessary conditions to keep the total operation count within the strict per-call limit. Prioritize space-time trade-offs that reduce iterative overhead.",
+    "children": {
+      "child_0": {
+        "rate": 1.0,
+        "samples": 8,
+        "solved": 8,
+        "text": "Design your algorithm to minimize total loop iterations by prioritizing early exits, replacing nested loops with hash maps or sliding windows, and selecting linear or logarithmic time complexities. Before implementation, analyze the input size to determine the maximum allowable operations. Use built",
+        "valid": 8
+      },
+      "child_1": {
+        "rate": 0.0,
+        "samples": 8,
+        "solved": 0,
+        "text": "Design algorithms that minimize total loop iterations by prioritizing early exits, replacing nested loops with hash maps or sliding windows, and selecting linear or logarithmic time complexities. When analyzing options, calculate the theoretical maximum number of iterations per input size. Choose th",
+        "valid": 8
+      },
+      "child_2": {
+        "rate": 0.25,
+        "samples": 8,
+        "solved": 2,
+        "text": "Design algorithms that minimize total loop iterations by prioritizing early exits, pruning, and efficient data structures. When selecting an approach, compare the time complexity of options and choose the one that avoids nested loops where possible. Use hash maps to replace linear searches and slidi",
+        "valid": 8
+      },
+      "child_3": {
+        "rate": 0.0,
+        "samples": 8,
+        "solved": 0,
+        "text": "Design algorithms that minimize total loop iterations by prioritizing early exits, pruning search spaces, and replacing nested loops with linear scans or hash-map lookups. When facing large inputs, avoid quadratic complexity ($O(n^2)$). Use sliding windows, two-pointers, or prefix sums to reduce com",
+        "valid": 8
+      }
+    },
+    "heldout": {
+      "rate": 0.9333333333333333,
+      "samples": 15,
+      "solved": 14,
+      "valid": 15
+    },
+    "label": "ancestor_as_improver"
+  },
+  "arm_descendant_as_improver": {
+    "best": "child_0",
+    "best_text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with hash maps, sets, or sliding windows). Eliminate quadratic complexity by replacing iterative searches with O(1) lookups or mathematical formulas. Use Python built-ins like `sum()`, `min()`, `max()`, and `sorted()` to leverage optimized C implementation. Implement early exits using `break` or `return` to terminate loops immediately upon finding a solution. Prioritize space-time trade-offs that reduce total loop overhead. Ensure every operation contributes directly to the output to comply with strict efficiency limits.",
+    "children": {
+      "child_0": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with hash maps, sets, or sliding windows). Eliminate quadratic complexity by replacing iterative searches w",
+        "valid": 8
+      },
+      "child_1": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with hash maps, sets, or sliding windows). Eliminate quadratic complexity by replacing iterative searches w",
+        "valid": 8
+      },
+      "child_2": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with hash maps, sets, or sliding windows). Eliminate quadratic complexity by replacing iterative searches w",
+        "valid": 8
+      },
+      "child_3": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with hash maps, sets, or sliding windows). Eliminate quadratic complexity by replacing iterative searches w",
+        "valid": 8
+      }
+    },
+    "heldout": {
+      "rate": 0.8666666666666667,
+      "samples": 15,
+      "solved": 13,
+      "valid": 15
+    },
+    "label": "descendant_as_improver"
+  },
+  "children_per_arm": 4,
+  "claim_boundary": "One task family, one generation of children, n=15 per held-out arm. A positive result is a single-lineage recursive observation, far short of POC_PLAN's bar of three generations and five independent lineages with sealed transfer.",
+  "experiment_id": "E81-recursive-effect",
+  "heldout_delta": -0.06666666666666665,
+  "makes_capability_claim": true,
+  "question": "Used as an improver, does the E80 descendant generate better children than its ancestor generates?",
+  "report_digest": "1d419721453000d24e606318606ae2535265f98f0ab7f810b5fc28e5058fcfbc",
+  "schema_version": 1,
+  "verdict": "descendant is the worse improver",
+  "wall_seconds": 3208.179287666979
+}
