@@ -155,6 +155,10 @@ class ModelProgramProposer:
     temperature: float = 1.0
     max_tokens: int = 1400
     name: str = "model-program-proposer-v1"
+    #: When set, replaces SYSTEM_INSTRUCTION. This is how a Strategy becomes the
+    #: mutable artifact: everything else about the call is held fixed, so a
+    #: measured difference between two runs is attributable to the instruction.
+    system_override: str | None = None
     calls: int = field(default=0, init=False)
     total_tokens: int = field(default=0, init=False)
 
@@ -167,7 +171,7 @@ class ModelProgramProposer:
         try:
             text, prompt_tokens, completion_tokens = self.client.complete(
                 model=self.model,
-                system=SYSTEM_INSTRUCTION,
+                system=self.system_override or SYSTEM_INSTRUCTION,
                 user=prompt,
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,

@@ -1,0 +1,225 @@
+{
+  "budget": "one proposal per (strategy, task, seed); no iteration",
+  "claim_boundary": "Measures whether improver quality is observable on this substrate. A positive result licenses measuring improver quality; it is not evidence of self-improvement or of a recursive effect.",
+  "experiment_id": "E72-strategy-discrimination",
+  "improver_quality_measurable": true,
+  "makes_capability_claim": false,
+  "pooled_success_rate": {
+    "edge_case": 0.9199999999999999,
+    "minimal": 0.6,
+    "verify": 0.8800000000000001
+  },
+  "pooled_valid_rate": {
+    "edge_case": 0.9199999999999999,
+    "minimal": 0.6,
+    "verify": 0.8800000000000001
+  },
+  "question": "Holding tasks, budget, seeds and subset rules fixed, does changing the strategy change the outcome?",
+  "report_digest": "053bfc46a611bf553d552fab864be8061b871e41790f1611a2a57fd27e242638",
+  "rows": [
+    {
+      "mean_score": 0.0,
+      "seeds": 5,
+      "solved": 0,
+      "strategy": "minimal",
+      "strategy_digest": "e1fe0514c9b8fd7189d6e09d3a76a83d49a2aea293351e9d6fdcb7d12d67ee89",
+      "success_rate": 0.0,
+      "task": "digit_sum_graded",
+      "tokens": 8695,
+      "valid": 0
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "edge_case",
+      "strategy_digest": "b0df8b193a57aad3b006df7ad443fbf39c509f408ab75db85415bf54bbe4fd81",
+      "success_rate": 1.0,
+      "task": "digit_sum_graded",
+      "tokens": 2490,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "verify",
+      "strategy_digest": "c252e76dc99168ee56d051bbe604e16b9ebfa903cd64c3d5429af0785392751d",
+      "success_rate": 1.0,
+      "task": "digit_sum_graded",
+      "tokens": 2607,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "minimal",
+      "strategy_digest": "e1fe0514c9b8fd7189d6e09d3a76a83d49a2aea293351e9d6fdcb7d12d67ee89",
+      "success_rate": 1.0,
+      "task": "count_one_bits",
+      "tokens": 2120,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "edge_case",
+      "strategy_digest": "b0df8b193a57aad3b006df7ad443fbf39c509f408ab75db85415bf54bbe4fd81",
+      "success_rate": 1.0,
+      "task": "count_one_bits",
+      "tokens": 2510,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "verify",
+      "strategy_digest": "c252e76dc99168ee56d051bbe604e16b9ebfa903cd64c3d5429af0785392751d",
+      "success_rate": 1.0,
+      "task": "count_one_bits",
+      "tokens": 2625,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "minimal",
+      "strategy_digest": "e1fe0514c9b8fd7189d6e09d3a76a83d49a2aea293351e9d6fdcb7d12d67ee89",
+      "success_rate": 1.0,
+      "task": "collatz_steps",
+      "tokens": 2605,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 4,
+      "strategy": "edge_case",
+      "strategy_digest": "b0df8b193a57aad3b006df7ad443fbf39c509f408ab75db85415bf54bbe4fd81",
+      "success_rate": 0.8,
+      "task": "collatz_steps",
+      "tokens": 4282,
+      "valid": 4
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "verify",
+      "strategy_digest": "c252e76dc99168ee56d051bbe604e16b9ebfa903cd64c3d5429af0785392751d",
+      "success_rate": 1.0,
+      "task": "collatz_steps",
+      "tokens": 3118,
+      "valid": 5
+    },
+    {
+      "mean_score": 0.0,
+      "seeds": 5,
+      "solved": 0,
+      "strategy": "minimal",
+      "strategy_digest": "e1fe0514c9b8fd7189d6e09d3a76a83d49a2aea293351e9d6fdcb7d12d67ee89",
+      "success_rate": 0.0,
+      "task": "integer_sqrt",
+      "tokens": 2165,
+      "valid": 0
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 4,
+      "strategy": "edge_case",
+      "strategy_digest": "b0df8b193a57aad3b006df7ad443fbf39c509f408ab75db85415bf54bbe4fd81",
+      "success_rate": 0.8,
+      "task": "integer_sqrt",
+      "tokens": 4194,
+      "valid": 4
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "verify",
+      "strategy_digest": "c252e76dc99168ee56d051bbe604e16b9ebfa903cd64c3d5429af0785392751d",
+      "success_rate": 1.0,
+      "task": "integer_sqrt",
+      "tokens": 2625,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "minimal",
+      "strategy_digest": "e1fe0514c9b8fd7189d6e09d3a76a83d49a2aea293351e9d6fdcb7d12d67ee89",
+      "success_rate": 1.0,
+      "task": "signed_transform",
+      "tokens": 4374,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 5,
+      "strategy": "edge_case",
+      "strategy_digest": "b0df8b193a57aad3b006df7ad443fbf39c509f408ab75db85415bf54bbe4fd81",
+      "success_rate": 1.0,
+      "task": "signed_transform",
+      "tokens": 4721,
+      "valid": 5
+    },
+    {
+      "mean_score": 1.0,
+      "seeds": 5,
+      "solved": 2,
+      "strategy": "verify",
+      "strategy_digest": "c252e76dc99168ee56d051bbe604e16b9ebfa903cd64c3d5429af0785392751d",
+      "success_rate": 0.4,
+      "task": "signed_transform",
+      "tokens": 7448,
+      "valid": 2
+    }
+  ],
+  "schema_version": 1,
+  "strategies": [
+    {
+      "digest": "e1fe0514c9b8fd7189d6e09d3a76a83d49a2aea293351e9d6fdcb7d12d67ee89",
+      "name": "minimal",
+      "planning_steps": [],
+      "preamble": "You repair small Python functions. Fix the program you are given."
+    },
+    {
+      "digest": "b0df8b193a57aad3b006df7ad443fbf39c509f408ab75db85415bf54bbe4fd81",
+      "name": "edge_case",
+      "planning_steps": [
+        "List the distinct classes of input the contract covers, including negatives, zero, and boundary values.",
+        "For each class, decide what the contract requires and whether the current program does that.",
+        "Rewrite the whole function so every class is handled."
+      ],
+      "preamble": "You repair small Python functions. The program you are given is correct on common inputs and wrong on some class of inputs it does not handle."
+    },
+    {
+      "digest": "c252e76dc99168ee56d051bbe604e16b9ebfa903cd64c3d5429af0785392751d",
+      "name": "verify",
+      "planning_steps": [
+        "List the distinct classes of input the contract covers, including negatives, zero, and boundary values.",
+        "For each class, decide what the contract requires and whether the current program does that.",
+        "Rewrite the whole function so every class is handled.",
+        "Trace your rewritten function on one input from each class and check the result against the contract before answering."
+      ],
+      "preamble": "You repair small Python functions. The program you are given is correct on common inputs and wrong on some class of inputs it does not handle."
+    }
+  ],
+  "success_rate_spread": 0.31999999999999995,
+  "tasks": [
+    "digit_sum_graded",
+    "count_one_bits",
+    "collatz_steps",
+    "integer_sqrt",
+    "signed_transform"
+  ],
+  "wall_seconds": 490.58622399996966
+}
