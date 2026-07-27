@@ -1,0 +1,212 @@
+{
+  "capability_gap_survives": true,
+  "capability_spread": 0.08333333333333337,
+  "claim_boundary": "Separates a compliance signal from a capability signal. A surviving capability gap would license measuring improver quality; it is not itself evidence of self-improvement or a recursive effect.",
+  "compliance_spread": 0.40000000000000013,
+  "experiment_id": "E73-capability-isolation",
+  "makes_capability_claim": false,
+  "max_attempts": 4,
+  "method": "Retry until the candidate clears the subset gate, up to the attempt cap, then score. Retrying is semantics-preserving and nothing repairs or rewrites model output.",
+  "pooled_attempts_to_validity": {
+    "edge_case": 1.6666666666666667,
+    "minimal": 2.066666666666667,
+    "verify": 1.8
+  },
+  "pooled_solve_rate_given_valid": {
+    "edge_case": 0.5,
+    "minimal": 0.5833333333333334,
+    "verify": 0.5833333333333334
+  },
+  "question": "With compliance equalised by retrying until valid, does any strategy difference in SOLVING survive?",
+  "report_digest": "43dbc27d40320cc2030854f493c6779c27ddbfda9b3cbbcba91640ba162d7dde",
+  "rows": [
+    {
+      "mean_attempts_to_validity": 3.3333333333333335,
+      "mean_score_given_valid": 1.0,
+      "reached_validity": 1,
+      "seeds": 3,
+      "solve_rate_given_valid": 1.0,
+      "solved": 1,
+      "strategy": "minimal",
+      "task": "integer_sqrt"
+    },
+    {
+      "mean_attempts_to_validity": 1.3333333333333333,
+      "mean_score_given_valid": 1.0,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 1.0,
+      "solved": 3,
+      "strategy": "edge_case",
+      "task": "integer_sqrt"
+    },
+    {
+      "mean_attempts_to_validity": 1.0,
+      "mean_score_given_valid": 1.0,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 1.0,
+      "solved": 3,
+      "strategy": "verify",
+      "task": "integer_sqrt"
+    },
+    {
+      "mean_attempts_to_validity": 1.0,
+      "mean_score_given_valid": 1.0,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 1.0,
+      "solved": 3,
+      "strategy": "minimal",
+      "task": "signed_transform"
+    },
+    {
+      "mean_attempts_to_validity": 1.0,
+      "mean_score_given_valid": 1.0,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 1.0,
+      "solved": 3,
+      "strategy": "edge_case",
+      "task": "signed_transform"
+    },
+    {
+      "mean_attempts_to_validity": 1.0,
+      "mean_score_given_valid": 1.0,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 1.0,
+      "solved": 3,
+      "strategy": "verify",
+      "task": "signed_transform"
+    },
+    {
+      "mean_attempts_to_validity": 1.0,
+      "mean_score_given_valid": 0.6190476190476191,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 0.3333333333333333,
+      "solved": 1,
+      "strategy": "minimal",
+      "task": "digit_ladder"
+    },
+    {
+      "mean_attempts_to_validity": 1.0,
+      "mean_score_given_valid": 0.19047619047619047,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 0.0,
+      "solved": 0,
+      "strategy": "edge_case",
+      "task": "digit_ladder"
+    },
+    {
+      "mean_attempts_to_validity": 1.6666666666666667,
+      "mean_score_given_valid": 0.5952380952380952,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 0.3333333333333333,
+      "solved": 1,
+      "strategy": "verify",
+      "task": "digit_ladder"
+    },
+    {
+      "mean_attempts_to_validity": 4.0,
+      "mean_score_given_valid": null,
+      "reached_validity": 0,
+      "seeds": 3,
+      "solve_rate_given_valid": null,
+      "solved": 0,
+      "strategy": "minimal",
+      "task": "integer_cube_root"
+    },
+    {
+      "mean_attempts_to_validity": 4.0,
+      "mean_score_given_valid": null,
+      "reached_validity": 0,
+      "seeds": 3,
+      "solve_rate_given_valid": null,
+      "solved": 0,
+      "strategy": "edge_case",
+      "task": "integer_cube_root"
+    },
+    {
+      "mean_attempts_to_validity": 4.0,
+      "mean_score_given_valid": null,
+      "reached_validity": 0,
+      "seeds": 3,
+      "solve_rate_given_valid": null,
+      "solved": 0,
+      "strategy": "verify",
+      "task": "integer_cube_root"
+    },
+    {
+      "mean_attempts_to_validity": 1.0,
+      "mean_score_given_valid": 0.1851851851851852,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 0.0,
+      "solved": 0,
+      "strategy": "minimal",
+      "task": "round_half_to_even"
+    },
+    {
+      "mean_attempts_to_validity": 1.0,
+      "mean_score_given_valid": 0.07407407407407407,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 0.0,
+      "solved": 0,
+      "strategy": "edge_case",
+      "task": "round_half_to_even"
+    },
+    {
+      "mean_attempts_to_validity": 1.3333333333333333,
+      "mean_score_given_valid": -0.2222222222222222,
+      "reached_validity": 3,
+      "seeds": 3,
+      "solve_rate_given_valid": 0.0,
+      "solved": 0,
+      "strategy": "verify",
+      "task": "round_half_to_even"
+    }
+  ],
+  "schema_version": 1,
+  "strategies": [
+    {
+      "digest": "e1fe0514c9b8fd7189d6e09d3a76a83d49a2aea293351e9d6fdcb7d12d67ee89",
+      "name": "minimal",
+      "planning_steps": [],
+      "preamble": "You repair small Python functions. Fix the program you are given."
+    },
+    {
+      "digest": "b0df8b193a57aad3b006df7ad443fbf39c509f408ab75db85415bf54bbe4fd81",
+      "name": "edge_case",
+      "planning_steps": [
+        "List the distinct classes of input the contract covers, including negatives, zero, and boundary values.",
+        "For each class, decide what the contract requires and whether the current program does that.",
+        "Rewrite the whole function so every class is handled."
+      ],
+      "preamble": "You repair small Python functions. The program you are given is correct on common inputs and wrong on some class of inputs it does not handle."
+    },
+    {
+      "digest": "c252e76dc99168ee56d051bbe604e16b9ebfa903cd64c3d5429af0785392751d",
+      "name": "verify",
+      "planning_steps": [
+        "List the distinct classes of input the contract covers, including negatives, zero, and boundary values.",
+        "For each class, decide what the contract requires and whether the current program does that.",
+        "Rewrite the whole function so every class is handled.",
+        "Trace your rewritten function on one input from each class and check the result against the contract before answering."
+      ],
+      "preamble": "You repair small Python functions. The program you are given is correct on common inputs and wrong on some class of inputs it does not handle."
+    }
+  ],
+  "tasks": [
+    "integer_sqrt",
+    "signed_transform",
+    "digit_ladder",
+    "integer_cube_root",
+    "round_half_to_even"
+  ],
+  "wall_seconds": 751.3047501250403
+}
