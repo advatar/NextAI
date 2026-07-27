@@ -1,0 +1,100 @@
+{
+  "arm_ancestor_as_improver": {
+    "children": {
+      "child_0": {
+        "rate": 0.625,
+        "samples": 8,
+        "solved": 5,
+        "text": "Design algorithms that minimize total loop iterations by prioritizing early exits, pruning search spaces, and selecting linear or logarithmic time complexities over quadratic options. When facing larg",
+        "valid": 8
+      },
+      "child_1": {
+        "rate": 0.625,
+        "samples": 8,
+        "solved": 5,
+        "text": "Design algorithms that minimize total loop iterations by prioritizing early exits, pruning, and efficient data structures. When selecting an approach, compare the time complexity of options: favor $O(",
+        "valid": 8
+      },
+      "child_2": {
+        "rate": 0.625,
+        "samples": 8,
+        "solved": 5,
+        "text": "Design algorithms that minimize total loop iterations by prioritizing early exits, replacing nested loops with hash maps or sliding windows, and selecting linear or logarithmic time complexities. When",
+        "valid": 8
+      },
+      "child_3": {
+        "rate": 1.0,
+        "samples": 8,
+        "solved": 8,
+        "text": "Design algorithms that minimize total loop iterations by prioritizing early exits, replacing nested loops with hash maps or sliding windows, and selecting linear or logarithmic time complexities. When",
+        "valid": 8
+      },
+      "child_4": {
+        "rate": 1.0,
+        "samples": 8,
+        "solved": 8,
+        "text": "Design algorithms that minimize total loop iterations by prioritizing early exits, replacing nested loops with hash maps or sliding windows, and selecting linear or logarithmic time complexities. When",
+        "valid": 8
+      }
+    },
+    "label": "ancestor_as_improver",
+    "max_heldout_rate": 1.0,
+    "mean_heldout_rate": 0.775,
+    "sd_heldout_rate": 0.18371173070873836
+  },
+  "arm_descendant_as_improver": {
+    "children": {
+      "child_0": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with ha",
+        "valid": 8
+      },
+      "child_1": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with ha",
+        "valid": 8
+      },
+      "child_2": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with ha",
+        "valid": 8
+      },
+      "child_3": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with ha",
+        "valid": 8
+      },
+      "child_4": {
+        "rate": 0.75,
+        "samples": 8,
+        "solved": 6,
+        "text": "Strictly minimize loop iterations to ensure linear or logarithmic time complexity. Before coding, analyze input constraints to select the most efficient algorithm (e.g., replacing nested loops with ha",
+        "valid": 8
+      }
+    },
+    "label": "descendant_as_improver",
+    "max_heldout_rate": 0.75,
+    "mean_heldout_rate": 0.75,
+    "sd_heldout_rate": 0.0
+  },
+  "claim_boundary": "One task family, one generation, five children per arm, eight held-out samples per child. Far short of POC_PLAN's three generations and five independent lineages with sealed transfer.",
+  "experiment_id": "E82-improver-expectation",
+  "makes_capability_claim": true,
+  "max_delta": -0.25,
+  "mean_delta": -0.025000000000000022,
+  "method": "Every child is scored on held-out instances with no selection step, so improvers are compared in expectation rather than by their best single child.",
+  "question": "Judged by the MEAN held-out quality of the children it produces, is the descendant a better improver than its ancestor?",
+  "report_digest": "a32a67d76517bd883d873ee58f0b1d242dfba3ef1c9b347a40f4e74ea6797c55",
+  "schema_version": 1,
+  "verdict_by_max": "descendant worse by max",
+  "verdict_by_mean": "descendant worse by mean",
+  "wall_seconds": 1864.1894155420014
+}
