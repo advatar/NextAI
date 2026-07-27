@@ -7,6 +7,11 @@ from .power_mod import PowerModEnv
 from .count_divisors import CountDivisorsEnv
 from .gcd_fixed import GcdFixedEnv
 from .graded_correctness import GradedCorrectnessEnvironment
+from .boundary_tasks import (
+    IntegerCubeRootEnv,
+    RoundHalfToEvenEnv,
+    TrailingZeroBitsEnv,
+)
 from .inference_tasks import PiecewiseSquareEnv, ThresholdParityEnv
 from .multibug_tasks import (
     BoundedCounterEnv,
@@ -38,6 +43,8 @@ REGISTRY = {
     DigitLadderEnv.name: DigitLadderEnv,
     PiecewiseSquareEnv.name: PiecewiseSquareEnv,
     ThresholdParityEnv.name: ThresholdParityEnv,
+    IntegerCubeRootEnv.name: IntegerCubeRootEnv,
+    RoundHalfToEvenEnv.name: RoundHalfToEvenEnv,
 }
 
 #: Deterministic graded-correctness tasks. E68 found no timing task admissible
@@ -54,6 +61,13 @@ MULTIBUG_TASKS = (
 INFERENCE_TASKS = (
     PiecewiseSquareEnv.name,
     ThresholdParityEnv.name,
+)
+
+#: Candidate tasks shaped like E71's integer_sqrt: short, fully specified, one
+#: subtle boundary. Kept only if the measured one-shot rate is intermediate.
+BOUNDARY_TASKS = (
+    IntegerCubeRootEnv.name,
+    RoundHalfToEvenEnv.name,
 )
 
 CORRECTNESS_TASKS = (
@@ -91,6 +105,10 @@ __all__ = [
     "PiecewiseSquareEnv",
     "ThresholdParityEnv",
     "INFERENCE_TASKS",
+    "IntegerCubeRootEnv",
+    "RoundHalfToEvenEnv",
+    "TrailingZeroBitsEnv",
+    "BOUNDARY_TASKS",
     "CORRECTNESS_TASKS",
     "TimedTaskEnvironment",
     "REGISTRY",
