@@ -1,0 +1,51 @@
+{
+  "band_definition": "solve-given-valid between 20% and 80%",
+  "claim_boundary": "Measures task difficulty against a proposer. No capability or self-improvement claim.",
+  "comparison_to_2b": {
+    "digit_ladder": "2B 0-33% solved given valid; 12B 0/6 reached validity",
+    "integer_cube_root": "2B 0/3 reached validity; 12B 100% solved",
+    "integer_sqrt": "both solve reliably",
+    "round_half_to_even": "2B 0% solved given valid; 12B 83% solved, mean 0.815"
+  },
+  "experiment_id": "E74-larger-proposer-band",
+  "finding": "A larger proposer moves tasks across the cliff rather than into the band. integer_cube_root went from unreachable to trivially solved; digit_ladder went the other way and now produces no valid output at all. round_half_to_even is the only task near the band at 83%, and its mean score of 0.815 shows partial solutions do occur, so it is not saturated. One borderline task is not a benchmark.",
+  "makes_capability_claim": false,
+  "nearest_to_band": "round_half_to_even at 83% solve-given-valid, mean score 0.815",
+  "proposer": {
+    "endpoint": "http://127.0.0.1:12345/v1",
+    "model": "mlx-community/gemma-4-12B-it-OptiQ-4bit",
+    "strategy": "edge_case",
+    "temperature": 1.0
+  },
+  "question": "Does a larger proposer put any task in the intermediate band where search quality is observable?",
+  "report_digest": "224072adc27a359106ce0c05df0c562222e8f427cd0cb6b83dc28a4ce4b0aa5d",
+  "results": {
+    "digit_ladder": {
+      "mean": null,
+      "solve_given_valid": null,
+      "solved": 0,
+      "valid": 0
+    },
+    "integer_cube_root": {
+      "mean": 1.0,
+      "solve_given_valid": 1.0,
+      "solved": 6,
+      "valid": 6
+    },
+    "integer_sqrt": {
+      "mean": 1.0,
+      "solve_given_valid": 1.0,
+      "solved": 6,
+      "valid": 6
+    },
+    "round_half_to_even": {
+      "mean": 0.8148148148148149,
+      "solve_given_valid": 0.8333333333333334,
+      "solved": 5,
+      "valid": 6
+    }
+  },
+  "samples_per_task": 6,
+  "schema_version": 1,
+  "tasks_in_band": []
+}
