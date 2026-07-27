@@ -1,0 +1,30 @@
+{
+  "claim_boundary": "Measures outcome variance under a widened subset. No capability or self-improvement claim.",
+  "consequence": "Capability variance does not exist on this substrate for either available model. Improver quality therefore cannot be measured, and no recursive claim is available regardless of how the search or the governor is built.",
+  "experiment_id": "E76-widened-subset-still-ceiling",
+  "finding": "Both tasks require real algorithms -- longest palindromic substring, and a coin-change dynamic program where greedy is provably wrong (solve(6)=2 not 3) -- and both sit at mean 1.0 with zero standard deviation. Widening the subset did not create variance.",
+  "makes_capability_claim": false,
+  "proposer": {
+    "model": "mlx-community/gemma-4-12B-it-OptiQ-4bit",
+    "temperature": 1.0
+  },
+  "question": "Does widening the candidate subset to allow data structures and algorithms create capability variance?",
+  "report_digest": "2d71dfeaece0e6a1decada73ea25637ef7ceb3d28daa8cf791e4c633f9f8f3cb",
+  "results": {
+    "coin_change": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "solved": 5,
+      "valid": 5
+    },
+    "longest_palindrome": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "solved": 8,
+      "valid": 8
+    }
+  },
+  "schema_version": 1,
+  "sharpened_conclusion": "E75 attributed the difficulty ceiling to the AST subset. That was too generous to the substrate. With the subset widened to full data structures and algorithms the ceiling is unchanged, so the binding constraint is the TASK FORMAT: one function, one integer in, one integer out, with a Python oracle. Every problem expressible that way is within a 12B model competence. The format is also exactly what makes the evaluator trustworthy and the oracle checkable, so the tension is not between safety and difficulty but between CHECKABILITY and difficulty.",
+  "subset": "recursive_lab.widened_validator: lists, dicts, sets, strings, slicing, comprehensions, helper functions; no imports, classes, lambda, try, dunder names; builtin allowlist"
+}
