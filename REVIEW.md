@@ -1018,6 +1018,74 @@ effect. What it does establish is that the instrument works end to end: a search
 ran, a control confirmed zero phantom gain, and a held-out improvement was
 measured rather than asserted.
 
+## E71 — a model in the proposer slot, and the tasks turn out to be too easy
+
+The local Gemma 4 E2B server replaces the AST mutator. 192 model calls, 192
+parsed, 186 validator-clean (97%), 638 seconds, nothing leaving the machine.
+
+| Task | governed | single_shot | null_only |
+| --- | --- | --- | --- |
+| digit_sum_graded | +1.0000 | +1.0000 | 0.0000 |
+| count_one_bits | +1.0000 | +1.0000 | 0.0000 |
+| collatz_steps | +1.0000 | +1.0000 | 0.0000 |
+| integer_sqrt | +1.0000 | +0.3333 | 0.0000 |
+| **pooled** | **+1.0000** | **+0.8333** | **0.0000** |
+
+**The model solves all four tasks completely on held-out cases.** H1, H2, H3, H4
+and H6 all supported. Against E70's mutator, which managed one task out of four
+at +0.5, this is a different order of capability.
+
+### The loop earned its cost exactly once
+
+Every governed run recorded **exactly one promotion**. The model fixes the bug on
+its first valid proposal and the remaining fourteen add nothing. Only
+`integer_sqrt` distinguishes the arms:
+
+| | per-seed held-out |
+| --- | --- |
+| single_shot | [0.0, 0.0, **1.0**] |
+| governed | [1.0, 1.0, 1.0] |
+
+One-shot succeeds a third of the time there; the governed loop converts that to
+three out of three. That is a real benefit of iterate-and-select, and it is the
+*only* one in the run. On the other three tasks the governed machinery is
+decoration.
+
+**The honest reading is that these tasks are too easy to test search.** They were
+calibrated in E69 against a generic mutator that could barely move them; a
+language model one-shots them. The substrate has gone from too noisy to measure
+anything, straight past useful, to too easy to discriminate.
+
+### My void rule is wrong, and it fired on the successes
+
+H5 failed: **10 of 12 governed runs were flagged VOID** — including runs scoring
++1.0000. `collatz_steps` produced *one* unique candidate across 15 proposals.
+
+That looks exactly like the E58 defect I opened this review with, and it is not.
+E58's collapse was six calls yielding one program while the report claimed a
+result from n=1. Here the single repeated candidate **is the correct fix**: the
+model solved the task on proposal 1 and then returned the same correct program
+fourteen more times. Low diversity *after success* is convergence, not failure to
+search.
+
+My pre-registered rule cannot tell those apart, because it tests diversity alone.
+The fix is to void only when diversity is low **and** no improvement was
+achieved. I am not applying that retroactively to rescue this run — the frozen
+rule fired as written and is recorded as failing. It is pre-registered for the
+next run instead.
+
+Worth stating plainly: the headline result comes from runs my own rule marks
+void. The improvement itself is not in doubt — it is measured on held-out cases
+the search never saw, with a null control at exactly 0.0 — but the rule that was
+supposed to certify the search is unfit and needs replacing before it certifies
+anything.
+
+### Claim boundary
+
+A local model repairing four small Python functions under a governed loop. The
+model does not modify its own scaffold, weights, or proposer. **Nothing here is
+recursive and nothing here is self-improvement.**
+
 ## Recommended next steps
 
 1. ~~**Change `minimum_policy_disagreements` to a rate** and pre-register it
@@ -1075,9 +1143,19 @@ measured rather than asserted.
    31% power per seed. Three of four tasks scoring 0.0 is currently ambiguous
    between "the mutator cannot reach it" and "150 evaluations was too few". A
    power calculation belongs in the plan, not in the post-mortem.
-23. **Put a model in the loop.** The proposer is a generic mutator with no model
-   anywhere. Every claim in this project about self-improvement requires that to
-   change, and the instrument is now good enough to measure it honestly.
+23. ~~**Put a model in the loop.**~~ Done in E71: local Gemma 4 E2B solves all
+   four tasks on held-out cases, pooled +1.0000.
+27. **Fix the void rule before it certifies anything.** Void only when diversity
+   is low AND no improvement was achieved. As written it flagged 10 of 12
+   *successful* runs, because it cannot distinguish convergence-after-success
+   from never having searched.
+28. **Harder tasks.** These four were calibrated against a weak mutator and a
+   model one-shots them; every governed run made exactly one promotion. To
+   measure search rather than single-shot capability, tasks need to be beyond
+   one proposal — multi-bug programs, or contracts a single edit cannot satisfy.
+29. **Then re-ask whether the loop is worth its cost.** On this suite it earned
+   its keep exactly once, converting integer_sqrt from 1-in-3 to 3-in-3. That is
+   a real but narrow result and it deserves a benchmark that can test it.
 24. **Hold out a task.** All four current tasks are visible to any search. At
    least one should be sealed for a final transfer check, per `POC_PLAN.md`'s
    sealed-suite discipline, before any result is reported as generalising.

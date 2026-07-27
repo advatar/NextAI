@@ -1,5 +1,49 @@
 # Status
 
+## Completed — E71, a model in the proposer slot; the tasks are too easy
+
+Pre-registered in `experiments/E71-preregistration.json` (`79941524…`). Local
+Gemma 4 E2B via the OptiQ MLX server: 192 model calls, 192 parsed, 186
+validator-clean (97%), 638s, nothing leaving the machine.
+
+| Task | governed | single_shot | null_only |
+| --- | --- | --- | --- |
+| digit_sum_graded | +1.0000 | +1.0000 | 0.0000 |
+| count_one_bits | +1.0000 | +1.0000 | 0.0000 |
+| collatz_steps | +1.0000 | +1.0000 | 0.0000 |
+| integer_sqrt | +1.0000 | +0.3333 | 0.0000 |
+| **pooled** | **+1.0000** | **+0.8333** | **0.0000** |
+
+The model solves all four tasks on held-out cases. H1, H2, H3, H4, H6 supported.
+E70's mutator managed one task at +0.5, so this is a different order of
+capability.
+
+**The loop earned its cost exactly once.** Every governed run made exactly ONE
+promotion -- the fix lands on the first valid proposal and the other fourteen add
+nothing. Only `integer_sqrt` separates the arms: single_shot per-seed
+[0.0, 0.0, 1.0] against governed [1.0, 1.0, 1.0]. Iterate-and-select converts a
+1-in-3 chance into 3-in-3 there, and does nothing elsewhere.
+
+These tasks are therefore too easy to test search. They were calibrated in E69
+against a generic mutator; a language model one-shots them.
+
+**H5 failed and the rule is at fault.** 10 of 12 governed runs were flagged VOID,
+including runs scoring +1.0000; `collatz_steps` produced one unique candidate
+across 15 proposals. That single repeated candidate *is the correct fix* -- the
+model solved it on proposal 1 and re-proposed it. Low diversity after success is
+convergence, not the E58 pathology, and the frozen rule cannot tell them apart.
+It is recorded as failing and the corrected form (void only when diversity is low
+AND no improvement was achieved) is pre-registered for the next run rather than
+applied retroactively. The headline result comes from runs this rule marks void;
+the improvement is not in doubt -- held-out, with a null control at exactly 0.0 --
+but the certifying rule is unfit.
+
+Claim boundary: a local model repairing four small Python functions under a
+governed loop. The model does not modify its own scaffold, weights, or proposer.
+**Nothing here is recursive and nothing here is self-improvement.**
+
+Validation: 457 tests pass; E71's `report_digest` reproduces.
+
 ## Completed — E70, the governed search: one real held-out improvement
 
 First capability measurement in the series. **Four attempts**; three failed on

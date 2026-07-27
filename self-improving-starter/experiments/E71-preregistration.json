@@ -1,0 +1,76 @@
+{
+  "analysis_plan": {
+    "loop_value": "governed versus single_shot on held-out delta. If the loop does not beat one proposal, that is reported plainly.",
+    "null_handling": "Recorded as measured. A void run is reported as void and is not retried with different settings to obtain a score.",
+    "primary": "Per task per arm: mean held-out delta across seeds, with the development delta alongside so overfitting is visible."
+  },
+  "arms": {
+    "governed": "iterate: propose from the incumbent, promote only on strict development improvement",
+    "null_only": "semantic no-op variants, no model call. Must score exactly 0.0; verifies the evaluation path end to end.",
+    "single_shot": "one proposal from the starting solution, no iteration, no selection. The baseline that asks whether the loop earns its cost."
+  },
+  "capability_claim_boundary": "A local Gemma 4 E2B model repairing four small Python functions under a governed loop. This is a claim about a model fixing bugs on a four-task suite. It is NOT evidence of self-improvement: the model does not modify its own scaffold, weights, or proposer, and nothing here is recursive.",
+  "claim_boundary": "A local model repairing four small deterministic Python tasks under a governed loop, scored on held-out cases. Not evidence of model self-improvement and not evidence of a recursive effect.",
+  "experiment_id": "E71-model-governed-search",
+  "follows": "E70d-governed-search",
+  "instrument": {
+    "candidate_timeout_seconds": 30.0,
+    "estimated_model_calls": 192,
+    "iteration_limit": 20000,
+    "minimum_unique_candidates": 4,
+    "primary_metric": "held-out normalised delta against the starting solution",
+    "proposals_per_governed_run": 15,
+    "seeds_per_arm": 3
+  },
+  "makes_capability_claim": true,
+  "predictions": [
+    {
+      "basis": "Deterministic reward, semantically identical programs. Held since E69 and re-checked here because it is the canary that caught E70b's contamination.",
+      "id": "H1",
+      "statement": "null_only scores exactly 0.0 on every task and seed."
+    },
+    {
+      "basis": "These are small, well-specified edge-case bugs and the model produced valid programs 10/10 in feasibility testing. A language model should reach fixes the generic mutator could not, which managed only one task.",
+      "id": "H2",
+      "statement": "governed achieves a strictly positive mean held-out delta on at least two tasks."
+    },
+    {
+      "basis": "The tasks are simple enough that one proposal may suffice. Stated in advance so a one-shot success is not later reinterpreted as evidence for the loop.",
+      "id": "H3",
+      "statement": "single_shot achieves a strictly positive mean held-out delta on at least one task."
+    },
+    {
+      "basis": "Iteration and selection should not actively hurt. If governed loses, the loop is costing more than it returns on this suite and should be reported as such.",
+      "id": "H4",
+      "statement": "governed's pooled held-out delta is greater than or equal to single_shot's."
+    },
+    {
+      "basis": "Feasibility measured 5/10 unique at temperature 1.3 with a prompt nonce. At temperature 1.0 the same model gave 1/5, so this checks the mitigation holds across all four tasks rather than just the one it was tuned on.",
+      "id": "H5",
+      "statement": "No governed run is void: every one produces at least 4 distinct candidates from 15 proposals."
+    },
+    {
+      "basis": "10/10 on digit_sum_graded in feasibility testing. A lower rate on other tasks would mean the subset restriction, not the bug, is what the model is failing.",
+      "id": "H6",
+      "statement": "At least 80% of model proposals pass the candidate validator."
+    }
+  ],
+  "preregistration_digest": "79941524d76a4e0789709aa4830364df74ea2ae75a05e95cb151896120f00c96",
+  "proposer": {
+    "endpoint": "http://127.0.0.1:12345/v1",
+    "model": "gemma-4-e2b-it-4bit-mlx via local OptiQ MLX server",
+    "module": "recursive_lab.model_proposer",
+    "prompt_nonce": "an attempt index is included per call. Temperature alone does not produce diversity on this model, and neither does prompt variation alone; both are required.",
+    "temperature": 1.3
+  },
+  "question": "With a live model in the proposer slot, does the governed search produce held-out correctness improvements, and does iterating and selecting beat a single proposal?",
+  "schema_version": 1,
+  "tasks": [
+    "digit_sum_graded",
+    "count_one_bits",
+    "collatz_steps",
+    "integer_sqrt"
+  ],
+  "trust_boundary": "The model receives the public task prompt, the current program, and a count of development cases passed. It never receives hidden cases, the oracle, the reference solution, or the held-out split.",
+  "void_rule": "A governed run with fewer than minimum_unique_candidates distinct candidate digests is VOID, not scored. A run that never searched has no result either way, which is the distinction E58 collapsed."
+}
