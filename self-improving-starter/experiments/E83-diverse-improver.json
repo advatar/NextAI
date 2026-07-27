@@ -1,0 +1,89 @@
+{
+  "arm_ancestor_as_improver": {
+    "children": {
+      "child_0": {
+        "rate": 0.875,
+        "samples": 8,
+        "solved": 7,
+        "text": "When solving algorithmic problems which have a strict loop iteration limit (TLE constraints), always prioritize strategies with lower asymptotic complexity (O(log n), O(n), or O(n log n)). For search ",
+        "valid": 8
+      },
+      "child_1": {
+        "rate": 0.625,
+        "samples": 8,
+        "solved": 5,
+        "text": "When generating Python functions for algorithmic problems subject to a strict loop iteration limit (TLE constraints), always prioritize strategies with lower asymptotic complexity (O(log n), O(n), or ",
+        "valid": 8
+      },
+      "child_2": {
+        "rate": 0.625,
+        "samples": 8,
+        "solved": 5,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits (TLE constraints), always prioritize strategies with lower asymptotic complexity (O(log n), O(n), or O",
+        "valid": 8
+      },
+      "child_3": {
+        "rate": 0.625,
+        "samples": 8,
+        "solved": 5,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits (TLE constraints), always prioritize strategies with lower asymptotic complexity (O(log n), O(n), or O",
+        "valid": 8
+      }
+    },
+    "distinct_children": 4,
+    "label": "ancestor_as_improver",
+    "max_heldout_rate": 0.875,
+    "mean_heldout_rate": 0.6875,
+    "proposal_attempts": 4,
+    "sd_heldout_rate": 0.10825317547305482
+  },
+  "arm_descendant_as_improver": {
+    "children": {
+      "child_0": {
+        "rate": 1.0,
+        "samples": 8,
+        "solved": 8,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly avoid nested loops which result in quad",
+        "valid": 8
+      },
+      "child_1": {
+        "rate": 0.375,
+        "samples": 8,
+        "solved": 3,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest theoretical time complexity (O(log N) or O(N)). Strictly avoid nested loops which result in O(N",
+        "valid": 8
+      },
+      "child_2": {
+        "rate": 1.0,
+        "samples": 8,
+        "solved": 8,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly avoid nested loops which result in quad",
+        "valid": 8
+      },
+      "child_3": {
+        "rate": 0.875,
+        "samples": 8,
+        "solved": 7,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly avoid nested loops which result in quad",
+        "valid": 8
+      }
+    },
+    "distinct_children": 4,
+    "label": "descendant_as_improver",
+    "max_heldout_rate": 1.0,
+    "mean_heldout_rate": 0.8125,
+    "proposal_attempts": 4,
+    "sd_heldout_rate": 0.2576941016011038
+  },
+  "claim_boundary": "One task family, one generation, four children per arm, eight held-out samples per child. Far short of POC_PLAN's three generations and five lineages.",
+  "diversity_enforcement": "resample until 4 distinct child texts, temperature 1.5, cap 12 attempts",
+  "experiment_id": "E83-diverse-improver",
+  "makes_capability_claim": true,
+  "mean_delta": 0.125,
+  "motivation": "E82 measured the descendant producing 1 unique text of 5 at pairwise similarity 1.00, the E58 collapse one level up.",
+  "question": "With offspring diversity enforced by construction, is the descendant a better improver than its ancestor?",
+  "report_digest": "e86589e9ebb693c401bad4c07c2f008fee9cc117f079510d4f205472e6792019",
+  "schema_version": 1,
+  "verdict": "descendant is the better improver",
+  "wall_seconds": 993.9489459169563
+}
