@@ -141,7 +141,7 @@ class PartitionFeasibleEnv(BudgetedEnvironment):
         # Correct in principle, far over budget: 2**20 subsets.
         return (
             "def solve(n):\n"
-            f"    a = [((n * 31 + i * 7919) % {VALUE_RANGE}) + 1 for i in range({ITEMS})]\n"
+            f"    a = {GENERATOR_EXPR}\n"
             "    total = sum(a)\n"
             "    half = total // 2\n"
             "    best = 0\n"
@@ -157,23 +157,27 @@ class PartitionFeasibleEnv(BudgetedEnvironment):
 
     @property
     def reference_solution(self) -> str:
+        """Bitset dynamic program: one big-integer shift per item.
+
+        The reference must be the FASTEST known-correct program, not merely a
+        correct one. An earlier version used the O(items * total/2) table DP,
+        and tightening the budget made that reference itself unattainable -- the
+        construction guard correctly refused to build the environment. Using the
+        bitset form means the budget can be tightened to squeeze out the table
+        DP while 1.0 stays reachable.
+        """
         return (
             "def solve(n):\n"
-            f"    a = [((n * 31 + i * 7919) % {VALUE_RANGE}) + 1 for i in range({ITEMS})]\n"
+            f"    a = {GENERATOR_EXPR}\n"
             "    total = sum(a)\n"
             "    half = total // 2\n"
-            "    reachable = [False] * (half + 1)\n"
-            "    reachable[0] = True\n"
+            "    reachable = 1\n"
             "    for value in a:\n"
-            "        for target in range(half, value - 1, -1):\n"
-            "            if reachable[target - value]:\n"
-            "                reachable[target] = True\n"
-            "    best = 0\n"
+            "        reachable = reachable | (reachable << value)\n"
             "    for target in range(half, -1, -1):\n"
-            "        if reachable[target]:\n"
-            "            best = target\n"
-            "            break\n"
-            "    return best\n"
+            "        if (reachable >> target) & 1:\n"
+            "            return target\n"
+            "    return 0\n"
         )
 
     @property

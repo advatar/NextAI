@@ -1,0 +1,73 @@
+{
+  "claim_boundary": "Establishes a benchmark with capability variance. Not a capability or self-improvement claim.",
+  "difficulty_ladder": {
+    "20000": {
+      "bitset": 1.0,
+      "brute": 0.0,
+      "table_dp": 0.0
+    },
+    "200000": {
+      "bitset": 1.0,
+      "brute": 0.0,
+      "table_dp": 1.0
+    },
+    "500": {
+      "bitset": 1.0,
+      "brute": 0.0,
+      "table_dp": 0.0
+    },
+    "50000": {
+      "bitset": 1.0,
+      "brute": 0.0,
+      "table_dp": -0.05
+    }
+  },
+  "experiment_id": "E78-first-task-in-band",
+  "finding": "Both tightened budgets land in the 20-80% band. This is the first task in the series with genuine capability variance: valid 10/10 at both settings, so it is not a formatting failure, and standard deviations near 0.45-0.49 with one partial score of 0.15 show graded outcomes rather than a binary cliff. Nine previous designs produced either ceiling or floor.",
+  "makes_capability_claim": false,
+  "model_results": {
+    "20000": {
+      "mean": 0.4,
+      "rate": 0.4,
+      "scores": [
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "sd": 0.49,
+      "solved": 4,
+      "valid": 10
+    },
+    "5000": {
+      "mean": 0.315,
+      "rate": 0.3,
+      "scores": [
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.15,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "sd": 0.451,
+      "solved": 3,
+      "valid": 10
+    }
+  },
+  "question": "Does tightening the iteration budget move the task into the measurable band?",
+  "report_digest": "e3d5bd3e31ec701346534e00b8ae27ea955ae06922c20b0b44a901d2165babe7",
+  "schema_version": 1,
+  "unblocks": "Improver quality can now be compared on CAPABILITY rather than compliance, which is what E73 could not test because every outcome was constant.",
+  "why_it_worked": "The iteration budget squeezes out the O(items * total/2) table dynamic program while leaving the bitset form reachable, so the task demands a specific algorithmic insight rather than mere correctness. The reference had to be changed to the bitset program first: the construction guard correctly refused to build an environment whose own reference could not score 1.0."
+}
