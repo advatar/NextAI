@@ -1,0 +1,105 @@
+{
+  "ancestor": {
+    "digest": "e1fe0514c9b8fd7189d6e09d3a76a83d49a2aea293351e9d6fdcb7d12d67ee89",
+    "name": "minimal",
+    "planning_steps": [],
+    "preamble": "You repair small Python functions. Fix the program you are given."
+  },
+  "claim_boundary": "One lineage, one generation, one task family. A positive result would be bounded scaffold improvement (Phase 2), NOT a recursive effect, which requires a descendant improver producing better further descendants.",
+  "development_results": {
+    "proposed_0": {
+      "rate": 1.0,
+      "samples": 8,
+      "solved": 8,
+      "text": "When generating Python functions to solve algorithmic problems, you must strictly minimize total loop iterations to comply with efficiency limits. Follow these rules:\n\n1. **Analyze Constraints:** Before selecting an algorithm, determine the input size. Choose options that provide the lowest possible time complexity (e.g., O(log N) or O(N) over O(N^2)).\n2. **Eliminate Redundant Loops:** Replace nes",
+      "valid": 8
+    },
+    "proposed_1": {
+      "rate": 0.875,
+      "samples": 8,
+      "solved": 7,
+      "text": "Design Python functions to solve algorithmic problems while strictly minimizing total loop iterations. Prioritize time complexity over space complexity to stay within execution limits. When selecting an algorithm:\n1. Prefer O(1) or O(log n) options over linear scans if possible.\n2. Use hash maps, sets, or sliding windows to replace nested loops.\n3. Employ two-pointer techniques to replace quadrati",
+      "valid": 8
+    },
+    "proposed_2": {
+      "rate": 1.0,
+      "samples": 8,
+      "solved": 8,
+      "text": "When generating Python functions to solve algorithmic problems, you must strictly minimize total loop iterations to comply with efficiency limits. Prioritize the following selection criteria:\n\n1. **Time Complexity:** Always select algorithms with the lowest possible Big O complexity (e.g., preferring $O(1)$ or $O(\\log n)$ over $O(n)$).\n2. **Data Structures:** Use hash maps (dictionaries/sets) to r",
+      "valid": 8
+    },
+    "proposed_3": {
+      "rate": 0.875,
+      "samples": 8,
+      "solved": 7,
+      "text": "Design Python functions to solve algorithmic problems while strictly minimizing total loop iterations. Prioritize the following selection criteria:\n\n1. **Time Complexity:** Always select algorithms with the lowest possible Big O complexity relative to input size. Prefer $O(1)$, $O(\\log n)$, or $O(n)$ over quadratic options.\n2. **Technique Selection:** Use Hash Maps/Sets for $O(1)$ lookups, Two Poi",
+      "valid": 7
+    }
+  },
+  "development_seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "experiment_id": "E80-strategy-evolution",
+  "heldout_ancestor": {
+    "rate": 0.4666666666666667,
+    "samples": 15,
+    "solved": 7,
+    "valid": 15
+  },
+  "heldout_delta": 0.4666666666666667,
+  "heldout_descendant": {
+    "rate": 0.9333333333333333,
+    "samples": 15,
+    "solved": 14,
+    "valid": 15
+  },
+  "heldout_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120
+  ],
+  "makes_capability_claim": true,
+  "promoted": "proposed_0",
+  "promoted_text": "When generating Python functions to solve algorithmic problems, you must strictly minimize total loop iterations to comply with efficiency limits. Follow these rules:\n\n1. **Analyze Constraints:** Before selecting an algorithm, determine the input size. Choose options that provide the lowest possible time complexity (e.g., O(log N) or O(N) over O(N^2)).\n2. **Eliminate Redundant Loops:** Replace nested loops with hash maps, sets, or sliding window techniques to reduce complexity from quadratic to linear.\n3. **Use Built-ins:** Utilize Python\u2019s built-in functions (like `sum()`, `min()`, `max()`, `sorted()`) which are implemented in C and often minimize overhead.\n4. **Early Exits:** Implement `break` or `return` statements to terminate loops as soon as the solution is found.\n5. **Mathematical Substitutions:** Replace iterative search/accumulation with mathematical formulas where possible.",
+  "question": "Does a model-proposed strategy, selected on development instances, beat its ancestor on held-out instances under matched budget?",
+  "report_digest": "ee5701f4e7bc74b68932a87f6027649458362383df7e83b0ff834ef423d41752",
+  "schema_version": 1,
+  "verdict": "descendant beats ancestor",
+  "wall_seconds": 1105.3089531669975
+}
