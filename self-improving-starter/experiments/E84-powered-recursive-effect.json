@@ -1,0 +1,292 @@
+{
+  "arm_ancestor_as_improver": {
+    "children": {
+      "child_0": {
+        "rate": 0.9166666666666666,
+        "samples": 12,
+        "solved": 11,
+        "text": "When solving algorithmic problems which have a strict loop iteration limit (TLE constraints), always prioritize strategies with lower asymptotic complexity (O(l",
+        "valid": 12
+      },
+      "child_1": {
+        "rate": 0.6666666666666666,
+        "samples": 12,
+        "solved": 8,
+        "text": "When generating Python functions for algorithmic problems subject to a strict loop iteration limit (TLE constraints), always prioritize strategies with lower as",
+        "valid": 12
+      },
+      "child_10": {
+        "rate": 0.5,
+        "samples": 12,
+        "solved": 6,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits, always prioritize strategies with lower asymptotic complexity",
+        "valid": 12
+      },
+      "child_11": {
+        "rate": 0.08333333333333333,
+        "samples": 12,
+        "solved": 1,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits, always prioritize strategies with lower asymptotic complexity",
+        "valid": 12
+      },
+      "child_12": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When designing algorithms subject to a strict loop iteration limit, always prioritize strategies with sub-linear or near-linear time complexity (e.g., $O(n \\log",
+        "valid": 12
+      },
+      "child_13": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When designing algorithms subject to a strict loop iteration limit, always prioritize strategies with sub-linear or near-linear time complexity (e.g., $O(n \\log",
+        "valid": 12
+      },
+      "child_14": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When designing algorithms subject to a strict loop iteration limit, always prioritize strategies with sub-linear or near-linear time complexity (e.g., $O(n \\log",
+        "valid": 12
+      },
+      "child_15": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits:\n1. Prioritize strategies with lower asymptotic complexity (O(",
+        "valid": 12
+      },
+      "child_2": {
+        "rate": 0.4166666666666667,
+        "samples": 12,
+        "solved": 5,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits (TLE constraints), always prioritize strategies with lower asy",
+        "valid": 12
+      },
+      "child_3": {
+        "rate": 0.5833333333333334,
+        "samples": 12,
+        "solved": 7,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits (TLE constraints), always prioritize strategies with lower asy",
+        "valid": 12
+      },
+      "child_4": {
+        "rate": 0.3333333333333333,
+        "samples": 12,
+        "solved": 4,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits, always prioritize strategies with lower asymptotic complexity",
+        "valid": 12
+      },
+      "child_5": {
+        "rate": 0.16666666666666666,
+        "samples": 12,
+        "solved": 2,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits, always prioritize strategies with lower asymptotic complexity",
+        "valid": 12
+      },
+      "child_6": {
+        "rate": 0.16666666666666666,
+        "samples": 12,
+        "solved": 2,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits, always prioritize strategies with lower asymptotic complexity",
+        "valid": 12
+      },
+      "child_7": {
+        "rate": 0.9166666666666666,
+        "samples": 12,
+        "solved": 11,
+        "text": "When generating Python functions for algorithmic problems subject to a strict loop iteration limit:\n1. Prioritize strategies with lower asymptotic complexity (O",
+        "valid": 12
+      },
+      "child_8": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, always prioritize strategies with a time complexity lower than $O(N^2)$ unless $N$ is explicitly smal",
+        "valid": 12
+      },
+      "child_9": {
+        "rate": 0.3333333333333333,
+        "samples": 12,
+        "solved": 4,
+        "text": "When generating Python functions for algorithmic problems subject to strict loop iteration limits, always prioritize strategies with lower asymptotic complexity",
+        "valid": 12
+      }
+    },
+    "distinct_children": 16,
+    "label": "ancestor_as_improver",
+    "mean_child_rate": 0.6302083333333334,
+    "pooled_calls": 192,
+    "pooled_rate": 0.6302083333333334,
+    "pooled_solved": 121,
+    "proposal_attempts": 18,
+    "sd_child_rate": 0.3371767356174899
+  },
+  "arm_descendant_as_improver": {
+    "children": {
+      "child_0": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_1": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest theoretical time complexity (O(log N) or O(N)). Strictl",
+        "valid": 12
+      },
+      "child_10": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_11": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_12": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_13": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_14": {
+        "rate": 0.75,
+        "samples": 12,
+        "solved": 9,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_15": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_2": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_3": {
+        "rate": 0.75,
+        "samples": 12,
+        "solved": 9,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest theoretical time complexity (O(log N) or O(N)). Strictl",
+        "valid": 12
+      },
+      "child_4": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest theoretical time complexity (O(log N) or O(N)). Strictl",
+        "valid": 12
+      },
+      "child_5": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_6": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_7": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_8": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      },
+      "child_9": {
+        "rate": 1.0,
+        "samples": 12,
+        "solved": 12,
+        "text": "When generating Python functions for algorithmic problems, prioritize strategies that achieve the lowest asymptotic time complexity (O(log N) or O(N)). Strictly",
+        "valid": 12
+      }
+    },
+    "distinct_children": 16,
+    "label": "descendant_as_improver",
+    "mean_child_rate": 0.96875,
+    "pooled_calls": 192,
+    "pooled_rate": 0.96875,
+    "pooled_solved": 186,
+    "proposal_attempts": 43,
+    "sd_child_rate": 0.08267972847076846
+  },
+  "claim_boundary": "One task family, one generation, one lineage per arm. Even a significant result is a single-lineage observation, short of POC_PLAN's three generations and five independent lineages with sealed transfer.",
+  "decision_rule": "p < 0.05 with the descendant ahead is required to call a recursive effect observed. Anything else is reported as not demonstrated, including a positive direction that misses the threshold.",
+  "experiment_id": "E84-powered-recursive-effect",
+  "fisher_exact_two_sided": 7.990317203778703e-13,
+  "makes_capability_claim": true,
+  "multiplicity_disclosure": "This is the FOURTH test of the same question and the second under the diversity-enforced protocol. E83's positive direction is what motivated powering the design, so E84 is confirmatory for a hypothesis generated by E83 and must not be read as independent of it. If E84 is null, the honest summary of all four is that no recursive effect was demonstrated.",
+  "pooled_delta": 0.33854166666666663,
+  "power_calculation": {
+    "alpha": 0.05,
+    "design": "16 children per arm x 12 held-out samples = 192 per arm",
+    "e83_had": 32,
+    "power": 0.8,
+    "required_solver_calls_per_arm": 192,
+    "target_delta": 0.125,
+    "target_rates": [
+      0.6875,
+      0.8125
+    ]
+  },
+  "predictions": [
+    {
+      "evidence": "ancestor 121/192, descendant 186/192, delta +0.3385",
+      "id": "H1",
+      "supported": true
+    },
+    {
+      "evidence": "p=0.0000",
+      "id": "H2",
+      "supported": true
+    },
+    {
+      "evidence": "ancestor 16/16 in 18 attempts; descendant 16/16 in 43",
+      "id": "H3",
+      "supported": true
+    }
+  ],
+  "preregistration_digest": "b1d16cee33b600febda3e4cc4df689495817817d163844c21944a5c1de846275",
+  "question": "With offspring diversity enforced and the design powered in advance, is the descendant a better improver than its ancestor?",
+  "recursive_effect_observed": true,
+  "report_digest": "f5c3cc317b9ec07381de14d07704c03666effe35c546f4dc1677f9054093230f",
+  "schema_version": 1,
+  "wall_seconds": 13841.394698999997
+}
